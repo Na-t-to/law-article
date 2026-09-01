@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#18232d" />
+    <meta
+      name="description"
+      content="法務に関する記事・一次資料を、読む価値と差分で整理するアーカイブ。"
+    />
+    <title>法務記事整理アーカイブ — LAW / INDEX</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="#top" aria-label="LAW / INDEX トップへ">
+          <span class="brand-kicker">LEGAL RESEARCH / 01</span>
+          <span class="brand-name">LAW <i>/</i> INDEX</span>
+          <span class="brand-subtitle">法務記事整理アーカイブ</span>
+        </a>
+        <nav class="main-nav" aria-label="メインナビゲーション">
+          <a class="nav-link is-active" href="#archive">ARCHIVE <span id="navArticleCount">08</span></a>
+          <a class="nav-link" href="#themes">TOPICS</a>
+          <a class="nav-link" href="#method">METHOD</a>
+          <button class="nav-search" type="button" data-focus-search aria-label="検索へ移動">
+            <span>⌕</span><span class="nav-search-text">検索</span><kbd>/</kbd>
+          </button>
+        </nav>
+      </header>
+
+      <main id="top">
+        <section class="intro-grid" aria-labelledby="pageTitle">
+          <div class="intro-copy">
+            <p class="eyebrow"><span class="eyebrow-dot"></span> CURATED LEGAL READING LIST</p>
+            <h1 id="pageTitle">読むべき法務情報へ、<em>最短で。</em></h1>
+            <p class="intro-lead">
+              原文を代わりに読むのではなく、読む前の探索と整理を引き受ける。<br />
+              重複を減らし、論点の差分と一次資料への道筋を残します。
+            </p>
+          </div>
+          <aside class="status-card" aria-label="アーカイブの状態">
+            <div class="status-card-head">
+              <span>COLLECTION STATUS</span>
+              <span class="status-live"><span></span> LIVE</span>
+            </div>
+            <div class="status-number" id="statusArticleCount">08</div>
+            <div class="status-label">採用記事 / 2026.09.01</div>
+            <div class="status-rule"></div>
+            <div class="status-row"><span>最終実行</span><strong>10:00 JST</strong></div>
+            <div class="status-row"><span>候補 → 採用</span><strong>18 → 04</strong></div>
+          </aside>
+        </section>
+
+        <section class="today-section section-block" id="today" aria-labelledby="todayTitle">
+          <div class="section-label-row">
+            <div>
+              <p class="eyebrow">01 / DAILY SIGNAL</p>
+              <h2 id="todayTitle">今日追加された記事</h2>
+            </div>
+            <div class="section-side-note">収集日 <strong>2026.09.01</strong><br />新しい入口をひとつだけ</div>
+          </div>
+          <div id="featuredArticle" class="featured-article"></div>
+        </section>
+
+        <section class="archive-section section-block" id="archive" aria-labelledby="archiveTitle">
+          <div class="section-label-row archive-heading">
+            <div>
+              <p class="eyebrow">02 / INDEX</p>
+              <h2 id="archiveTitle">全記事 <span class="heading-count" id="headingArticleCount">08本</span></h2>
+            </div>
+            <p class="section-description">タイトルを変えず、出典・分野・差分を残して並べています。</p>
+          </div>
+
+          <div class="archive-tabs" role="tablist" aria-label="記事の表示切り替え">
+            <button class="tab-button is-active" type="button" data-view="all" role="tab" aria-selected="true">全記事 <span id="allTabCount">08</span></button>
+            <button class="tab-button" type="button" data-view="unread" role="tab" aria-selected="false">未読 <span id="unreadTabCount">06</span></button>
+            <button class="tab-button" type="button" data-view="saved" role="tab" aria-selected="false">保存済み <span id="savedTabCount">02</span></button>
+            <button class="tab-button" type="button" data-view="primary" role="tab" aria-selected="false">一次資料 <span id="primaryTabCount">03</span></button>
+          </div>
+
+          <div class="archive-toolbar">
+            <label class="search-field" for="searchInput">
+              <span class="search-icon">⌕</span>
+              <span class="sr-only">記事を検索</span>
+              <input id="searchInput" type="search" placeholder="タイトル・著者・テーマから探す" autocomplete="off" />
+              <kbd>/</kbd>
+            </label>
+            <label class="select-field">
+              <span>分野</span>
+              <select id="fieldFilter" aria-label="分野で絞り込む">
+                <option value="all">すべて</option>
+              </select>
+            </label>
+            <label class="select-field">
+              <span>資料種別</span>
+              <select id="typeFilter" aria-label="資料種別で絞り込む">
+                <option value="all">すべて</option>
+              </select>
+            </label>
+            <label class="select-field compact-select">
+              <span>並び順</span>
+              <select id="sortSelect" aria-label="記事の並び順">
+                <option value="collected">追加日順</option>
+                <option value="published">公開日順</option>
+                <option value="importance">重要度順</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="topic-filter-row">
+            <span class="topic-filter-label">テーマ</span>
+            <div id="topicFilters" class="topic-filters"></div>
+            <button id="clearFilters" class="clear-filters" type="button">条件をクリア <span>×</span></button>
+          </div>
+
+          <div class="archive-layout">
+            <aside class="archive-aside">
+              <div class="aside-stamp">READ / SORT / KEEP</div>
+              <p class="aside-lead">似た記事を消すのではなく、情報の増え方を見る。</p>
+              <div class="aside-stat"><span>表示中</span><strong id="visibleArticleCount">08</strong></div>
+              <div class="aside-stat"><span>一次資料</span><strong id="asidePrimaryCount">03</strong></div>
+              <div class="aside-stat"><span>保存</span><strong id="asideSavedCount">02</strong></div>
+              <div class="aside-note">記事を開く前に、扱う論点・出典・関連資料がわかるようにしています。</div>
+            </aside>
+            <div class="results-area">
+              <div class="results-meta" aria-live="polite">
+                <span id="resultsLabel">全記事を表示中</span>
+                <span class="results-meta-right"><span class="results-pulse"></span> 自動収集 / 選別済み</span>
+              </div>
+              <div id="articleList" class="article-list"></div>
+              <div id="emptyState" class="empty-state" hidden>
+                <span class="empty-mark">∅</span>
+                <h3>該当する記事がありません</h3>
+                <p>検索語やフィルターを変えると、別の入口が見つかるかもしれません。</p>
+                <button id="emptyClear" class="text-button" type="button">すべての条件をクリア →</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="themes-section section-block" id="themes" aria-labelledby="themesTitle">
+          <div class="section-label-row">
+            <div>
+              <p class="eyebrow">03 / TOPIC MAP</p>
+              <h2 id="themesTitle">テーマから探す</h2>
+            </div>
+            <p class="section-description">厳密な論点体系ではなく、読み始めるための入口です。</p>
+          </div>
+          <div id="themeGrid" class="theme-grid"></div>
+        </section>
+
+        <section class="method-section section-block" id="method" aria-labelledby="methodTitle">
+          <div class="method-panel">
+            <div>
+              <p class="eyebrow">04 / THE RULES OF THIS INDEX</p>
+              <h2 id="methodTitle">このアーカイブの<br /><em>判断基準</em></h2>
+            </div>
+            <div class="method-list">
+              <div class="method-item"><span>01</span><div><strong>原文を中心に置く</strong><p>タイトル・著者・媒体・公開日・URLを保持。要約で置き換えません。</p></div></div>
+              <div class="method-item"><span>02</span><div><strong>差分がある記事を残す</strong><p>同じテーマでも、実務対応・独自解釈・一次資料が増えるなら別記事にします。</p></div></div>
+              <div class="method-item"><span>03</span><div><strong>AIは司書として働く</strong><p>探す、選ぶ、分類する、関係を付ける。法的結論は記事の外で生成しません。</p></div></div>
+            </div>
+          </div>
+          <div class="execution-record">
+            <div class="execution-head"><span>EXECUTION RECORD</span><span>RUN / 2026.09.01</span></div>
+            <div class="execution-big">04<span>採用</span></div>
+            <div class="execution-detail"><span>候補記事</span><strong>18</strong></div>
+            <div class="execution-detail"><span>URL重複除外</span><strong>06</strong></div>
+            <div class="execution-detail"><span>内容重複除外</span><strong>08</strong></div>
+            <div class="execution-detail"><span>一次資料</span><strong>05</strong></div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div><strong>LAW / INDEX</strong><span>法務情報を代わりに読むのではなく、読むまでの手間を減らす。</span></div>
+        <a href="#top">ページ上部へ <span>↑</span></a>
+      </footer>
+    </div>
+
+    <div id="articleDialog" class="dialog-backdrop" hidden>
+      <section class="article-dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle">
+        <button class="dialog-close" type="button" data-close-dialog aria-label="詳細を閉じる">×</button>
+        <div id="dialogContent"></div>
+      </section>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="data/articles.js"></script>
+    <script src="data/themes.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
