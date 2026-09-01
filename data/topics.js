@@ -38,13 +38,7 @@ window.TOPIC_DATA = [
       { id: "ai-transfer", title: "第三者提供・海外移転との関係", status: "継続更新", statusTone: "watch", conclusion: "提供先、再委託先、データ処理地、本人への説明を分けて整理する。", exception: "本人同意その他の適法化根拠が問題になる場合がある。", uncertain: "各国の制度とサービス構造の変化に応じて更新が必要。", sourceIds: ["source-privacy-law", "source-ppc-ai"] }
     ],
     sourceIds: ["source-privacy-law", "source-ppc-ai", "source-ai-guideline"],
-    practicalImpacts: ["社内AI利用規程", "サービス選定票", "プライバシーポリシー", "アクセス権限・ログ保存", "委託契約・利用規約"],
-    recentUpdateIds: ["update-ai-2026-09", "update-ai-2026-07"],
-    history: [
-      { date: "2026-09-01", label: "現在の整理を更新", detail: "AIサービスの仕様確認項目と、委託・第三者提供の切り分けを追記。" },
-      { date: "2026-07-18", label: "行政資料を追加", detail: "個人情報保護委員会の関連資料を主要一次資料へ追加。" },
-      { date: "2025-03-28", label: "ガイドラインを追加", detail: "AI事業者ガイドラインを、リスク管理の補助資料として紐付け。" }
-    ]
+    practicalImpacts: ["社内AI利用規程", "サービス選定票", "プライバシーポリシー", "アクセス権限・ログ保存", "委託契約・利用規約"]
   },
   {
     slug: "customer-harassment",
@@ -84,12 +78,7 @@ window.TOPIC_DATA = [
       { id: "ch-response", title: "相談・初動対応をどう設計するか", status: "基本整理あり", statusTone: "confirmed", conclusion: "相談窓口、現場支援、管理者判断、記録保存の役割を分ける。", exception: "緊急性・暴力性・生命身体への危険がある場合は通常フローを短縮する。", uncertain: "委託先・派遣先を含む関係者間の責任分担は契約と運用の確認が必要。", sourceIds: ["source-customer-guideline"] }
     ],
     sourceIds: ["source-customer-guideline"],
-    practicalImpacts: ["相談窓口", "店舗・現場マニュアル", "研修・ロールプレイ", "記録様式", "管理者の応援要請"],
-    recentUpdateIds: ["update-ch-2026-08"],
-    history: [
-      { date: "2026-08-31", label: "テーマを新規作成", detail: "行政資料を起点に、現場対応と社内体制の論点を分離。" },
-      { date: "2025-02-26", label: "指針を追加", detail: "職場におけるハラスメント対策の公的資料を根拠へ追加。" }
-    ]
+    practicalImpacts: ["相談窓口", "店舗・現場マニュアル", "研修・ロールプレイ", "記録様式", "管理者の応援要請"]
   },
   {
     slug: "freelance-law",
@@ -129,12 +118,7 @@ window.TOPIC_DATA = [
       { id: "freelance-notice", title: "取引条件をどう明示するか", status: "基本整理あり", statusTone: "confirmed", conclusion: "明示事項を漏れなく、発注のタイミングで相手が確認できる方法により伝える。", exception: "変更が生じた場合の再明示・記録も運用へ含める。", uncertain: "社内システムの画面・メール・添付書式の組合せは各社で設計が必要。", sourceIds: ["source-freelance-law"] }
     ],
     sourceIds: ["source-freelance-law"],
-    practicalImpacts: ["契約書テンプレート", "発注フォーム", "検収・支払フロー", "仕様変更の承認", "相談窓口"],
-    recentUpdateIds: ["update-freelance-2026-08"],
-    history: [
-      { date: "2026-08-29", label: "現在の整理を更新", detail: "発注システム上の明示と、変更時の記録を実務影響へ追加。" },
-      { date: "2024-11-05", label: "実務解説を追加", detail: "契約書レビューと運用フローの接点を補助資料として整理。" }
-    ]
+    practicalImpacts: ["契約書テンプレート", "発注フォーム", "検収・支払フロー", "仕様変更の承認", "相談窓口"]
   },
   {
     slug: "electronic-contract",
@@ -174,11 +158,6 @@ window.TOPIC_DATA = [
       { id: "econtract-log", title: "ログと保存", status: "運用設計", statusTone: "watch", conclusion: "締結した文書と、日時・操作者・認証・変更履歴等を後から辿れるように保存する。", exception: "保存先・保存期間は社内規程や関連制度とも調整する。", uncertain: "クラウドサービス終了時の取り出し可能性は契約前に確認する。", sourceIds: ["source-electronic-signature"] }
     ],
     sourceIds: ["source-electronic-signature"],
-    practicalImpacts: ["サービス選定票", "アカウント・権限管理", "締結ログ", "契約台帳", "保存・監査手順"],
-    recentUpdateIds: ["update-econtract-2026-08"],
-    history: [
-      { date: "2026-08-25", label: "現在の整理を更新", detail: "法務と情報システムの確認項目を一つの論点表へ統合。" },
-      { date: "2023-09-12", label: "補助資料を追加", detail: "サービスのログ設計と証跡管理に関する技術解説を追加。" }
-    ]
+    practicalImpacts: ["サービス選定票", "アカウント・権限管理", "締結ログ", "契約台帳", "保存・監査手順"]
   }
 ];

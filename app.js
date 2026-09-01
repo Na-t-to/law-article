@@ -7,7 +7,10 @@
   const pad = (value) => String(value).padStart(2, "0");
   let selectedField = "all";
 
-  const latestUpdateFor = (topic) => updates.filter((update) => update.topic === topic.slug).sort((a, b) => b.date.localeCompare(a.date))[0];
+  const topicBySlug = (slug) => topics.find((topic) => topic.slug === slug);
+  const sourceById = (id) => sources.find((source) => source.id === id);
+  const issueById = (topicSlug, issueId) => topicBySlug(topicSlug)?.issues.find((issue) => issue.id === issueId);
+  const latestUpdateFor = (topic) => updates.filter((update) => update.affectedTopics.includes(topic.slug)).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))[0];
 
   const renderTopicList = () => {
     const visibleTopics = topics.filter((topic) => selectedField === "all" || topic.categories.includes(selectedField)).sort((a, b) => b.lastUpdated.localeCompare(a.lastUpdated));
@@ -28,10 +31,16 @@
   };
 
   const renderChanges = () => {
-    const recent = [...updates].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 8);
+    const recent = [...updates].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt)).slice(0, 4);
     $("#recentChanges").innerHTML = recent.map((update) => {
-      const topic = topics.find((item) => item.slug === update.topic);
-      return `<a class="change-row" href="topics/${escapeHtml(update.topic)}.html"><time datetime="${escapeHtml(update.date)}">${escapeHtml(update.date)}</time><strong>${topic ? escapeHtml(topic.title) : ""}</strong><span>${escapeHtml(update.typeLabel)}</span><small>${escapeHtml(update.summary)}</small><b>→</b></a>`;
+      const source = sourceById(update.source);
+      const primaryTopic = topicBySlug(update.affectedTopics[0]);
+      const issueRows = update.affectedIssues.map((affected) => {
+        const affectedTopic = topicBySlug(affected.topic);
+        const issue = issueById(affected.topic, affected.issue);
+        return `<a class="update-issue-row" href="topics/${escapeHtml(affected.topic)}.html#${escapeHtml(affected.issue)}"><span><strong>${escapeHtml(affectedTopic?.title || "")}</strong><small>${escapeHtml(issue?.title || affected.issue)}</small></span><span class="update-delta"><del>${escapeHtml(affected.before)}</del><b>→</b><ins>${escapeHtml(affected.after)}</ins></span></a>`;
+      }).join("");
+      return `<article class="update-card"><time class="update-date" datetime="${escapeHtml(update.publishedAt)}">${escapeHtml(update.publishedAt)}</time><div class="update-card-main"><div class="update-source-line"><strong>${escapeHtml(source?.authority || "LAW / INDEX")}</strong><div><span>${escapeHtml(update.typeLabel)}</span>${update.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div></div><h3><a href="update.html?id=${encodeURIComponent(update.id)}">${escapeHtml(update.headline)}</a></h3><p class="update-summary">${escapeHtml(update.summary)}</p><div class="update-impact"><strong class="update-impact-title">この更新で変わった論点</strong>${issueRows}</div><div class="update-points"><strong>要点</strong><ul>${update.keyPoints.slice(0, 3).map((point) => `<li>${escapeHtml(point)}</li>`).join("")}</ul></div><div class="update-actions">${source ? `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">元資料を読む ↗</a>` : ""}<a href="update.html?id=${encodeURIComponent(update.id)}">更新の詳細</a>${primaryTopic ? `<a href="topics/${escapeHtml(primaryTopic.slug)}.html">テーマ全体を見る →</a>` : ""}</div></div></article>`;
     }).join("");
   };
 
@@ -43,7 +52,8 @@
       return [topic.title, topic.summary, topic.categories.join(" "), topic.overview.join(" "), issues, topic.practicalImpacts.join(" ")].join(" ").toLocaleLowerCase().includes(needle);
     }).map((topic) => ({ kind: "テーマ", title: topic.title, detail: `${topic.categories.join(" / ")} · ${topic.issues.length}論点`, href: `topics/${topic.slug}.html` }));
     const sourceMatches = sources.filter((source) => [source.title, source.authority, source.typeLabel, source.whyImportant].join(" ").toLocaleLowerCase().includes(needle)).map((source) => ({ kind: "資料", title: source.title, detail: `${source.authority} / ${source.typeLabel}`, href: source.url, external: true }));
-    return [...topicMatches, ...sourceMatches].slice(0, 8);
+    const updateMatches = updates.filter((update) => [update.headline, update.summary, update.whatChanged, update.tags.join(" "), update.keyPoints.join(" ")].join(" ").toLocaleLowerCase().includes(needle)).map((update) => ({ kind: "更新", title: update.headline, detail: `${update.publishedAt} / ${update.typeLabel}`, href: `update.html?id=${encodeURIComponent(update.id)}` }));
+    return [...topicMatches, ...updateMatches, ...sourceMatches].slice(0, 8);
   };
 
   const renderSearch = () => {
