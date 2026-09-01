@@ -2,43 +2,42 @@
   const topics = Array.isArray(window.TOPIC_DATA) ? window.TOPIC_DATA : [];
   const sources = Array.isArray(window.SOURCE_DATA) ? window.SOURCE_DATA : [];
   const updates = Array.isArray(window.UPDATE_DATA) ? window.UPDATE_DATA : [];
-  const slug = document.body.dataset.topic;
-  const topic = topics.find((item) => item.slug === slug);
+  const topic = topics.find((item) => item.slug === document.body.dataset.topic);
   const $ = (selector) => document.querySelector(selector);
   const escapeHtml = (value) => String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
   const sourceById = (id) => sources.find((source) => source.id === id);
 
   if (!topic) {
-    document.title = "テーマが見つかりません — LAW / INDEX";
-    $("#topicPage").innerHTML = `<div class="missing-topic"><p class="eyebrow">404 / TOPIC NOT FOUND</p><h1>このテーマはまだ登録されていません。</h1><a class="back-link" href="../index.html">← テーマ一覧へ戻る</a></div>`;
+    $("#topicPage").innerHTML = `<div class="missing-topic"><h1>このテーマはまだ登録されていません。</h1><a class="back-link" href="../index.html">← テーマ一覧へ戻る</a></div>`;
     return;
   }
 
-  const certaintyCard = (key, label, title, items, className) => `<article class="certainty-card ${className}"><span class="certainty-label">${escapeHtml(label)}</span><h3>${escapeHtml(title)}</h3><ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></article>`;
+  const sourceLinks = (ids) => ids.map((id) => {
+    const source = sourceById(id);
+    return source ? `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.title)}</a>` : "";
+  }).join("");
 
-  const renderTopic = () => {
-    document.title = `${topic.title} — 法務トピック知識ベース`;
-    $("#topicPage").innerHTML = `
-      <section class="detail-hero">
-        <div><div class="detail-kicker">TOPIC / ${escapeHtml(topic.slug)} / ${topic.categories.map(escapeHtml).join(" · ")}</div><h1>${escapeHtml(topic.title)}</h1><p class="detail-summary">${escapeHtml(topic.summary)}</p></div>
-        <div class="detail-meta"><strong>${escapeHtml(topic.lastUpdated)}</strong>最終整理更新<br />${topic.issues.length}つの論点 / ${topic.sourceIds.length}件の主要資料</div>
-      </section>
-      <div class="detail-grid">
-        <div class="detail-main">
-          <section class="detail-section"><div class="detail-section-head"><div><span class="eyebrow">01 / ORIENTATION</span><h2>概要</h2></div><span class="detail-section-label">はじめに読む</span></div><div class="overview-copy">${topic.overview.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</div></section>
-          <section class="detail-section"><div class="detail-section-head"><div><span class="eyebrow">02 / CURRENT POSITION</span><h2>現在の整理</h2></div><span class="detail-section-label">2026.09.01 時点</span></div><div class="certainty-grid">${certaintyCard("facts", "FACT / PRIMARY BASIS", "確定情報", topic.currentSummary.facts, "fact")}${certaintyCard("interpretations", "INTERPRETATION / ORGANIZED", "解釈・整理", topic.currentSummary.interpretations, "interpretation")}${certaintyCard("implications", "PRACTICE / CONSIDER", "実務上の示唆", topic.currentSummary.implications, "practical")}${certaintyCard("uncertain", "UNKNOWN / KEEP WATCHING", "未確定事項", topic.currentSummary.uncertain, "uncertain")}</div></section>
-          <section class="detail-section"><div class="detail-section-head"><div><span class="eyebrow">03 / ISSUE MAP</span><h2>論点一覧</h2></div><span class="detail-section-label">結論 / 例外 / 未確定</span></div><div class="issue-list">${topic.issues.map((issue) => `<article class="issue-card"><div class="issue-head"><h3>${escapeHtml(issue.title)}</h3><span class="issue-state ${escapeHtml(issue.statusTone)}">${escapeHtml(issue.status)}</span></div><p class="issue-conclusion">${escapeHtml(issue.conclusion)}</p><div class="issue-subgrid"><div class="issue-note"><strong>例外・条件</strong>${escapeHtml(issue.exception)}</div><div class="issue-note"><strong>未確定</strong>${escapeHtml(issue.uncertain)}</div></div><div class="issue-sources">${issue.sourceIds.map((id) => { const source = sourceById(id); return source ? `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">根拠: ${escapeHtml(source.title)} ↗</a>` : ""; }).join("")}</div></article>`).join("")}</div></section>
-          <section class="detail-section"><div class="detail-section-head"><div><span class="eyebrow">04 / PRACTICAL IMPACT</span><h2>実務への影響</h2></div><span class="detail-section-label">検討対象</span></div><ul class="impact-list">${topic.practicalImpacts.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul><p class="detail-footnote">法令上直接求められる事項と、実務上検討しやすい対応を分けて確認してください。</p></section>
-          <section class="detail-section"><div class="detail-section-head"><div><span class="eyebrow">05 / CHANGELOG</span><h2>更新履歴</h2></div><span class="detail-section-label">理解の変化</span></div><ul class="history-list">${topic.history.map((item) => `<li class="history-item"><span class="history-date">${escapeHtml(item.date)}</span><div><strong>${escapeHtml(item.label)}</strong><p>${escapeHtml(item.detail)}</p></div></li>`).join("")}</ul></section>
-          <a class="back-link" href="../index.html#topics">← テーマ一覧へ戻る</a>
-        </div>
-        <aside class="detail-aside">
-          <section class="detail-aside-card"><span class="eyebrow">EVIDENCE LAYER</span><h3>主要一次資料</h3><div class="source-stack">${topic.sourceIds.map((id) => { const source = sourceById(id); return source ? `<a class="source-card" href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer"><span class="source-pill">${escapeHtml(source.typeLabel)}</span><h3>${escapeHtml(source.title)}</h3><p>${escapeHtml(source.authority)} · ${escapeHtml(source.publishedAt)}</p><p>${escapeHtml(source.whyImportant)}</p></a>` : ""; }).join("")}</div></section>
-          <section class="detail-aside-card"><span class="eyebrow">RECENT UPDATES</span><h3>最近の更新</h3><ul class="update-list">${topic.recentUpdateIds.map((id) => updates.find((update) => update.id === id)).filter(Boolean).map((update) => `<li class="update-item"><span class="update-date">${escapeHtml(update.date)}</span><div><strong>${escapeHtml(update.typeLabel)}</strong><p>${escapeHtml(update.summary)}</p></div></li>`).join("")}</ul></section>
-          <section class="detail-aside-card"><div class="disclaimer">このページは資料の所在と現在の整理を確認するための知識ベースです。個別案件への法的助言や、法的結論の保証を目的としません。重要な判断では必ず原資料と専門家をご確認ください。</div></section>
-        </aside>
-      </div>`;
+  const renderCurrent = () => {
+    const summary = topic.currentSummary;
+    const rows = [
+      ["確定", summary.facts, ""],
+      ["整理", summary.interpretations, ""],
+      ["未確定", summary.uncertain, "uncertain"],
+      ["実務で確認すること", topic.practicalImpacts, "practical", true]
+    ];
+    return `<div class="current-list">${rows.map(([label, items, className, compact]) => `<div class="current-row ${className || ""}"><h3>${escapeHtml(label)}</h3>${compact ? `<ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>` : `<ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`}</div>`).join("")}</div>`;
   };
 
-  renderTopic();
+  const renderIssues = () => `<div class="issue-list">${topic.issues.map((issue) => `<article class="issue-row"><div class="issue-title"><h3>${escapeHtml(issue.title)}</h3><span class="issue-state ${escapeHtml(issue.statusTone)}">${escapeHtml(issue.status)}</span></div><div class="issue-answer"><p><strong>結論</strong> ${escapeHtml(issue.conclusion)}</p><div class="issue-notes"><div><strong>例外・条件</strong>${escapeHtml(issue.exception)}</div><div><strong>未確定</strong>${escapeHtml(issue.uncertain)}</div></div><div class="issue-sources"><strong>根拠</strong>${sourceLinks(issue.sourceIds)}</div></div></article>`).join("")}</div>`;
+
+  const renderSources = () => `<div class="source-list">${topic.sourceIds.map((id) => sourceById(id)).filter(Boolean).map((source) => `<a class="source-row" href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer"><div><strong>${escapeHtml(source.title)}</strong><small>${escapeHtml(source.authority)}</small></div><span class="source-type">${escapeHtml(source.typeLabel)}</span><span class="source-date">公開 ${escapeHtml(source.publishedAt)}<br />重要度 ${escapeHtml(source.importance)}</span><span class="source-reason">${escapeHtml(source.whyImportant)}</span><span class="source-link">↗</span></a>`).join("")}</div>`;
+
+  const renderHistory = () => {
+    const updateMap = new Map(updates.filter((update) => update.topic === topic.slug).map((update) => [update.date, update]));
+    const history = [...topic.history].sort((a, b) => b.date.localeCompare(a.date));
+    return `<div class="history-list">${history.map((item) => { const update = updateMap.get(item.date); return `<div class="history-row"><time datetime="${escapeHtml(item.date)}">${escapeHtml(item.date)}</time><strong>${escapeHtml(item.label)}${update ? ` / ${escapeHtml(update.typeLabel)}` : ""}</strong><span>${escapeHtml(item.detail)}</span></div>`; }).join("")}</div>`;
+  };
+
+  document.title = `${topic.title} — 法務トピック知識ベース`;
+  $("#topicPage").innerHTML = `<section class="detail-hero"><div class="detail-meta"><strong>最終確認 <time datetime="${escapeHtml(topic.lastVerified || topic.lastUpdated)}">${escapeHtml(topic.lastVerified || topic.lastUpdated)}</time></strong><span>${topic.categories.map(escapeHtml).join(" / ")}</span><span>${topic.issues.length}論点</span><span>${topic.sourceIds.length}主要資料</span></div><h1>${escapeHtml(topic.title)}</h1><p class="detail-summary">${escapeHtml(topic.summary)}</p></section><div class="detail-main"><section class="detail-section"><h2>現在の整理</h2>${renderCurrent()}<p class="disclaimer">確定情報と整理・示唆を分けて表示しています。個別案件への法的助言や、法的結論の保証を目的としません。</p></section><section class="detail-section"><h2>論点</h2>${renderIssues()}</section><section class="detail-section"><h2>主要資料</h2>${renderSources()}</section><section class="detail-section"><h2>更新履歴</h2>${renderHistory()}</section><a class="back-link" href="../index.html#topics">← テーマ一覧へ戻る</a></div>`;
 })();

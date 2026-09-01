@@ -4,85 +4,50 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#18232d" />
-    <meta name="description" content="法令・ガイドライン・判例・実務資料をテーマ単位で整理し、現在のルールと論点を辿る法務トピック知識ベース。" />
+    <meta name="description" content="法令・ガイドライン・判例・実務資料をテーマ単位で整理する法務トピック知識ベース。" />
     <title>法務トピック知識ベース — LAW / INDEX</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=3" />
   </head>
   <body>
     <div class="page-shell">
       <header class="site-header">
         <a class="brand" href="#top" aria-label="LAW / INDEX トップへ">
-          <span class="brand-kicker">LEGAL KNOWLEDGE BASE / 02</span>
           <span class="brand-name">LAW <i>/</i> INDEX</span>
           <span class="brand-subtitle">法務トピック知識ベース</span>
         </a>
         <nav class="main-nav" aria-label="メインナビゲーション">
-          <a class="nav-link is-active" href="#topics">TOPICS <span id="navTopicCount">04</span></a>
-          <a class="nav-link" href="#sources">SOURCES</a>
-          <a class="nav-link" href="#method">METHOD</a>
-          <button class="nav-search" type="button" data-focus-search aria-label="知識ベースを検索"><span>⌕</span><span class="nav-search-text">検索</span><kbd>/</kbd></button>
+          <a class="nav-link is-active" href="#topics">テーマ</a>
+          <a class="nav-link" href="#changes">最近の変更</a>
+          <button class="nav-search" type="button" data-focus-search aria-label="知識ベースを検索"><span>⌕</span><kbd>/</kbd></button>
         </nav>
       </header>
 
       <main id="top">
-        <section class="intro-grid" aria-labelledby="pageTitle">
-          <div class="intro-copy">
-            <p class="eyebrow"><span class="eyebrow-dot"></span> TOPIC-FIRST LEGAL RESEARCH</p>
-            <h1 id="pageTitle">テーマを更新し続ける、<em>法務の知識ベース。</em></h1>
-            <p class="intro-lead">新しい資料を記事として積むのではなく、既存テーマの理解を更新する。<br />現在のルール、論点、根拠、実務への影響を一つのページから辿ります。</p>
-          </div>
-          <aside class="status-card" aria-label="知識ベースの状態">
-            <div class="status-card-head"><span>KNOWLEDGE STATUS</span><span class="status-live"><span></span> MAINTAINED</span></div>
-            <div class="status-number" id="statusTopicCount">04</div>
-            <div class="status-label">整理中のテーマ / 2026.09.01</div>
-            <div class="status-rule"></div>
-            <div class="status-row"><span>最近の更新</span><strong>2026.09.01</strong></div>
-            <div class="status-row"><span>根拠資料</span><strong id="statusSourceCount">07</strong></div>
-          </aside>
-        </section>
-
-        <section class="search-zone" aria-label="知識ベース検索">
-          <div class="search-zone-label"><span>SEARCH THE KNOWLEDGE</span><span>テーマ / 論点 / 法令 / 資料 / 実務影響</span></div>
-          <label class="global-search-field" for="globalSearch"><span class="search-icon">⌕</span><span class="sr-only">知識全体を検索</span><input id="globalSearch" type="search" placeholder="例：生成AIと個人情報、第三者提供、委託" autocomplete="off" /><kbd>/</kbd></label>
+        <section class="search-section" aria-labelledby="pageTitle">
+          <h1 id="pageTitle">法務トピック知識ベース</h1>
+          <label class="search-label" for="globalSearch">テーマ・論点・法令・資料を検索</label>
+          <div class="global-search-field"><span class="search-icon">⌕</span><input id="globalSearch" type="search" placeholder="例：生成AIと個人情報、第三者提供、委託" autocomplete="off" /><kbd>/</kbd></div>
           <div id="searchPanel" class="search-panel" hidden></div>
         </section>
 
-        <section class="topics-section section-block" id="topics" aria-labelledby="topicsTitle">
-          <div class="section-label-row"><div><p class="eyebrow">01 / TOPIC PULSE</p><h2 id="topicsTitle">最近動いたテーマ</h2></div><p class="section-description">記事の新着ではなく、現在の整理が変わったテーマを表示しています。</p></div>
-          <div id="recentTopics" class="topic-list"></div>
+        <section class="topics-section" id="topics" aria-labelledby="topicsTitle">
+          <div class="section-heading"><h2 id="topicsTitle">テーマ</h2><span id="topicCount" class="section-count">04テーマ</span></div>
+          <div id="fieldFilters" class="field-filters" aria-label="分野で絞り込む"></div>
+          <div class="topic-index-head" aria-hidden="true"><span>テーマ</span><span>論点</span><span>主要資料</span><span>最新の変更</span></div>
+          <div id="topicList" class="topic-index"></div>
         </section>
 
-        <section class="new-topics-section section-block" aria-labelledby="newTopicsTitle">
-          <div class="section-label-row"><div><p class="eyebrow">02 / NEW QUESTIONS</p><h2 id="newTopicsTitle">新しく追加されたテーマ</h2></div><p class="section-description">単発のニュースではなく、複数資料で追う価値がある問いだけをテーマ化します。</p></div>
-          <div id="newTopics" class="new-topic-grid"></div>
-        </section>
-
-        <section class="field-section section-block" aria-labelledby="fieldTitle">
-          <div class="section-label-row"><div><p class="eyebrow">03 / FIELD MAP</p><h2 id="fieldTitle">分野から探す</h2></div><p class="section-description">入口を選ぶと、その分野に関係するテーマだけに絞り込みます。</p></div>
-          <div id="fieldGrid" class="field-grid"></div>
-        </section>
-
-        <section class="sources-section section-block" id="sources" aria-labelledby="sourcesTitle">
-          <div class="section-label-row"><div><p class="eyebrow">04 / EVIDENCE LAYER</p><h2 id="sourcesTitle">最近追加された重要資料</h2></div><p class="section-description">リンクだけで終わらせず、その資料が何に重要かを残します。</p></div>
-          <div class="source-table-wrap"><table class="source-table"><thead><tr><th>資料</th><th>種別</th><th>所管 / 公開日</th><th>重要な理由</th><th></th></tr></thead><tbody id="importantSources"></tbody></table></div>
-        </section>
-
-        <section class="dates-section section-block" aria-labelledby="datesTitle">
-          <div class="section-label-row"><div><p class="eyebrow">05 / WATCH DATES</p><h2 id="datesTitle">近日重要日程</h2></div><p class="section-description">施行日や期限など、日付が理解に影響するテーマだけを表示します。</p></div>
-          <div id="importantDates" class="dates-grid"></div>
-        </section>
-
-        <section class="method-section section-block" id="method" aria-labelledby="methodTitle">
-          <div class="method-panel"><div><p class="eyebrow">06 / HOW KNOWLEDGE IS MAINTAINED</p><h2 id="methodTitle">情報ではなく、<br /><em>テーマを蓄積する。</em></h2><p class="method-intro">この知識ベースは個別法律相談や法的結論の保証を目的としません。確定したこと、整理したこと、実務上の示唆、まだ不明なことを分けて記録します。</p></div><div class="method-list"><div class="method-item"><span>01</span><div><strong>一次資料を骨格にする</strong><p>法令、ガイドライン、Q&A、判例、行政資料を根拠として先に置きます。</p></div></div><div class="method-item"><span>02</span><div><strong>差分があれば現在地を更新する</strong><p>新しい資料を追加して終わらず、結論・条件・例外・確度が変わるかを確認します。</p></div></div><div class="method-item"><span>03</span><div><strong>矛盾と未確定を消さない</strong><p>行政資料と学説などが異なる場合は、違いを残し、現時点で不明なものも正式な状態として表示します。</p></div></div></div></div>
-          <div class="method-record"><span class="record-label">MAINTENANCE LOOP</span><div class="record-flow"><span>探索</span><i>→</i><span>根拠確認</span><i>→</i><span>テーマ照合</span><i>→</i><span>現在地更新</span></div><p>重要な情報がなければ、毎日更新しません。</p><a href="#sources" class="text-button">根拠資料を見る →</a></div>
+        <section class="changes-section" id="changes" aria-labelledby="changesTitle">
+          <div class="section-heading"><h2 id="changesTitle">最近の変更</h2><span class="section-count">テーマの更新履歴</span></div>
+          <div id="recentChanges" class="change-list"></div>
         </section>
       </main>
 
-      <footer class="site-footer"><div><strong>LAW / INDEX</strong><span>法務情報を代わりに読むのではなく、現在地を辿れるようにする。</span></div><a href="#top">ページ上部へ <span>↑</span></a></footer>
+      <footer class="site-footer"><div><strong>LAW / INDEX</strong><span>テーマを探す → 現在の整理を読む → 必要なら根拠へ。</span></div><a href="#top">ページ上部へ <span>↑</span></a></footer>
     </div>
-    <script src="data/topics.js?v=2"></script>
-    <script src="data/sources.js?v=2"></script>
-    <script src="data/updates.js?v=2"></script>
-    <script src="app.js?v=2"></script>
+    <script src="data/topics.js?v=3"></script>
+    <script src="data/sources.js?v=3"></script>
+    <script src="data/updates.js?v=3"></script>
+    <script src="app.js?v=3"></script>
   </body>
 </html>
