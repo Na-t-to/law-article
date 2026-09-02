@@ -2,6 +2,8 @@
   const topics = Array.isArray(window.TOPIC_DATA) ? window.TOPIC_DATA : [];
   const sources = Array.isArray(window.SOURCE_DATA) ? window.SOURCE_DATA : [];
   const updates = Array.isArray(window.UPDATE_DATA) ? window.UPDATE_DATA : [];
+  const articles = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA.filter((article) => article.status === "adopted") : [];
+  const collection = window.COLLECTION_META || {};
   const $ = (selector) => document.querySelector(selector);
   const escapeHtml = (value) => String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
   const pad = (value) => String(value).padStart(2, "0");
@@ -11,6 +13,12 @@
   const sourceById = (id) => sources.find((source) => source.id === id);
   const issueById = (topicSlug, issueId) => topicBySlug(topicSlug)?.issues.find((issue) => issue.id === issueId);
   const latestUpdateFor = (topic) => updates.filter((update) => update.affectedTopics.includes(topic.slug)).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))[0];
+  const topicNamesForArticle = (article) => article.relatedTopics.map((slug) => topicBySlug(slug)?.title).filter(Boolean);
+
+  const renderHomeArticles = () => {
+    const recent = [...articles].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt)).slice(0, 5);
+    $("#homeArticleList").innerHTML = recent.map((article) => `<a class="article-row" href="article.html?id=${encodeURIComponent(article.id)}"><time datetime="${escapeHtml(article.publishedAt)}">${escapeHtml(article.publishedAt)}</time><div class="article-main-cell"><strong>${escapeHtml(article.title)}</strong><small>${escapeHtml(article.publisher)} / ${escapeHtml(article.sourceLabel)}</small><span>${topicNamesForArticle(article).map(escapeHtml).join(" / ")}</span></div><div class="article-fields">${article.categories.map((field) => `<span>${escapeHtml(field)}</span>`).join("")}</div><div class="article-audience">${article.audience.slice(0, 2).map((item) => `<span>${escapeHtml(item)}</span>`).join("")}</div></a>`).join("");
+  };
 
   const renderTopicList = () => {
     const visibleTopics = topics.filter((topic) => selectedField === "all" || topic.categories.includes(selectedField)).sort((a, b) => b.lastUpdated.localeCompare(a.lastUpdated));
@@ -56,8 +64,9 @@
       return [topic.title, topic.summary, topic.categories.join(" "), topic.overview.join(" "), issues, topic.practicalImpacts.join(" ")].join(" ").toLocaleLowerCase().includes(needle);
     }).map((topic) => ({ kind: "テーマ", title: topic.title, detail: `${topic.categories.join(" / ")} · ${topic.issues.length}論点`, href: `topics/${topic.slug}.html` }));
     const sourceMatches = sources.filter((source) => [source.title, source.authority, source.typeLabel, source.whyImportant].join(" ").toLocaleLowerCase().includes(needle)).map((source) => ({ kind: "資料", title: source.title, detail: `${source.authority} / ${source.typeLabel}`, href: source.url, external: true }));
+    const articleMatches = articles.filter((article) => [article.title, article.publisher, article.summary, article.categories.join(" "), article.audience.join(" "), topicNamesForArticle(article).join(" ")].join(" ").toLocaleLowerCase().includes(needle)).map((article) => ({ kind: "記事・資料", title: article.title, detail: `${article.publisher} / ${article.sourceLabel}`, href: `article.html?id=${encodeURIComponent(article.id)}` }));
     const updateMatches = updates.filter((update) => [update.headline, update.summary, update.whatChanged, update.tags.join(" "), update.keyPoints.join(" ")].join(" ").toLocaleLowerCase().includes(needle)).map((update) => ({ kind: "更新", title: update.headline, detail: `${update.publishedAt} / ${update.typeLabel}`, href: `update.html?id=${encodeURIComponent(update.id)}` }));
-    return [...topicMatches, ...updateMatches, ...sourceMatches].slice(0, 8);
+    return [...articleMatches, ...topicMatches, ...updateMatches, ...sourceMatches].slice(0, 8);
   };
 
   const renderSearch = () => {
@@ -79,6 +88,12 @@
   document.addEventListener("keydown", (event) => { if (event.key === "/" && document.activeElement.tagName !== "INPUT") { event.preventDefault(); $("#globalSearch").focus(); } if (event.key === "Escape") $("#searchPanel").hidden = true; });
 
   $("#topicCount").textContent = `${pad(topics.length)}テーマ`;
+  if (collection.lastCollectedAt) {
+    const last = new Date(collection.lastCollectedAt);
+    $("#lastCollected").textContent = `最終収集 ${String(last.getMonth() + 1).padStart(2, "0")}.${String(last.getDate()).padStart(2, "0")} ${String(last.getHours()).padStart(2, "0")}:${String(last.getMinutes()).padStart(2, "0")}`;
+  }
+  $("#adoptedCount").textContent = `採用 ${pad(articles.length)}件`;
+  renderHomeArticles();
   renderFieldFilters();
   renderTopicList();
   renderChanges();

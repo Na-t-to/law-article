@@ -2,6 +2,7 @@
   const topics = Array.isArray(window.TOPIC_DATA) ? window.TOPIC_DATA : [];
   const sources = Array.isArray(window.SOURCE_DATA) ? window.SOURCE_DATA : [];
   const updates = Array.isArray(window.UPDATE_DATA) ? window.UPDATE_DATA : [];
+  const articles = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA.filter((item) => item.status === "adopted") : [];
   const topic = topics.find((item) => item.slug === document.body.dataset.topic);
   const $ = (selector) => document.querySelector(selector);
   const escapeHtml = (value) => String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
@@ -31,11 +32,16 @@
 
   const renderSources = () => `<div class="source-list">${topic.sourceIds.map((id) => sourceById(id)).filter(Boolean).map((source) => `<a class="source-row" href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer"><div><strong>${escapeHtml(source.title)}</strong><small>${escapeHtml(source.authority)}</small></div><span class="source-type">${escapeHtml(source.typeLabel)}</span><span class="source-date">公開 ${escapeHtml(source.publishedAt)}<br />重要度 ${escapeHtml(source.importance)}</span><span class="source-reason">${escapeHtml(source.whyImportant)}</span><span class="source-link">↗</span></a>`).join("")}</div>`;
 
+  const renderArticles = () => {
+    const related = articles.filter((article) => article.relatedTopics.includes(topic.slug)).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+    return related.length ? `<div class="topic-article-list">${related.map((article) => `<a class="topic-article-row" href="../article.html?id=${encodeURIComponent(article.id)}"><time datetime="${escapeHtml(article.publishedAt)}">${escapeHtml(article.publishedAt)}</time><div><strong>${escapeHtml(article.title)}</strong><small>${escapeHtml(article.publisher)} / ${escapeHtml(article.sourceLabel)}</small></div><span>${article.audience.slice(0, 2).map(escapeHtml).join(" / ")}</span><em>→</em></a>`).join("")}</div>` : `<p class="section-intro">関連する採用記事・資料はまだありません。</p>`;
+  };
+
   const renderHistory = () => {
     const history = updates.filter((update) => update.affectedTopics.includes(topic.slug)).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
     return `<div class="history-list">${history.map((update) => `<a class="history-row" href="../update.html?id=${encodeURIComponent(update.id)}"><time datetime="${escapeHtml(update.publishedAt)}">${escapeHtml(update.publishedAt)}</time><strong>${escapeHtml(update.typeLabel)}</strong><span><b>${escapeHtml(update.headline)}</b><small>${escapeHtml(update.whatChanged)}</small></span><em>→</em></a>`).join("")}</div>`;
   };
 
   document.title = `${topic.title} — 法務トピック知識ベース`;
-  $("#topicPage").innerHTML = `<section class="detail-hero"><div class="detail-meta"><strong>最終確認 <time datetime="${escapeHtml(topic.lastVerified || topic.lastUpdated)}">${escapeHtml(topic.lastVerified || topic.lastUpdated)}</time></strong><span>${topic.categories.map(escapeHtml).join(" / ")}</span><span>${topic.issues.length}論点</span><span>${topic.sourceIds.length}主要資料</span></div><h1>${escapeHtml(topic.title)}</h1><p class="detail-summary">${escapeHtml(topic.summary)}</p></section><div class="detail-main"><section class="detail-section"><h2>テーマの要点</h2>${renderCurrent()}<p class="disclaimer">このページは、関連資料を論点別にたどるための索引です。個別案件への法的助言や、法的結論の保証を目的としません。</p></section><section class="detail-section"><h2>論点</h2>${renderIssues()}</section><section class="detail-section"><h2>主要資料</h2>${renderSources()}</section><section class="detail-section"><h2>更新履歴</h2>${renderHistory()}</section><a class="back-link" href="../index.html#topics">← テーマ一覧へ戻る</a></div>`;
+  $("#topicPage").innerHTML = `<section class="detail-hero"><div class="detail-meta"><strong>最終確認 <time datetime="${escapeHtml(topic.lastVerified || topic.lastUpdated)}">${escapeHtml(topic.lastVerified || topic.lastUpdated)}</time></strong><span>${topic.categories.map(escapeHtml).join(" / ")}</span><span>${topic.issues.length}論点</span><span>${topic.sourceIds.length}主要資料</span></div><h1>${escapeHtml(topic.title)}</h1><p class="detail-summary">${escapeHtml(topic.summary)}</p></section><div class="detail-main"><section class="detail-section"><h2>テーマの要点</h2>${renderCurrent()}<p class="disclaimer">このページは、関連資料を論点別にたどるための索引です。個別案件への法的助言や、法的結論の保証を目的としません。</p></section><section class="detail-section"><h2>論点</h2>${renderIssues()}</section><section class="detail-section"><h2>関連する記事・資料</h2>${renderArticles()}</section><section class="detail-section"><h2>主要な一次資料</h2>${renderSources()}</section><section class="detail-section"><h2>更新履歴</h2>${renderHistory()}</section><a class="back-link" href="../index.html#topics">← テーマ一覧へ戻る</a></div>`;
 })();

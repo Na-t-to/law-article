@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#1b2424" />
-    <meta name="description" content="法令・ガイドライン・判例・実務資料をテーマ単位で整理する法務トピック知識ベース。" />
-    <title>法務トピック知識ベース — LAW / INDEX</title>
-    <link rel="stylesheet" href="styles.css?v=7" />
+    <meta name="description" content="国内企業法務の記事・一次資料を自動収集・選別し、分野・テーマ・論点へ整理する法務リサーチアーカイブ。" />
+    <title>企業法務の記事・資料を自動整理 — LAW / INDEX</title>
+    <link rel="stylesheet" href="styles.css?v=8" />
   </head>
   <body>
     <div class="page-shell">
@@ -16,21 +16,29 @@
           <span class="brand-subtitle">LEGAL RESEARCH ARCHIVE</span>
         </a>
         <nav class="main-nav" aria-label="メインナビゲーション">
-          <a class="nav-link is-active" href="#topics">テーマ</a>
-          <a class="nav-link" href="#changes">最近の更新</a>
+          <a class="nav-link is-active" href="#articles">記事・資料</a>
+          <a class="nav-link" href="#topics">テーマ</a>
+          <a class="nav-link" href="#changes">更新</a>
           <button class="nav-search" type="button" data-focus-search aria-label="知識ベースを検索"><span>⌕</span><kbd>/</kbd></button>
         </nav>
       </header>
 
       <main id="top">
+        <section class="collection-strip" aria-label="自動収集状況"><div><span class="live-dot" aria-hidden="true"></span><strong>収集エンジン稼働中</strong><span>新着巡回＋過去分探索 → 内容確認 → 採用 → 分野・テーマ・論点へ分類</span></div><div><span id="lastCollected">最終収集 --</span><span id="adoptedCount">採用 --件</span></div></section>
         <section class="search-section" aria-label="知識ベースを検索">
-          <label class="search-label" for="globalSearch">テーマ・論点・法令・資料を検索</label>
-          <div class="global-search-field"><span class="search-icon">⌕</span><input id="globalSearch" type="search" placeholder="例：生成AIと個人情報、第三者提供、委託" autocomplete="off" /><kbd>/</kbd></div>
+          <label class="search-label" for="globalSearch">記事・資料・テーマ・論点を検索</label>
+          <div class="global-search-field"><span class="search-icon">⌕</span><input id="globalSearch" type="search" placeholder="例：生成AI、個人情報、カスタマーハラスメント" autocomplete="off" /><kbd>/</kbd></div>
           <div id="searchPanel" class="search-panel" hidden></div>
         </section>
 
+        <section class="articles-section" id="articles" aria-labelledby="articlesTitle">
+          <div class="section-heading"><h2 id="articlesTitle">新着の記事・資料</h2><a class="section-link" href="articles.html">すべて見る →</a></div>
+          <div class="article-index-head home-article-head" aria-hidden="true"><span>公開日</span><span>記事・資料</span><span>分野</span><span>読むとよい人</span></div>
+          <div id="homeArticleList" class="article-index"></div>
+        </section>
+
         <section class="topics-section" id="topics" aria-labelledby="topicsTitle">
-          <div class="section-heading"><h2 id="topicsTitle">テーマ</h2><span id="topicCount" class="section-count">04テーマ</span></div>
+          <div class="section-heading"><h2 id="topicsTitle">テーマから探す</h2><span id="topicCount" class="section-count">04テーマ</span></div>
           <div id="fieldFilters" class="field-filters" aria-label="分野で絞り込む"></div>
           <div class="topic-index-head" aria-hidden="true"><span>テーマ</span><span>論点</span><span>主要資料</span><span>最新の変更</span></div>
           <div id="topicList" class="topic-index"></div>
@@ -42,11 +50,13 @@
         </section>
       </main>
 
-      <footer class="site-footer"><div><strong>LAW / INDEX</strong><span>テーマを探す → 論点を読む → 資料に進む。</span></div><a href="#top">ページ上部へ <span>↑</span></a></footer>
+      <footer class="site-footer"><div><strong>LAW / INDEX</strong><span>記事を読む → 論点をたどる → 一次資料へ進む。</span></div><a href="#top">ページ上部へ <span>↑</span></a></footer>
     </div>
-    <script src="data/topics.js?v=7"></script>
-    <script src="data/sources.js?v=7"></script>
-    <script src="data/updates.js?v=7"></script>
-    <script src="app.js?v=7"></script>
+    <script src="data/topics.js?v=8"></script>
+    <script src="data/sources.js?v=8"></script>
+    <script src="data/updates.js?v=8"></script>
+    <script src="data/articles.js?v=8"></script>
+    <script src="data/collection.js?v=8"></script>
+    <script src="app.js?v=8"></script>
   </body>
 </html>
