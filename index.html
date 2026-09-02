@@ -11,51 +11,21 @@
   <body>
     <div class="page-shell">
       <header class="site-header">
-        <a class="brand" href="#top" aria-label="LAW / INDEX トップへ">
-          <span class="brand-name">LAW <i>/</i> INDEX</span>
-          <span class="brand-subtitle">LEGAL RESEARCH ARCHIVE</span>
-        </a>
-        <nav class="main-nav" aria-label="メインナビゲーション">
-          <a class="nav-link is-active" href="#articles">記事・資料</a>
-          <a class="nav-link" href="#topics">テーマ</a>
-          <button class="nav-search" type="button" data-focus-search aria-label="知識ベースを検索"><span>⌕</span><kbd>/</kbd></button>
-        </nav>
+        <a class="brand" href="#top" aria-label="LAW / INDEX トップへ"><span class="brand-name">LAW <i>/</i> INDEX</span><span class="brand-subtitle">LEGAL RESEARCH ARCHIVE</span></a>
+        <nav class="main-nav" aria-label="メインナビゲーション"><a class="nav-link is-active" href="#articles">記事・資料</a><a class="nav-link" href="#topics">テーマ</a><button class="nav-search" type="button" data-focus-search aria-label="知識ベースを検索"><span>⌕</span><kbd>/</kbd></button></nav>
       </header>
-
       <main id="top">
         <section class="collection-strip" aria-label="自動収集状況"><div><span class="live-dot" aria-hidden="true"></span><strong>収集エンジン稼働中</strong><span>新着巡回＋過去分探索 → 内容確認 → 採用 → 分野・テーマ・論点へ分類</span></div><div><span id="lastCollected">最終収集 --</span><span id="adoptedCount">採用 --件</span></div></section>
-        <section class="search-section" aria-label="知識ベースを検索">
-          <label class="search-label" for="globalSearch">記事・資料・テーマ・論点を検索</label>
-          <div class="global-search-field"><span class="search-icon">⌕</span><input id="globalSearch" type="search" placeholder="例：生成AI、個人情報、カスタマーハラスメント" autocomplete="off" /><kbd>/</kbd></div>
-          <div id="searchPanel" class="search-panel" hidden></div>
-        </section>
-
-        <section class="articles-section" id="articles" aria-labelledby="articlesTitle">
-          <div class="section-heading"><h2 id="articlesTitle">新着の記事・資料</h2><a class="section-link" href="articles.html">すべて見る →</a></div>
-          <div class="article-index-head home-article-head" aria-hidden="true"><span>公開日</span><span>記事・資料</span><span>分野</span><span>読むとよい人</span></div>
-          <div id="homeArticleList" class="article-index"></div>
-        </section>
-
-        <section class="topics-section" id="topics" aria-labelledby="topicsTitle">
-          <div class="section-heading"><h2 id="topicsTitle">テーマから探す</h2><span id="topicCount" class="section-count">07テーマ</span></div>
-          <div id="fieldFilters" class="field-filters" aria-label="分野で絞り込む"></div>
-          <div class="topic-index-head" aria-hidden="true"><span>テーマ</span><span>論点</span><span>主要資料</span><span>最新の変更</span></div>
-          <div id="topicList" class="topic-index"></div>
-        </section>
-
+        <section class="search-section" aria-label="知識ベースを検索"><label class="search-label" for="globalSearch">記事・資料・テーマ・論点を検索</label><div class="global-search-field"><span class="search-icon">⌕</span><input id="globalSearch" type="search" placeholder="例：生成AI、個人情報、カスタマーハラスメント" autocomplete="off" /><kbd>/</kbd></div><div id="searchPanel" class="search-panel" hidden></div></section>
+        <section class="articles-section" id="articles" aria-labelledby="articlesTitle"><div class="section-heading"><h2 id="articlesTitle">新着の記事・資料</h2><a class="section-link" href="articles.html">すべて見る →</a></div><div class="article-index-head home-article-head" aria-hidden="true"><span>公開日</span><span>記事・資料</span><span>分野</span><span>読むとよい人</span></div><div id="homeArticleList" class="article-index"></div></section>
+        <section class="topics-section" id="topics" aria-labelledby="topicsTitle"><div class="section-heading"><h2 id="topicsTitle">テーマから探す</h2><span id="topicCount" class="section-count">10テーマ</span></div><div id="fieldFilters" class="field-filters" aria-label="分野で絞り込む"></div><div class="topic-index-head" aria-hidden="true"><span>テーマ</span><span>論点</span><span>主要資料</span><span>最新の変更</span></div><div id="topicList" class="topic-index"></div></section>
       </main>
-
       <footer class="site-footer"><div><strong>LAW / INDEX</strong><span>記事を読む → 論点をたどる → 一次資料へ進む。</span></div><a href="#top">ページ上部へ <span>↑</span></a></footer>
     </div>
-    <script src="data/topics.js?v=8"></script>
-    <script src="data/topics-extra.js?v=1"></script>
-    <script src="data/sources.js?v=8"></script>
-    <script src="data/sources-extra.js?v=1"></script>
-    <script src="data/updates.js?v=8"></script>
-    <script src="data/articles.js?v=8"></script>
-    <script src="data/articles-secondary.js?v=1"></script>
-    <script src="data/articles-extra.js?v=1"></script>
-    <script src="data/collection.js?v=9"></script>
-    <script src="app.js?v=9"></script>
+    <script src="data/topics.js?v=8"></script><script src="data/topics-extra.js?v=1"></script><script src="data/topics-run6.js?v=1"></script>
+    <script src="data/sources.js?v=8"></script><script src="data/sources-extra.js?v=1"></script><script src="data/sources-run6.js?v=1"></script>
+    <script src="data/updates.js?v=8"></script><script src="data/updates-run6.js?v=1"></script>
+    <script src="data/articles.js?v=8"></script><script src="data/articles-secondary.js?v=1"></script><script src="data/articles-extra.js?v=1"></script><script src="data/articles-run6.js?v=1"></script>
+    <script src="data/collection.js?v=10"></script><script src="app.js?v=9"></script>
   </body>
 </html>
