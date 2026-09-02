@@ -261,6 +261,11 @@ h3 { font-weight: 600; }
 .article-tags { display: flex; flex-wrap: wrap; gap: 8px 15px; color: var(--muted); font-size: 10px; }
 .article-tags span::before { color: var(--gold); content: "# "; }
 .article-detail-main { max-width: 960px; }
+.article-summary-copy { max-width: 830px; color: var(--ink-soft); font-size: 14px; line-height: 2; }
+.article-summary-copy p { margin: 0; }
+.article-summary-copy p + p { margin-top: 18px; }
+.article-summary-copy ul { margin: 20px 0 0; border-top: 1px solid var(--line); padding: 16px 0 0 20px; }
+.article-summary-copy li + li { margin-top: 7px; }
 .audience-list { display: flex; flex-wrap: wrap; gap: 8px 10px; }
 .audience-list > div { display: flex; align-items: center; gap: 7px; border: 1px solid var(--line); background: rgba(247,246,240,.48); padding: 8px 12px; }
 .audience-list strong { color: var(--accent); font: 11px var(--sans); }
@@ -272,11 +277,11 @@ h3 { font-weight: 600; }
 .related-shelf strong { font-family: var(--serif); font-size: 14px; }
 .related-shelf span { color: var(--ink-soft); font-size: 11px; }
 .related-shelf em { color: var(--accent); font-style: normal; }
-.article-original { display: flex; align-items: center; justify-content: space-between; gap: 25px; border: 1px solid var(--rail); border-left: 5px solid var(--gold); background: var(--surface); padding: 17px 18px; }
+.article-original { display: flex; align-items: center; justify-content: space-between; gap: 25px; margin-top: 30px; border: 1px solid var(--rail); border-left: 5px solid var(--gold); background: var(--surface); padding: 17px 18px; }
 .article-original strong, .article-original span { display: block; }
 .article-original strong { font-family: var(--serif); font-size: 15px; }
 .article-original span { margin-top: 3px; color: var(--muted); font-size: 10px; }
-.article-original > a { color: var(--accent); font-size: 10px; }
+.article-original > a { border-bottom: 1px solid currentColor; color: var(--accent); padding-bottom: 2px; font-size: 11px; }
 .topic-article-list { border-top: 1px solid var(--rail); }
 .topic-article-row { display: grid; grid-template-columns: 110px minmax(280px, 1fr) minmax(180px, .7fr) 18px; gap: 18px; align-items: center; border-bottom: 1px solid var(--line); padding: 15px 10px; }
 .topic-article-row:hover { background: var(--surface); }
