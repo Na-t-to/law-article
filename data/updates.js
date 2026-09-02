@@ -1,5 +1,26 @@
 window.UPDATE_DATA = [
   {
+    id: "update-ch-2026-09-obligation",
+    source: "source-customer-harassment-guideline-2026",
+    headline: "カスタマーハラスメント防止措置が10月1日から義務化",
+    publishedAt: "2026-09-02",
+    type: "law-update",
+    typeLabel: "施行準備",
+    summary: "改正労働施策総合推進法と防止指針を反映し、全事業主が2026年10月1日までに整える措置を現在の整理へ追加した。",
+    whatChanged: "将来の制度整備を待つ整理から、公布済みの指針に基づく施行準備の整理へ更新した。",
+    affectedTopics: ["customer-harassment"],
+    affectedIssues: [
+      { topic: "customer-harassment", issue: "ch-definition", before: "事実を記録して個別判断", after: "指針の三要素を全て満たすかを総合判断" },
+      { topic: "customer-harassment", issue: "ch-response", before: "相談・初動・記録を社内運用として設計", after: "方針周知・相談体制・事後対応・抑止・プライバシー保護を義務対応として整備" }
+    ],
+    before: "法制度・指針の具体化を待ちながら、相談・初動対応を任意の社内体制として整理。",
+    after: "2026年10月1日の施行に向け、防止指針が定める雇用管理上の措置を全事業主の義務として実装する。",
+    keyPoints: ["指針の三要素を満たすかを事案ごとに総合判断する", "方針周知、相談体制、事実確認、被害者配慮、再発防止を整える", "悪質事案への対処方針、プライバシー保護、不利益取扱い禁止も明確にする"],
+    importance: "最重要",
+    tags: ["労務", "社内体制"],
+    confidence: "fact"
+  },
+  {
     id: "update-ai-2026-09",
     source: "source-ppc-ai",
     headline: "生成AI利用時の委託・第三者提供の判断軸を更新",
