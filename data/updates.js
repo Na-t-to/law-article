@@ -1,5 +1,25 @@
 window.UPDATE_DATA = [
   {
+    id: "update-ai-2026-09-amendment",
+    source: "source-privacy-law-2026-amendment",
+    headline: "2026年改正個人情報保護法のAI・データ利活用特例を反映",
+    publishedAt: "2026-09-02",
+    type: "law-update",
+    typeLabel: "法改正",
+    summary: "2026年7月公布の改正法と8月26日の施行準備資料を追加し、AI開発に関係する統計作成等の特例を施行前論点として登録した。",
+    whatChanged: "現行法だけを基準にした整理から、公布済み・未施行の改正法を明確に分けて追える整理へ更新した。",
+    affectedTopics: ["ai-personal-data"],
+    affectedIssues: [
+      { topic: "ai-personal-data", issue: "ai-statistical-use", before: "未登録", after: "統計作成等と整理できるAI開発の本人同意不要特例を施行待ち論点として登録" }
+    ],
+    before: "生成AIサービスの利用時に、入力・委託・第三者提供を現行法のもとで整理。",
+    after: "現行法の整理を維持しつつ、2026年改正法のAI開発・データ連携特例と未確定の施行ルールを別枠で追跡。",
+    keyPoints: ["改正法は2026年7月17日公布、一部を除き公布から2年以内に施行", "統計作成等と整理できるAI開発を含む特例が導入予定", "具体的な対象範囲・公表事項・基準適合体制は今後の委員会規則・ガイドライン等を継続確認"],
+    importance: "最重要",
+    tags: ["個人情報", "AI・デジタル"],
+    confidence: "fact"
+  },
+  {
     id: "update-ch-2026-09-obligation",
     source: "source-customer-harassment-guideline-2026",
     headline: "カスタマーハラスメント防止措置が10月1日から義務化",
