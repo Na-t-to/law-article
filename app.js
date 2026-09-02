@@ -10,8 +10,6 @@
   let selectedField = "all";
 
   const topicBySlug = (slug) => topics.find((topic) => topic.slug === slug);
-  const sourceById = (id) => sources.find((source) => source.id === id);
-  const issueById = (topicSlug, issueId) => topicBySlug(topicSlug)?.issues.find((issue) => issue.id === issueId);
   const latestUpdateFor = (topic) => updates.filter((update) => update.affectedTopics.includes(topic.slug)).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))[0];
   const topicNamesForArticle = (article) => article.relatedTopics.map((slug) => topicBySlug(slug)?.title).filter(Boolean);
 
@@ -35,24 +33,6 @@
       const value = field === "すべて" ? "all" : field;
       const count = field === "すべて" ? topics.length : topics.filter((topic) => topic.categories.includes(field)).length;
       return `<button class="field-filter${selectedField === value ? " is-active" : ""}" type="button" data-field="${escapeHtml(value)}"><span>${escapeHtml(field)}</span><small>${pad(count)}</small></button>`;
-    }).join("");
-  };
-
-  const renderChanges = () => {
-    const recent = [...updates].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt)).slice(0, 4);
-    $("#recentChanges").innerHTML = recent.map((update) => {
-      const source = sourceById(update.source);
-      const primaryTopic = topicBySlug(update.affectedTopics[0]);
-      const firstAffected = update.affectedIssues[0];
-      const firstIssue = firstAffected ? issueById(firstAffected.topic, firstAffected.issue) : null;
-      const issuePreview = firstIssue ? `「${firstIssue.title}」${update.affectedIssues.length > 1 ? `ほか${update.affectedIssues.length - 1}件` : ""}の整理を更新` : update.whatChanged;
-      const issueRows = update.affectedIssues.map((affected) => {
-        const affectedTopic = topicBySlug(affected.topic);
-        const issue = issueById(affected.topic, affected.issue);
-        return `<a class="update-issue-row" href="topics/${escapeHtml(affected.topic)}.html#${escapeHtml(affected.issue)}"><span><strong>${escapeHtml(affectedTopic?.title || "")}</strong><small>${escapeHtml(issue?.title || affected.issue)}</small></span><span class="update-delta"><del>${escapeHtml(affected.before)}</del><b>→</b><ins>${escapeHtml(affected.after)}</ins></span></a>`;
-      }).join("");
-      const shortDate = update.publishedAt.slice(5).replace("-", ".");
-      return `<details class="update-card"><summary class="update-summary-row"><time datetime="${escapeHtml(update.publishedAt)}">${escapeHtml(shortDate)}</time><div class="update-summary-main"><div class="update-kicker"><strong>${escapeHtml(source?.authority || "LAW / INDEX")}</strong><span>${update.tags.map(escapeHtml).join(" / ")}</span></div><h3>${escapeHtml(update.headline)}</h3><div class="update-topic-preview"><strong>${escapeHtml(primaryTopic?.title || "")}</strong><span>${escapeHtml(issuePreview)}</span></div></div><span class="update-toggle"><span class="when-closed">詳細を見る →</span><span class="when-open">閉じる ↑</span></span></summary><div class="update-expanded"><p class="update-expanded-summary">${escapeHtml(update.summary)}</p><div class="update-impact"><strong class="update-impact-title">変更前 / 変更後</strong>${issueRows}</div><div class="update-points"><strong>要点</strong><ul>${update.keyPoints.slice(0, 3).map((point) => `<li>${escapeHtml(point)}</li>`).join("")}</ul></div><div class="update-actions">${source ? `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">元資料を読む ↗</a>` : ""}<a href="update.html?id=${encodeURIComponent(update.id)}">更新ページを開く</a>${primaryTopic ? `<a href="topics/${escapeHtml(primaryTopic.slug)}.html">テーマ全体を見る →</a>` : ""}</div></div></details>`;
     }).join("");
   };
 
@@ -96,5 +76,4 @@
   renderHomeArticles();
   renderFieldFilters();
   renderTopicList();
-  renderChanges();
 })();
