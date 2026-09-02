@@ -91,7 +91,7 @@ window.TOPIC_DATA = [
     categories: ["契約", "労務"],
     summary: "フリーランスとの取引条件の明示、発注・検収・支払、禁止行為を、法令と実務フローの接点から整理する。契約書の修正だけでなく運用を対象にする。",
     lastUpdated: "2026-08-29",
-    lastVerified: "2026-08-29",
+    lastVerified: "2026-09-02",
     isNew: false,
     overview: [
       "フリーランスとの取引では、契約書の文言だけでなく、発注時の明示・検収・支払・変更管理が法務と現場の両方に関係します。",
@@ -120,9 +120,9 @@ window.TOPIC_DATA = [
     },
     issues: [
       { id: "freelance-scope", title: "適用対象となる取引か", status: "最初に確認", statusTone: "review", conclusion: "当事者の属性、委託内容、従業員の有無などを確認して対象関係を特定する。", exception: "名称や契約形式ではなく、取引の実態を見る。", uncertain: "複数の契約・発注経路がある場合は、取引単位で確認が必要。", sourceIds: ["source-freelance-law"] },
-      { id: "freelance-notice", title: "取引条件をどう明示するか", status: "基本整理あり", statusTone: "confirmed", conclusion: "明示事項を漏れなく、発注のタイミングで相手が確認できる方法により伝える。", exception: "変更が生じた場合の再明示・記録も運用へ含める。", uncertain: "社内システムの画面・メール・添付書式の組合せは各社で設計が必要。", sourceIds: ["source-freelance-law"] }
+      { id: "freelance-notice", title: "取引条件をどう明示するか", status: "基本整理あり", statusTone: "confirmed", conclusion: "明示事項を漏れなく、発注のタイミングで相手が確認できる方法により伝える。", exception: "変更が生じた場合の再明示・記録も運用へ含める。", uncertain: "社内システムの画面・メール・添付書式の組合せは各社で設計が必要。", sourceIds: ["source-freelance-law", "source-freelance-enforcement-2026"] }
     ],
-    sourceIds: ["source-freelance-law"],
+    sourceIds: ["source-freelance-law", "source-freelance-enforcement-2026"],
     practicalImpacts: ["契約書テンプレート", "発注フォーム", "検収・支払フロー", "仕様変更の承認", "相談窓口"]
   },
   {
@@ -131,7 +131,7 @@ window.TOPIC_DATA = [
     categories: ["契約", "情報セキュリティ"],
     summary: "電子契約サービスを導入するときに、本人確認、意思表示、改ざん検知、保存・監査の論点をどう確認するか。法務と情報システムの共通言語を作る。",
     lastUpdated: "2026-08-25",
-    lastVerified: "2026-08-25",
+    lastVerified: "2026-09-02",
     isNew: false,
     overview: [
       "電子契約は紙をPDFに置き換えるだけでなく、誰が・いつ・どの文書に・どのように同意したかを後から説明できる状態が重要です。",
@@ -159,10 +159,55 @@ window.TOPIC_DATA = [
       ]
     },
     issues: [
-      { id: "econtract-identity", title: "本人確認と意思表示", status: "個別確認", statusTone: "review", conclusion: "認証方法、本人への通知、権限設定、締結操作の記録を組み合わせて確認する。", exception: "重要契約や代理権が関係する場合は、追加の確認手順を設ける。", uncertain: "サービス仕様の変更で確認方法が変わる可能性がある。", sourceIds: ["source-electronic-signature"] },
-      { id: "econtract-log", title: "ログと保存", status: "運用設計", statusTone: "watch", conclusion: "締結した文書と、日時・操作者・認証・変更履歴等を後から辿れるように保存する。", exception: "保存先・保存期間は社内規程や関連制度とも調整する。", uncertain: "クラウドサービス終了時の取り出し可能性は契約前に確認する。", sourceIds: ["source-electronic-signature"] }
+      { id: "econtract-identity", title: "本人確認と意思表示", status: "個別確認", statusTone: "review", conclusion: "認証方法、本人への通知、権限設定、締結操作の記録を組み合わせて確認する。", exception: "重要契約や代理権が関係する場合は、追加の確認手順を設ける。", uncertain: "サービス仕様の変更で確認方法が変わる可能性がある。", sourceIds: ["source-electronic-signature", "source-electronic-signature-qa-2024"] },
+      { id: "econtract-log", title: "ログと保存", status: "運用設計", statusTone: "watch", conclusion: "締結した文書と、日時・操作者・認証・変更履歴等を後から辿れるように保存する。", exception: "保存先・保存期間は社内規程や関連制度とも調整する。", uncertain: "クラウドサービス終了時の取り出し可能性は契約前に確認する。", sourceIds: ["source-electronic-signature", "source-electronic-signature-qa-2024"] }
     ],
-    sourceIds: ["source-electronic-signature"],
+    sourceIds: ["source-electronic-signature", "source-electronic-signature-qa-2024"],
     practicalImpacts: ["サービス選定票", "アカウント・権限管理", "締結ログ", "契約台帳", "保存・監査手順"]
+  },
+  {
+    slug: "whistleblower-system",
+    title: "公益通報・内部通報制度",
+    categories: ["危機管理・コンプライアンス", "労務"],
+    summary: "2026年12月1日施行の改正公益通報者保護法を軸に、通報者の範囲、不利益取扱い・報復、通報妨害・探索、窓口・調査・情報管理の体制整備に関する一次資料を整理する。",
+    lastUpdated: "2026-09-02",
+    lastVerified: "2026-09-02",
+    isNew: true,
+    overview: [
+      "内部通報制度は、窓口を置くだけではなく、通報を受けた後の調査、情報管理、人事判断、是正までを一つの運用として設計する必要があります。",
+      "2026年12月1日に改正公益通報者保護法が施行され、通報者保護の強化、フリーランス等への対象拡大、事業者の体制整備の徹底が予定されています。",
+      "このテーマでは、改正法、消費者庁Q&A、改正指針の解説を棚としてまとめ、施行前の準備で参照すべき資料を論点別にたどれるようにします。",
+      "個別の通報が保護要件を満たすかの結論を一律に示すのではなく、誰の通報か、どこへの通報か、どの措置・取扱いが問題かを分けて一次資料へ戻れる構成にします。"
+    ],
+    currentSummary: {
+      facts: [
+        "令和7年法律第62号による改正公益通報者保護法は、2026年12月1日に施行される。",
+        "改正では、公益通報を理由とした解雇・懲戒への直罰規定と、通報から1年以内の解雇・懲戒について公益通報を理由とするものと推定する規定が新設される。",
+        "公益通報者の範囲には、一定の業務委託関係にある特定受託業務従事者（フリーランス）や、関係終了後1年以内の者が追加される。",
+        "事業者の体制整備では、従事者指定、内部通報窓口、幹部からの独立性、利益相反、不利益取扱い防止、範囲外共有・通報妨害・通報者探索の防止、記録・周知・教育・内部規程などが指針と解説で具体化されている。"
+      ],
+      interpretations: [
+        "施行準備は内部通報規程だけを改定するのでは足りず、受付・調査手順、人事・懲戒判断、業務委託管理、通報者情報へのアクセス管理を横断して確認する必要がある。",
+        "経営幹部が関係する通報では、受付・調査の独立性と利益相反を避けるエスカレーション経路を事前に設計しておく必要がある。",
+        "通報者を特定させる情報は、担当者を絞るだけでなく、閲覧権限やアクセス記録を含む情報管理として扱うと制度運用を検証しやすい。"
+      ],
+      implications: [
+        "従業員、派遣労働者、退職者、役員に加え、対象となるフリーランス・元フリーランスが利用できる通報経路と周知方法を棚卸しする。",
+        "通報後の配置、評価、懲戒、契約解除・取引数量・報酬等の判断について、通報との関係を検証できる記録と承認手順を整える。",
+        "通報者特定情報へのアクセス範囲を限定し、範囲外共有、通報妨害、通報者探索を防ぐルールと教育を更新する。",
+        "外部窓口を利用する場合は、委託先との役割、情報授受、記録保存、経営幹部案件の報告経路を確認する。"
+      ],
+      uncertain: [
+        "個別の通報が公益通報として保護されるかは、通報者の関係、通報対象事実、通報先、通報時点など具体的事情により確認が必要。",
+        "施行後の行政運用・裁判例によって、直罰・推定規定やフリーランス保護の実務上の評価が具体化されるため、2026年12月以降も継続して追う。"
+      ]
+    },
+    issues: [
+      { id: "whistleblower-scope", title: "誰の・どの通報が保護対象か", status: "改正法・Q&Aあり", statusTone: "confirmed", conclusion: "従業員等に加えて一定のフリーランス・元フリーランスも対象となるため、通報者の関係、通報対象事実、通報先を分けて確認する。", exception: "フリーランスに関する改正規定は2026年12月1日施行後の通報に適用されるなど、施行時期を区別する必要がある。", uncertain: "個別の通報が各保護要件を満たすかは具体的事実関係の確認が必要。", sourceIds: ["source-whistleblower-law-2025-amendment", "source-whistleblower-qa-2026"] },
+      { id: "whistleblower-retaliation", title: "不利益取扱い・報復をどう防ぐか", status: "施行準備", statusTone: "watch", conclusion: "解雇・懲戒だけでなく、人事上・経済待遇上・業務委託上の不利益な取扱いも視野に、通報後の判断を独立して検証できる手順と記録を整える。", exception: "正当な業務・人事上の措置まで一律に禁止されるわけではなく、理由と手続を具体的に確認する必要がある。", uncertain: "直罰・推定規定の施行後の運用は行政実務や裁判例を継続確認する。", sourceIds: ["source-whistleblower-law-2025-amendment", "source-whistleblower-qa-2026", "source-whistleblower-guideline-2026"] },
+      { id: "whistleblower-system-design", title: "窓口・調査・情報管理をどう設計するか", status: "改正指針あり", statusTone: "confirmed", conclusion: "従事者指定、窓口、幹部からの独立性、利益相反排除、不利益取扱い防止、範囲外共有・通報妨害・通報者探索の防止、記録・周知・教育・内部規程を一つの制度として確認する。", exception: "事業者の規模・組織・業態等に応じて具体的な実装は異なる。", uncertain: "外部窓口やグループ会社をまたぐ運用では、権限・情報共有・調査責任の設計を個別に確認する。", sourceIds: ["source-whistleblower-guideline-2026", "source-whistleblower-qa-2026"] }
+    ],
+    sourceIds: ["source-whistleblower-law-2025-amendment", "source-whistleblower-guideline-2026", "source-whistleblower-qa-2026"],
+    practicalImpacts: ["内部通報規程", "内部・外部通報窓口", "調査・是正手順", "人事・懲戒判断の記録", "業務委託・フリーランスへの周知", "通報者情報のアクセス権限・ログ", "従事者・管理職向け教育"]
   }
 ];
