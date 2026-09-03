@@ -290,5 +290,18 @@ window.REFORM_EVENT_DATA=(Array.isArray(window.REFORM_EVENT_DATA)?window.REFORM_
     effectiveDateSourceIds:["source-cao-security-clearance-law-2024"],
     matchSourceIds:["source-cao-security-clearance-law-2024","source-cao-security-clearance-guidelines-2025","source-cao-security-clearance-report-2026"],
     sourceIds:["source-cao-security-clearance-law-2024","source-cao-security-clearance-guidelines-2025","source-cao-security-clearance-report-2026"]
+  },
+  {
+    id:"corporate-governance-code-2026",
+    title:"コーポレートガバナンス・コード・2026年改訂",
+    eventType:"regulation_or_guideline",
+    lawId:"corporate-governance-code",
+    lawLabel:"コーポレートガバナンス・コード",
+    relatedTopics:["corporate-governance-code-2026"],
+    effectiveDateStatus:"confirmed",
+    effectiveDates:["2026-07-21"],
+    effectiveDateSourceIds:["source-jpx-cg-code-2026"],
+    matchSourceIds:["source-jpx-cg-code-2026","source-fsa-cg-code-2026"],
+    sourceIds:["source-jpx-cg-code-2026","source-fsa-cg-code-2026"]
   }
 ]);
