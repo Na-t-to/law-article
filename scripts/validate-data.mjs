@@ -22,7 +22,30 @@ const sources = context.window.SOURCE_DATA || [];
 const updates = context.window.UPDATE_DATA || [];
 const articles = context.window.ARTICLE_DATA || [];
 const verificationAdvances = context.window.applyTopicVerificationDates(topics, articles, updates);
-const errors = [...manifestErrors, ...context.window.validateKnowledgeData(topics, sources, articles)];
+const reformStageValues = new Set(["proposal", "finalized_pending", "partially_effective", "effective"]);
+const sourceIds = new Set(sources.map((source) => source.id));
+const reformStageErrors = [];
+
+for (const article of articles) {
+  const hasStage = Object.prototype.hasOwnProperty.call(article, "reformStageAtPublication");
+  const hasStageSources = Object.prototype.hasOwnProperty.call(article, "reformStageSourceIds");
+  if (!hasStage && !hasStageSources) continue;
+  if (!hasStage) {
+    reformStageErrors.push(`${article.id || "article"}: reformStageSourceIds を指定する場合は reformStageAtPublication も必要です。`);
+    continue;
+  }
+  if (!reformStageValues.has(article.reformStageAtPublication)) {
+    reformStageErrors.push(`${article.id || "article"}: reformStageAtPublication "${article.reformStageAtPublication}" は定義外です。`);
+  }
+  if (!Array.isArray(article.reformStageSourceIds) || !article.reformStageSourceIds.length) {
+    reformStageErrors.push(`${article.id || "article"}: reformStageAtPublication を表示するには reformStageSourceIds を1件以上指定してください。`);
+    continue;
+  }
+  article.reformStageSourceIds.filter((id) => !sourceIds.has(id)).forEach((id) => reformStageErrors.push(`${article.id || "article"}: reformStageSourceId "${id}" は存在しません。`));
+  article.reformStageSourceIds.filter((id) => !(article.primarySourceIds || []).includes(id)).forEach((id) => reformStageErrors.push(`${article.id || "article"}: reformStageSourceId "${id}" は primarySourceIds にも含めてください。`));
+}
+
+const errors = [...manifestErrors, ...context.window.validateKnowledgeData(topics, sources, articles), ...reformStageErrors];
 const warnings = context.window.findKnowledgeWarnings(topics, sources, articles);
 const uniqueArticles = context.window.uniqueKnowledgeArticles(articles);
 const issues = topics.flatMap((topic) => topic.issues || []);
@@ -60,7 +83,9 @@ console.log(JSON.stringify({
   verificationAdvancesApplied: verificationAdvances,
   verificationAdvancesPending: audit.verificationAdvancesPending,
   legalReforms: legalReforms.length,
-  reformStages: Object.fromEntries([...new Set(legalReforms.map((article) => context.window.getLegalReformInfo(article, topics).stage))].sort().map((stage) => [stage, legalReforms.filter((article) => context.window.getLegalReformInfo(article, topics).stage === stage).length])),
+  reformStages: Object.fromEntries([...reformStageValues].sort().map((stage) => [stage, legalReforms.filter((article) => article.reformStageAtPublication === stage).length])),
+  reformStageTagged: legalReforms.filter((article) => reformStageValues.has(article.reformStageAtPublication)).length,
+  reformStageUntagged: legalReforms.filter((article) => !reformStageValues.has(article.reformStageAtPublication)).length,
   reformLaws: Object.fromEntries([...new Set(legalReforms.map((article) => context.window.getLegalReformLaw(article, topics).label))].sort((left, right) => left.localeCompare(right, "ja")).map((law) => [law, legalReforms.filter((article) => context.window.getLegalReformLaw(article, topics).label === law).length])),
   warnings: warnings.length
 }));
