@@ -1,0 +1,15 @@
+window.REFORM_EVENT_DATA=(Array.isArray(window.REFORM_EVENT_DATA)?window.REFORM_EVENT_DATA:[]).concat([
+{
+  id:"copyright-record-performance-communication-2026",
+  title:"著作権法・レコード演奏／伝達権創設（2026年改正）",
+  eventType:"law_amendment",
+  lawId:"copyright-act",
+  lawLabel:"著作権法",
+  relatedTopics:["recorded-music-public-use-right-2026"],
+  effectiveDateStatus:"relative",
+  effectiveDateNote:"2026年6月24日公布／公布日から3年を超えない範囲内で政令で定める日",
+  effectiveDateSourceIds:["source-bunka-copyright-bgm-right-2026"],
+  matchSourceIds:["source-bunka-copyright-bgm-right-2026"],
+  sourceIds:["source-bunka-copyright-bgm-right-2026","source-bunka-record-performance-report-2026"]
+}
+]);
