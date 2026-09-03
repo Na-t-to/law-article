@@ -3,6 +3,7 @@
   const topics = Array.isArray(window.TOPIC_DATA) ? window.TOPIC_DATA : [];
   const sources = Array.isArray(window.SOURCE_DATA) ? window.SOURCE_DATA : [];
   const updates = Array.isArray(window.UPDATE_DATA) ? window.UPDATE_DATA : [];
+  const reformEvents = Array.isArray(window.REFORM_EVENT_DATA) ? window.REFORM_EVENT_DATA : [];
   const allArticles = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
   const articles = (window.uniqueKnowledgeArticles?.(allArticles) || allArticles).filter((article) => article.status === "adopted");
   const escapeHtml = (value) => String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
@@ -69,28 +70,62 @@
       const topic = topicsForArticle(article)[0];
       return topic ? { id: `topic-${topic.slug}`, label: topic.title } : { id: "other-legal-reform", label: "その他の法改正・制度変更" };
     };
-    const effectiveDate = (article) => window.getLegalReformEffectiveDate?.(article, topics) || null;
+    const eventForArticle = (article) => article.reformEventId ? reformEvents.find((event) => event.id === article.reformEventId) || null : null;
+    const articleEffectiveDate = (article) => window.getLegalReformEffectiveDate?.(article, topics) || null;
+    const eventEffectiveDate = (event) => window.getLegalReformEventEffectiveDate?.(event) || null;
     const formatPublishedDate = (value) => {
       const [year, month, day] = value.split("-").map(Number);
       return `${year}年${month}月${day}日公開`;
     };
-    const reforms = articles.map((article) => ({ article, reform: reformInfo(article), law: reformLaw(article), effectiveDate: effectiveDate(article) })).filter(({ reform }) => reform.isReform).sort((left, right) => (right.article.collectedAt || "").localeCompare(left.article.collectedAt || "") || right.article.publishedAt.localeCompare(left.article.publishedAt));
+    const reforms = articles.map((article) => {
+      const event = eventForArticle(article);
+      const law = event ? { id: event.lawId, label: event.lawLabel } : reformLaw(article);
+      return { article, reform: reformInfo(article), event, law };
+    }).filter(({ reform }) => reform.isReform).sort((left, right) => (right.article.collectedAt || "").localeCompare(left.article.collectedAt || "") || right.article.publishedAt.localeCompare(left.article.publishedAt));
+
     const groups = [...reforms.reduce((map, item) => {
-      if (!map.has(item.law.id)) map.set(item.law.id, { law: item.law, items: [], effectiveDate: null, latestCollectedAt: "" });
-      const group = map.get(item.law.id);
+      const groupId = item.event ? `event-${item.event.id}` : `legacy-${item.law.id}`;
+      if (!map.has(groupId)) {
+        map.set(groupId, {
+          id: groupId,
+          title: item.event?.title || item.law.label,
+          law: item.law,
+          event: item.event,
+          items: [],
+          effectiveDate: item.event ? eventEffectiveDate(item.event) : null,
+          latestCollectedAt: ""
+        });
+      }
+      const group = map.get(groupId);
       group.items.push(item);
       if ((item.article.collectedAt || "") > group.latestCollectedAt) group.latestCollectedAt = item.article.collectedAt;
-      if (item.effectiveDate && (!group.effectiveDate || item.effectiveDate.sortKey > group.effectiveDate.sortKey)) group.effectiveDate = item.effectiveDate;
+      if (!group.event) {
+        const candidate = articleEffectiveDate(item.article);
+        if (candidate && (!group.effectiveDate || candidate.sortKey > group.effectiveDate.sortKey)) group.effectiveDate = candidate;
+      }
       return map;
     }, new Map()).values()].sort((left, right) => {
       if (left.effectiveDate && right.effectiveDate) return right.effectiveDate.sortKey.localeCompare(left.effectiveDate.sortKey) || right.latestCollectedAt.localeCompare(left.latestCollectedAt);
       if (left.effectiveDate) return -1;
       if (right.effectiveDate) return 1;
+      if (Boolean(left.event) !== Boolean(right.event)) return left.event ? -1 : 1;
       return right.latestCollectedAt.localeCompare(left.latestCollectedAt);
     });
 
-    document.querySelector("#reformCount").innerHTML = `<strong>${pad(groups.length)}</strong><span>法令・制度</span>`;
-    document.querySelector("#reformList").innerHTML = groups.length ? groups.map(({ law, items, effectiveDate: groupEffectiveDate, latestCollectedAt }) => `<details class="reform-law-group" id="law-${escapeHtml(law.id)}"${selectedLaw === law.id ? " open" : ""}><summary><div><strong>${escapeHtml(law.label)}</strong><small>最終追加 <time datetime="${escapeHtml(latestCollectedAt)}">${escapeHtml(latestCollectedAt)}</time></small></div><span class="reform-effective-date" title="一次資料で根拠を確認できた施行日だけを表示します">${escapeHtml(groupEffectiveDate ? `施行日 ${groupEffectiveDate.label.replace(/施行$/, "")}` : "施行日 根拠未確認")}</span><span class="reform-count">${pad(items.length)}件</span><em>記事を見る</em></summary><div class="reform-law-articles">${items.map(({ article, reform }) => `<article><div><a href="article.html?id=${encodeURIComponent(article.id)}"><strong>${escapeHtml(article.title)}</strong></a><small>${escapeHtml(article.publisher)} / ${escapeHtml(article.sourceLabel)}</small></div><time class="reform-published-date" datetime="${escapeHtml(article.publishedAt)}">${escapeHtml(formatPublishedDate(article.publishedAt))}</time>${reform.stage ? `<span class="reform-stage" data-stage="${escapeHtml(reform.stage)}" title="記事公開時点の改正段階">${escapeHtml(reform.stageLabel)}</span>` : ""}</article>`).join("")}</div></details>`).join("") : `<div class="empty-inline">法改正に該当する記事・資料はまだありません。</div>`;
-    if (selectedLaw) document.querySelector(`#law-${CSS.escape(selectedLaw)}`)?.scrollIntoView({ block: "start" });
+    const effectiveLabel = (group) => {
+      if (group.effectiveDate) return `施行日 ${group.effectiveDate.label.replace(/施行$/, "")}${group.event ? "" : "（記事単位の暫定整理）"}`;
+      return group.event ? "施行日 未定・未登録" : "改正イベント未整理";
+    };
+
+    document.querySelector("#reformCount").innerHTML = `<strong>${pad(groups.length)}</strong><span>改正単位</span>`;
+    document.querySelector("#reformList").innerHTML = groups.length ? groups.map((group) => {
+      const selected = selectedLaw && (selectedLaw === group.law.id || selectedLaw === group.event?.id);
+      const meta = group.event ? `法令・制度 ${group.law.label} / 最終追加 ` : "最終追加 ";
+      return `<details class="reform-law-group" id="${escapeHtml(group.id)}"${selected ? " open" : ""}><summary><div><strong>${escapeHtml(group.title)}</strong><small>${escapeHtml(meta)}<time datetime="${escapeHtml(group.latestCollectedAt)}">${escapeHtml(group.latestCollectedAt)}</time></small></div><span class="reform-effective-date">${escapeHtml(effectiveLabel(group))}</span><span class="reform-count">${pad(group.items.length)}件</span><em>記事を見る</em></summary><div class="reform-law-articles">${group.items.map(({ article, reform }) => `<article><div><a href="article.html?id=${encodeURIComponent(article.id)}"><strong>${escapeHtml(article.title)}</strong></a><small>${escapeHtml(article.publisher)} / ${escapeHtml(article.sourceLabel)}</small></div><time class="reform-published-date" datetime="${escapeHtml(article.publishedAt)}">${escapeHtml(formatPublishedDate(article.publishedAt))}</time>${reform.stage ? `<span class="reform-stage" data-stage="${escapeHtml(reform.stage)}" title="記事公開時点の改正段階">${escapeHtml(reform.stageLabel)}</span>` : ""}</article>`).join("")}</div></details>`;
+    }).join("") : `<div class="empty-inline">法改正に該当する記事・資料はまだありません。</div>`;
+    if (selectedLaw) {
+      const target = groups.find((group) => selectedLaw === group.law.id || selectedLaw === group.event?.id);
+      if (target) document.querySelector(`#${CSS.escape(target.id)}`)?.scrollIntoView({ block: "start" });
+    }
   }
 })();
