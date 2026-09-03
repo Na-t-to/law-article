@@ -165,12 +165,83 @@
     return relatedTopic ? { id: `topic-${relatedTopic.slug}`, label: relatedTopic.title } : { id: "other-legal-reform", label: "その他の法改正・制度変更" };
   };
 
+  const getLegalReformEffectiveDate = (article, topics = []) => {
+    const verifiedFallbacks = Object.freeze({
+      "financial-instruments-exchange-act": "2026-05-01",
+      "fair-subcontract-transactions-act": "2026-01-01",
+      "women-advancement-act": "2026-04-01",
+      "freelance-act": "2024-11-01"
+    });
+    const parseDate = (value) => {
+      const match = String(value || "").match(/^(\d{4})-(\d{2})(?:-(\d{2}))?$/);
+      if (!match) return null;
+      const [, year, month, day] = match;
+      return {
+        value: day ? `${year}-${month}-${day}` : `${year}-${month}`,
+        sortKey: `${year}-${month}-${day || "31"}`,
+        precision: day ? "day" : "month",
+        label: day ? `${Number(year)}年${Number(month)}月${Number(day)}日施行` : `${Number(year)}年${Number(month)}月施行`
+      };
+    };
+    const explicitValues = [
+      ...(Array.isArray(article.reformEffectiveDates) ? article.reformEffectiveDates : []),
+      article.reformEffectiveDate
+    ].filter(Boolean);
+    const explicitDates = explicitValues.map(parseDate).filter(Boolean).sort((left, right) => right.sortKey.localeCompare(left.sortKey));
+    if (explicitDates.length) return explicitDates[0];
+
+    const collectText = (value, result = []) => {
+      if (typeof value === "string") result.push(value);
+      else if (Array.isArray(value)) value.forEach((item) => collectText(item, result));
+      else if (value && typeof value === "object") Object.values(value).forEach((item) => collectText(item, result));
+      return result;
+    };
+    const relatedTopics = (article.relatedTopics || []).map((slug) => topics.find((topic) => topic.slug === slug)).filter(Boolean);
+    const passages = collectText([article.title, article.summary, article.whyImportant, article.audienceReason, article.whatChanged, relatedTopics])
+      .flatMap((text) => text.split(/[。！？\n]/))
+      .filter((text) => /施行/.test(text));
+    const candidates = [];
+    const addCandidate = (year, month, day) => {
+      const normalizedYear = String(year).padStart(4, "0");
+      const normalizedMonth = String(month).padStart(2, "0");
+      const normalizedDay = day ? String(day).padStart(2, "0") : null;
+      const parsed = parseDate(`${normalizedYear}-${normalizedMonth}${normalizedDay ? `-${normalizedDay}` : ""}`);
+      if (parsed) candidates.push(parsed);
+    };
+    const suffix = String.raw`(?:\s*(?:から|より|に))?(?:\s*(?:全面|一部|段階的に|段階|順次))?\s*施行`;
+    passages.forEach((passage) => {
+      for (const match of passage.matchAll(new RegExp(`(20\\d{2})年\\s*(\\d{1,2})月(?:\\s*(\\d{1,2})日)?${suffix}`, "g"))) {
+        addCandidate(Number(match[1]), Number(match[2]), match[3] ? Number(match[3]) : null);
+      }
+      for (const match of passage.matchAll(new RegExp(`(20\\d{2})年\\s*(\\d{1,2})月\\s*(?:・|、|及び|および|と)\\s*(\\d{1,2})月(?:\\s*(\\d{1,2})日)?${suffix}`, "g"))) {
+        addCandidate(Number(match[1]), Number(match[2]), null);
+        addCandidate(Number(match[1]), Number(match[3]), match[4] ? Number(match[4]) : null);
+      }
+      for (const match of passage.matchAll(new RegExp(`令和\\s*(元|\\d+)年\\s*(\\d{1,2})月(?:\\s*(\\d{1,2})日)?${suffix}`, "g"))) {
+        const year = match[1] === "元" ? 2019 : 2018 + Number(match[1]);
+        addCandidate(year, Number(match[2]), match[3] ? Number(match[3]) : null);
+      }
+      for (const match of passage.matchAll(/施行(?:日|期日)?\s*(?:は|を|が|：|:)?\s*(20\d{2})年\s*(\d{1,2})月(?:\s*(\d{1,2})日)?/g)) {
+        addCandidate(Number(match[1]), Number(match[2]), match[3] ? Number(match[3]) : null);
+      }
+    });
+    const fallback = parseDate(verifiedFallbacks[getLegalReformLaw(article, topics).id]);
+    if (fallback) candidates.push(fallback);
+    return [...new Map(candidates.map((date) => [date.value, date])).values()].sort((left, right) => {
+      const monthOrder = right.value.slice(0, 7).localeCompare(left.value.slice(0, 7));
+      if (monthOrder) return monthOrder;
+      if (left.precision !== right.precision) return left.precision === "day" ? -1 : 1;
+      return right.sortKey.localeCompare(left.sortKey);
+    })[0] || null;
+  };
+
   window.KNOWLEDGE_SCHEMA = Object.freeze({ issueStatus, issueStage });
   window.validateKnowledgeData = validateKnowledgeData;
   window.findKnowledgeWarnings = findKnowledgeWarnings;
   window.uniqueKnowledgeArticles = uniqueArticles;
   window.getLegalReformInfo = getLegalReformInfo;
   window.getLegalReformLaw = getLegalReformLaw;
+  window.getLegalReformEffectiveDate = getLegalReformEffectiveDate;
   window.assertKnowledgeData = (topics, sources, articles) => {
     const errors = validateKnowledgeData(topics, sources, articles);
     if (errors.length) throw new Error(`LAW / INDEX data validation failed:\n${errors.join("\n")}`);

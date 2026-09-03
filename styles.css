@@ -103,7 +103,7 @@ h3 { font-weight: 600; }
 .section-link { color: var(--accent); font-size: 10px; }
 .section-link:hover { color: var(--rail); text-decoration: underline; text-underline-offset: 4px; }
 
-.article-index-head, .article-row { display: grid; grid-template-columns: 104px minmax(300px, 1.25fr) minmax(190px, .72fr) minmax(260px, 1fr); gap: 22px; }
+.article-index-head, .article-row { display: grid; grid-template-columns: 88px minmax(285px, 1.2fr) 96px minmax(170px, .68fr) minmax(235px, .95fr); gap: 18px; }
 .article-index-head { padding: 10px 13px; color: #e8e9e0; background: var(--rail); font-size: 9px; letter-spacing: .08em; }
 .article-index { border-bottom: 1px solid var(--rail); background: rgba(247,246,240,.32); }
 .article-row { position: relative; align-items: center; border-top: 1px solid var(--line); padding: 17px 13px; transition: background .15s ease, transform .15s ease; }
@@ -111,6 +111,8 @@ h3 { font-weight: 600; }
 .article-row:hover { transform: translateX(4px); background: var(--surface); }
 .article-row:hover::before { background: var(--gold); }
 .article-row > time { color: var(--accent); font: 10px var(--mono); }
+.article-row > time span { display: none; }
+.article-row > .article-published-date { color: var(--muted); }
 .article-main-cell strong, .article-main-cell small { display: block; }
 .article-main-cell strong { font-family: var(--serif); font-size: 17px; letter-spacing: -.04em; line-height: 1.5; }
 .article-main-cell small { margin-top: 2px; color: var(--muted); font-size: 9px; }
@@ -153,7 +155,7 @@ h3 { font-weight: 600; }
 
 .reform-law-index { border-bottom: 1px solid var(--rail); background: rgba(247,246,240,.32); }
 .reform-law-group { border-top: 1px solid var(--line); }
-.reform-law-group > summary { display: grid; grid-template-columns: minmax(0, 1fr) 70px 92px; align-items: center; gap: 20px; padding: 17px 13px; cursor: pointer; list-style: none; transition: background .15s ease; }
+.reform-law-group > summary { display: grid; grid-template-columns: minmax(0, 1fr) minmax(145px, 190px) 62px 92px; align-items: center; gap: 20px; padding: 17px 13px; cursor: pointer; list-style: none; transition: background .15s ease; }
 .reform-law-group > summary::-webkit-details-marker { display: none; }
 .reform-law-group > summary:hover, .reform-law-group[open] > summary { background: var(--surface); }
 .reform-law-group > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
@@ -162,12 +164,15 @@ h3 { font-weight: 600; }
 .reform-law-group > summary > div small { margin-top: 3px; color: var(--muted); font-size: 9px; }
 .reform-law-group > summary time, .reform-law-group > summary > span { color: var(--accent); font-family: var(--mono); }
 .reform-law-group > summary > span { font-size: 11px; }
+.reform-law-group > summary > .reform-effective-date { color: var(--ink-soft); font-size: 10px; }
+.reform-law-group > summary > .reform-count { text-align: right; }
 .reform-law-group > summary > em { color: var(--muted); font-size: 10px; font-style: normal; text-align: right; }
 .reform-law-group > summary > em::after { margin-left: 7px; color: var(--accent); content: "+"; font-family: var(--mono); }
 .reform-law-group[open] > summary > em::after { content: "−"; }
 .reform-law-articles { margin: 0 13px 16px; border-top: 1px solid var(--rail); }
-.reform-law-articles article { display: grid; grid-template-columns: 96px minmax(0, 1fr) 130px; align-items: start; gap: 18px; border-bottom: 1px solid var(--line); padding: 13px 6px; }
+.reform-law-articles article { display: grid; grid-template-columns: minmax(0, 1fr) 148px 130px; align-items: start; gap: 18px; border-bottom: 1px solid var(--line); padding: 13px 6px; }
 .reform-law-articles article > time { color: var(--accent); font: 10px var(--mono); }
+.reform-law-articles article > .reform-published-date { color: var(--muted); white-space: nowrap; }
 .reform-law-articles article strong, .reform-law-articles article small { display: block; }
 .reform-law-articles article strong { font-size: 12px; font-weight: 600; line-height: 1.55; }
 .reform-law-articles article a:hover strong { color: var(--accent); }
@@ -397,7 +402,7 @@ h3 { font-weight: 600; }
   .update-summary-row { grid-template-columns: 62px minmax(0, 1fr) auto; gap: 17px; }
   .update-expanded { margin-left: 78px; }
   .source-row { grid-template-columns: minmax(205px, 1.2fr) 92px 103px minmax(165px, 1fr) 20px; gap: 12px; }
-  .article-index-head, .article-row { grid-template-columns: 82px minmax(245px, 1.25fr) minmax(150px, .7fr) minmax(210px, 1fr); gap: 14px; }
+  .article-index-head, .article-row { grid-template-columns: 72px minmax(215px, 1.15fr) 82px minmax(135px, .64fr) minmax(175px, .9fr); gap: 12px; }
 }
 
 @media (max-width: 680px) {
@@ -428,6 +433,8 @@ h3 { font-weight: 600; }
   .article-index-head { display: none; }
   .article-row { display: grid; grid-template-columns: 80px 1fr; gap: 8px 12px; padding: 17px 8px 17px 13px; }
   .article-main-cell { grid-column: 2; }
+  .article-row > time span { display: inline; margin-right: 5px; color: var(--muted); font-family: var(--sans); font-size: 8px; }
+  .article-row > .article-published-date { grid-column: 2; }
   .article-fields, .article-audience, .article-topics, .article-impact { grid-column: 2; }
   .article-main-cell strong { font-size: 16px; }
   .topics-section { margin-top: 56px; }
@@ -441,10 +448,12 @@ h3 { font-weight: 600; }
   .topic-change { border-left: 0; border-top: 1px solid var(--line); padding: 9px 0 0; }
   .reform-law-group > summary { grid-template-columns: minmax(0, 1fr) auto; gap: 8px 12px; padding: 15px 8px; }
   .reform-law-group > summary > div strong { font-size: 17px; }
-  .reform-law-group > summary > span { grid-column: 2; grid-row: 1; }
-  .reform-law-group > summary > em { grid-column: 1 / -1; text-align: left; }
+  .reform-law-group > summary > .reform-count { grid-column: 2; grid-row: 1; }
+  .reform-law-group > summary > .reform-effective-date { grid-column: 1; grid-row: 2; }
+  .reform-law-group > summary > em { grid-column: 2; grid-row: 2; text-align: right; }
   .reform-law-articles { margin: 0 8px 14px; }
-  .reform-law-articles article { grid-template-columns: 78px minmax(0, 1fr); gap: 7px 11px; padding: 12px 4px; }
+  .reform-law-articles article { grid-template-columns: minmax(0, 1fr) auto; gap: 7px 11px; padding: 12px 4px; }
+  .reform-law-articles article > div { grid-column: 1 / -1; }
   .reform-law-articles article .reform-stage { grid-column: 2; }
   .reform-library-group + .reform-library-group { margin-top: 38px; }
   .reform-library-heading h3 { font-size: 20px; }
