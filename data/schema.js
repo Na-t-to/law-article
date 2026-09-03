@@ -137,11 +137,40 @@
     return { isReform: true, stage, stageLabel: issueStage[stage] || "法改正情報" };
   };
 
+  const reformLawRules = Object.freeze([
+    { id: "personal-information-protection-act", label: "個人情報保護法", pattern: /個人情報保護法/ },
+    { id: "whistleblower-protection-act", label: "公益通報者保護法", pattern: /公益通報者保護法|公益通報者保護制度/ },
+    { id: "companies-act", label: "会社法", pattern: /会社法制|会社法改正/ },
+    { id: "financial-instruments-exchange-act", label: "金融商品取引法", pattern: /金融商品取引法|金融商品法|公開買付|\bTOB\b|大量保有報告/ },
+    { id: "payment-services-act", label: "資金決済法", pattern: /資金決済法/ },
+    { id: "foreign-exchange-act", label: "外為法", pattern: /外国為替及び外国貿易法|外為法|輸出規制/ },
+    { id: "fair-subcontract-transactions-act", label: "取適法（中小受託取引適正化法）", pattern: /中小受託取引適正化法|改正下請法|取適法/ },
+    { id: "childcare-caregiver-leave-act", label: "育児・介護休業法", pattern: /育児・介護休業法/ },
+    { id: "women-advancement-act", label: "女性活躍推進法", pattern: /女性活躍推進法/ },
+    { id: "freelance-act", label: "フリーランス法", pattern: /フリーランス.*法|事業者間取引適正化等法/ },
+    { id: "unfair-competition-prevention-act", label: "不正競争防止法・営業秘密管理指針", pattern: /不正競争防止法|営業秘密管理指針/ },
+    { id: "specified-commercial-transactions-act", label: "特定商取引法・デジタル取引法制", pattern: /特定商取引法|デジタル取引/ },
+    { id: "antimonopoly-act", label: "独占禁止法", pattern: /独占禁止法|流通・取引慣行/ },
+    { id: "early-business-recovery-act", label: "早期事業再生法", pattern: /早期事業再生法/ },
+    { id: "corporate-governance-code", label: "コーポレートガバナンス・コード", pattern: /コーポレートガバナンス・コード/ },
+    { id: "sustainability-disclosure-rules", label: "サステナビリティ開示法制", pattern: /温室効果ガス|企業内容等の開示|SSBJ|サステナビリティ/ },
+    { id: "generative-ai-ip-rules", label: "生成AI・知的財産ルール", pattern: /生成AI.*知的財産|プリンシプル・コード/ }
+  ]);
+
+  const getLegalReformLaw = (article, topics = []) => {
+    const articleText = [article.title, article.sourceLabel].filter(Boolean).join(" ");
+    const directMatch = reformLawRules.find((rule) => rule.pattern.test(articleText));
+    if (directMatch) return { id: directMatch.id, label: directMatch.label };
+    const relatedTopic = (article.relatedTopics || []).map((slug) => topics.find((topic) => topic.slug === slug)).find(Boolean);
+    return relatedTopic ? { id: `topic-${relatedTopic.slug}`, label: relatedTopic.title } : { id: "other-legal-reform", label: "その他の法改正・制度変更" };
+  };
+
   window.KNOWLEDGE_SCHEMA = Object.freeze({ issueStatus, issueStage });
   window.validateKnowledgeData = validateKnowledgeData;
   window.findKnowledgeWarnings = findKnowledgeWarnings;
   window.uniqueKnowledgeArticles = uniqueArticles;
   window.getLegalReformInfo = getLegalReformInfo;
+  window.getLegalReformLaw = getLegalReformLaw;
   window.assertKnowledgeData = (topics, sources, articles) => {
     const errors = validateKnowledgeData(topics, sources, articles);
     if (errors.length) throw new Error(`LAW / INDEX data validation failed:\n${errors.join("\n")}`);

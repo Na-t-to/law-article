@@ -48,5 +48,6 @@ console.log(JSON.stringify({
   views: issues.reduce((sum, issue) => sum + issue.views.length, 0),
   legalReforms: legalReforms.length,
   reformStages: Object.fromEntries([...new Set(legalReforms.map((article) => context.window.getLegalReformInfo(article, topics).stage))].sort().map((stage) => [stage, legalReforms.filter((article) => context.window.getLegalReformInfo(article, topics).stage === stage).length])),
+  reformLaws: Object.fromEntries([...new Set(legalReforms.map((article) => context.window.getLegalReformLaw(article, topics).label))].sort((left, right) => left.localeCompare(right, "ja")).map((law) => [law, legalReforms.filter((article) => context.window.getLegalReformLaw(article, topics).label === law).length])),
   warnings: warnings.length
 }));

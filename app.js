@@ -18,6 +18,7 @@
   const topicNamesForArticle = (article) => topicsForArticle(article).map((topic) => topic.title);
   const issueTitlesForArticle = (article) => article.relatedIssues.map((id) => topics.flatMap((topic) => topic.issues).find((issue) => issue.id === id)?.title).filter(Boolean);
   const reformInfoForArticle = (article) => window.getLegalReformInfo?.(article, topics) || { isReform: false, stage: null, stageLabel: "" };
+  const reformLawForArticle = (article) => window.getLegalReformLaw?.(article, topics) || { id: "other-legal-reform", label: "その他の法改正・制度変更" };
   const changeSummaryForArticle = (article) => {
     if (article.whatChanged) return article.whatChanged;
     const update = updates.filter((item) => article.primarySourceIds.includes(item.source) && item.affectedTopics.some((slug) => article.relatedTopics.includes(slug))).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))[0];
@@ -41,8 +42,13 @@
   };
 
   const renderReforms = () => {
-    const reforms = articles.map((article) => ({ article, reform: reformInfoForArticle(article) })).filter(({ reform }) => reform.isReform).sort((left, right) => right.article.publishedAt.localeCompare(left.article.publishedAt)).slice(0, 6);
-    $("#reformList").innerHTML = reforms.length ? reforms.map(({ article, reform }) => `<article class="reform-row"><span class="reform-stage" data-stage="${escapeHtml(reform.stage)}">${escapeHtml(reform.stageLabel)}</span><time datetime="${escapeHtml(article.publishedAt)}">${escapeHtml(article.publishedAt)}</time><div class="reform-main-cell"><a href="article.html?id=${encodeURIComponent(article.id)}"><strong>${escapeHtml(article.title)}</strong></a><small>${escapeHtml(article.publisher)} / ${escapeHtml(article.sourceLabel)}</small></div><div class="reform-topics">${topicsForArticle(article).map((topic) => `<a href="topics/${escapeHtml(topic.slug)}.html">${escapeHtml(topic.title)} →</a>`).join("")}</div></article>`).join("") : `<div class="empty-inline">法改正に該当する記事・資料はまだありません。</div>`;
+    const reforms = articles.map((article) => ({ article, reform: reformInfoForArticle(article), law: reformLawForArticle(article) })).filter(({ reform }) => reform.isReform).sort((left, right) => right.article.publishedAt.localeCompare(left.article.publishedAt));
+    const lawGroups = [...reforms.reduce((groups, item) => {
+      if (!groups.has(item.law.id)) groups.set(item.law.id, { law: item.law, items: [] });
+      groups.get(item.law.id).items.push(item);
+      return groups;
+    }, new Map()).values()].sort((left, right) => right.items[0].article.publishedAt.localeCompare(left.items[0].article.publishedAt));
+    $("#reformList").innerHTML = lawGroups.length ? lawGroups.map(({ law, items }) => `<details class="reform-law-group"><summary><div><strong>${escapeHtml(law.label)}</strong><small>最終更新 <time datetime="${escapeHtml(items[0].article.publishedAt)}">${escapeHtml(items[0].article.publishedAt)}</time></small></div><span>${pad(items.length)}件</span><em>記事を見る</em></summary><div class="reform-law-articles">${items.slice(0, 4).map(({ article, reform }) => `<article><time datetime="${escapeHtml(article.publishedAt)}">${escapeHtml(article.publishedAt)}</time><div><a href="article.html?id=${encodeURIComponent(article.id)}"><strong>${escapeHtml(article.title)}</strong></a><small>${escapeHtml(article.publisher)}</small></div><span class="reform-stage" data-stage="${escapeHtml(reform.stage)}">${escapeHtml(reform.stageLabel)}</span></article>`).join("")}<a class="reform-law-more" href="articles.html?view=reforms&amp;law=${encodeURIComponent(law.id)}">${escapeHtml(law.label)}の記事をすべて見る →</a></div></details>`).join("") : `<div class="empty-inline">法改正に該当する記事・資料はまだありません。</div>`;
   };
 
   const renderFieldFilters = () => {
