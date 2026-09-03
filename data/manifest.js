@@ -6,7 +6,7 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({
     "topics-run10.js?v=2", "topics-run11.js?v=2", "topics-run12.js?v=2", "topics-run13.js?v=2",
     "topics-run14.js?v=2", "topics-run15.js?v=2", "topics-run16.js?v=2", "topics-run17.js?v=2",
     "topics-run18.js?v=2", "topics-run19.js?v=2", "topics-run20.js?v=2", "topics-run21.js?v=2",
-    "topics-run22.js?v=2", "topics-run23.js?v=1"
+    "topics-run22.js?v=2", "topics-run23.js?v=1", "topics-run24.js?v=1"
   ],
   sources: [
     "sources.js?v=10", "sources-extra.js?v=1",
@@ -14,13 +14,13 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({
     "sources-run10.js?v=1", "sources-run11.js?v=1", "sources-run12.js?v=1", "sources-run13.js?v=1",
     "sources-run14.js?v=1", "sources-run15.js?v=1", "sources-run16.js?v=1", "sources-run17.js?v=1",
     "sources-run18.js?v=1", "sources-run19.js?v=1", "sources-run20.js?v=1", "sources-run21.js?v=1",
-    "sources-run22.js?v=1", "sources-run23.js?v=1"
+    "sources-run22.js?v=1", "sources-run23.js?v=1", "sources-run24.js?v=1"
   ],
   updates: [
     "updates.js?v=8", "updates-run6.js?v=1", "updates-run7.js?v=1", "updates-run8.js?v=1",
     "updates-run9.js?v=1", "updates-run10.js?v=1", "updates-run11.js?v=1", "updates-run12.js?v=1",
     "updates-run13.js?v=1", "updates-run14.js?v=1", "updates-run15.js?v=1", "updates-run17.js?v=1",
-    "updates-run23.js?v=1"
+    "updates-run23.js?v=1", "updates-run24.js?v=1"
   ],
   articles: [
     "articles.js?v=10", "articles-secondary.js?v=1", "articles-extra.js?v=1",
@@ -28,6 +28,6 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({
     "articles-run10.js?v=1", "articles-run11.js?v=1", "articles-run12.js?v=1", "articles-run13.js?v=1",
     "articles-run14.js?v=1", "articles-run15.js?v=1", "articles-run16.js?v=1", "articles-run17.js?v=1",
     "articles-run18.js?v=1", "articles-run19.js?v=1", "articles-run20.js?v=1", "articles-run21.js?v=1",
-    "articles-run22.js?v=1", "articles-run23.js?v=1"
+    "articles-run22.js?v=1", "articles-run23.js?v=1", "articles-run24.js?v=1"
   ]
 });
