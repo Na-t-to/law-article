@@ -24,8 +24,11 @@ const reformEvents = context.window.REFORM_EVENT_DATA || [];
 const articles = context.window.ARTICLE_DATA || [];
 const verificationAdvances = context.window.applyTopicVerificationDates(topics, articles, updates);
 const reformStageValues = new Set(["proposal", "finalized_pending", "partially_effective", "effective"]);
+const reformEventTypes = new Set(["law_amendment", "new_law", "regulation_or_guideline", "policy_review"]);
+const effectiveDateStatuses = new Set(["confirmed", "planned", "relative", "phased"]);
 const sourceIds = new Set(sources.map((source) => source.id));
 const topicIds = new Set(topics.map((topic) => topic.slug));
+const articleIds = new Set(articles.map((article) => article.id));
 const reformEventIds = new Set();
 const reformEventErrors = [];
 const reformEventWarnings = [];
@@ -40,11 +43,26 @@ for (const event of reformEvents) {
   reformEventIds.add(event.id);
   if (!event.title) reformEventErrors.push(`${path}: title がありません。`);
   if (!event.lawId || !event.lawLabel) reformEventErrors.push(`${path}: lawId・lawLabel が必要です。`);
+  if (!reformEventTypes.has(event.eventType)) reformEventErrors.push(`${path}: eventType "${event.eventType}" は定義外です。`);
   if (!Array.isArray(event.relatedTopics)) reformEventErrors.push(`${path}: relatedTopics は配列で指定してください。`);
   else event.relatedTopics.filter((id) => !topicIds.has(id)).forEach((id) => reformEventErrors.push(`${path}: relatedTopic "${id}" は存在しません。`));
   if (!Array.isArray(event.sourceIds) || !event.sourceIds.length) reformEventErrors.push(`${path}: sourceIds を1件以上指定してください。`);
   else event.sourceIds.filter((id) => !sourceIds.has(id)).forEach((id) => reformEventErrors.push(`${path}: sourceId "${id}" は存在しません。`));
 
+  if (event.matchSourceIds !== undefined) {
+    if (!Array.isArray(event.matchSourceIds)) reformEventErrors.push(`${path}: matchSourceIds は配列で指定してください。`);
+    else {
+      event.matchSourceIds.filter((id) => !sourceIds.has(id)).forEach((id) => reformEventErrors.push(`${path}: matchSourceId "${id}" は存在しません。`));
+      event.matchSourceIds.filter((id) => !(event.sourceIds || []).includes(id)).forEach((id) => reformEventErrors.push(`${path}: matchSourceId "${id}" は sourceIds にも含めてください。`));
+    }
+  }
+  if (event.articleIds !== undefined) {
+    if (!Array.isArray(event.articleIds)) reformEventErrors.push(`${path}: articleIds は配列で指定してください。`);
+    else event.articleIds.filter((id) => !articleIds.has(id)).forEach((id) => reformEventErrors.push(`${path}: articleId "${id}" は存在しません。`));
+  }
+
+  const status = event.effectiveDateStatus;
+  if (!effectiveDateStatuses.has(status)) reformEventErrors.push(`${path}: effectiveDateStatus "${status}" は定義外です。`);
   const hasSingleEffectiveDate = Object.prototype.hasOwnProperty.call(event, "effectiveDate");
   const hasMultipleEffectiveDates = Object.prototype.hasOwnProperty.call(event, "effectiveDates");
   const effectiveDateValues = [
@@ -53,20 +71,35 @@ for (const event of reformEvents) {
   ].filter(Boolean);
   if (hasMultipleEffectiveDates && !Array.isArray(event.effectiveDates)) reformEventErrors.push(`${path}: effectiveDates は配列で指定してください。`);
   effectiveDateValues.filter((value) => !context.window.parseLegalReformEffectiveDate?.(value)).forEach((value) => reformEventErrors.push(`${path}: effectiveDate "${value}" は YYYY-MM-DD または YYYY-MM の実在する日付で指定してください。`));
-  if ((hasSingleEffectiveDate || hasMultipleEffectiveDates) && effectiveDateValues.length) {
-    if (!Array.isArray(event.effectiveDateSourceIds) || !event.effectiveDateSourceIds.length) {
-      reformEventErrors.push(`${path}: 施行日を登録する場合は effectiveDateSourceIds を1件以上指定してください。`);
-    } else {
-      event.effectiveDateSourceIds.filter((id) => !sourceIds.has(id)).forEach((id) => reformEventErrors.push(`${path}: effectiveDateSourceId "${id}" は存在しません。`));
-      event.effectiveDateSourceIds.filter((id) => !(event.sourceIds || []).includes(id)).forEach((id) => reformEventErrors.push(`${path}: effectiveDateSourceId "${id}" は event.sourceIds にも含めてください。`));
-    }
+
+  if (!Array.isArray(event.effectiveDateSourceIds) || !event.effectiveDateSourceIds.length) {
+    reformEventErrors.push(`${path}: 施行時期を登録する場合は effectiveDateSourceIds を1件以上指定してください。`);
+  } else {
+    event.effectiveDateSourceIds.filter((id) => !sourceIds.has(id)).forEach((id) => reformEventErrors.push(`${path}: effectiveDateSourceId "${id}" は存在しません。`));
+    event.effectiveDateSourceIds.filter((id) => !(event.sourceIds || []).includes(id)).forEach((id) => reformEventErrors.push(`${path}: effectiveDateSourceId "${id}" は event.sourceIds にも含めてください。`));
   }
-  if (!effectiveDateValues.length && event.effectiveDateSourceIds?.length) reformEventErrors.push(`${path}: effectiveDateSourceIds を指定する場合は effectiveDate または effectiveDates も必要です。`);
+  if (["confirmed", "planned"].includes(status) && !effectiveDateValues.length) reformEventErrors.push(`${path}: effectiveDateStatus=${status} では effectiveDate または effectiveDates が必要です。`);
+  if (status === "relative" && !String(event.effectiveDateNote || "").trim()) reformEventErrors.push(`${path}: relative では effectiveDateNote が必要です。`);
+  if (status === "phased" && !effectiveDateValues.length && !String(event.effectiveDateNote || "").trim()) reformEventErrors.push(`${path}: phased では effectiveDates または effectiveDateNote が必要です。`);
 }
 
+const matchingEventsForArticle = (article) => {
+  const primary = Array.isArray(article.primarySourceIds) ? article.primarySourceIds : [];
+  return reformEvents.filter((event) => (event.articleIds || []).includes(article.id) || (event.matchSourceIds || []).some((id) => primary.includes(id)));
+};
+const resolvedEventForArticle = (article) => {
+  if (article.reformEventId) return reformEvents.find((event) => event.id === article.reformEventId) || null;
+  const matches = matchingEventsForArticle(article);
+  return matches.length === 1 ? matches[0] : null;
+};
+
 for (const article of articles) {
-  if (article.reformEventId && !reformEventIds.has(article.reformEventId)) {
-    reformEventErrors.push(`${article.id || "article"}: reformEventId "${article.reformEventId}" は存在しません。`);
+  if (article.reformEventId && !reformEventIds.has(article.reformEventId)) reformEventErrors.push(`${article.id || "article"}: reformEventId "${article.reformEventId}" は存在しません。`);
+  const inferredMatches = matchingEventsForArticle(article);
+  if (!article.reformEventId && inferredMatches.length > 1) reformEventErrors.push(`${article.id || "article"}: 複数の改正イベントに一致します: ${inferredMatches.map((event) => event.id).join(" / ")}`);
+  if (article.reformEventId) {
+    const conflicts = inferredMatches.filter((event) => event.id !== article.reformEventId);
+    if (conflicts.length) reformEventWarnings.push(`${article.id || "article"}: 明示 reformEventId と matchSourceIds が別イベントを指しています: ${conflicts.map((event) => event.id).join(" / ")}`);
   }
 
   const hasStage = Object.prototype.hasOwnProperty.call(article, "reformStageAtPublication");
@@ -93,7 +126,7 @@ for (const article of articles) {
     article.reformEffectiveDate
   ].filter(Boolean);
 
-  if (article.reformEventId && explicitEffectiveDateValues.length) reformEventWarnings.push(`${article.id || "article"}: reformEventId がある記事では施行日を記事側に重複保持せず、改正イベント側へ移してください。`);
+  if (resolvedEventForArticle(article) && explicitEffectiveDateValues.length) reformEventWarnings.push(`${article.id || "article"}: 改正イベントへ接続済みなので施行日は記事側ではなくイベント側へ移してください。`);
   if (hasMultipleEffectiveDates && !Array.isArray(article.reformEffectiveDates)) reformEffectiveDateErrors.push(`${article.id || "article"}: reformEffectiveDates は配列で指定してください。`);
   explicitEffectiveDateValues.filter((value) => !context.window.parseLegalReformEffectiveDate?.(value)).forEach((value) => reformEffectiveDateErrors.push(`${article.id || "article"}: reformEffectiveDate "${value}" は YYYY-MM-DD または YYYY-MM の実在する日付で指定してください。`));
   if (hasEffectiveDateSources && !hasSingleEffectiveDate && !hasMultipleEffectiveDates) reformEffectiveDateErrors.push(`${article.id || "article"}: reformEffectiveDateSourceIds を指定する場合は reformEffectiveDate または reformEffectiveDates も必要です。`);
@@ -110,9 +143,9 @@ for (const article of articles) {
 const errors = [...manifestErrors, ...context.window.validateKnowledgeData(topics, sources, articles), ...reformEventErrors, ...reformStageErrors, ...reformEffectiveDateErrors];
 const uniqueArticles = context.window.uniqueKnowledgeArticles(articles);
 const issues = topics.flatMap((topic) => topic.issues || []);
-const legalReforms = uniqueArticles.filter((article) => context.window.getLegalReformInfo(article, topics).isReform);
-const unlinkedLegalReforms = legalReforms.filter((article) => !article.reformEventId);
-if (unlinkedLegalReforms.length) reformEventWarnings.push(`法改正記事 ${legalReforms.length} 件のうち ${unlinkedLegalReforms.length} 件は reformEventId 未登録です。既存記事は表示を維持しますが、順次改正イベントへ移してください。`);
+const legalReforms = uniqueArticles.filter((article) => resolvedEventForArticle(article) || context.window.getLegalReformInfo(article, topics).isReform);
+const unlinkedLegalReforms = legalReforms.filter((article) => !resolvedEventForArticle(article));
+if (unlinkedLegalReforms.length) reformEventWarnings.push(`法改正記事 ${legalReforms.length} 件のうち ${unlinkedLegalReforms.length} 件は改正イベント未整理です。既存記事は表示を維持し、順次棚卸ししてください。`);
 const warnings = [...context.window.findKnowledgeWarnings(topics, sources, articles), ...reformEventWarnings, ...reformEffectiveDateWarnings];
 const audit = context.window.getKnowledgeAudit(topics, articles, updates);
 
@@ -143,18 +176,17 @@ console.log(JSON.stringify({
   statusCounts: audit.statusCounts,
   emptyViewsByStatus: audit.emptyViewsByStatus,
   allAuthoritativeThemes: audit.allAuthoritativeThemes,
-  verificationDiverged: audit.verificationDiverged,
+  verificationDiverged: audit.verificationDiverged.length,
   verificationAdvancesApplied: verificationAdvances,
   verificationAdvancesPending: audit.verificationAdvancesPending,
   legalReforms: legalReforms.length,
   reformEvents: reformEvents.length,
-  reformEventLinked: legalReforms.filter((article) => article.reformEventId).length,
+  reformEventLinked: legalReforms.filter((article) => resolvedEventForArticle(article)).length,
   reformEventUnlinked: unlinkedLegalReforms.length,
-  reformEventEffectiveDateGrounded: reformEvents.filter((event) => context.window.getLegalReformEventEffectiveDate?.(event)).length,
+  reformEventTimingGrounded: reformEvents.filter((event) => context.window.getLegalReformEventTiming?.(event)).length,
   reformStages: Object.fromEntries([...reformStageValues].sort().map((stage) => [stage, legalReforms.filter((article) => article.reformStageAtPublication === stage).length])),
   reformStageTagged: legalReforms.filter((article) => reformStageValues.has(article.reformStageAtPublication)).length,
   reformStageUntagged: legalReforms.filter((article) => !reformStageValues.has(article.reformStageAtPublication)).length,
-  reformEffectiveDateGroundedLegacy: legalReforms.filter((article) => !article.reformEventId && context.window.getLegalReformEffectiveDate?.(article)).length,
-  reformLaws: Object.fromEntries([...new Set(legalReforms.map((article) => context.window.getLegalReformLaw(article, topics).label))].sort((left, right) => left.localeCompare(right, "ja")).map((law) => [law, legalReforms.filter((article) => context.window.getLegalReformLaw(article, topics).label === law).length])),
+  reformEffectiveDateGroundedLegacy: legalReforms.filter((article) => !resolvedEventForArticle(article) && context.window.getLegalReformEffectiveDate?.(article)).length,
   warnings: warnings.length
 }));
