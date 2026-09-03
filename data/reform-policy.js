@@ -14,7 +14,7 @@
       value: day ? `${year}-${month}-${day}` : `${year}-${month}`,
       sortKey: `${year}-${month}-${day || "31"}`,
       precision: day ? "day" : "month",
-      label: day ? `${Number(year)}年${monthNumber}月${dayNumber}日施行` : `${Number(year)}年${monthNumber}月施行`
+      label: day ? `${Number(year)}年${monthNumber}月${dayNumber}日` : `${Number(year)}年${monthNumber}月`
     };
   };
 
@@ -39,18 +39,43 @@
     ].filter(Boolean));
   };
 
-  const hasEventEffectiveDateGrounding = (event) => {
+  const hasEventTimingGrounding = (event) => {
     const grounding = Array.isArray(event.effectiveDateSourceIds) ? event.effectiveDateSourceIds : [];
     const sources = Array.isArray(event.sourceIds) ? event.sourceIds : [];
     return grounding.length > 0 && grounding.every((id) => sources.includes(id));
   };
 
   const getStrictReformEventEffectiveDate = (event) => {
-    if (!event || !hasEventEffectiveDateGrounding(event)) return null;
+    if (!event || !hasEventTimingGrounding(event)) return null;
     return latestExplicitDate([
       ...(Array.isArray(event.effectiveDates) ? event.effectiveDates : []),
       event.effectiveDate
     ].filter(Boolean));
+  };
+
+  const getReformEventTiming = (event) => {
+    if (!event) return null;
+    const status = event.effectiveDateStatus || "unknown";
+    const grounded = hasEventTimingGrounding(event);
+    const date = grounded ? getStrictReformEventEffectiveDate(event) : null;
+    const note = String(event.effectiveDateNote || "").trim();
+    if (["confirmed", "planned", "phased", "relative"].includes(status) && !grounded) return null;
+
+    if (status === "confirmed") {
+      return date ? { status, date, sortKey: date.sortKey, label: `施行日 ${date.label}` } : null;
+    }
+    if (status === "planned") {
+      return date ? { status, date, sortKey: date.sortKey, label: `施行予定 ${date.label}` } : null;
+    }
+    if (status === "phased") {
+      const suffix = note || (date ? `最も遅い登録日 ${date.label}` : "複数時点に分けて施行");
+      return { status, date, sortKey: date?.sortKey || "", label: `段階施行：${suffix}` };
+    }
+    if (status === "relative") {
+      return { status, date, sortKey: date?.sortKey || "", label: note ? `施行時期：${note}` : "施行時期：政令等で指定" };
+    }
+    if (date) return { status: "confirmed", date, sortKey: date.sortKey, label: `施行日 ${date.label}` };
+    return null;
   };
 
   const originalGetLegalReformInfo = window.getLegalReformInfo;
@@ -64,6 +89,7 @@
   window.parseLegalReformEffectiveDate = parseEffectiveDate;
   window.hasLegalReformEffectiveDateGrounding = hasEffectiveDateGrounding;
   window.getLegalReformEffectiveDate = getStrictLegalReformEffectiveDate;
-  window.hasLegalReformEventEffectiveDateGrounding = hasEventEffectiveDateGrounding;
+  window.hasLegalReformEventEffectiveDateGrounding = hasEventTimingGrounding;
   window.getLegalReformEventEffectiveDate = getStrictReformEventEffectiveDate;
+  window.getLegalReformEventTiming = getReformEventTiming;
 })();
