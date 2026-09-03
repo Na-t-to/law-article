@@ -18,7 +18,11 @@
   const topicNamesForArticle = (article) => topicsForArticle(article).map((topic) => topic.title);
   const issueTitlesForArticle = (article) => article.relatedIssues.map((id) => topics.flatMap((topic) => topic.issues).find((issue) => issue.id === id)?.title).filter(Boolean);
   const reformInfoForArticle = (article) => window.getLegalReformInfo?.(article, topics) || { isReform: false, stage: null, stageLabel: "" };
-  const reformLawForArticle = (article) => window.getLegalReformLaw?.(article, topics) || { id: "other-legal-reform", label: "その他の法改正・制度変更" };
+  const reformLawForArticle = (article) => {
+    if (window.getLegalReformLaw) return window.getLegalReformLaw(article, topics);
+    const topic = topicsForArticle(article)[0];
+    return topic ? { id: `topic-${topic.slug}`, label: topic.title } : { id: "other-legal-reform", label: "その他の法改正・制度変更" };
+  };
   const changeSummaryForArticle = (article) => {
     if (article.whatChanged) return article.whatChanged;
     const update = updates.filter((item) => article.primarySourceIds.includes(item.source) && item.affectedTopics.some((slug) => article.relatedTopics.includes(slug))).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))[0];
