@@ -1,0 +1,12 @@
+window.REFORM_EVENT_DATA=(Array.isArray(window.REFORM_EVENT_DATA)?window.REFORM_EVENT_DATA:[]).concat([
+  {
+    id:"equal-pay-guideline-2026",
+    title:"同一労働同一賃金ガイドライン等・2026年改正",
+    lawId:"equal-pay-guideline",
+    lawLabel:"同一労働同一賃金ガイドライン等",
+    relatedTopics:["equal-pay-guideline-2026"],
+    effectiveDates:["2026-10-01"],
+    effectiveDateSourceIds:["source-mhlw-equal-pay-2026","source-mhlw-dispatch-equal-pay-2026"],
+    sourceIds:["source-mhlw-equal-pay-2026","source-mhlw-dispatch-equal-pay-2026"]
+  }
+]);
