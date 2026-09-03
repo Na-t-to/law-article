@@ -41,6 +41,9 @@
 
     for (const topic of topics) {
       const topicIssueIds = new Set();
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(topic.lastUpdated || "")) errors.push(`${topic.slug}: lastUpdated は YYYY-MM-DD で指定してください。`);
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(topic.lastVerified || "")) errors.push(`${topic.slug}: lastVerified は YYYY-MM-DD で指定してください。`);
+      if (topic.lastUpdated && topic.lastVerified && topic.lastVerified < topic.lastUpdated) errors.push(`${topic.slug}: lastVerified を lastUpdated より前にはできません。`);
       if (!Array.isArray(topic.issues)) errors.push(`${topic.slug}: issues は配列で指定してください。`);
       if (!Array.isArray(topic.sourceIds)) errors.push(`${topic.slug}: sourceIds は配列で指定してください。`);
       else if (sourceIds.size) topic.sourceIds.filter((id) => !sourceIds.has(id)).forEach((id) => errors.push(`${topic.slug}: sourceId "${id}" は存在しません。`));
@@ -95,6 +98,10 @@
     findDuplicates(sources, (source) => source.id, "source id");
     findDuplicates(articles, (article) => article.id, "article id");
     findDuplicates(articles, (article) => article.url, "article URL");
+    const allAuthoritative = topics.filter((topic) => topic.issues?.length && topic.issues.every((issue) => issue.status === "authoritative"));
+    if (allAuthoritative.length) warnings.push(`全論点が authoritative のテーマが ${allAuthoritative.length} 件あります。論点の切り方と status を棚卸ししてください: ${allAuthoritative.map((topic) => topic.title).join(" / ")}`);
+    const emptyViews = topics.flatMap((topic) => (topic.issues || []).filter((issue) => ["interpreted", "pending"].includes(issue.status) && !issue.views?.length));
+    if (emptyViews.length) warnings.push(`interpreted / pending のうち views 未登録が ${emptyViews.length} 件あります。対立・並立する見解が実在するか全件を棚卸ししてください。`);
     return warnings;
   };
 
@@ -115,6 +122,62 @@
       merged.set(key, next);
     });
     return [...merged.values()];
+  };
+
+  const getArticleChangeResult = (article, topics = [], updates = []) => {
+    const explicit = String(article.whatChanged || "").trim();
+    if (explicit) return { summary: explicit, source: "article", noChange: /^整理変更なし(?:[／/]|$)/.test(explicit) };
+    const primarySourceIds = Array.isArray(article.primarySourceIds) ? article.primarySourceIds : [];
+    const relatedTopics = Array.isArray(article.relatedTopics) ? article.relatedTopics : [];
+    const update = updates
+      .filter((item) => primarySourceIds.includes(item.source) && (item.affectedTopics || []).some((slug) => relatedTopics.includes(slug)))
+      .sort((left, right) => String(right.publishedAt || "").localeCompare(String(left.publishedAt || "")))[0];
+    if (update?.whatChanged) {
+      const summary = String(update.whatChanged).trim();
+      return { summary, source: "update", noChange: /^整理変更なし(?:[／/]|$)/.test(summary) };
+    }
+    const issueTitles = (article.relatedIssues || []).map((id) => topics.flatMap((topic) => topic.issues || []).find((issue) => issue.id === id)?.title).filter(Boolean);
+    const summary = issueTitles.length
+      ? `整理変更なし／「${issueTitles.slice(0, 2).join("」「")}」の参考資料を追加`
+      : "整理変更なし／関連テーマの参考資料を追加";
+    return { summary, source: "inferred", noChange: true };
+  };
+
+  const getTopicVerificationAdvances = (topics = [], articles = [], updates = []) => {
+    const latestByTopic = new Map();
+    uniqueArticles(articles).filter((article) => article.status === "adopted").forEach((article) => {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(article.collectedAt || "")) return;
+      if (!getArticleChangeResult(article, topics, updates).noChange) return;
+      (article.relatedTopics || []).forEach((slug) => {
+        const topic = topics.find((item) => item.slug === slug);
+        if (!topic) return;
+        const current = latestByTopic.get(slug) || topic.lastVerified || topic.lastUpdated || "";
+        if (article.collectedAt > current) latestByTopic.set(slug, article.collectedAt);
+      });
+    });
+    return [...latestByTopic].map(([slug, verifiedAt]) => ({ slug, verifiedAt }));
+  };
+
+  const applyTopicVerificationDates = (topics = [], articles = [], updates = []) => {
+    const advances = getTopicVerificationAdvances(topics, articles, updates);
+    advances.forEach(({ slug, verifiedAt }) => {
+      const topic = topics.find((item) => item.slug === slug);
+      if (topic && verifiedAt > (topic.lastVerified || "")) topic.lastVerified = verifiedAt;
+    });
+    return advances;
+  };
+
+  const getKnowledgeAudit = (topics = [], articles = [], updates = []) => {
+    const issues = topics.flatMap((topic) => topic.issues || []);
+    const statusCounts = Object.fromEntries(Object.keys(issueStatus).map((status) => [status, issues.filter((issue) => issue.status === status).length]));
+    const emptyViewsByStatus = Object.fromEntries(Object.keys(issueStatus).map((status) => [status, issues.filter((issue) => issue.status === status && !issue.views?.length).length]));
+    return {
+      statusCounts,
+      emptyViewsByStatus,
+      allAuthoritativeThemes: topics.filter((topic) => topic.issues?.length && topic.issues.every((issue) => issue.status === "authoritative")).map((topic) => topic.title),
+      verificationDiverged: topics.filter((topic) => topic.lastUpdated !== topic.lastVerified).length,
+      verificationAdvancesPending: getTopicVerificationAdvances(topics, articles, updates)
+    };
   };
 
   const getLegalReformInfo = (article, topics = []) => {
@@ -239,6 +302,11 @@
   window.validateKnowledgeData = validateKnowledgeData;
   window.findKnowledgeWarnings = findKnowledgeWarnings;
   window.uniqueKnowledgeArticles = uniqueArticles;
+  window.getKnowledgeArticleChangeResult = getArticleChangeResult;
+  window.getKnowledgeArticleChangeSummary = (article, topics, updates) => getArticleChangeResult(article, topics, updates).summary;
+  window.getTopicVerificationAdvances = getTopicVerificationAdvances;
+  window.applyTopicVerificationDates = applyTopicVerificationDates;
+  window.getKnowledgeAudit = getKnowledgeAudit;
   window.getLegalReformInfo = getLegalReformInfo;
   window.getLegalReformLaw = getLegalReformLaw;
   window.getLegalReformEffectiveDate = getLegalReformEffectiveDate;

@@ -21,8 +21,8 @@
       title: "生成AIと知的財産・肖像／声",
       categories: ["AI・デジタル", "知的財産", "広告・表示"],
       summary: "生成AIの学習・生成・提供に伴う著作権、知財保護・透明性、肖像・声の無断利用を、文化庁・知的財産戦略本部・法務省の一次資料と実務解説から整理する。",
-      lastUpdated: "2026-09-02",
-      lastVerified: "2026-09-02",
+      lastUpdated: "2026-09-03",
+      lastVerified: "2026-09-03",
       isNew: true,
       overview: [
         "生成AIの知財リスクは、学習データの利用、生成物の利用、サービス提供者の透明性、人物の肖像・声の利用で問題になる法的根拠が異なります。",
@@ -53,10 +53,10 @@
         ]
       },
       issues: [
-        { id: "ai-ip-training-generation", title: "AI学習と生成・利用の著作権判断をどう分けるか", status: "authoritative", stage: "effective", views: [], conclusion: "学習段階では著作権法30条の4等の適用を確認し、生成・利用段階では既存著作物との類似性・依拠性等を別に評価する。", exception: "著作権者の利益を不当に害する場合など、権利制限規定が適用されない場面がある。", uncertain: "生成AI固有の国内裁判例の蓄積は限定的で、個別の学習・生成方法によって評価が変わる。", sourceIds: ["source-bunka-ai-copyright-2024"] },
+        { id: "ai-ip-training-generation", title: "AI学習と生成・利用の著作権判断をどう分けるか", status: "interpreted", stage: "effective", views: [], conclusion: "学習段階では著作権法30条の4等の適用を確認し、生成・利用段階では既存著作物との類似性・依拠性等を別に評価する。", exception: "著作権者の利益を不当に害する場合など、権利制限規定が適用されない場面がある。", uncertain: "生成AI固有の国内裁判例の蓄積は限定的で、個別の学習・生成方法によって評価が変わる。", sourceIds: ["source-bunka-ai-copyright-2024"] },
         { id: "ai-ip-transparency", title: "生成AI事業者は何を開示するか", status: "authoritative", stage: "effective", views: [], conclusion: "プリンシプル・コードに沿い、モデル・学習データ・知財保護措置等について原則を実施するか、実施しない理由を説明する。", exception: "営業秘密、セキュリティその他の正当な非開示理由との調整が必要になる。", uncertain: "届出開始後の具体的な開示実務や業界水準は今後の運用を確認する。", sourceIds: ["source-ai-ip-principle-code-2026"] },
         { id: "ai-ip-rights-response", title: "権利者・利用者からの照会にどう対応するか", status: "authoritative", stage: "effective", views: [], conclusion: "生成AI事業者は、権利者やAI利用者からの知財・透明性に関する照会へ対応する仕組みを整え、説明可能性を確保する。", exception: "照会内容により、権利侵害の有無、秘密情報、第三者情報の扱いを個別に整理する必要がある。", uncertain: "回答範囲・速度・証拠保存などの実務慣行は運用開始後の蓄積を待つ部分がある。", sourceIds: ["source-ai-ip-principle-code-2026"] },
-        { id: "ai-ip-publicity", title: "肖像・声を生成・利用するときの民事責任", status: "authoritative", stage: "effective", views: [], conclusion: "著作権だけでなく、肖像・声の利用態様や商業的価値等を踏まえてパブリシティ権等の民事上の利益侵害を検討する。", exception: "人物の著名性、利用目的、表現内容等により保護される利益と違法性判断が変わる。", uncertain: "生成AIによる具体的利用類型について裁判例が十分に蓄積しているわけではなく、個別事案の評価が必要。", sourceIds: ["source-moj-publicity-ai-2026"] }
+        { id: "ai-ip-publicity", title: "肖像・声を生成・利用するときの民事責任", status: "interpreted", stage: "effective", views: [], conclusion: "著作権だけでなく、肖像・声の利用態様や商業的価値等を踏まえてパブリシティ権等の民事上の利益侵害を検討する。", exception: "人物の著名性、利用目的、表現内容等により保護される利益と違法性判断が変わる。", uncertain: "生成AIによる具体的利用類型について裁判例が十分に蓄積しているわけではなく、個別事案の評価が必要。", sourceIds: ["source-moj-publicity-ai-2026"] }
       ],
       sourceIds: ["source-ai-ip-principle-code-2026", "source-moj-publicity-ai-2026", "source-bunka-ai-copyright-2024"],
       practicalImpacts: ["AIサービス提供方針・透明性開示", "AIベンダー選定・契約", "生成物の知財レビュー", "広告・コンテンツ審査", "肖像・音声の権利処理", "プロンプト・参照素材・生成履歴の記録"]

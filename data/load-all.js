@@ -7,4 +7,5 @@
       document.write(`<script src="${new URL(file, baseUrl).href}"><\/script>`);
     }
   }
+  document.write(`<script>window.applyTopicVerificationDates?.(window.TOPIC_DATA || [], window.ARTICLE_DATA || [], window.UPDATE_DATA || []);<\/script>`);
 })();

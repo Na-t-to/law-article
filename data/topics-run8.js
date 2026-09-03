@@ -5,7 +5,7 @@ window.TOPIC_DATA = (Array.isArray(window.TOPIC_DATA) ? window.TOPIC_DATA : []).
     categories: ["国際取引", "危機管理・コンプライアンス", "知的財産", "情報セキュリティ"],
     summary: "経済安全保障上の事業リスクを、経営ガバナンス、重要情報の保護、技術流出対策、外為法上の輸出管理から企業実務向けに整理する。",
     lastUpdated: "2026-09-02",
-    lastVerified: "2026-09-02",
+    lastVerified: "2026-09-03",
     isNew: true,
     overview: [
       "経済安全保障への対応は、個別の輸出許可や情報管理だけでなく、サプライチェーン、技術、人材、共同研究、取引先、海外事業を含む経営上のリスク管理として扱われるようになっています。",

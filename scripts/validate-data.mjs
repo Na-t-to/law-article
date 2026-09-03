@@ -19,12 +19,15 @@ for (const file of listedFiles) {
 
 const topics = context.window.TOPIC_DATA || [];
 const sources = context.window.SOURCE_DATA || [];
+const updates = context.window.UPDATE_DATA || [];
 const articles = context.window.ARTICLE_DATA || [];
+const verificationAdvances = context.window.applyTopicVerificationDates(topics, articles, updates);
 const errors = [...manifestErrors, ...context.window.validateKnowledgeData(topics, sources, articles)];
 const warnings = context.window.findKnowledgeWarnings(topics, sources, articles);
 const uniqueArticles = context.window.uniqueKnowledgeArticles(articles);
 const issues = topics.flatMap((topic) => topic.issues || []);
 const legalReforms = uniqueArticles.filter((article) => context.window.getLegalReformInfo(article, topics).isReform);
+const audit = context.window.getKnowledgeAudit(topics, articles, updates);
 
 for (const topic of topics) {
   const page = `topics/${topic.slug}.html`;
@@ -50,6 +53,12 @@ console.log(JSON.stringify({
   stages: [...new Set(issues.map((issue) => issue.stage))].sort(),
   disputed: issues.filter((issue) => issue.status === "disputed").length,
   views: issues.reduce((sum, issue) => sum + issue.views.length, 0),
+  statusCounts: audit.statusCounts,
+  emptyViewsByStatus: audit.emptyViewsByStatus,
+  allAuthoritativeThemes: audit.allAuthoritativeThemes,
+  verificationDiverged: audit.verificationDiverged,
+  verificationAdvancesApplied: verificationAdvances,
+  verificationAdvancesPending: audit.verificationAdvancesPending,
   legalReforms: legalReforms.length,
   reformStages: Object.fromEntries([...new Set(legalReforms.map((article) => context.window.getLegalReformInfo(article, topics).stage))].sort().map((stage) => [stage, legalReforms.filter((article) => context.window.getLegalReformInfo(article, topics).stage === stage).length])),
   reformLaws: Object.fromEntries([...new Set(legalReforms.map((article) => context.window.getLegalReformLaw(article, topics).label))].sort((left, right) => left.localeCompare(right, "ja")).map((law) => [law, legalReforms.filter((article) => context.window.getLegalReformLaw(article, topics).label === law).length])),

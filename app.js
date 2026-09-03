@@ -10,14 +10,7 @@
 
   const topicBySlug = (slug) => topics.find((topic) => topic.slug === slug);
   const topicsForArticle = (article) => article.relatedTopics.map((slug) => topicBySlug(slug)).filter(Boolean);
-  const issueTitlesForArticle = (article) => article.relatedIssues.map((id) => topics.flatMap((topic) => topic.issues).find((issue) => issue.id === id)?.title).filter(Boolean);
-  const changeSummaryForArticle = (article) => {
-    if (article.whatChanged) return article.whatChanged;
-    const update = updates.filter((item) => article.primarySourceIds.includes(item.source) && item.affectedTopics.some((slug) => article.relatedTopics.includes(slug))).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))[0];
-    if (update) return update.whatChanged;
-    const issues = issueTitlesForArticle(article);
-    return issues.length ? `整理変更なし／「${issues.slice(0, 2).join("」「")}」の参考資料を追加` : "整理変更なし／関連テーマの参考資料を追加";
-  };
+  const changeSummaryForArticle = (article) => window.getKnowledgeArticleChangeSummary?.(article, topics, updates) || "整理変更なし／関連テーマの参考資料を追加";
 
   const recent = [...articles].sort((a, b) => (b.collectedAt || "").localeCompare(a.collectedAt || "") || b.publishedAt.localeCompare(a.publishedAt)).slice(0, 12);
   document.querySelector("#homeArticleList").innerHTML = recent.map((article) => `<article class="article-row"><time class="article-added-date" datetime="${escapeHtml(article.collectedAt)}"><span>追加</span>${escapeHtml(article.collectedAt)}</time><div class="article-main-cell"><a class="article-title-link" href="article.html?id=${encodeURIComponent(article.id)}"><strong>${escapeHtml(article.title)}</strong></a><small>${escapeHtml(article.publisher)} / ${escapeHtml(article.sourceLabel)}</small></div><time class="article-published-date" datetime="${escapeHtml(article.publishedAt)}"><span>公開</span>${escapeHtml(article.publishedAt)}</time><div class="article-topics">${topicsForArticle(article).map((topic) => `<a href="topics/${escapeHtml(topic.slug)}.html">${escapeHtml(topic.title)} →</a>`).join("")}</div><a class="article-impact" href="article.html?id=${encodeURIComponent(article.id)}">${escapeHtml(changeSummaryForArticle(article))}</a></article>`).join("");
