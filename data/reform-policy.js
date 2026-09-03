@@ -53,6 +53,14 @@
     ].filter(Boolean));
   };
 
+  const originalGetLegalReformInfo = window.getLegalReformInfo;
+  if (typeof originalGetLegalReformInfo === "function") {
+    window.getLegalReformInfo = (article, topics = []) => {
+      const result = originalGetLegalReformInfo(article, topics);
+      return article?.reformEventId ? { ...result, isReform: true } : result;
+    };
+  }
+
   window.parseLegalReformEffectiveDate = parseEffectiveDate;
   window.hasLegalReformEffectiveDateGrounding = hasEffectiveDateGrounding;
   window.getLegalReformEffectiveDate = getStrictLegalReformEffectiveDate;
