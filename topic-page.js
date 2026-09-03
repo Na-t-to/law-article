@@ -9,6 +9,7 @@
   const escapeHtml = (value) => String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
   const sourceById = (id) => sources.find((source) => source.id === id);
   const articleById = (id) => allArticles.find((article) => article.id === id);
+  const articleOrder = new Map(articles.map((article, index) => [article.id, index]));
   const schema = window.KNOWLEDGE_SCHEMA || { issueStatus: {}, issueStage: {} };
 
   window.assertKnowledgeData?.(topics, sources, allArticles);
@@ -46,8 +47,9 @@
   const renderSources = () => `<div class="source-list">${topic.sourceIds.map((id) => sourceById(id)).filter(Boolean).map((source) => `<a class="source-row" href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer"><div><strong>${escapeHtml(source.title)}</strong><small>${escapeHtml(source.authority)}</small></div><span class="source-type">${escapeHtml(source.typeLabel)}</span><span class="source-date">公開 ${escapeHtml(source.publishedAt)}<br />重要度 ${escapeHtml(source.importance)}</span><span class="source-reason">${escapeHtml(source.whyImportant)}</span><span class="source-link">↗</span></a>`).join("")}</div>`;
 
   const renderArticles = () => {
-    const related = articles.filter((article) => article.relatedTopics.includes(topic.slug)).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
-    return related.length ? `<div class="topic-article-list">${related.map((article) => `<a class="topic-article-row" href="../article.html?id=${encodeURIComponent(article.id)}"><time datetime="${escapeHtml(article.publishedAt)}">${escapeHtml(article.publishedAt)}</time><div><strong>${escapeHtml(article.title)}</strong><small>${escapeHtml(article.publisher)} / ${escapeHtml(article.sourceLabel)}</small></div><span>${article.audience.slice(0, 2).map(escapeHtml).join(" / ")}</span><em>→</em></a>`).join("")}</div>` : `<p class="section-intro">関連する採用記事・資料はまだありません。</p>`;
+    const related = articles.filter((article) => article.relatedTopics.includes(topic.slug)).sort((a, b) => (b.collectedAt || "").localeCompare(a.collectedAt || "") || (articleOrder.get(b.id) ?? -1) - (articleOrder.get(a.id) ?? -1) || b.publishedAt.localeCompare(a.publishedAt));
+    const columns = "92px minmax(280px, 1fr) 92px minmax(180px, .7fr) 18px";
+    return related.length ? `<div class="topic-article-list"><div class="article-index-head topic-article-head" style="grid-template-columns:${columns}"><span>更新日</span><span>記事・資料</span><span>公開日</span><span>誰向けか</span><span></span></div>${related.map((article) => `<a class="topic-article-row" style="grid-template-columns:${columns}" href="../article.html?id=${encodeURIComponent(article.id)}"><time datetime="${escapeHtml(article.collectedAt || "")}">${escapeHtml(article.collectedAt || "—")}</time><div><strong>${escapeHtml(article.title)}</strong><small>${escapeHtml(article.publisher)} / ${escapeHtml(article.sourceLabel)}</small></div><time datetime="${escapeHtml(article.publishedAt)}" style="color:var(--muted)">${escapeHtml(article.publishedAt)}</time><span>${article.audience.slice(0, 2).map(escapeHtml).join(" / ")}</span><em>→</em></a>`).join("")}</div>` : `<p class="section-intro">関連する採用記事・資料はまだありません。</p>`;
   };
 
   const renderHistory = () => {
@@ -56,5 +58,5 @@
   };
 
   document.title = `${topic.title} — 法務トピック知識ベース`;
-  $("#topicPage").innerHTML = `<section class="detail-hero"><div class="detail-meta"><strong>最終確認 <time datetime="${escapeHtml(topic.lastVerified || topic.lastUpdated)}">${escapeHtml(topic.lastVerified || topic.lastUpdated)}</time></strong><span>${topic.categories.map(escapeHtml).join(" / ")}</span><span>${topic.issues.length}論点</span><span>${topic.sourceIds.length}主要資料</span></div><h1>${escapeHtml(topic.title)}</h1><p class="detail-summary">${escapeHtml(topic.summary)}</p></section><div class="detail-main"><section class="detail-section"><h2>テーマの要点</h2>${renderCurrent()}</section><section class="detail-section"><h2>論点</h2>${renderIssues()}</section><section class="detail-section"><h2>関連する記事・資料</h2>${renderArticles()}</section><section class="detail-section"><h2>主要な一次資料</h2>${renderSources()}</section><section class="detail-section"><h2>更新履歴</h2>${renderHistory()}</section><a class="back-link" href="../topics.html">← テーマ一覧へ戻る</a></div>`;
+  $("#topicPage").innerHTML = `<section class="detail-hero"><div class="detail-meta"><strong>最終確認 <time datetime="${escapeHtml(topic.lastVerified || topic.lastUpdated)}">${escapeHtml(topic.lastVerified || topic.lastUpdated)}</time></strong><span>${topic.categories.map(escapeHtml).join(" / ")}</span><span>${topic.issues.length}論点</span><span>${topic.sourceIds.length}主要資料</span></div><h1>${escapeHtml(topic.title)}</h1><p class="detail-summary">${escapeHtml(topic.summary)}</p></section><div class="detail-main"><section class="detail-section"><h2>現在の整理</h2>${renderCurrent()}</section><section class="detail-section"><h2>論点</h2>${renderIssues()}</section><section class="detail-section"><h2>関連する記事・資料</h2>${renderArticles()}</section><section class="detail-section"><h2>主要な一次資料</h2>${renderSources()}</section><section class="detail-section"><h2>更新履歴</h2>${renderHistory()}</section><a class="back-link" href="../topics.html">← テーマ一覧へ戻る</a></div>`;
 })();
