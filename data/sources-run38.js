@@ -1,0 +1,4 @@
+window.SOURCE_DATA=(Array.isArray(window.SOURCE_DATA)?window.SOURCE_DATA:[]).concat([
+{"id":"source-jpx-cg-code-2026","title":"コーポレートガバナンス・コード（2026年7月版）の公表について","type":"guideline","typeLabel":"東京証券取引所・コーポレートガバナンス・コード2026年改訂","authority":"東京証券取引所","publishedAt":"2026-07-21","url":"https://www.jpx.co.jp/corporate/news/news-releases/1020/20260721-01.html","importance":"最高","whyImportant":"2026年7月版コーポレートガバナンス・コードと改訂前からの変更点を公表し、改訂に係る有価証券上場規程の一部改正を2026年7月21日から施行したことを確認できる中心的な一次資料。","topics":["corporate-governance-code-2026"]},
+{"id":"source-fsa-cg-code-2026","title":"コーポレートガバナンス・コード（2026年改訂版）の確定について","type":"report","typeLabel":"金融庁・東京証券取引所／2026年改訂版・概要・パブリックコメント","authority":"金融庁／東京証券取引所","publishedAt":"2026-07-21","url":"https://www.fsa.go.jp/news/r7/singi/20260721.html","importance":"最高","whyImportant":"2026年改訂版の確定に加え、改訂の趣旨・概要、上場会社・投資家向けメッセージ、取締役会機能強化の事例集、パブリックコメント結果をまとめて確認できる公式ハブ。","topics":["corporate-governance-code-2026"]}
+]);
