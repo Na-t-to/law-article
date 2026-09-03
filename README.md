@@ -21,10 +21,26 @@
 - `data/sources.js` — 法令・ガイドライン・行政資料などの根拠資料
 - `data/updates.js` — 公表資料、要点、影響論点、更新前後の差分を持つ更新イベント
 - `data/articles*.js` — 記事・資料。`collectedAt` は追加日、`publishedAt` は公開日。法改正記事では任意の `reformEffectiveDate` または `reformEffectiveDates`（`YYYY-MM-DD` / `YYYY-MM`）を指定可能
+- `data/reform-policy.js` — 法改正ページで使う施行日の厳格な採用ルール。本文推測や固定 fallback を禁止する
 - `topics/*.html` — テーマごとの入口ページ
 - `update.html` — 更新イベントを文脈に応じて表示する共通詳細ページ
 
-施行日の明示値がない記事は本文と関連テーマから「施行」に直接結びつく日付だけを抽出し、確認できない場合は推測せず未確認として表示します。
+## 法改正ページの施行日
+
+法改正ページ上部の「施行日」は、**一次資料で施行日・適用開始日を確認できた記事データだけ**から取得します。
+
+施行日を表示する場合は、記事データに `reformEffectiveDate` または `reformEffectiveDates` を明示し、その日付を確認できる一次資料を `reformEffectiveDateSourceIds` に1件以上指定します。`reformEffectiveDateSourceIds` の各 sourceId は、その記事の `primarySourceIds` にも含まれていなければなりません。
+
+次の方法で施行日を補完することは禁止します。
+
+- 記事タイトル、summary、whyImportant、whatChanged、関連テーマ等の文章から日付を抽出する
+- 「施行」「公布」「成立」等の語の近くにある日付を機械的に施行日とみなす
+- 法令名ごとにあらかじめ固定した fallback 日付を当てる
+- 二次資料だけを根拠に施行日を確定する
+
+既存記事に `reformEffectiveDate` が残っていても `reformEffectiveDateSourceIds` がなければ、法改正ページではその日付を使用しません。その場合は「施行日 根拠未確認」として扱い、一次資料を確認して根拠を付け直すまで復活させません。
+
+複数の施行日・適用開始日が存在する場合は `reformEffectiveDates` を使えます。法改正一覧のグループ表示では、根拠確認済みの日付のうち最も遅い日付を並び順・表示用に採用します。これは一連の改正の残存対応期限を把握しやすくするための一覧上のルールであり、すべての規定がその日に一斉施行されることを意味しません。
 
 ## 法改正ページの段階タグ
 
@@ -47,6 +63,6 @@
 - `lastVerified` は、関連情報を確認した最新日です。採用記事が「整理変更なし」と判定された場合、記事の `collectedAt` から関連テーマの確認日だけを進めます。
 - 読み込み時に記事・更新履歴から `lastVerified` を再計算するため、テーマデータの再生成で確認日が巻き戻っても復元できます。`lastUpdated` はこの処理では変更しません。
 
-`node scripts/validate-data.mjs` は日付の逆転、status の分布、全論点が `authoritative` のテーマ、`interpreted` / `pending` の views 未登録に加え、法改正段階タグの enum・根拠資料の整合性を監査します。分布の比率を機械的な正解にはせず、見解対立は根拠資料が確認できた場合だけ登録します。
+`node scripts/validate-data.mjs` は日付の逆転、status の分布、全論点が `authoritative` のテーマ、`interpreted` / `pending` の views 未登録に加え、法改正段階タグと施行日の根拠資料の整合性を監査します。施行日だけが残っていて一次資料の根拠がない既存データは警告し、画面表示から除外します。分布の比率を機械的な正解にはせず、見解対立は根拠資料が確認できた場合だけ登録します。
 
 本文を転載せず、原文へのリンクと、現在地を確認するための整理情報を保持します。重要な判断では必ず原資料を確認してください。
