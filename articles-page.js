@@ -7,6 +7,12 @@
   const $ = (selector) => document.querySelector(selector);
   const escapeHtml = (value) => String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
   const query = new URLSearchParams(window.location.search);
+  if (query.get("view") === "reforms") {
+    query.delete("view");
+    const suffix = query.toString();
+    window.location.replace(`reforms.html${suffix ? `?${suffix}` : ""}`);
+    return;
+  }
   let selectedField = "all";
   let selectedLaw = query.get("law") || "all";
   let reformsOnly = query.get("view") === "reforms";
@@ -62,7 +68,7 @@
       if (!needle) return true;
       return [article.title, article.publisher, article.summary, changeSummary(article), article.categories.join(" "), article.audience.join(" "), topicNames(article).join(" "), reformLaw(article).label].join(" ").toLocaleLowerCase().includes(needle);
     }).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
-    $("#libraryResultsTitle").textContent = reformsOnly ? "法改正情報｜法律別" : "採用済み";
+    $("#libraryResultsTitle").textContent = reformsOnly ? "法改正情報｜法令・制度別" : "採用済み";
     $("#resultCount").textContent = `${String(visible.length).padStart(2, "0")}件`;
     $("#libraryCount").innerHTML = `<strong>${String(visible.length).padStart(2, "0")}</strong><span>${reformsOnly ? "法改正情報" : "採用済み"}</span>`;
     $("#articleLibrary").classList.toggle("is-grouped", reformsOnly);

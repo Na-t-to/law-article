@@ -31,6 +31,10 @@ for (const topic of topics) {
   if (!fs.existsSync(page)) errors.push(`${topic.slug}: テーマ詳細ページ ${page} がありません。`);
 }
 
+for (const page of ["index.html", "articles.html", "topics.html", "reforms.html"]) {
+  if (!fs.existsSync(page)) errors.push(`主要ページ ${page} がありません。`);
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
