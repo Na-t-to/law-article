@@ -3,7 +3,7 @@
   if (!manifest) throw new Error("LAW / INDEX data manifest is missing.");
   const baseUrl = new URL(".", document.currentScript.src);
   let articleBatchIndex = 0;
-  for (const group of ["schema", "topics", "sources", "updates", "articles"]) {
+  for (const group of ["schema", "topics", "sources", "updates", "reforms", "articles"]) {
     for (const file of manifest[group] || []) {
       if (group !== "articles") {
         document.write(`<script src="${new URL(file, baseUrl).href}"><\/script>`);
