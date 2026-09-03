@@ -1,0 +1,3 @@
+window.SOURCE_DATA=(Array.isArray(window.SOURCE_DATA)?window.SOURCE_DATA:[]).concat([
+{"id":"source-jftc-film-anime-guidelines-2026","title":"映画・アニメの制作現場における取引の適正化に関する指針の公表について","type":"guideline","typeLabel":"公正取引委員会・内閣府／映画・アニメ制作取引適正化指針","authority":"公正取引委員会／内閣府知的財産戦略推進事務局","publishedAt":"2026-06-22","url":"https://www.jftc.go.jp/houdou/pressrelease/2026/jun/260622_eigaanimeshishin.html","importance":"最高","whyImportant":"2025年の実態調査を踏まえ、映画・アニメ制作の各取引段階について、独占禁止法、取適法、フリーランス法に照らした採るべき行動と問題となり得る行動を具体化した公式指針。映画指針・アニメ指針の本体と概要、相談窓口を一つの公式ページから確認できる。","topics":["film-anime-production-transactions"]}
+]);
