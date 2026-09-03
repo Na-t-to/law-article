@@ -176,7 +176,7 @@ console.log(JSON.stringify({
   statusCounts: audit.statusCounts,
   emptyViewsByStatus: audit.emptyViewsByStatus,
   allAuthoritativeThemes: audit.allAuthoritativeThemes,
-  verificationDiverged: audit.verificationDiverged.length,
+  verificationDiverged: audit.verificationDiverged,
   verificationAdvancesApplied: verificationAdvances,
   verificationAdvancesPending: audit.verificationAdvancesPending,
   legalReforms: legalReforms.length,
