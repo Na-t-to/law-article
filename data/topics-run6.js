@@ -34,9 +34,9 @@ window.TOPIC_DATA = (Array.isArray(window.TOPIC_DATA) ? window.TOPIC_DATA : []).
       ]
     },
     issues: [
-      { id: "toriteki-scope", title: "どの取引・相手が取適法の対象になるか", status: "施行済み", statusTone: "confirmed", conclusion: "資本金基準、従業員基準、委託内容を組み合わせ、取引単位で適用対象を判定する。", exception: "取引類型ごとに要件が異なるため、相手企業の属性だけで一律に判断しない。", uncertain: "組織再編や複合的な委託では具体的な取引関係の確認が必要。", sourceIds: ["source-toriteki-law-2026"] },
-      { id: "toriteki-price-consultation", title: "価格協議をどこまで行えばよいか", status: "運用重点", statusTone: "watch", conclusion: "受託側の価格協議の申出を受け止め、必要な情報を踏まえて実質的な協議を行い、その過程を説明できるよう記録する。", exception: "相手の要求額を必ず受け入れる義務ではなく、協議の内容と価格決定の合理性を個別に見る。", uncertain: "今後の執行事例で、協議不足と評価される具体的な行為がさらに蓄積する。", sourceIds: ["source-toriteki-law-2026", "source-toriteki-operation-2026"] },
-      { id: "toriteki-enforcement", title: "違反把握後にどう是正するか", status: "執行継続", statusTone: "watch", conclusion: "自主点検、必要な返金・原状回復、再発防止を速やかに行い、事実関係と判断を記録する。", exception: "自主申告の扱いは個別事案と公取委の運用による。", uncertain: "取適法施行後の新規禁止行為については今後の勧告・指導の蓄積を継続確認する。", sourceIds: ["source-toriteki-operation-2026"] }
+      { id: "toriteki-scope", title: "どの取引・相手が取適法の対象になるか", status: "authoritative", stage: "effective", views: [], conclusion: "資本金基準、従業員基準、委託内容を組み合わせ、取引単位で適用対象を判定する。", exception: "取引類型ごとに要件が異なるため、相手企業の属性だけで一律に判断しない。", uncertain: "組織再編や複合的な委託では具体的な取引関係の確認が必要。", sourceIds: ["source-toriteki-law-2026"] },
+      { id: "toriteki-price-consultation", title: "価格協議をどこまで行えばよいか", status: "interpreted", stage: "effective", views: [], conclusion: "受託側の価格協議の申出を受け止め、必要な情報を踏まえて実質的な協議を行い、その過程を説明できるよう記録する。", exception: "相手の要求額を必ず受け入れる義務ではなく、協議の内容と価格決定の合理性を個別に見る。", uncertain: "今後の執行事例で、協議不足と評価される具体的な行為がさらに蓄積する。", sourceIds: ["source-toriteki-law-2026", "source-toriteki-operation-2026"] },
+      { id: "toriteki-enforcement", title: "違反把握後にどう是正するか", status: "authoritative", stage: "effective", views: [], conclusion: "自主点検、必要な返金・原状回復、再発防止を速やかに行い、事実関係と判断を記録する。", exception: "自主申告の扱いは個別事案と公取委の運用による。", uncertain: "取適法施行後の新規禁止行為については今後の勧告・指導の蓄積を継続確認する。", sourceIds: ["source-toriteki-operation-2026"] }
     ],
     sourceIds: ["source-toriteki-law-2026", "source-toriteki-operation-2026"],
     practicalImpacts: ["対象取引マスター", "価格協議フロー", "発注書・取引条件明示", "支払・検収", "物流委託管理", "自主点検・是正"]
@@ -76,9 +76,9 @@ window.TOPIC_DATA = (Array.isArray(window.TOPIC_DATA) ? window.TOPIC_DATA : []).
       ]
     },
     issues: [
-      { id: "acq-sincere-proposal", title: "真摯な買収提案かをどう判断するか", status: "解釈具体化", statusTone: "confirmed", conclusion: "具体性、目的の正当性、実現可能性を総合考慮し、合理的に疑われる事情を事実として確認する。", exception: "例示事項の一つに該当するだけで直ちに真摯性が否定されるわけではない。", uncertain: "個別提案で必要な確認水準は事案により異なる。", sourceIds: ["source-acquisition-guidelines-2023", "source-acquisition-guidelines-qa-2026"] },
-      { id: "acq-board-review", title: "取締役会は何を比較・検討するか", status: "実務基準あり", statusTone: "confirmed", conclusion: "買収者の価格・企業価値向上策と、スタンドアローンその他の戦略的選択肢を、実現可能性とシナジー・ディスシナジーを含めて比較する。", exception: "定量分析が困難な事項は合理的・説得的な定性説明で補う余地がある。", uncertain: "比較の具体的な粒度は会社・提案ごとに異なる。", sourceIds: ["source-acquisition-guidelines-qa-2026"] },
-      { id: "acq-value-explanation", title: "企業価値と株主への説明をどう組み立てるか", status: "説明重視", statusTone: "watch", conclusion: "買収価格だけに依存せず、企業価値向上の見込みと株主共同の利益を分けて検討し、判断の合理性を説明できるようにする。", exception: "定性的要素も将来キャッシュフローや割引率への合理的な影響があれば考慮し得る。", uncertain: "株主への説明内容・程度は個別事案による。", sourceIds: ["source-acquisition-guidelines-qa-2026"] }
+      { id: "acq-sincere-proposal", title: "真摯な買収提案かをどう判断するか", status: "interpreted", stage: "effective", views: [], conclusion: "具体性、目的の正当性、実現可能性を総合考慮し、合理的に疑われる事情を事実として確認する。", exception: "例示事項の一つに該当するだけで直ちに真摯性が否定されるわけではない。", uncertain: "個別提案で必要な確認水準は事案により異なる。", sourceIds: ["source-acquisition-guidelines-2023", "source-acquisition-guidelines-qa-2026"] },
+      { id: "acq-board-review", title: "取締役会は何を比較・検討するか", status: "interpreted", stage: "effective", views: [], conclusion: "買収者の価格・企業価値向上策と、スタンドアローンその他の戦略的選択肢を、実現可能性とシナジー・ディスシナジーを含めて比較する。", exception: "定量分析が困難な事項は合理的・説得的な定性説明で補う余地がある。", uncertain: "比較の具体的な粒度は会社・提案ごとに異なる。", sourceIds: ["source-acquisition-guidelines-qa-2026"] },
+      { id: "acq-value-explanation", title: "企業価値と株主への説明をどう組み立てるか", status: "disputed", stage: "effective", views: [{ id: "shareholder-price-view", label: "株主の選択と買収価格を重視する見方", summary: "現在の株主に提示された価格と選択機会を中心に据え、取締役会が提案を恣意的に排除しないことを重視する。", sourceIds: ["source-acquisition-guidelines-qa-2026"], articleIds: ["article-meti-acquisition-guidelines-qa-2026"] }, { id: "corporate-value-view", label: "中長期の企業価値を重視する見方", summary: "価格だけでなく、買収後の企業価値向上策、スタンドアローン、シナジー・ディスシナジーを比較し、定性的要素も合理的に説明することを重視する。", sourceIds: ["source-acquisition-guidelines-qa-2026"], articleIds: ["article-not-acquisition-guidelines-qa-2026"] }], conclusion: "買収価格だけに依存せず、企業価値向上の見込みと株主共同の利益を分けて検討し、判断の合理性を説明できるようにする。", exception: "定性的要素も将来キャッシュフローや割引率への合理的な影響があれば考慮し得る。", uncertain: "株主への説明内容・程度は個別事案による。", sourceIds: ["source-acquisition-guidelines-qa-2026"] }
     ],
     sourceIds: ["source-acquisition-guidelines-2023", "source-acquisition-guidelines-qa-2026"],
     practicalImpacts: ["買収提案受付・初期評価", "取締役会資料", "買収者への質問票", "企業価値比較", "議事録・判断記録", "株主・市場への説明"]
@@ -118,9 +118,9 @@ window.TOPIC_DATA = (Array.isArray(window.TOPIC_DATA) ? window.TOPIC_DATA : []).
       ]
     },
     issues: [
-      { id: "cg-principle-based", title: "原則主義で何を説明するか", status: "改訂済み", statusTone: "confirmed", conclusion: "形式的なチェックではなく、原則の趣旨、自社の状況、採用したガバナンス、実効性を投資家が理解できるよう説明する。", exception: "原則を実施しない場合も、会社の事情に即した十分な説明によりコンプライ・オア・エクスプレインを実践する。", uncertain: "投資家が評価する説明の深さは今後の実務蓄積を要する。", sourceIds: ["source-cg-code-2026"] },
-      { id: "cg-board-growth", title: "取締役会は成長投資にどう関与するか", status: "重点化", statusTone: "watch", conclusion: "中長期の企業価値向上に向け、成長投資・資本配分を経営戦略と結び付けて監督・議論する。", exception: "具体的な投資判断や権限配分は各社の機関設計・事業特性に応じる。", uncertain: "好事例の具体化は金融庁等のフォローアップを継続確認する。", sourceIds: ["source-cg-code-2026"] },
-      { id: "cg-disclosure-timing", title: "総会前開示とCG報告書をどう更新するか", status: "実務対応", statusTone: "watch", conclusion: "有価証券報告書の総会前開示を実効的に進め、改訂コードへの対応をCG報告書へ反映できる準備日程を組む。", exception: "開示日程は監査・決算・総会運営との調整が必要。", uncertain: "各社の具体的な前倒し幅や市場慣行は引き続き変化し得る。", sourceIds: ["source-cg-code-2026"] }
+      { id: "cg-principle-based", title: "原則主義で何を説明するか", status: "authoritative", stage: "effective", views: [], conclusion: "形式的なチェックではなく、原則の趣旨、自社の状況、採用したガバナンス、実効性を投資家が理解できるよう説明する。", exception: "原則を実施しない場合も、会社の事情に即した十分な説明によりコンプライ・オア・エクスプレインを実践する。", uncertain: "投資家が評価する説明の深さは今後の実務蓄積を要する。", sourceIds: ["source-cg-code-2026"] },
+      { id: "cg-board-growth", title: "取締役会は成長投資にどう関与するか", status: "interpreted", stage: "effective", views: [], conclusion: "中長期の企業価値向上に向け、成長投資・資本配分を経営戦略と結び付けて監督・議論する。", exception: "具体的な投資判断や権限配分は各社の機関設計・事業特性に応じる。", uncertain: "好事例の具体化は金融庁等のフォローアップを継続確認する。", sourceIds: ["source-cg-code-2026"] },
+      { id: "cg-disclosure-timing", title: "総会前開示とCG報告書をどう更新するか", status: "interpreted", stage: "effective", views: [], conclusion: "有価証券報告書の総会前開示を実効的に進め、改訂コードへの対応をCG報告書へ反映できる準備日程を組む。", exception: "開示日程は監査・決算・総会運営との調整が必要。", uncertain: "各社の具体的な前倒し幅や市場慣行は引き続き変化し得る。", sourceIds: ["source-cg-code-2026"] }
     ],
     sourceIds: ["source-cg-code-2026"],
     practicalImpacts: ["CG報告書", "取締役会評価", "成長投資・資本配分", "有価証券報告書の総会前開示", "株主・投資家との対話", "取締役会事務局"]

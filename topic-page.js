@@ -2,11 +2,16 @@
   const topics = Array.isArray(window.TOPIC_DATA) ? window.TOPIC_DATA : [];
   const sources = Array.isArray(window.SOURCE_DATA) ? window.SOURCE_DATA : [];
   const updates = Array.isArray(window.UPDATE_DATA) ? window.UPDATE_DATA : [];
-  const articles = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA.filter((item) => item.status === "adopted") : [];
+  const allArticles = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
+  const articles = (window.uniqueKnowledgeArticles?.(allArticles) || allArticles).filter((item) => item.status === "adopted");
   const topic = topics.find((item) => item.slug === document.body.dataset.topic);
   const $ = (selector) => document.querySelector(selector);
   const escapeHtml = (value) => String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
   const sourceById = (id) => sources.find((source) => source.id === id);
+  const articleById = (id) => allArticles.find((article) => article.id === id);
+  const schema = window.KNOWLEDGE_SCHEMA || { issueStatus: {}, issueStage: {} };
+
+  window.assertKnowledgeData?.(topics, sources, allArticles);
 
   if (!topic) {
     $("#topicPage").innerHTML = `<div class="missing-topic"><h1>このテーマはまだ登録されていません。</h1><a class="back-link" href="../index.html">← テーマ一覧へ戻る</a></div>`;
@@ -18,6 +23,14 @@
     return source ? `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.title)}</a>` : "";
   }).join("");
 
+  const renderViewLinks = (view) => {
+    const sourceItems = view.sourceIds.map((id) => sourceById(id)).filter(Boolean).map((source) => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.title)}</a>`);
+    const articleItems = view.articleIds.map((id) => articleById(id)).filter(Boolean).map((article) => `<a href="../article.html?id=${encodeURIComponent(article.id)}">${escapeHtml(article.publisher)}</a>`);
+    return [...sourceItems, ...articleItems].join("");
+  };
+
+  const renderViews = (issue) => issue.views.length ? `<div class="issue-views"><strong>見解の分岐</strong>${issue.views.map((view) => `<div class="issue-view-row"><h4>${escapeHtml(view.label)}</h4><div><p>${escapeHtml(view.summary)}</p><div class="issue-view-links">${renderViewLinks(view)}</div></div></div>`).join("")}</div>` : "";
+
   const renderCurrent = () => {
     const summary = topic.currentSummary;
     const rows = [
@@ -28,7 +41,7 @@
     return `<div class="current-list">${rows.map(([label, items, className]) => `<div class="current-row ${className || ""}"><h3>${escapeHtml(label)}</h3><ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></div>`).join("")}</div>`;
   };
 
-  const renderIssues = () => `<div class="issue-list">${topic.issues.map((issue) => `<article class="issue-row" id="${escapeHtml(issue.id)}"><div class="issue-title"><h3>${escapeHtml(issue.title)}</h3></div><div class="issue-answer"><p><strong>この論点の要点</strong> ${escapeHtml(issue.conclusion)}</p><div class="issue-notes"><div><strong>検討時の条件</strong>${escapeHtml(issue.exception)}</div><div><strong>確認を続ける点</strong>${escapeHtml(issue.uncertain)}</div></div><div class="issue-sources"><strong>主な資料</strong>${sourceLinks(issue.sourceIds)}</div></div></article>`).join("")}</div>`;
+  const renderIssues = () => `<div class="issue-list">${topic.issues.map((issue) => `<article class="issue-row" id="${escapeHtml(issue.id)}"><div class="issue-title"><h3>${escapeHtml(issue.title)}</h3><div class="issue-state"><span data-state="${escapeHtml(issue.status)}">${escapeHtml(schema.issueStatus[issue.status] || issue.status)}</span>${issue.stage !== "not_applicable" ? `<span>${escapeHtml(schema.issueStage[issue.stage] || issue.stage)}</span>` : ""}</div></div><div class="issue-answer"><p><strong>この論点の要点</strong> ${escapeHtml(issue.conclusion)}</p>${renderViews(issue)}<div class="issue-notes"><div><strong>検討時の条件</strong>${escapeHtml(issue.exception)}</div><div><strong>確認を続ける点</strong>${escapeHtml(issue.uncertain)}</div></div><div class="issue-sources"><strong>主な資料</strong>${sourceLinks(issue.sourceIds)}</div></div></article>`).join("")}</div>`;
 
   const renderSources = () => `<div class="source-list">${topic.sourceIds.map((id) => sourceById(id)).filter(Boolean).map((source) => `<a class="source-row" href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer"><div><strong>${escapeHtml(source.title)}</strong><small>${escapeHtml(source.authority)}</small></div><span class="source-type">${escapeHtml(source.typeLabel)}</span><span class="source-date">公開 ${escapeHtml(source.publishedAt)}<br />重要度 ${escapeHtml(source.importance)}</span><span class="source-reason">${escapeHtml(source.whyImportant)}</span><span class="source-link">↗</span></a>`).join("")}</div>`;
 

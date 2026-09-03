@@ -2,20 +2,32 @@
   const topics = Array.isArray(window.TOPIC_DATA) ? window.TOPIC_DATA : [];
   const sources = Array.isArray(window.SOURCE_DATA) ? window.SOURCE_DATA : [];
   const updates = Array.isArray(window.UPDATE_DATA) ? window.UPDATE_DATA : [];
-  const articles = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA.filter((article) => article.status === "adopted") : [];
-  const collection = window.COLLECTION_META || {};
+  const allArticles = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
+  const articles = (window.uniqueKnowledgeArticles?.(allArticles) || allArticles).filter((article) => article.status === "adopted");
+  const collection = window.COLLECTION_STATUS || window.COLLECTION_META || {};
   const $ = (selector) => document.querySelector(selector);
   const escapeHtml = (value) => String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
   const pad = (value) => String(value).padStart(2, "0");
   let selectedField = "all";
 
+  window.assertKnowledgeData?.(topics, sources, allArticles);
+
   const topicBySlug = (slug) => topics.find((topic) => topic.slug === slug);
   const latestUpdateFor = (topic) => updates.filter((update) => update.affectedTopics.includes(topic.slug)).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))[0];
-  const topicNamesForArticle = (article) => article.relatedTopics.map((slug) => topicBySlug(slug)?.title).filter(Boolean);
+  const topicsForArticle = (article) => article.relatedTopics.map((slug) => topicBySlug(slug)).filter(Boolean);
+  const topicNamesForArticle = (article) => topicsForArticle(article).map((topic) => topic.title);
+  const issueTitlesForArticle = (article) => article.relatedIssues.map((id) => topics.flatMap((topic) => topic.issues).find((issue) => issue.id === id)?.title).filter(Boolean);
+  const changeSummaryForArticle = (article) => {
+    if (article.whatChanged) return article.whatChanged;
+    const update = updates.filter((item) => article.primarySourceIds.includes(item.source) && item.affectedTopics.some((slug) => article.relatedTopics.includes(slug))).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))[0];
+    if (update) return update.whatChanged;
+    const issues = issueTitlesForArticle(article);
+    return issues.length ? `整理変更なし／「${issues.slice(0, 2).join("」「")}」の参考資料を追加` : "整理変更なし／関連テーマの参考資料を追加";
+  };
 
   const renderHomeArticles = () => {
     const recent = [...articles].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt)).slice(0, 5);
-    $("#homeArticleList").innerHTML = recent.map((article) => `<a class="article-row" href="article.html?id=${encodeURIComponent(article.id)}"><time datetime="${escapeHtml(article.publishedAt)}">${escapeHtml(article.publishedAt)}</time><div class="article-main-cell"><strong>${escapeHtml(article.title)}</strong><small>${escapeHtml(article.publisher)} / ${escapeHtml(article.sourceLabel)}</small><span>${topicNamesForArticle(article).map(escapeHtml).join(" / ")}</span></div><div class="article-fields">${article.categories.map((field) => `<span>${escapeHtml(field)}</span>`).join("")}</div><div class="article-audience">${article.audience.slice(0, 2).map((item) => `<span>${escapeHtml(item)}</span>`).join("")}</div></a>`).join("");
+    $("#homeArticleList").innerHTML = recent.map((article) => `<article class="article-row"><time datetime="${escapeHtml(article.publishedAt)}">${escapeHtml(article.publishedAt)}</time><div class="article-main-cell"><a class="article-title-link" href="article.html?id=${encodeURIComponent(article.id)}"><strong>${escapeHtml(article.title)}</strong></a><small>${escapeHtml(article.publisher)} / ${escapeHtml(article.sourceLabel)}</small></div><div class="article-topics">${topicsForArticle(article).map((topic) => `<a href="topics/${escapeHtml(topic.slug)}.html">${escapeHtml(topic.title)} →</a>`).join("")}</div><a class="article-impact" href="article.html?id=${encodeURIComponent(article.id)}">${escapeHtml(changeSummaryForArticle(article))}</a></article>`).join("");
   };
 
   const renderTopicList = () => {
@@ -40,7 +52,7 @@
     const needle = value.trim().toLocaleLowerCase();
     if (!needle) return [];
     const topicMatches = topics.filter((topic) => {
-      const issues = topic.issues.map((issue) => [issue.title, issue.conclusion, issue.exception, issue.uncertain].join(" ")).join(" ");
+      const issues = topic.issues.map((issue) => [issue.title, issue.conclusion, issue.exception, issue.uncertain, issue.views.map((view) => `${view.label} ${view.summary}`).join(" ")].join(" ")).join(" ");
       return [topic.title, topic.summary, topic.categories.join(" "), topic.overview.join(" "), issues, topic.practicalImpacts.join(" ")].join(" ").toLocaleLowerCase().includes(needle);
     }).map((topic) => ({ kind: "テーマ", title: topic.title, detail: `${topic.categories.join(" / ")} · ${topic.issues.length}論点`, href: `topics/${topic.slug}.html` }));
     const sourceMatches = sources.filter((source) => [source.title, source.authority, source.typeLabel, source.whyImportant].join(" ").toLocaleLowerCase().includes(needle)).map((source) => ({ kind: "資料", title: source.title, detail: `${source.authority} / ${source.typeLabel}`, href: source.url, external: true }));

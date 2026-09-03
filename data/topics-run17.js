@@ -10,8 +10,7 @@ window.TOPIC_DATA = (Array.isArray(window.TOPIC_DATA) ? window.TOPIC_DATA : []).
     issues.push({
       id: "freelance-payment-deadline",
       title: "報酬支払期日をどう設定・遵守するか",
-      status: "執行事例あり",
-      statusTone: "watch",
+      status: "authoritative", stage: "effective", views: [],
       conclusion: "委託時に支払期日を適切に定め、給付受領日・役務提供日を起点とする法定の期限までに実際の支払が完了するよう発注・検収・経理フローを設計する。",
       exception: "適用される支払期限や起算点は取引形態・役務提供の態様を確認して判断する。",
       uncertain: "多数の継続発注やシステム連携がある場合、個々の発注・受領・支払の紐付け方法は各社で設計が必要。",
@@ -67,11 +66,11 @@ window.TOPIC_DATA = (Array.isArray(window.TOPIC_DATA) ? window.TOPIC_DATA : []).
       ]
     },
     issues: [
-      { id: "bhr-policy-scope", title: "人権方針の適用範囲と社内外への期待をどう定めるか", status: "政府ガイドラインあり", statusTone: "confirmed", conclusion: "経営陣の承認を前提に、自社・グループ会社・従業員・取引先等への適用・期待を明示し、事業方針と手続へ反映する。", exception: "企業規模、事業、バリューチェーンにより具体的な適用範囲と記載内容は異なる。", uncertain: "既存の企業理念・調達方針等との統合方法は各社で設計が必要。", sourceIds: ["source-meti-bhr-guideline-2022", "source-meti-bhr-practical-reference-2023"] },
-      { id: "bhr-risk-identification", title: "どの人権リスクから調査を始めるか", status: "実務参照資料あり", statusTone: "confirmed", conclusion: "セクター、製品・サービス、地域、企業固有のリスクから重大な事業領域を絞り、社内資料、質問票、ヒアリング、現地調査、ステークホルダー対話等を組み合わせて負の影響を特定・評価する。", exception: "全取引先を同じ深さで調べることを前提とせず、重大性と発生可能性等に応じて優先順位を付ける。", uncertain: "公開情報が乏しい地域・二次以降サプライヤー等では情報取得方法を個別に検討する必要がある。", sourceIds: ["source-meti-bhr-guideline-2022", "source-meti-bhr-practical-reference-2023"] },
-      { id: "bhr-dd-cycle", title: "人権DDを継続的な管理プロセスへどう組み込むか", status: "政策・ガイドラインあり", statusTone: "confirmed", conclusion: "負の影響の特定・評価だけで終わらせず、予防・軽減・対処、効果の確認、説明・情報開示を継続し、事業・取引条件の変更に応じて見直す。", exception: "具体的な頻度・調査手段はリスクの性質と事業規模に応じて設計する。", uncertain: "政府の今後の支援策や個別分野の制度化は継続確認が必要。", sourceIds: ["source-meti-bhr-guideline-2022", "source-mofa-bhr-nap-2025"] },
-      { id: "bhr-remedy-grievance", title: "苦情処理・救済をどう実効化するか", status: "政府方針あり", statusTone: "review", conclusion: "人権への負の影響を引き起こした又は助長した場合の救済を念頭に、通報・苦情受付、調査、是正、再発防止、ステークホルダーとの対話を運用へ組み込む。", exception: "適切な救済方法は影響の内容、関係性、ライツホルダーの状況で異なる。", uncertain: "外部グリーバンス機構との連携や案件ごとの適切な救済水準は個別検討が必要。", sourceIds: ["source-meti-bhr-guideline-2022", "source-mofa-bhr-nap-2025"] },
-      { id: "bhr-ma-dd", title: "M&Aで人権・サステナビリティDDをどう行うか", status: "実務解説蓄積", statusTone: "review", conclusion: "買収対象の業種・地域・製品・バリューチェーンから重大リスクを絞り、M&A固有の時間・守秘制約を踏まえて調査し、発見事項を契約条件とPMI・買収後の人権DDへ引き継ぐ。", exception: "平時の人権DDと同じ範囲・手法を短期間のM&A DDで完全に再現できるとは限らない。", uncertain: "対象会社の情報開示範囲や競争関係によって、買収前に確認できる深度は案件ごとに変わる。", sourceIds: ["source-meti-bhr-guideline-2022", "source-meti-bhr-practical-reference-2023"] }
+      { id: "bhr-policy-scope", title: "人権方針の適用範囲と社内外への期待をどう定めるか", status: "authoritative", stage: "effective", views: [], conclusion: "経営陣の承認を前提に、自社・グループ会社・従業員・取引先等への適用・期待を明示し、事業方針と手続へ反映する。", exception: "企業規模、事業、バリューチェーンにより具体的な適用範囲と記載内容は異なる。", uncertain: "既存の企業理念・調達方針等との統合方法は各社で設計が必要。", sourceIds: ["source-meti-bhr-guideline-2022", "source-meti-bhr-practical-reference-2023"] },
+      { id: "bhr-risk-identification", title: "どの人権リスクから調査を始めるか", status: "authoritative", stage: "effective", views: [], conclusion: "セクター、製品・サービス、地域、企業固有のリスクから重大な事業領域を絞り、社内資料、質問票、ヒアリング、現地調査、ステークホルダー対話等を組み合わせて負の影響を特定・評価する。", exception: "全取引先を同じ深さで調べることを前提とせず、重大性と発生可能性等に応じて優先順位を付ける。", uncertain: "公開情報が乏しい地域・二次以降サプライヤー等では情報取得方法を個別に検討する必要がある。", sourceIds: ["source-meti-bhr-guideline-2022", "source-meti-bhr-practical-reference-2023"] },
+      { id: "bhr-dd-cycle", title: "人権DDを継続的な管理プロセスへどう組み込むか", status: "authoritative", stage: "effective", views: [], conclusion: "負の影響の特定・評価だけで終わらせず、予防・軽減・対処、効果の確認、説明・情報開示を継続し、事業・取引条件の変更に応じて見直す。", exception: "具体的な頻度・調査手段はリスクの性質と事業規模に応じて設計する。", uncertain: "政府の今後の支援策や個別分野の制度化は継続確認が必要。", sourceIds: ["source-meti-bhr-guideline-2022", "source-mofa-bhr-nap-2025"] },
+      { id: "bhr-remedy-grievance", title: "苦情処理・救済をどう実効化するか", status: "authoritative", stage: "effective", views: [], conclusion: "人権への負の影響を引き起こした又は助長した場合の救済を念頭に、通報・苦情受付、調査、是正、再発防止、ステークホルダーとの対話を運用へ組み込む。", exception: "適切な救済方法は影響の内容、関係性、ライツホルダーの状況で異なる。", uncertain: "外部グリーバンス機構との連携や案件ごとの適切な救済水準は個別検討が必要。", sourceIds: ["source-meti-bhr-guideline-2022", "source-mofa-bhr-nap-2025"] },
+      { id: "bhr-ma-dd", title: "M&Aで人権・サステナビリティDDをどう行うか", status: "interpreted", stage: "not_applicable", views: [], conclusion: "買収対象の業種・地域・製品・バリューチェーンから重大リスクを絞り、M&A固有の時間・守秘制約を踏まえて調査し、発見事項を契約条件とPMI・買収後の人権DDへ引き継ぐ。", exception: "平時の人権DDと同じ範囲・手法を短期間のM&A DDで完全に再現できるとは限らない。", uncertain: "対象会社の情報開示範囲や競争関係によって、買収前に確認できる深度は案件ごとに変わる。", sourceIds: ["source-meti-bhr-guideline-2022", "source-meti-bhr-practical-reference-2023"] }
     ],
     sourceIds: ["source-meti-bhr-guideline-2022", "source-meti-bhr-practical-reference-2023", "source-mofa-bhr-nap-2025"],
     practicalImpacts: ["人権方針・取引先行動規範", "サプライチェーンのリスクマッピング", "質問票・ヒアリング・現地調査", "調達契約・是正計画", "苦情処理・救済", "M&A DD・契約条件", "PMI・買収後ガバナンス"]

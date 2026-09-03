@@ -1,12 +1,26 @@
 (() => {
-  const articles = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA.filter((item) => item.status === "adopted") : [];
+  const allArticles = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
+  const articles = (window.uniqueKnowledgeArticles?.(allArticles) || allArticles).filter((item) => item.status === "adopted");
   const topics = Array.isArray(window.TOPIC_DATA) ? window.TOPIC_DATA : [];
+  const sources = Array.isArray(window.SOURCE_DATA) ? window.SOURCE_DATA : [];
+  const updates = Array.isArray(window.UPDATE_DATA) ? window.UPDATE_DATA : [];
   const $ = (selector) => document.querySelector(selector);
   const escapeHtml = (value) => String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
   let selectedField = "all";
 
+  window.assertKnowledgeData?.(topics, sources, allArticles);
+
   const fields = ["すべて", ...new Set(articles.flatMap((article) => article.categories))];
-  const topicNames = (article) => article.relatedTopics.map((slug) => topics.find((topic) => topic.slug === slug)?.title).filter(Boolean);
+  const topicsForArticle = (article) => article.relatedTopics.map((slug) => topics.find((topic) => topic.slug === slug)).filter(Boolean);
+  const topicNames = (article) => topicsForArticle(article).map((topic) => topic.title);
+  const issueTitles = (article) => article.relatedIssues.map((id) => topics.flatMap((topic) => topic.issues).find((issue) => issue.id === id)?.title).filter(Boolean);
+  const changeSummary = (article) => {
+    if (article.whatChanged) return article.whatChanged;
+    const update = updates.filter((item) => article.primarySourceIds.includes(item.source) && item.affectedTopics.some((slug) => article.relatedTopics.includes(slug))).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))[0];
+    if (update) return update.whatChanged;
+    const issues = issueTitles(article);
+    return issues.length ? `整理変更なし／「${issues.slice(0, 2).join("」「")}」の参考資料を追加` : "整理変更なし／関連テーマの参考資料を追加";
+  };
 
   const renderFilters = () => {
     $("#articleFilters").innerHTML = fields.map((field) => {
@@ -20,10 +34,10 @@
     const needle = $("#articleSearch").value.trim().toLocaleLowerCase();
     const visible = articles.filter((article) => selectedField === "all" || article.categories.includes(selectedField)).filter((article) => {
       if (!needle) return true;
-      return [article.title, article.publisher, article.summary, article.categories.join(" "), article.audience.join(" "), topicNames(article).join(" ")].join(" ").toLocaleLowerCase().includes(needle);
+      return [article.title, article.publisher, article.summary, changeSummary(article), article.categories.join(" "), article.audience.join(" "), topicNames(article).join(" ")].join(" ").toLocaleLowerCase().includes(needle);
     }).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
     $("#resultCount").textContent = `${String(visible.length).padStart(2, "0")}件`;
-    $("#articleLibrary").innerHTML = visible.length ? visible.map((article) => `<a class="article-row" href="article.html?id=${encodeURIComponent(article.id)}"><time datetime="${escapeHtml(article.publishedAt)}">${escapeHtml(article.publishedAt)}</time><div class="article-main-cell"><strong>${escapeHtml(article.title)}</strong><small>${escapeHtml(article.publisher)} / ${escapeHtml(article.sourceLabel)}</small><span>${topicNames(article).map(escapeHtml).join(" / ")}</span></div><div class="article-fields">${article.categories.map((field) => `<span>${escapeHtml(field)}</span>`).join("")}</div><div class="article-audience">${article.audience.slice(0, 2).map((item) => `<span>${escapeHtml(item)}</span>`).join("")}</div></a>`).join("") : `<div class="empty-inline">条件に合う記事・資料はありません。</div>`;
+    $("#articleLibrary").innerHTML = visible.length ? visible.map((article) => `<article class="article-row"><time datetime="${escapeHtml(article.publishedAt)}">${escapeHtml(article.publishedAt)}</time><div class="article-main-cell"><a class="article-title-link" href="article.html?id=${encodeURIComponent(article.id)}"><strong>${escapeHtml(article.title)}</strong></a><small>${escapeHtml(article.publisher)} / ${escapeHtml(article.sourceLabel)}</small></div><div class="article-topics">${topicsForArticle(article).map((topic) => `<a href="topics/${escapeHtml(topic.slug)}.html">${escapeHtml(topic.title)} →</a>`).join("")}</div><a class="article-impact" href="article.html?id=${encodeURIComponent(article.id)}">${escapeHtml(changeSummary(article))}</a></article>`).join("") : `<div class="empty-inline">条件に合う記事・資料はありません。</div>`;
   };
 
   $("#libraryCount").innerHTML = `<strong>${String(articles.length).padStart(2, "0")}</strong><span>採用済み</span>`;

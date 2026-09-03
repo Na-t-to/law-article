@@ -30,8 +30,7 @@ window.TOPIC_DATA = (Array.isArray(window.TOPIC_DATA) ? window.TOPIC_DATA : []).
       {
         id: "cyber-management-governance",
         title: "経営層・CISOの責任とサプライチェーン管理をどう接続するか",
-        status: "基礎指針あり",
-        statusTone: "confirmed",
+        status: "authoritative", stage: "effective", views: [],
         conclusion: "経営者がサイバーリスクを事業リスクとして認識し、CISO等の責任者へ方針・体制・リスク管理・取引先管理を含む必要な指示を出す。",
         exception: "必要な体制・投資水準は事業規模、保有情報、システム依存度、取引先との接続関係等によって異なる。",
         uncertain: "SCS評価制度の普及により、取締役会・経営会議で求められる具体的な監督実務がさらに定着する可能性がある。",
@@ -77,10 +76,10 @@ window.TOPIC_DATA = (Array.isArray(window.TOPIC_DATA) ? window.TOPIC_DATA : []).
       ]
     },
     issues: [
-      { id: "ai-competition-market-structure", title: "生成AIのどの層で市場力・依存関係が生じるか", status: "実態調査あり", statusTone: "confirmed", conclusion: "インフラ、基盤モデル、アプリケーションの各層と、その間のアクセス・取引関係を分けて把握する。", exception: "市場の境界や有力事業者は技術進展・新規参入で変化し得る。", uncertain: "AIエージェント等の普及で市場構造が再編される可能性がある。", sourceIds: ["source-jftc-generative-ai-market-v2-2026", "source-jftc-algorithm-ai-competition-2021"] },
-      { id: "ai-competition-platform-access", title: "OS・API・専用機能へのアクセス制限は問題になるか", status: "具体例あり", statusTone: "watch", conclusion: "有力なOS・プラットフォーム等が競争するAI事業者のアクセスを制限する場合、市場での地位、排除効果、合理的理由を確認する。", exception: "安全性・品質・セキュリティ等の正当な目的に必要かつ相当な制限まで直ちに問題となるわけではない。", uncertain: "具体的な違法性は市場画定、競争への影響、代替手段等に依存する。", sourceIds: ["source-jftc-generative-ai-market-v2-2026"] },
-      { id: "ai-competition-integration", title: "既存デジタルサービスへのAI統合・抱き合わせをどう見るか", status: "具体例あり", statusTone: "watch", conclusion: "既存サービスでの強い地位を利用した生成AIの統合・抱き合わせが、競争するAIサービスの取引機会を狭めるかを確認する。", exception: "機能統合による利便性・品質向上など競争促進効果も考慮する。", uncertain: "統合の態様と市場への実際の影響に応じて評価が変わる。", sourceIds: ["source-jftc-generative-ai-market-v2-2026"] },
-      { id: "ai-competition-partnership", title: "提携・人材・自社優遇等をどうモニターするか", status: "継続監視", statusTone: "watch", conclusion: "AI事業者間・クラウド等との提携、人材獲得、自社優遇等について、競争者のアクセスや市場の集中への影響を継続確認する。", exception: "提携や垂直統合には投資促進・効率化等の競争促進効果もある。", uncertain: "急速な市場変化のため、公取委も追加情報を募りながら継続調査している。", sourceIds: ["source-jftc-generative-ai-market-v2-2026"] }
+      { id: "ai-competition-market-structure", title: "生成AIのどの層で市場力・依存関係が生じるか", status: "authoritative", stage: "effective", views: [], conclusion: "インフラ、基盤モデル、アプリケーションの各層と、その間のアクセス・取引関係を分けて把握する。", exception: "市場の境界や有力事業者は技術進展・新規参入で変化し得る。", uncertain: "AIエージェント等の普及で市場構造が再編される可能性がある。", sourceIds: ["source-jftc-generative-ai-market-v2-2026", "source-jftc-algorithm-ai-competition-2021"] },
+      { id: "ai-competition-platform-access", title: "OS・API・専用機能へのアクセス制限は問題になるか", status: "interpreted", stage: "not_applicable", views: [], conclusion: "有力なOS・プラットフォーム等が競争するAI事業者のアクセスを制限する場合、市場での地位、排除効果、合理的理由を確認する。", exception: "安全性・品質・セキュリティ等の正当な目的に必要かつ相当な制限まで直ちに問題となるわけではない。", uncertain: "具体的な違法性は市場画定、競争への影響、代替手段等に依存する。", sourceIds: ["source-jftc-generative-ai-market-v2-2026"] },
+      { id: "ai-competition-integration", title: "既存デジタルサービスへのAI統合・抱き合わせをどう見るか", status: "interpreted", stage: "not_applicable", views: [], conclusion: "既存サービスでの強い地位を利用した生成AIの統合・抱き合わせが、競争するAIサービスの取引機会を狭めるかを確認する。", exception: "機能統合による利便性・品質向上など競争促進効果も考慮する。", uncertain: "統合の態様と市場への実際の影響に応じて評価が変わる。", sourceIds: ["source-jftc-generative-ai-market-v2-2026"] },
+      { id: "ai-competition-partnership", title: "提携・人材・自社優遇等をどうモニターするか", status: "pending", stage: "not_applicable", views: [], conclusion: "AI事業者間・クラウド等との提携、人材獲得、自社優遇等について、競争者のアクセスや市場の集中への影響を継続確認する。", exception: "提携や垂直統合には投資促進・効率化等の競争促進効果もある。", uncertain: "急速な市場変化のため、公取委も追加情報を募りながら継続調査している。", sourceIds: ["source-jftc-generative-ai-market-v2-2026"] }
     ],
     sourceIds: ["source-jftc-generative-ai-market-v2-2026", "source-jftc-algorithm-ai-competition-2021"],
     practicalImpacts: ["AI製品・機能レビュー", "OS・APIアクセス方針", "クラウド・モデル調達", "提携・独占条件", "相互運用・移行条件", "競争法レビュー記録"]
@@ -119,10 +118,10 @@ window.TOPIC_DATA = (Array.isArray(window.TOPIC_DATA) ? window.TOPIC_DATA : []).
       ]
     },
     issues: [
-      { id: "iptx-information-disclosure", title: "ノウハウ・データをどこまで開示させてよいか", status: "指針あり", statusTone: "confirmed", conclusion: "取引目的との関係で必要な範囲を特定し、秘密保持、利用目的、管理方法を含めて合理的に設計する。", exception: "品質確認・監査等の正当な目的があっても、必要範囲を超える情報取得は別途評価が必要。", uncertain: "情報の必要性と相手方の不利益は個別の取引・技術内容に依存する。", sourceIds: ["source-ip-knowhow-data-guideline-2026"] },
-      { id: "iptx-value-compensation", title: "知財・ノウハウの価値と対価をどう決めるか", status: "指針あり", statusTone: "confirmed", conclusion: "成果物の製作対価と知財等の提供価値を意識し、貢献・利用範囲・事業価値等を踏まえて協議する。", exception: "対価の切り分けや算定方法を一律に固定する必要はなく、取引実態に応じた合理的な方法を選べる。", uncertain: "適正な対価の具体額は技術・市場・利用範囲等で大きく異なる。", sourceIds: ["source-ip-knowhow-data-guideline-2026"] },
-      { id: "iptx-rnd-ownership", title: "共同研究・開発委託の成果帰属をどう決めるか", status: "指針あり", statusTone: "confirmed", conclusion: "契約名称や費用負担だけで帰属を決めず、既存知財と成果を分け、創出への貢献や利用目的を踏まえて協議する。", exception: "一方当事者への単独帰属自体が直ちに問題となるわけではなく、対価・貢献・交渉状況等を含めて評価する。", uncertain: "複数社・大学等を含む研究開発では貢献の把握と権利関係が複雑化する。", sourceIds: ["source-ip-knowhow-data-guideline-2026"] },
-      { id: "iptx-warranty-liability", title: "非侵害保証・紛争リスクをどこまで負わせるか", status: "指針あり", statusTone: "watch", conclusion: "原因や支配可能性を無視して一方当事者へ責任を全面転嫁せず、役割・情報・対価に応じた保証と責任分担を設計する。", exception: "取引内容に応じた合理的な保証・補償条項は利用できる。", uncertain: "適切な責任範囲は製品・開発工程・第三者知財へのアクセス等により異なる。", sourceIds: ["source-ip-knowhow-data-guideline-2026"] }
+      { id: "iptx-information-disclosure", title: "ノウハウ・データをどこまで開示させてよいか", status: "authoritative", stage: "effective", views: [], conclusion: "取引目的との関係で必要な範囲を特定し、秘密保持、利用目的、管理方法を含めて合理的に設計する。", exception: "品質確認・監査等の正当な目的があっても、必要範囲を超える情報取得は別途評価が必要。", uncertain: "情報の必要性と相手方の不利益は個別の取引・技術内容に依存する。", sourceIds: ["source-ip-knowhow-data-guideline-2026"] },
+      { id: "iptx-value-compensation", title: "知財・ノウハウの価値と対価をどう決めるか", status: "authoritative", stage: "effective", views: [], conclusion: "成果物の製作対価と知財等の提供価値を意識し、貢献・利用範囲・事業価値等を踏まえて協議する。", exception: "対価の切り分けや算定方法を一律に固定する必要はなく、取引実態に応じた合理的な方法を選べる。", uncertain: "適正な対価の具体額は技術・市場・利用範囲等で大きく異なる。", sourceIds: ["source-ip-knowhow-data-guideline-2026"] },
+      { id: "iptx-rnd-ownership", title: "共同研究・開発委託の成果帰属をどう決めるか", status: "authoritative", stage: "effective", views: [], conclusion: "契約名称や費用負担だけで帰属を決めず、既存知財と成果を分け、創出への貢献や利用目的を踏まえて協議する。", exception: "一方当事者への単独帰属自体が直ちに問題となるわけではなく、対価・貢献・交渉状況等を含めて評価する。", uncertain: "複数社・大学等を含む研究開発では貢献の把握と権利関係が複雑化する。", sourceIds: ["source-ip-knowhow-data-guideline-2026"] },
+      { id: "iptx-warranty-liability", title: "非侵害保証・紛争リスクをどこまで負わせるか", status: "authoritative", stage: "effective", views: [], conclusion: "原因や支配可能性を無視して一方当事者へ責任を全面転嫁せず、役割・情報・対価に応じた保証と責任分担を設計する。", exception: "取引内容に応じた合理的な保証・補償条項は利用できる。", uncertain: "適切な責任範囲は製品・開発工程・第三者知財へのアクセス等により異なる。", sourceIds: ["source-ip-knowhow-data-guideline-2026"] }
     ],
     sourceIds: ["source-ip-knowhow-data-guideline-2026"],
     practicalImpacts: ["NDA・情報開示", "共同研究開発契約", "開発・業務委託", "知財帰属・ライセンス", "知財対価", "保証・責任制限", "標準ひな形の例外承認"]

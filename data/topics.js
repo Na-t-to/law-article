@@ -37,10 +37,10 @@ window.TOPIC_DATA = [
       ]
     },
     issues: [
-      { id: "ai-input", title: "個人データをAIへ入力できるか", status: "基本整理あり", statusTone: "confirmed", conclusion: "利用目的と安全管理の枠内で、入力データの種類・必要性・サービスの取扱いを確認する。", exception: "要配慮個人情報や機微な社内情報は、より厳格な社内基準が必要になる。", uncertain: "サービスごとの学習利用やログ保存の条件は、契約・設定の更新を継続確認する。", sourceIds: ["source-privacy-law", "source-ppc-ai"] },
-      { id: "ai-outsourcing", title: "委託に該当するか", status: "個別確認", statusTone: "review", conclusion: "サービス提供者が委託された業務の範囲で個人データを取り扱うのか、提供先自身の目的で使うのかを分けて確認する。", exception: "同じサービスでもプラン・設定・契約によって評価が変わり得る。", uncertain: "一般的なクラウド型AIサービスを一律に評価できるかは、サービス仕様の確認が前提。改正法の委託先規律も施行ルールを継続確認する。", sourceIds: ["source-ppc-ai", "source-ai-guideline", "source-privacy-law-2026-rulemap"] },
-      { id: "ai-transfer", title: "第三者提供・海外移転との関係", status: "継続更新", statusTone: "watch", conclusion: "提供先、再委託先、データ処理地、本人への説明を分けて整理する。", exception: "本人同意その他の適法化根拠が問題になる場合がある。", uncertain: "各国の制度とサービス構造の変化に応じて更新が必要。", sourceIds: ["source-privacy-law", "source-ppc-ai"] },
-      { id: "ai-statistical-use", title: "AI開発で統計作成等の特例を使えるか", status: "施行待ち", statusTone: "watch", conclusion: "2026年改正法は、統計情報等の作成にのみ利用されることが担保される場合に、一定の個人データ等の第三者提供や公開されている要配慮個人情報の取得について本人同意を不要とする特例を設け、統計作成等と整理できるAI開発も対象に含める。", exception: "改正法は原則としてまだ施行前であり、現在の取扱いは現行法を基準に判断する。", uncertain: "対象となるAI開発の範囲、公表の内容・方法、基準適合体制などは委員会規則・ガイドライン等で具体化される。", sourceIds: ["source-privacy-law-2026-amendment", "source-privacy-law-2026-rulemap"] }
+      { id: "ai-input", title: "個人データをAIへ入力できるか", status: "authoritative", stage: "effective", views: [], conclusion: "利用目的と安全管理の枠内で、入力データの種類・必要性・サービスの取扱いを確認する。", exception: "要配慮個人情報や機微な社内情報は、より厳格な社内基準が必要になる。", uncertain: "サービスごとの学習利用やログ保存の条件は、契約・設定の更新を継続確認する。", sourceIds: ["source-privacy-law", "source-ppc-ai"] },
+      { id: "ai-outsourcing", title: "委託に該当するか", status: "disputed", stage: "not_applicable", views: [{ id: "processor-view", label: "委託として整理する見方", summary: "提供者が利用者の指示の範囲でのみ処理し、独自利用をしない設計・契約であれば、委託として監督・契約管理する方向で整理する。", sourceIds: ["source-ppc-ai", "source-privacy-law-2026-rulemap"], articleIds: ["article-na-privacy-processor-rules-2026"] }, { id: "third-party-view", label: "第三者提供として整理する見方", summary: "提供者が入力情報を学習・改善その他の独自目的に使う場合は、委託の範囲を越え、第三者提供や利用目的との関係を別途検討する。", sourceIds: ["source-privacy-law", "source-ppc-ai"], articleIds: ["article-ppc-ai-materials"] }], conclusion: "サービス提供者が委託された業務の範囲で個人データを取り扱うのか、提供先自身の目的で使うのかを分けて確認する。", exception: "同じサービスでもプラン・設定・契約によって評価が変わり得る。", uncertain: "一般的なクラウド型AIサービスを一律に評価できるかは、サービス仕様の確認が前提。改正法の委託先規律も施行ルールを継続確認する。", sourceIds: ["source-ppc-ai", "source-ai-guideline", "source-privacy-law-2026-rulemap"] },
+      { id: "ai-transfer", title: "第三者提供・海外移転との関係", status: "pending", stage: "under_revision", views: [], conclusion: "提供先、再委託先、データ処理地、本人への説明を分けて整理する。", exception: "本人同意その他の適法化根拠が問題になる場合がある。", uncertain: "各国の制度とサービス構造の変化に応じて更新が必要。", sourceIds: ["source-privacy-law", "source-ppc-ai"] },
+      { id: "ai-statistical-use", title: "AI開発で統計作成等の特例を使えるか", status: "pending", stage: "enacted", views: [], conclusion: "2026年改正法は、統計情報等の作成にのみ利用されることが担保される場合に、一定の個人データ等の第三者提供や公開されている要配慮個人情報の取得について本人同意を不要とする特例を設け、統計作成等と整理できるAI開発も対象に含める。", exception: "改正法は原則としてまだ施行前であり、現在の取扱いは現行法を基準に判断する。", uncertain: "対象となるAI開発の範囲、公表の内容・方法、基準適合体制などは委員会規則・ガイドライン等で具体化される。", sourceIds: ["source-privacy-law-2026-amendment", "source-privacy-law-2026-rulemap"] }
     ],
     sourceIds: ["source-privacy-law", "source-ppc-ai", "source-ai-guideline", "source-privacy-law-2026-amendment", "source-privacy-law-2026-rulemap"],
     practicalImpacts: ["社内AI利用規程", "サービス選定票", "プライバシーポリシー", "アクセス権限・ログ保存", "委託契約・利用規約", "AI開発用データ共有の審査・施行準備"]
@@ -79,8 +79,8 @@ window.TOPIC_DATA = [
       ]
     },
     issues: [
-      { id: "ch-definition", title: "何をカスタマーハラスメントとして扱うか", status: "指針あり", statusTone: "confirmed", conclusion: "顧客等の言動、社会通念上許容される範囲の超過、就業環境の侵害という三要素を全て満たすかを総合判断する。", exception: "正当な苦情や要望、合理的配慮の申出まで一律にカスタマーハラスメントとして扱わない。", uncertain: "該当性は言動の内容・手段・経緯などにより変わるため、事実確認に基づく個別判断が必要。", sourceIds: ["source-customer-harassment-guideline-2026"] },
-      { id: "ch-response", title: "相談・初動対応をどう設計するか", status: "施行準備", statusTone: "watch", conclusion: "方針周知、相談体制、事実確認、被害者への配慮、再発防止、悪質事案への対処、プライバシー保護を法定措置として整える。", exception: "暴力や生命身体への危険がある場合は通常フローを短縮し、消費者の権利や障害者への合理的配慮にも留意する。", uncertain: "派遣先・委託先を含む関係者間の役割分担は、契約と現場運用に応じた設計が必要。", sourceIds: ["source-customer-harassment-guideline-2026"] }
+      { id: "ch-definition", title: "何をカスタマーハラスメントとして扱うか", status: "authoritative", stage: "effective", views: [], conclusion: "顧客等の言動、社会通念上許容される範囲の超過、就業環境の侵害という三要素を全て満たすかを総合判断する。", exception: "正当な苦情や要望、合理的配慮の申出まで一律にカスタマーハラスメントとして扱わない。", uncertain: "該当性は言動の内容・手段・経緯などにより変わるため、事実確認に基づく個別判断が必要。", sourceIds: ["source-customer-harassment-guideline-2026"] },
+      { id: "ch-response", title: "相談・初動対応をどう設計するか", status: "pending", stage: "enacted", views: [], conclusion: "方針周知、相談体制、事実確認、被害者への配慮、再発防止、悪質事案への対処、プライバシー保護を法定措置として整える。", exception: "暴力や生命身体への危険がある場合は通常フローを短縮し、消費者の権利や障害者への合理的配慮にも留意する。", uncertain: "派遣先・委託先を含む関係者間の役割分担は、契約と現場運用に応じた設計が必要。", sourceIds: ["source-customer-harassment-guideline-2026"] }
     ],
     sourceIds: ["source-customer-harassment-guideline-2026", "source-customer-guideline"],
     practicalImpacts: ["基本方針と社内周知", "相談窓口", "現場・管理者の対応手順", "事実確認・被害者配慮・再発防止の記録", "プライバシー保護と不利益取扱い禁止"]
@@ -119,8 +119,8 @@ window.TOPIC_DATA = [
       ]
     },
     issues: [
-      { id: "freelance-scope", title: "適用対象となる取引か", status: "最初に確認", statusTone: "review", conclusion: "当事者の属性、委託内容、従業員の有無などを確認して対象関係を特定する。", exception: "名称や契約形式ではなく、取引の実態を見る。", uncertain: "複数の契約・発注経路がある場合は、取引単位で確認が必要。", sourceIds: ["source-freelance-law"] },
-      { id: "freelance-notice", title: "取引条件をどう明示するか", status: "基本整理あり", statusTone: "confirmed", conclusion: "明示事項を漏れなく、発注のタイミングで相手が確認できる方法により伝える。", exception: "変更が生じた場合の再明示・記録も運用へ含める。", uncertain: "社内システムの画面・メール・添付書式の組合せは各社で設計が必要。", sourceIds: ["source-freelance-law", "source-freelance-enforcement-2026"] }
+      { id: "freelance-scope", title: "適用対象となる取引か", status: "interpreted", stage: "effective", views: [], conclusion: "当事者の属性、委託内容、従業員の有無などを確認して対象関係を特定する。", exception: "名称や契約形式ではなく、取引の実態を見る。", uncertain: "複数の契約・発注経路がある場合は、取引単位で確認が必要。", sourceIds: ["source-freelance-law"] },
+      { id: "freelance-notice", title: "取引条件をどう明示するか", status: "authoritative", stage: "effective", views: [], conclusion: "明示事項を漏れなく、発注のタイミングで相手が確認できる方法により伝える。", exception: "変更が生じた場合の再明示・記録も運用へ含める。", uncertain: "社内システムの画面・メール・添付書式の組合せは各社で設計が必要。", sourceIds: ["source-freelance-law", "source-freelance-enforcement-2026"] }
     ],
     sourceIds: ["source-freelance-law", "source-freelance-enforcement-2026"],
     practicalImpacts: ["契約書テンプレート", "発注フォーム", "検収・支払フロー", "仕様変更の承認", "相談窓口"]
@@ -159,8 +159,8 @@ window.TOPIC_DATA = [
       ]
     },
     issues: [
-      { id: "econtract-identity", title: "本人確認と意思表示", status: "個別確認", statusTone: "review", conclusion: "認証方法、本人への通知、権限設定、締結操作の記録を組み合わせて確認する。", exception: "重要契約や代理権が関係する場合は、追加の確認手順を設ける。", uncertain: "サービス仕様の変更で確認方法が変わる可能性がある。", sourceIds: ["source-electronic-signature", "source-electronic-signature-qa-2024"] },
-      { id: "econtract-log", title: "ログと保存", status: "運用設計", statusTone: "watch", conclusion: "締結した文書と、日時・操作者・認証・変更履歴等を後から辿れるように保存する。", exception: "保存先・保存期間は社内規程や関連制度とも調整する。", uncertain: "クラウドサービス終了時の取り出し可能性は契約前に確認する。", sourceIds: ["source-electronic-signature", "source-electronic-signature-qa-2024"] }
+      { id: "econtract-identity", title: "本人確認と意思表示", status: "disputed", stage: "not_applicable", views: [{ id: "presumption-view", label: "電子署名法3条の推定を重視する見方", summary: "署名鍵、認証、固有性、身元確認等を精査し、真正成立の推定が働く設計かを中心に評価する。", sourceIds: ["source-electronic-signature", "source-electronic-signature-qa-2024"], articleIds: ["article-electronic-signature-qa-2024"] }, { id: "evidence-view", label: "証拠全体で評価する見方", summary: "同条の推定が直ちに認められなくても契約が無効になるわけではなく、通知、権限、操作ログ、取引経緯を含む証拠全体から本人の意思を立証する。", sourceIds: ["source-electronic-signature", "source-electronic-signature-qa-2024"], articleIds: ["article-electronic-signature-law"] }], conclusion: "認証方法、本人への通知、権限設定、締結操作の記録を組み合わせて確認する。", exception: "重要契約や代理権が関係する場合は、追加の確認手順を設ける。", uncertain: "サービス仕様の変更で確認方法が変わる可能性がある。", sourceIds: ["source-electronic-signature", "source-electronic-signature-qa-2024"] },
+      { id: "econtract-log", title: "ログと保存", status: "interpreted", stage: "effective", views: [], conclusion: "締結した文書と、日時・操作者・認証・変更履歴等を後から辿れるように保存する。", exception: "保存先・保存期間は社内規程や関連制度とも調整する。", uncertain: "クラウドサービス終了時の取り出し可能性は契約前に確認する。", sourceIds: ["source-electronic-signature", "source-electronic-signature-qa-2024"] }
     ],
     sourceIds: ["source-electronic-signature", "source-electronic-signature-qa-2024"],
     practicalImpacts: ["サービス選定票", "アカウント・権限管理", "締結ログ", "契約台帳", "保存・監査手順"]
@@ -203,9 +203,9 @@ window.TOPIC_DATA = [
       ]
     },
     issues: [
-      { id: "whistleblower-scope", title: "誰の・どの通報が保護対象か", status: "改正法・Q&Aあり", statusTone: "confirmed", conclusion: "従業員等に加えて一定のフリーランス・元フリーランスも対象となるため、通報者の関係、通報対象事実、通報先を分けて確認する。", exception: "フリーランスに関する改正規定は2026年12月1日施行後の通報に適用されるなど、施行時期を区別する必要がある。", uncertain: "個別の通報が各保護要件を満たすかは具体的事実関係の確認が必要。", sourceIds: ["source-whistleblower-law-2025-amendment", "source-whistleblower-qa-2026"] },
-      { id: "whistleblower-retaliation", title: "不利益取扱い・報復をどう防ぐか", status: "施行準備", statusTone: "watch", conclusion: "解雇・懲戒だけでなく、人事上・経済待遇上・業務委託上の不利益な取扱いも視野に、通報後の判断を独立して検証できる手順と記録を整える。", exception: "正当な業務・人事上の措置まで一律に禁止されるわけではなく、理由と手続を具体的に確認する必要がある。", uncertain: "直罰・推定規定の施行後の運用は行政実務や裁判例を継続確認する。", sourceIds: ["source-whistleblower-law-2025-amendment", "source-whistleblower-qa-2026", "source-whistleblower-guideline-2026"] },
-      { id: "whistleblower-system-design", title: "窓口・調査・情報管理をどう設計するか", status: "改正指針あり", statusTone: "confirmed", conclusion: "従事者指定、窓口、幹部からの独立性、利益相反排除、不利益取扱い防止、範囲外共有・通報妨害・通報者探索の防止、記録・周知・教育・内部規程を一つの制度として確認する。", exception: "事業者の規模・組織・業態等に応じて具体的な実装は異なる。", uncertain: "外部窓口やグループ会社をまたぐ運用では、権限・情報共有・調査責任の設計を個別に確認する。", sourceIds: ["source-whistleblower-guideline-2026", "source-whistleblower-qa-2026"] }
+      { id: "whistleblower-scope", title: "誰の・どの通報が保護対象か", status: "authoritative", stage: "enacted", views: [], conclusion: "従業員等に加えて一定のフリーランス・元フリーランスも対象となるため、通報者の関係、通報対象事実、通報先を分けて確認する。", exception: "フリーランスに関する改正規定は2026年12月1日施行後の通報に適用されるなど、施行時期を区別する必要がある。", uncertain: "個別の通報が各保護要件を満たすかは具体的事実関係の確認が必要。", sourceIds: ["source-whistleblower-law-2025-amendment", "source-whistleblower-qa-2026"] },
+      { id: "whistleblower-retaliation", title: "不利益取扱い・報復をどう防ぐか", status: "pending", stage: "enacted", views: [], conclusion: "解雇・懲戒だけでなく、人事上・経済待遇上・業務委託上の不利益な取扱いも視野に、通報後の判断を独立して検証できる手順と記録を整える。", exception: "正当な業務・人事上の措置まで一律に禁止されるわけではなく、理由と手続を具体的に確認する必要がある。", uncertain: "直罰・推定規定の施行後の運用は行政実務や裁判例を継続確認する。", sourceIds: ["source-whistleblower-law-2025-amendment", "source-whistleblower-qa-2026", "source-whistleblower-guideline-2026"] },
+      { id: "whistleblower-system-design", title: "窓口・調査・情報管理をどう設計するか", status: "authoritative", stage: "enacted", views: [], conclusion: "従事者指定、窓口、幹部からの独立性、利益相反排除、不利益取扱い防止、範囲外共有・通報妨害・通報者探索の防止、記録・周知・教育・内部規程を一つの制度として確認する。", exception: "事業者の規模・組織・業態等に応じて具体的な実装は異なる。", uncertain: "外部窓口やグループ会社をまたぐ運用では、権限・情報共有・調査責任の設計を個別に確認する。", sourceIds: ["source-whistleblower-guideline-2026", "source-whistleblower-qa-2026"] }
     ],
     sourceIds: ["source-whistleblower-law-2025-amendment", "source-whistleblower-guideline-2026", "source-whistleblower-qa-2026"],
     practicalImpacts: ["内部通報規程", "内部・外部通報窓口", "調査・是正手順", "人事・懲戒判断の記録", "業務委託・フリーランスへの周知", "通報者情報のアクセス権限・ログ", "従事者・管理職向け教育"]
