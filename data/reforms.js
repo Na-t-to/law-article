@@ -303,5 +303,18 @@ window.REFORM_EVENT_DATA=(Array.isArray(window.REFORM_EVENT_DATA)?window.REFORM_
     effectiveDateSourceIds:["source-jpx-cg-code-2026"],
     matchSourceIds:["source-jpx-cg-code-2026","source-fsa-cg-code-2026"],
     sourceIds:["source-jpx-cg-code-2026","source-fsa-cg-code-2026"]
+  },
+  {
+    id:"security-assignment-retention-title-act-2025",
+    title:"譲渡担保法・2025年制定",
+    eventType:"new_law",
+    lawId:"security-assignment-retention-title-act",
+    lawLabel:"譲渡担保法（譲渡担保契約及び所有権留保契約に関する法律）",
+    relatedTopics:["security-assignment-retention-title"],
+    effectiveDateStatus:"relative",
+    effectiveDateNote:"2025年6月6日公布／一部を除き、公布日から起算して2年6月を超えない範囲内の政令指定日",
+    effectiveDateSourceIds:["source-moj-security-assignment-act-2025"],
+    matchSourceIds:["source-moj-security-assignment-act-2025"],
+    sourceIds:["source-moj-security-assignment-act-2025"]
   }
 ]);
