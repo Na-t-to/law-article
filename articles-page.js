@@ -68,9 +68,7 @@
       if (!needle) return true;
       return [article.title, article.publisher, article.summary, changeSummary(article), article.categories.join(" "), article.audience.join(" "), topicNames(article).join(" "), reformLaw(article).label].join(" ").toLocaleLowerCase().includes(needle);
     }).sort((a, b) => (b.collectedAt || "").localeCompare(a.collectedAt || "") || b.publishedAt.localeCompare(a.publishedAt));
-    $("#libraryResultsTitle").textContent = reformsOnly ? "法改正情報｜法令・制度別" : "採用済み";
-    $("#resultCount").textContent = `${String(visible.length).padStart(2, "0")}件`;
-    $("#libraryCount").innerHTML = `<strong>${String(visible.length).padStart(2, "0")}</strong><span>${reformsOnly ? "法改正情報" : "採用済み"}</span>`;
+    $("#libraryCount").innerHTML = `<strong>${String(visible.length).padStart(2, "0")}</strong><span>件</span>`;
     $("#articleLibrary").classList.toggle("is-grouped", reformsOnly);
     if (!visible.length) { $("#articleLibrary").innerHTML = `<div class="empty-inline">条件に合う記事・資料はありません。</div>`; return; }
     if (!reformsOnly) { $("#articleLibrary").innerHTML = visible.map(articleRow).join(""); return; }
