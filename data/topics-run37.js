@@ -1,0 +1,48 @@
+window.TOPIC_DATA=(Array.isArray(window.TOPIC_DATA)?window.TOPIC_DATA:[]).concat([
+{
+  slug:"dispatch-contracting-compliance",
+  title:"労働者派遣・請負／偽装請負",
+  categories:["労務","契約","危機管理・コンプライアンス"],
+  summary:"業務委託・請負と労働者派遣の区分、発注者による指揮命令の限界、システム開発や秘密管理での実務運用、無許可派遣・禁止業務への執行を整理する。",
+  lastUpdated:"2026-09-04",
+  lastVerified:"2026-09-04",
+  isNew:true,
+  overview:[
+    "労働者派遣と請負・業務委託の区分は契約名称では決まらず、発注者と受注者側労働者の指揮命令関係、受注者による労務管理、業務遂行上の独立性などを実態に即して判断する。",
+    "厚生労働省は37号告示と疑義応答集で判断を具体化しており、2026年5月25日には第3集へQ8を追加し、アジャイル型以外のシステム開発にも同集Q1〜Q7の考え方が当てはまることを明示した。",
+    "2026年9月3日には山口労働局の刑事告発が公表され、無許可派遣、建設業務への派遣、労働者供給について、実際に他社の指揮命令下で就労させる運用が刑事執行の対象となり得ることが確認できる。"
+  ],
+  currentSummary:{
+    facts:[
+      "厚生労働省は、労働者派遣を派遣先の指揮命令を受けて働く仕組みと整理し、請負との区分は契約形式ではなく37号告示に基づき実態で判断するとしている。",
+      "37号告示の疑義応答集第3集は、準委任契約を含むシステム開発でも、発注者と受注者側労働者の間に指揮命令関係があれば労働者派遣に該当し得るとする。",
+      "2026年5月25日追加のQ8により、第3集Q1〜Q7の考え方はアジャイル型以外のシステム開発にも適用されることが明示された。",
+      "2026年9月3日公表の山口労働局事案では、無許可で労働者を繰り返し派遣・供給し、派遣が禁止される建設業務を他社の指揮命令下で行わせた疑いについて刑事告発が行われた。"
+    ],
+    interpretations:[
+      "発注者と受注者側担当者が同じ会議・チャット・プロジェクト管理ツールで密に協働しても、それだけで偽装請負になるわけではない。役割が明確で、受注者側担当者が自律的に業務を進め、発注者の連絡が業務遂行方法や労働時間の直接指示になっていないことが重要になる。",
+      "秘密保持、情報セキュリティ、施設管理、安全衛生上のルールを設ける必要がある場合でも、個々の受注者従業員への指示経路、人員選定、労働時間管理まで発注者が握ると偽装請負リスクが高まるため、受注者の管理責任者を介する運用が有力となる。"
+    ],
+    implications:[
+      "業務委託・準委任・請負契約について、契約名称だけでなく実際の指揮命令、勤怠管理、人員配置、作業手順の決定主体を点検する。",
+      "常駐委託やシステム開発では、発注者・受注者の役割、管理責任者、会議・チャットで許容する連絡の範囲を事前に設計する。",
+      "スキルシートや担当者情報を求める場合、個人の指名・就業拒否へつながる運用になっていないか確認する。",
+      "秘密保持誓約、端末・作業場所・アクセス制御等のセキュリティ要件は、必要性を明確にし、原則として受注者を通じて実施する。",
+      "建設等の派遣禁止業務、派遣事業の許可、再委託・労働者供給の流れをサプライチェーン全体で確認する。"
+    ],
+    uncertain:[
+      "偽装請負に該当するかは、契約書だけではなく、会議・チャット・勤怠・人員配置・現場指示を含む個別の運用実態により判断される。",
+      "秘密管理や安全衛生上必要な指示と、労働者への業務遂行上の直接指揮命令との境界は、目的・必要性・指示経路・実際の拘束の程度によって変わる。"
+    ]
+  },
+  issues:[
+    {id:"dispatch-contracting-classification",title:"派遣と請負・業務委託をどう区分するか",status:"authoritative",stage:"not_applicable",views:[],conclusion:"契約名称ではなく、受注者が自ら労働者を管理し、業務を発注者から独立して処理しているかなど、37号告示に沿って実態で判断する。",exception:"請負・準委任の形式でも、発注者が受注者側労働者へ直接指揮命令していれば労働者派遣に該当し得る。",uncertain:"個別案件の区分は、実際の作業指示、労働時間管理、人員配置その他の運用を踏まえて判断される。",sourceIds:["source-mhlw-dispatch-contracting-guide","source-mhlw-dispatch-contracting-qa3-2026"]},
+    {id:"dispatch-system-development",title:"システム開発の協働はどこまで許されるか",status:"authoritative",stage:"not_applicable",views:[],conclusion:"発注者と受注者側担当者が対等に情報共有・技術的助言を行い、受注者側が自律的に業務を進める限り、密な協働や共通ツールの利用だけで直ちに偽装請負とはならない。",exception:"発注者が受注者側担当者へ業務遂行方法や労働時間等を直接指示する場合は、指揮命令関係が認められ得る。",uncertain:"チーム内の具体的なコミュニケーションが情報提供か指揮命令かは、実際の権限関係と運用により判断される。",sourceIds:["source-mhlw-dispatch-contracting-qa3-2026"]},
+    {id:"dispatch-security-controls",title:"秘密管理・セキュリティ上の指示をどう設計するか",status:"interpreted",stage:"not_applicable",views:[{id:"dispatch-security-controls-tmi",label:"必要な管理は受注者を介して設計する実務",summary:"秘密保持、施設管理、端末指定等には合理的な必要性があり得るが、個々の受注者従業員へ発注者が直接指示したり、人員配置・働き方まで管理したりしないよう、受注者を介した指示経路と契約上の根拠を整える。",sourceIds:["source-mhlw-dispatch-contracting-guide"],articleIds:["article-tmi-security-fake-contracting-2023"]}],conclusion:"秘密管理・セキュリティ上必要なルールは目的と必要性を明確にし、受注者の管理責任を維持できる指示経路で運用する。",exception:"担当者情報の報告や秘密保持誓約等が直ちに偽装請負となるわけではないが、発注者による個人選定や直接の業務指示へ発展するとリスクが高まる。",uncertain:"許容される管理の範囲は、扱う情報・設備・安全上の必要性と、受注者側の独立性の程度により異なる。",sourceIds:["source-mhlw-dispatch-contracting-guide"]},
+    {id:"dispatch-management-routing",title:"発注者の要望・指示を誰に伝えるか",status:"interpreted",stage:"not_applicable",views:[{id:"dispatch-management-routing-tmi",label:"管理責任者を実質的な指示窓口にする実務",summary:"管理責任者を形式的に置くだけでは足りず、発注者の要望を受けて受注者側労働者へ具体的な指示を出す権限を実質的に持たせ、作業工程や労働時間の直接指示を避ける。",sourceIds:["source-mhlw-dispatch-contracting-guide"],articleIds:["article-tmi-fake-contracting-risk-2024"]}],conclusion:"発注者からの業務上の要望は受注者の管理責任者等へ伝え、受注者が自ら労働者への具体的指示を行う体制を実運用として確保する。",exception:"発注者からの説明、情報共有、技術的助言が常に禁止されるわけではなく、受注者側の自律性を損なう指揮命令かどうかが問題となる。",uncertain:"管理責任者の同席が不要な場面もあるため、肩書ではなく実際の権限と指示経路を確認する必要がある。",sourceIds:["source-mhlw-dispatch-contracting-guide","source-mhlw-dispatch-contracting-qa3-2026"]},
+    {id:"dispatch-prohibited-enforcement",title:"無許可派遣・禁止業務・労働者供給の執行リスク",status:"authoritative",stage:"not_applicable",views:[],conclusion:"許可を受けずに他社の指揮命令下で労働者を就労させる運用や、建設等の派遣禁止業務、禁止される労働者供給は刑事告発を含む執行対象となり得る。",exception:"適法な請負・業務委託や、法令上認められた労働者派遣・供給まで一律に禁止されるものではない。",uncertain:"個別取引が派遣・労働者供給に当たるか、禁止業務に該当するかは具体的な契約・指揮命令・作業内容による。",sourceIds:["source-mhlw-dispatch-enforcement-yamaguchi-2026"]}
+  ],
+  sourceIds:["source-mhlw-dispatch-contracting-guide","source-mhlw-dispatch-contracting-qa3-2026","source-mhlw-dispatch-enforcement-yamaguchi-2026"],
+  practicalImpacts:["業務委託・請負・準委任契約","常駐委託","システム開発","管理責任者・指示経路","会議・チャット運用","勤怠・人員配置","秘密保持・情報セキュリティ","建設等の派遣禁止業務","再委託・労働者供給","行政対応・刑事リスク"]
+}
+]);
