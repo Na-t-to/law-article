@@ -18,6 +18,13 @@
     };
   };
 
+  const latestExplicitDate = (values) => {
+    const dates = values.map(parseEffectiveDate).filter(Boolean);
+    if (!dates.length) return null;
+    return [...new Map(dates.map((date) => [date.value, date])).values()]
+      .sort((left, right) => right.sortKey.localeCompare(left.sortKey))[0];
+  };
+
   const hasEffectiveDateGrounding = (article) => {
     const grounding = Array.isArray(article.reformEffectiveDateSourceIds) ? article.reformEffectiveDateSourceIds : [];
     const primary = Array.isArray(article.primarySourceIds) ? article.primarySourceIds : [];
@@ -26,17 +33,29 @@
 
   const getStrictLegalReformEffectiveDate = (article) => {
     if (!hasEffectiveDateGrounding(article)) return null;
-    const explicitValues = [
+    return latestExplicitDate([
       ...(Array.isArray(article.reformEffectiveDates) ? article.reformEffectiveDates : []),
       article.reformEffectiveDate
-    ].filter(Boolean);
-    const dates = explicitValues.map(parseEffectiveDate).filter(Boolean);
-    if (!dates.length) return null;
-    return [...new Map(dates.map((date) => [date.value, date])).values()]
-      .sort((left, right) => right.sortKey.localeCompare(left.sortKey))[0];
+    ].filter(Boolean));
+  };
+
+  const hasEventEffectiveDateGrounding = (event) => {
+    const grounding = Array.isArray(event.effectiveDateSourceIds) ? event.effectiveDateSourceIds : [];
+    const sources = Array.isArray(event.sourceIds) ? event.sourceIds : [];
+    return grounding.length > 0 && grounding.every((id) => sources.includes(id));
+  };
+
+  const getStrictReformEventEffectiveDate = (event) => {
+    if (!event || !hasEventEffectiveDateGrounding(event)) return null;
+    return latestExplicitDate([
+      ...(Array.isArray(event.effectiveDates) ? event.effectiveDates : []),
+      event.effectiveDate
+    ].filter(Boolean));
   };
 
   window.parseLegalReformEffectiveDate = parseEffectiveDate;
   window.hasLegalReformEffectiveDateGrounding = hasEffectiveDateGrounding;
   window.getLegalReformEffectiveDate = getStrictLegalReformEffectiveDate;
+  window.hasLegalReformEventEffectiveDateGrounding = hasEventEffectiveDateGrounding;
+  window.getLegalReformEventEffectiveDate = getStrictReformEventEffectiveDate;
 })();
