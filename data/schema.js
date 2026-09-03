@@ -117,10 +117,31 @@
     return [...merged.values()];
   };
 
+  const getLegalReformInfo = (article, topics = []) => {
+    const articleText = [article.title, article.sourceLabel].filter(Boolean).join(" ");
+    const reformWords = /改正|改訂|見直し|新法|法案|法律案|政令|省令|府令|規則案|中間試案|中間とりまとめ|パブリックコメント|公布|成立|施行/;
+    const relatedIssues = (article.relatedIssues || []).flatMap((issueId) => topics.flatMap((topic) => topic.issues || []).filter((issue) => issue.id === issueId));
+    const changingStages = new Set(relatedIssues.map((issue) => issue.stage).filter((stage) => ["draft", "enacted", "under_revision"].includes(stage)));
+    const isReform = reformWords.test(articleText);
+    if (!isReform) return { isReform: false, stage: null, stageLabel: "" };
+
+    let stage = null;
+    if (/中間試案|法案|法律案|規則案|パブリックコメント|検討|審議/.test(articleText)) stage = "draft";
+    else if (/公布|成立|施行待ち|施行前|施行予定|施行に向け/.test(articleText)) stage = "enacted";
+    else if (changingStages.has("draft")) stage = "draft";
+    else if (changingStages.has("enacted")) stage = "enacted";
+    else if (changingStages.has("under_revision")) stage = "under_revision";
+    else if (/施行/.test(articleText)) stage = "effective";
+    else stage = "under_revision";
+
+    return { isReform: true, stage, stageLabel: issueStage[stage] || "法改正情報" };
+  };
+
   window.KNOWLEDGE_SCHEMA = Object.freeze({ issueStatus, issueStage });
   window.validateKnowledgeData = validateKnowledgeData;
   window.findKnowledgeWarnings = findKnowledgeWarnings;
   window.uniqueKnowledgeArticles = uniqueArticles;
+  window.getLegalReformInfo = getLegalReformInfo;
   window.assertKnowledgeData = (topics, sources, articles) => {
     const errors = validateKnowledgeData(topics, sources, articles);
     if (errors.length) throw new Error(`LAW / INDEX data validation failed:\n${errors.join("\n")}`);

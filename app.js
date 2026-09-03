@@ -17,6 +17,7 @@
   const topicsForArticle = (article) => article.relatedTopics.map((slug) => topicBySlug(slug)).filter(Boolean);
   const topicNamesForArticle = (article) => topicsForArticle(article).map((topic) => topic.title);
   const issueTitlesForArticle = (article) => article.relatedIssues.map((id) => topics.flatMap((topic) => topic.issues).find((issue) => issue.id === id)?.title).filter(Boolean);
+  const reformInfoForArticle = (article) => window.getLegalReformInfo?.(article, topics) || { isReform: false, stage: null, stageLabel: "" };
   const changeSummaryForArticle = (article) => {
     if (article.whatChanged) return article.whatChanged;
     const update = updates.filter((item) => article.primarySourceIds.includes(item.source) && item.affectedTopics.some((slug) => article.relatedTopics.includes(slug))).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))[0];
@@ -37,6 +38,11 @@
       return `<a class="topic-row" href="topics/${escapeHtml(topic.slug)}.html"><div class="topic-name-cell"><div class="topic-name-line"><strong>${escapeHtml(topic.title)}</strong>${topic.isNew ? `<span class="new-badge">NEW</span>` : ""}</div><div class="topic-categories">${topic.categories.map((category) => `<span>${escapeHtml(category)}</span>`).join(" / ")}</div></div><div class="topic-stat"><strong>${pad(topic.issues.length)}</strong><span>論点</span></div><div class="topic-stat"><strong>${pad(topic.sourceIds.length)}</strong><span>主要資料</span></div><div class="topic-change"><strong>最終更新 <time datetime="${escapeHtml(topic.lastUpdated)}">${escapeHtml(topic.lastUpdated)}</time></strong><small>${latest ? escapeHtml(latest.headline) : ""}</small></div></a>`;
     }).join("") : `<div class="empty-inline">この分野のテーマはまだ登録されていません。</div>`;
     document.querySelectorAll("[data-field]").forEach((button) => button.classList.toggle("is-active", button.dataset.field === selectedField));
+  };
+
+  const renderReforms = () => {
+    const reforms = articles.map((article) => ({ article, reform: reformInfoForArticle(article) })).filter(({ reform }) => reform.isReform).sort((left, right) => right.article.publishedAt.localeCompare(left.article.publishedAt)).slice(0, 6);
+    $("#reformList").innerHTML = reforms.length ? reforms.map(({ article, reform }) => `<article class="reform-row"><span class="reform-stage" data-stage="${escapeHtml(reform.stage)}">${escapeHtml(reform.stageLabel)}</span><time datetime="${escapeHtml(article.publishedAt)}">${escapeHtml(article.publishedAt)}</time><div class="reform-main-cell"><a href="article.html?id=${encodeURIComponent(article.id)}"><strong>${escapeHtml(article.title)}</strong></a><small>${escapeHtml(article.publisher)} / ${escapeHtml(article.sourceLabel)}</small></div><div class="reform-topics">${topicsForArticle(article).map((topic) => `<a href="topics/${escapeHtml(topic.slug)}.html">${escapeHtml(topic.title)} →</a>`).join("")}</div></article>`).join("") : `<div class="empty-inline">法改正に該当する記事・資料はまだありません。</div>`;
   };
 
   const renderFieldFilters = () => {
@@ -88,4 +94,5 @@
   renderHomeArticles();
   renderFieldFilters();
   renderTopicList();
+  renderReforms();
 })();

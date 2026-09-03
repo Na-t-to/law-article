@@ -24,6 +24,7 @@ const errors = [...manifestErrors, ...context.window.validateKnowledgeData(topic
 const warnings = context.window.findKnowledgeWarnings(topics, sources, articles);
 const uniqueArticles = context.window.uniqueKnowledgeArticles(articles);
 const issues = topics.flatMap((topic) => topic.issues || []);
+const legalReforms = uniqueArticles.filter((article) => context.window.getLegalReformInfo(article, topics).isReform);
 
 for (const topic of topics) {
   const page = `topics/${topic.slug}.html`;
@@ -45,5 +46,7 @@ console.log(JSON.stringify({
   stages: [...new Set(issues.map((issue) => issue.stage))].sort(),
   disputed: issues.filter((issue) => issue.status === "disputed").length,
   views: issues.reduce((sum, issue) => sum + issue.views.length, 0),
+  legalReforms: legalReforms.length,
+  reformStages: Object.fromEntries([...new Set(legalReforms.map((article) => context.window.getLegalReformInfo(article, topics).stage))].sort().map((stage) => [stage, legalReforms.filter((article) => context.window.getLegalReformInfo(article, topics).stage === stage).length])),
   warnings: warnings.length
 }));

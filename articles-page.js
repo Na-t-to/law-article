@@ -7,6 +7,7 @@
   const $ = (selector) => document.querySelector(selector);
   const escapeHtml = (value) => String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
   let selectedField = "all";
+  let reformsOnly = new URLSearchParams(window.location.search).get("view") === "reforms";
 
   window.assertKnowledgeData?.(topics, sources, allArticles);
 
@@ -14,6 +15,8 @@
   const topicsForArticle = (article) => article.relatedTopics.map((slug) => topics.find((topic) => topic.slug === slug)).filter(Boolean);
   const topicNames = (article) => topicsForArticle(article).map((topic) => topic.title);
   const issueTitles = (article) => article.relatedIssues.map((id) => topics.flatMap((topic) => topic.issues).find((issue) => issue.id === id)?.title).filter(Boolean);
+  const isLegalReform = (article) => window.getLegalReformInfo?.(article, topics)?.isReform || false;
+  const reformCount = articles.filter(isLegalReform).length;
   const changeSummary = (article) => {
     if (article.whatChanged) return article.whatChanged;
     const update = updates.filter((item) => article.primarySourceIds.includes(item.source) && item.affectedTopics.some((slug) => article.relatedTopics.includes(slug))).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))[0];
@@ -23,7 +26,8 @@
   };
 
   const renderFilters = () => {
-    $("#articleFilters").innerHTML = fields.map((field) => {
+    const reformFilter = `<button class="field-filter reform-filter${reformsOnly ? " is-active" : ""}" type="button" data-reform-filter><span>法改正のみ</span><small>${String(reformCount).padStart(2, "0")}</small></button>`;
+    $("#articleFilters").innerHTML = reformFilter + fields.map((field) => {
       const value = field === "すべて" ? "all" : field;
       const count = value === "all" ? articles.length : articles.filter((article) => article.categories.includes(value)).length;
       return `<button class="field-filter${selectedField === value ? " is-active" : ""}" type="button" data-article-field="${escapeHtml(value)}"><span>${escapeHtml(field)}</span><small>${String(count).padStart(2, "0")}</small></button>`;
@@ -32,16 +36,29 @@
 
   const renderArticles = () => {
     const needle = $("#articleSearch").value.trim().toLocaleLowerCase();
-    const visible = articles.filter((article) => selectedField === "all" || article.categories.includes(selectedField)).filter((article) => {
+    const visible = articles.filter((article) => !reformsOnly || isLegalReform(article)).filter((article) => selectedField === "all" || article.categories.includes(selectedField)).filter((article) => {
       if (!needle) return true;
       return [article.title, article.publisher, article.summary, changeSummary(article), article.categories.join(" "), article.audience.join(" "), topicNames(article).join(" ")].join(" ").toLocaleLowerCase().includes(needle);
     }).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+    $("#libraryResultsTitle").textContent = reformsOnly ? "法改正情報" : "採用済み";
     $("#resultCount").textContent = `${String(visible.length).padStart(2, "0")}件`;
+    $("#libraryCount").innerHTML = `<strong>${String(visible.length).padStart(2, "0")}</strong><span>${reformsOnly ? "法改正情報" : "採用済み"}</span>`;
     $("#articleLibrary").innerHTML = visible.length ? visible.map((article) => `<article class="article-row"><time datetime="${escapeHtml(article.publishedAt)}">${escapeHtml(article.publishedAt)}</time><div class="article-main-cell"><a class="article-title-link" href="article.html?id=${encodeURIComponent(article.id)}"><strong>${escapeHtml(article.title)}</strong></a><small>${escapeHtml(article.publisher)} / ${escapeHtml(article.sourceLabel)}</small></div><div class="article-topics">${topicsForArticle(article).map((topic) => `<a href="topics/${escapeHtml(topic.slug)}.html">${escapeHtml(topic.title)} →</a>`).join("")}</div><a class="article-impact" href="article.html?id=${encodeURIComponent(article.id)}">${escapeHtml(changeSummary(article))}</a></article>`).join("") : `<div class="empty-inline">条件に合う記事・資料はありません。</div>`;
   };
 
-  $("#libraryCount").innerHTML = `<strong>${String(articles.length).padStart(2, "0")}</strong><span>採用済み</span>`;
-  $("#articleFilters").addEventListener("click", (event) => { const button = event.target.closest("[data-article-field]"); if (!button) return; selectedField = button.dataset.articleField; renderFilters(); renderArticles(); });
+  $("#articleFilters").addEventListener("click", (event) => {
+    const reformButton = event.target.closest("[data-reform-filter]");
+    const fieldButton = event.target.closest("[data-article-field]");
+    if (!reformButton && !fieldButton) return;
+    if (reformButton) reformsOnly = !reformsOnly;
+    if (fieldButton) selectedField = fieldButton.dataset.articleField;
+    const url = new URL(window.location.href);
+    if (reformsOnly) url.searchParams.set("view", "reforms");
+    else url.searchParams.delete("view");
+    window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+    renderFilters();
+    renderArticles();
+  });
   $("#articleSearch").addEventListener("input", renderArticles);
   renderFilters();
   renderArticles();
