@@ -39,12 +39,11 @@
   }, new Map()).values()].sort((left, right) => right.latestAt.localeCompare(left.latestAt));
   if (selectedLaw !== "all" && !reformLaws.some((law) => law.id === selectedLaw)) selectedLaw = "all";
   const changeSummary = (article) => window.getKnowledgeArticleChangeSummary?.(article, topics, updates) || "整理変更なし／関連テーマの参考資料を追加";
-  const collectionOrder = new Map();
-  allArticles.forEach((article, index) => {
-    const key = article.url || article.id;
-    if (key) collectionOrder.set(key, index);
-  });
-  const collectionIndex = (article) => collectionOrder.get(article.url || article.id) ?? -1;
+  const compareCollectionOrder = (a, b) =>
+    (b.collectedAt || "").localeCompare(a.collectedAt || "") ||
+    (Number(b.__collectionBatch ?? -1) - Number(a.__collectionBatch ?? -1)) ||
+    (Number(a.__collectionItem ?? 0) - Number(b.__collectionItem ?? 0)) ||
+    (b.publishedAt || "").localeCompare(a.publishedAt || "");
 
   const articleRow = (article) => `<article class="article-row"><time class="article-added-date" datetime="${escapeHtml(article.collectedAt)}"><span>追加</span>${escapeHtml(article.collectedAt)}</time><div class="article-main-cell"><a class="article-title-link" href="article.html?id=${encodeURIComponent(article.id)}"><strong>${escapeHtml(article.title)}</strong></a><small>${escapeHtml(article.publisher)} / ${escapeHtml(article.sourceLabel)}</small></div><time class="article-published-date" datetime="${escapeHtml(article.publishedAt)}"><span>公開</span>${escapeHtml(article.publishedAt)}</time><div class="article-topics">${topicsForArticle(article).map((topic) => `<a href="topics/${escapeHtml(topic.slug)}.html">${escapeHtml(topic.title)} →</a>`).join("")}</div><a class="article-impact" href="article.html?id=${encodeURIComponent(article.id)}">${escapeHtml(changeSummary(article))}</a></article>`;
 
@@ -66,7 +65,7 @@
     const visible = articles.filter((article) => !reformsOnly || isLegalReform(article)).filter((article) => !reformsOnly ? selectedField === "all" || article.categories.includes(selectedField) : selectedLaw === "all" || reformLaw(article).id === selectedLaw).filter((article) => {
       if (!needle) return true;
       return [article.title, article.publisher, article.summary, changeSummary(article), article.categories.join(" "), article.audience.join(" "), topicNames(article).join(" "), reformLaw(article).label].join(" ").toLocaleLowerCase().includes(needle);
-    }).sort((a, b) => (b.collectedAt || "").localeCompare(a.collectedAt || "") || collectionIndex(b) - collectionIndex(a));
+    }).sort(compareCollectionOrder);
     $("#libraryCount").innerHTML = `<strong>${String(visible.length).padStart(2, "0")}</strong><span>件</span>`;
     $("#articleLibrary").classList.toggle("is-grouped", reformsOnly);
     if (!visible.length) { $("#articleLibrary").innerHTML = `<div class="empty-inline">条件に合う記事・資料はありません。</div>`; return; }
