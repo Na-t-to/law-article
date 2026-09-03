@@ -1,0 +1,14 @@
+window.SOURCE_DATA=(Array.isArray(window.SOURCE_DATA)?window.SOURCE_DATA:[]).concat([
+{
+  id:"source-jftc-nichirin-mold-storage-2026",
+  title:"株式会社ニチリンに対する勧告について",
+  type:"enforcement",
+  typeLabel:"旧下請法・勧告／金型等の無償保管",
+  authority:"公正取引委員会・中小企業庁",
+  publishedAt:"2026-09-03",
+  url:"https://www.jftc.go.jp/houdou/pressrelease/2026/sep/260903_kinki_toriteki.html",
+  importance:"高",
+  whyImportant:"長期間発注のない金型・治具を下請事業者25名に計1,048個、費用負担なく保管させた行為について、不当な経済上の利益の提供要請として勧告した最新事例。旧下請法と現行取適法の経過措置も明示され、金型管理と取引時点ごとの適用法令を具体的に確認できる。",
+  topics:["fair-subcontract-transactions"]
+}
+]);
