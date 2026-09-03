@@ -1,5 +1,5 @@
 window.LAW_INDEX_DATA_FILES = Object.freeze({
-  schema: ["schema.js?v=6"],
+  schema: ["schema.js?v=6", "reform-policy.js?v=1"],
   topics: [
     "topics.js?v=9", "topics-extra.js?v=2",
     "topics-run6.js?v=2", "topics-run7.js?v=2", "topics-run8.js?v=3", "topics-run9.js?v=3",
@@ -28,6 +28,6 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({
     "articles-run10.js?v=1", "articles-run11.js?v=1", "articles-run12.js?v=1", "articles-run13.js?v=1",
     "articles-run14.js?v=1", "articles-run15.js?v=1", "articles-run16.js?v=1", "articles-run17.js?v=1",
     "articles-run18.js?v=1", "articles-run19.js?v=1", "articles-run20.js?v=1", "articles-run21.js?v=1",
-    "articles-run22.js?v=1", "articles-run23.js?v=1", "articles-run24.js?v=1", "articles-run25.js?v=1", "articles-run26.js?v=1", "articles-run27.js?v=1", "articles-run28.js?v=1", "articles-run29.js?v=1", "articles-run30.js?v=1", "articles-run31.js?v=2"
+    "articles-run22.js?v=1", "articles-run23.js?v=1", "articles-run24.js?v=1", "articles-run25.js?v=1", "articles-run26.js?v=1", "articles-run27.js?v=1", "articles-run28.js?v=1", "articles-run29.js?v=1", "articles-run30.js?v=1", "articles-run31.js?v=3"
   ]
 });
