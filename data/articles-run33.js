@@ -1,0 +1,30 @@
+window.ARTICLE_DATA=(Array.isArray(window.ARTICLE_DATA)?window.ARTICLE_DATA:[]).concat([
+{
+  id:"article-noandt-merger-guideline-draft-2026",
+  title:"企業結合ガイドライン改定案の概要と実務への影響",
+  publisher:"長島・大野・常松法律事務所",
+  author:"中島菜子",
+  publishedAt:"2026-08-05",
+  collectedAt:"2026-09-03",
+  url:"https://www.nagashima.com/publications/publication20260805-2/",
+  sourceType:"secondary",
+  sourceLabel:"法律事務所・実務解説",
+  status:"adopted",
+  summary:"公正取引委員会が2026年7月17日に公表した企業結合ガイドライン改定案を、従来の審査実務との連続性と変更の実務的な意味から詳しく分析するニュースレター。供給の安定性、環境性能、投資・イノベーション等を効率性として考慮する方向、輸入・参入・隣接市場等をより長期で評価する考え方、問題解消措置への影響まで整理する。改定案段階の資料であり、最終版は未公表のため現行ガイドラインと併読する。",
+  whyImportant:[
+    "供給安定や環境性能、投資・イノベーションが効率性として明記される意味を、従来の需要者厚生・企業結合固有性・実現可能性という要件との関係から読める",
+    "改定案には既存の審査実務を明文化する部分と、公取委のスタンス拡張を示唆する部分があることを区別しており、改定案を過大評価せず案件説明へ落とし込める",
+    "輸入圧力、参入圧力、隣接市場、需要者圧力、効率性について2年超の時間軸も考慮し得ることが、将来予測や問題解消措置の期間設計にどう影響するかを検討できる",
+    "価格・市場シェアだけでなく供給安定、環境、個人情報等の非価格要素を競争の手段として捉える記載を、M&A初期の事実収集・当局説明の観点から確認できる"
+  ],
+  audience:["企業法務","M&A担当","競争法担当","経営企画"],
+  audienceReason:"企業結合ガイドライン改定案を、単なる変更点一覧ではなく、案件初期の競争評価、効率性資料、将来予測、問題解消措置の検討へ落とすため。",
+  categories:["M&A","独占禁止法・下請・フリーランス"],
+  relatedTopics:["merger-control-antitrust"],
+  relatedIssues:["mc-dynamic-benefits","mc-substantive-review","mc-remedies"],
+  primarySourceIds:["source-merger-guideline-draft-2026","source-merger-guideline-current"],
+  reformStageAtPublication:"proposal",
+  reformStageSourceIds:["source-merger-guideline-draft-2026"],
+  whatChanged:"整理変更なし／企業結合ガイドライン改定案について、効率性・長期評価・問題解消措置への実務的な読み方を補う解説を追加"
+}
+]);
