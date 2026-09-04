@@ -1,0 +1,26 @@
+window.ARTICLE_DATA=(Array.isArray(window.ARTICLE_DATA)?window.ARTICLE_DATA:[]).concat([
+  {
+    id:"article-pwc-ohs-amendment-2025",
+    title:"令和7年労働安全衛生法等の改正",
+    publisher:"PwC弁護士法人",
+    author:"北村 導人・山田 裕貴・小林 裕輔・日比 慎・蓮輪 真紀子・久保田 有紀・湯澤 夏海・山下 胡己・小善 有真",
+    publishedAt:"2025-08-27",
+    collectedAt:"2026-09-05",
+    url:"https://www.pwc.com/jp/ja/knowledge/news/legal-news/legal-20250827-1.html",
+    sourceType:"secondary",
+    sourceLabel:"法律事務所・実務解説／労働安全衛生法2025年改正",
+    status:"adopted",
+    summary:"2025年改正労働安全衛生法・作業環境測定法を、個人事業者等への安全衛生対策、メンタルヘルス、化学物質、機械、高年齢労働者対策の5領域から実務的に整理する解説。特に、個人事業者・作業従事者の定義では義務主体との請負・業務委託等の契約関係が要件とされないこと、混在作業場所、救護、法令遵守指導、危険場所での技術指導、作業場所管理事業者の措置まで具体的に説明しており、発注・現場管理へ落とし込みやすい。",
+    whyImportant:["『個人事業者との契約があるか』だけでは安全衛生上の適用範囲を判断できないことを明示し、作業従事者・混在作業場所という現場基準で確認できる。","元方事業者、注文者、作業場所管理事業者ごとの措置を、連絡調整・巡視・救護・技術指導・違法な指示の禁止等まで具体化しており、一次資料の改正項目を契約・現場運用へ変換しやすい。","個人事業者等だけでなく、ストレスチェック、化学物質、機械、高年齢労働者の段階施行も一つの記事で横断でき、自社に関係する条項と施行日を切り分ける補助線になる。"],
+    audience:["企業法務","人事・労務","安全衛生担当","調達・業務委託管理","建設・製造・物流等の現場管理"],
+    audienceReason:"2025年改正を、法改正一覧ではなく個人事業者・請負人・混在作業を含む具体的な現場責任と、社内規程・委託契約・作業ルールの見直しへ落とし込むため。",
+    categories:["労務","契約","危機管理・コンプライアンス"],
+    relatedTopics:["occupational-safety-health-reform"],
+    relatedIssues:["ohs-independent-contractors","ohs-phased-measures"],
+    primarySourceIds:["source-mhlw-ohs-amendment-2025"],
+    reformEventId:"occupational-safety-health-2025-amendment",
+    reformStageAtPublication:"partially_effective",
+    reformStageSourceIds:["source-mhlw-ohs-amendment-2025"],
+    whatChanged:"整理変更なし／個人事業者・作業従事者の定義、混在作業場所、注文者・元方事業者等の具体的措置を実務解説で補完した。"
+  }
+]);
