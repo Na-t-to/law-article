@@ -11,6 +11,9 @@
 
 .home-main .articles-section .section-heading h2 {
   padding-left: 0;
+  font-size: clamp(38px, 5vw, 65px);
+  letter-spacing: -.075em;
+  line-height: 1.16;
 }
 
 .home-main .articles-section .section-heading h2::before {
