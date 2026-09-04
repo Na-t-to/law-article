@@ -1,0 +1,26 @@
+window.SOURCE_DATA=(Array.isArray(window.SOURCE_DATA)?window.SOURCE_DATA:[]).concat([
+  {
+    id:"source-meti-ai-data-contract-guideline-2019",
+    title:"AI・データの利用に関する契約ガイドライン 1.1版（AI編）",
+    type:"guideline",
+    typeLabel:"行政ガイドライン・AI開発／利用契約",
+    authority:"経済産業省",
+    publishedAt:"2019-12-09",
+    url:"https://www.meti.go.jp/policy/mono_info_service/connected_industries/sharing_and_utilization/20200619001.pdf",
+    importance:"高",
+    whyImportant:"AIモデルの開発・利用契約について、技術特性、権利関係、責任関係、開発プロセスとモデル契約を体系的に示した基礎資料。生成AI普及後も、2025年の契約チェックリスト等から参照される。",
+    topics:["ai-service-development-contracts"]
+  },
+  {
+    id:"source-meti-ai-contract-checklist-2025",
+    title:"AIの利用・開発に関する契約チェックリスト",
+    type:"guideline",
+    typeLabel:"行政チェックリスト・AI利用／開発契約",
+    authority:"経済産業省",
+    publishedAt:"2025-02-18",
+    url:"https://www.meti.go.jp/press/2024/02/20250218003/20250218003.html",
+    importance:"最高",
+    whyImportant:"生成AIの普及後の市場環境を踏まえ、汎用サービス利用からカスタマイズ・新規開発まで、インプット／アウトプット、個人情報、セキュリティ、監査、ログ、規約改定等をユーザ側から点検できる現行の公式チェックリスト。",
+    topics:["ai-service-development-contracts"]
+  }
+]);
