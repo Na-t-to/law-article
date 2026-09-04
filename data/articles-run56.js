@@ -1,0 +1,26 @@
+window.ARTICLE_DATA=(Array.isArray(window.ARTICLE_DATA)?window.ARTICLE_DATA:[]).concat([
+  {
+    id:"article-nco-critical-infrastructure-unified-standard-2026",
+    title:"重要インフラのサイバーセキュリティ対策のための統一基準",
+    publisher:"国家サイバー統括室",
+    author:"サイバーセキュリティ戦略本部",
+    publishedAt:"2026-07-31",
+    collectedAt:"2026-09-04",
+    url:"https://www.cyber.go.jp/policy/group/infra/policy.html",
+    sourceType:"primary",
+    sourceLabel:"一次資料・重要インフラ統一基準／施行前",
+    status:"adopted",
+    summary:"2025年改正サイバーセキュリティ基本法に基づき、重要インフラ事業者等が分野・事業者横断的に実施すべきサイバーセキュリティ対策を促進する政府機関の施策について、統一的な基準を定めたサイバーセキュリティ戦略本部決定。2026年10月1日施行予定で、重要インフラ行動計画の改定、従来の安全基準等策定指針の廃止、安全基準等策定ガイドラインの整備へつながる。",
+    whyImportant:["サイバー対処能力強化法の届出・報告義務とは法的な位置付けが異なるため、同じ2026年10月1日の動きを混同せずに整理する基準点になる。","重要インフラ事業者等の分野横断的な対策を、政府機関の施策と所管省庁・業界団体の安全基準等を通じて具体化する新しい制度構造を確認できる。","経営層を含む組織統治、サプライチェーン・リスク、分野ごとの安全基準等の改定を施行前に追う入口になる。"],
+    audience:["企業法務","情報セキュリティ・CISO","危機管理・コンプライアンス","重要インフラ事業者","IT調達・ベンダー管理"],
+    audienceReason:"2026年10月1日に向け、サイバー対処能力強化法の直接義務と、重要インフラ統一基準から分野別安全基準等へ波及する対応を分けて準備するため。",
+    categories:["情報セキュリティ","危機管理・コンプライアンス","契約"],
+    relatedTopics:["cyber-countermeasures-critical-infrastructure"],
+    relatedIssues:["cyber-critical-infrastructure-unified-standard"],
+    primarySourceIds:["source-nco-critical-infrastructure-unified-standard-2026"],
+    reformEventId:"critical-infrastructure-unified-standard-2026",
+    reformStageAtPublication:"finalized_pending",
+    reformStageSourceIds:["source-nco-critical-infrastructure-unified-standard-2026"],
+    whatChanged:"重要インフラ統一基準を、サイバー対処能力強化法とは別の制度として追加し、政府施策の統一基準から所管省庁・業界の安全基準等へ具体化される経路を独立論点として整理した。"
+  }
+]);

@@ -1,0 +1,14 @@
+window.SOURCE_DATA=(Array.isArray(window.SOURCE_DATA)?window.SOURCE_DATA:[]).concat([
+  {
+    id:"source-nco-critical-infrastructure-unified-standard-2026",
+    title:"重要インフラのサイバーセキュリティ対策のための統一基準",
+    type:"guideline",
+    typeLabel:"サイバーセキュリティ戦略本部決定・重要インフラ統一基準",
+    authority:"国家サイバー統括室／サイバーセキュリティ戦略本部",
+    publishedAt:"2026-07-31",
+    url:"https://www.cyber.go.jp/policy/group/infra/policy.html",
+    importance:"最高",
+    whyImportant:"2025年改正サイバーセキュリティ基本法に基づき、重要インフラ事業者等が分野・事業者横断的に実施すべきサイバーセキュリティ対策を促進する政府機関の施策について統一的な基準を示す公式資料。2026年10月1日の施行予定と、行動計画改定・従来の安全基準等策定指針廃止、今後の安全基準等策定ガイドラインへの接続を確認する基準点となる。",
+    topics:["cyber-countermeasures-critical-infrastructure"]
+  }
+]);
