@@ -171,17 +171,13 @@ h3 { font-weight: 600; }
 .reform-law-group > summary > em::after { margin-left: 7px; color: var(--accent); content: "+"; font-family: var(--mono); }
 .reform-law-group[open] > summary > em::after { content: "−"; }
 .reform-law-articles { margin: 0 13px 16px; border-top: 1px solid var(--rail); }
-.reform-law-articles article { display: grid; grid-template-columns: minmax(0, 1fr) 148px 130px; align-items: start; gap: 18px; border-bottom: 1px solid var(--line); padding: 13px 6px; }
+.reform-law-articles article { display: grid; grid-template-columns: minmax(0, 1fr) 148px; align-items: start; gap: 18px; border-bottom: 1px solid var(--line); padding: 13px 6px; }
 .reform-law-articles article > time { color: var(--accent); font: 10px var(--mono); }
 .reform-law-articles article > .reform-published-date { color: var(--muted); white-space: nowrap; }
 .reform-law-articles article strong, .reform-law-articles article small { display: block; }
 .reform-law-articles article strong { font-size: 12px; font-weight: 600; line-height: 1.55; }
 .reform-law-articles article a:hover strong { color: var(--accent); }
 .reform-law-articles article small { margin-top: 2px; color: var(--muted); font-size: 9px; }
-.reform-stage { color: var(--ink-soft); font-size: 10px; font-weight: 600; }
-.reform-stage::before { margin-right: 7px; color: var(--accent); content: "◆"; font-size: 7px; }
-.reform-stage[data-stage="draft"]::before { content: "◇"; }
-.reform-stage[data-stage="effective"]::before { color: var(--muted); content: "●"; }
 .reform-law-more { display: block; padding: 13px 6px 2px; color: var(--accent); font-size: 10px; text-align: right; }
 .reform-law-more:hover { color: var(--rail); text-decoration: underline; text-underline-offset: 3px; }
 .reform-filter { border-left-color: var(--accent); }
@@ -455,7 +451,6 @@ h3 { font-weight: 600; }
   .reform-law-articles { margin: 0 8px 14px; }
   .reform-law-articles article { grid-template-columns: minmax(0, 1fr) auto; gap: 7px 11px; padding: 12px 4px; }
   .reform-law-articles article > div { grid-column: 1 / -1; }
-  .reform-law-articles article .reform-stage { grid-column: 2; }
   .reform-library-group + .reform-library-group { margin-top: 38px; }
   .reform-library-heading h3 { font-size: 20px; }
   .changes-section { margin-top: 60px; }
