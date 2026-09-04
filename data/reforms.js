@@ -316,5 +316,30 @@ window.REFORM_EVENT_DATA=(Array.isArray(window.REFORM_EVENT_DATA)?window.REFORM_
     effectiveDateSourceIds:["source-moj-security-assignment-act-2025"],
     matchSourceIds:["source-moj-security-assignment-act-2025"],
     sourceIds:["source-moj-security-assignment-act-2025"]
+  },
+  {
+    id:"fiea-insider-parent-company-2026-rule",
+    title:"金融商品取引法・インサイダー取引規制『親会社』定義見直し",
+    eventType:"regulation_or_guideline",
+    lawId:"financial-instruments-exchange-act",
+    lawLabel:"金融商品取引法",
+    relatedTopics:["insider-trading-information-management"],
+    effectiveDateStatus:"confirmed",
+    effectiveDates:["2026-07-01"],
+    effectiveDateSourceIds:["source-fsa-insider-parent-rule-2026"],
+    matchSourceIds:["source-fsa-insider-parent-rule-2026"],
+    sourceIds:["source-fsa-insider-parent-rule-2026","source-fsa-market-system-wg-insider-2025"]
+  },
+  {
+    id:"fiea-unfair-trading-2026-amendment",
+    title:"金融商品取引法・有価証券の不公正取引規制等（2026年改正）",
+    eventType:"law_amendment",
+    lawId:"financial-instruments-exchange-act",
+    lawLabel:"金融商品取引法",
+    relatedTopics:["insider-trading-information-management"],
+    effectiveDateStatus:"relative",
+    effectiveDateNote:"有価証券に関する不公正取引規制等の見直し（4-1）は公布後1年以内の政令指定日",
+    effectiveDateSourceIds:["source-fsa-fiea-unfair-trading-explanation-2026"],
+    sourceIds:["source-fsa-market-system-wg-insider-2025","source-fsa-fiea-law-2026","source-fsa-fiea-unfair-trading-explanation-2026"]
   }
 ]);
