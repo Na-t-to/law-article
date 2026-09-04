@@ -1,4 +1,25 @@
 (() => {
+  const normalizeShellUi = () => {
+    const nav = document.querySelector(".main-nav");
+    if (nav) {
+      const order = ["index.html", "articles.html", "topics.html", "reforms.html"];
+      const links = Array.from(nav.children).filter((element) => element.matches("a[href]"));
+      links
+        .sort((left, right) => {
+          const leftHref = (left.getAttribute("href") || "").split(/[?#]/)[0];
+          const rightHref = (right.getAttribute("href") || "").split(/[?#]/)[0];
+          const leftIndex = order.findIndex((name) => leftHref.endsWith(name));
+          const rightIndex = order.findIndex((name) => rightHref.endsWith(name));
+          return (leftIndex === -1 ? order.length : leftIndex) - (rightIndex === -1 ? order.length : rightIndex);
+        })
+        .forEach((link) => nav.appendChild(link));
+    }
+
+    document.querySelectorAll('.site-footer > a[href="#top"]').forEach((link) => link.remove());
+  };
+
+  normalizeShellUi();
+
   const manifest = window.LAW_INDEX_DATA_FILES;
   if (!manifest) throw new Error("LAW / INDEX data manifest is missing.");
   const baseUrl = new URL(".", document.currentScript.src);
