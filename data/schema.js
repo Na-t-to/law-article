@@ -62,6 +62,7 @@
           errors.push(`${path}: views は配列で指定してください。`);
           continue;
         }
+        if (issue.views.length === 1) errors.push(`${path}: views は0件または2件以上で指定してください。1件だけの views は conclusion の言い換え置き場として使用できません。`);
         if (issue.status === "disputed" && issue.views.length < 2) errors.push(`${path}: disputed には2件以上の views が必要です。`);
         issue.views.forEach((view, index) => {
           if (!view.id || !view.label || !view.summary) errors.push(`${path}: views[${index}] に id・label・summary が必要です。`);
@@ -100,8 +101,6 @@
     findDuplicates(articles, (article) => article.url, "article URL");
     const allAuthoritative = topics.filter((topic) => topic.issues?.length && topic.issues.every((issue) => issue.status === "authoritative"));
     if (allAuthoritative.length) warnings.push(`全論点が authoritative のテーマが ${allAuthoritative.length} 件あります。論点の切り方と status を棚卸ししてください: ${allAuthoritative.map((topic) => topic.title).join(" / ")}`);
-    const emptyViews = topics.flatMap((topic) => (topic.issues || []).filter((issue) => ["interpreted", "pending"].includes(issue.status) && !issue.views?.length));
-    if (emptyViews.length) warnings.push(`interpreted / pending のうち views 未登録が ${emptyViews.length} 件あります。対立・並立する見解が実在するか全件を棚卸ししてください。`);
     return warnings;
   };
 
@@ -171,11 +170,22 @@
     const issues = topics.flatMap((topic) => topic.issues || []);
     const statusCounts = Object.fromEntries(Object.keys(issueStatus).map((status) => [status, issues.filter((issue) => issue.status === status).length]));
     const emptyViewsByStatus = Object.fromEntries(Object.keys(issueStatus).map((status) => [status, issues.filter((issue) => issue.status === status && !issue.views?.length).length]));
+    const singleViewIssues = topics.flatMap((topic) => (topic.issues || [])
+      .filter((issue) => Array.isArray(issue.views) && issue.views.length === 1)
+      .map((issue) => ({ topic: topic.title, topicSlug: topic.slug, issueId: issue.id, issueTitle: issue.title, status: issue.status })));
+    const verifiedTopics = topics.filter((topic) => /^\d{4}-\d{2}-\d{2}$/.test(topic.lastVerified || ""));
+    const oldestLastVerified = verifiedTopics.map((topic) => topic.lastVerified).sort()[0] || null;
+    const oldestVerifiedTopics = oldestLastVerified
+      ? verifiedTopics.filter((topic) => topic.lastVerified === oldestLastVerified).map((topic) => ({ slug: topic.slug, title: topic.title }))
+      : [];
     return {
       statusCounts,
       emptyViewsByStatus,
+      singleViewIssues,
       allAuthoritativeThemes: topics.filter((topic) => topic.issues?.length && topic.issues.every((issue) => issue.status === "authoritative")).map((topic) => topic.title),
       verificationDiverged: topics.filter((topic) => topic.lastUpdated !== topic.lastVerified).length,
+      oldestLastVerified,
+      oldestVerifiedTopics,
       verificationAdvancesPending: getTopicVerificationAdvances(topics, articles, updates)
     };
   };
