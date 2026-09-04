@@ -82,6 +82,7 @@
       return { article, reform, event, law };
     }).filter(({ reform }) => reform.isReform).sort((left, right) => (right.article.collectedAt || "").localeCompare(left.article.collectedAt || "") || right.article.publishedAt.localeCompare(left.article.publishedAt));
 
+    const todayKey = new Date().toISOString().slice(0, 10);
     const groups = [...reforms.reduce((map, item) => {
       const groupId = item.event ? `event-${item.event.id}` : `legacy-${item.law.id}`;
       if (!map.has(groupId)) {
@@ -107,9 +108,11 @@
     }, new Map()).values()].sort((left, right) => {
       const leftKey = left.event ? (left.eventTiming?.sortKey || "") : (left.effectiveDate?.sortKey || "");
       const rightKey = right.event ? (right.eventTiming?.sortKey || "") : (right.effectiveDate?.sortKey || "");
-      if (leftKey && rightKey) return rightKey.localeCompare(leftKey) || right.latestCollectedAt.localeCompare(left.latestCollectedAt);
-      if (leftKey) return -1;
-      if (rightKey) return 1;
+      const leftBucket = leftKey ? (leftKey >= todayKey ? 0 : 1) : 2;
+      const rightBucket = rightKey ? (rightKey >= todayKey ? 0 : 1) : 2;
+      if (leftBucket !== rightBucket) return leftBucket - rightBucket;
+      if (leftBucket === 0) return leftKey.localeCompare(rightKey) || right.latestCollectedAt.localeCompare(left.latestCollectedAt);
+      if (leftBucket === 1) return rightKey.localeCompare(leftKey) || right.latestCollectedAt.localeCompare(left.latestCollectedAt);
       if (Boolean(left.event) !== Boolean(right.event)) return left.event ? -1 : 1;
       return right.latestCollectedAt.localeCompare(left.latestCollectedAt);
     });
@@ -120,7 +123,9 @@
       return "改正イベント未整理";
     };
 
-    document.querySelector("#reformCount").innerHTML = `<strong>${pad(groups.length)}</strong><span>改正単位</span>`;
+    const eventCount = groups.filter((group) => group.event).length;
+    const unorganizedArticleCount = groups.filter((group) => !group.event).reduce((sum, group) => sum + group.items.length, 0);
+    document.querySelector("#reformCount").innerHTML = `<strong>${pad(eventCount)}</strong><span>改正イベント${unorganizedArticleCount ? ` / 未整理 ${pad(unorganizedArticleCount)}記事` : ""}</span>`;
     document.querySelector("#reformList").innerHTML = groups.length ? groups.map((group) => {
       const selected = selectedLaw && (selectedLaw === group.law.id || selectedLaw === group.event?.id);
       const meta = group.event ? `法令・制度 ${group.law.label} / 最終追加 ` : "最終追加 ";
