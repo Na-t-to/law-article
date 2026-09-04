@@ -99,14 +99,18 @@
     const now = new Date();
     const todayKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
     const timingStateFor = (group) => {
-      const key = group.event ? (group.eventTiming?.sortKey || "") : (group.effectiveDate?.sortKey || "");
-      if (key) return key >= todayKey ? "upcoming" : "completed";
-      if (group.event && group.eventTiming) return "pending";
-      if (group.event) return "unverified";
+      if (group.event) {
+        const timing = group.eventTiming;
+        if (!timing) return "unverified";
+        if (["planned", "relative", "phased"].includes(timing.status)) return "pending";
+        if (timing.sortKey) return timing.sortKey >= todayKey ? "upcoming" : "completed";
+        return "unverified";
+      }
+      if (group.effectiveDate?.sortKey) return group.effectiveDate.sortKey >= todayKey ? "upcoming" : "completed";
       return "unorganized";
     };
     const stateRank = Object.freeze({ upcoming: 0, pending: 1, completed: 2, unverified: 3, unorganized: 3 });
-    const stateLabel = Object.freeze({ upcoming: "施行前・適用前", pending: "施行時期未確定", completed: "施行済み・適用済み", unverified: "施行時期未確認", unorganized: "改正イベント未整理" });
+    const stateLabel = Object.freeze({ upcoming: "施行前・適用前", pending: "予定・段階施行", completed: "施行済み・適用済み", unverified: "施行時期未確認", unorganized: "改正イベント未整理" });
 
     const groups = [...reforms.reduce((map, item) => {
       const groupId = item.event ? `event-${item.event.id}` : `legacy-${item.law.id}`;
@@ -155,9 +159,9 @@
       return `<details class="reform-law-group" data-timing-state="${escapeHtml(group.timingState)}" id="${escapeHtml(group.id)}"${selected ? " open" : ""}><summary><div><strong>${escapeHtml(group.title)}</strong><small>${escapeHtml(meta)}<time datetime="${escapeHtml(group.latestCollectedAt)}">${escapeHtml(group.latestCollectedAt)}</time><b class="reform-state-badge">${escapeHtml(stateLabel[group.timingState])}</b></small></div><span class="reform-effective-date">${escapeHtml(effectiveLabel(group))}</span><span class="reform-count">${pad(group.items.length)}件</span><em>記事を見る</em></summary><div class="reform-law-articles">${group.items.map(({ article }) => `<article><div><a href="article.html?id=${encodeURIComponent(article.id)}"><strong>${escapeHtml(article.title)}</strong></a><small>${escapeHtml(article.publisher)} / ${escapeHtml(article.sourceLabel)}</small></div><time class="reform-published-date" datetime="${escapeHtml(article.publishedAt)}">${escapeHtml(formatPublishedDate(article.publishedAt))}</time></article>`).join("")}</div></details>`;
     };
     const sections = [
-      { states: ["upcoming"], label: "施行前・適用前", hint: "施行・適用が遅いものから表示" },
-      { states: ["pending"], label: "施行時期未確定", hint: "相対期日・段階施行など具体日未確定" },
-      { states: ["completed"], label: "施行済み・適用済み", hint: "新しいものから表示" },
+      { states: ["upcoming"], label: "施行前・適用前", hint: "確定した施行・適用日が遅いものから表示" },
+      { states: ["pending"], label: "予定・段階施行・時期未確定", hint: "予定日、相対期日、段階施行を確定日と分けて表示" },
+      { states: ["completed"], label: "施行済み・適用済み", hint: "確定日が新しいものから表示" },
       { states: ["unverified", "unorganized"], label: "未確認・未整理", hint: "施行時期または改正イベントの整理待ち" }
     ];
 
