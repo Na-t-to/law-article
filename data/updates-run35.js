@@ -1,0 +1,23 @@
+window.UPDATE_DATA=(Array.isArray(window.UPDATE_DATA)?window.UPDATE_DATA:[]).concat([
+  {
+    id:"update-advertising-regulatory-reform-2026-09",
+    source:"source-cao-regulatory-reform-plan-2026-advertising",
+    headline:"総付景品・不実証広告規制の制度見直しを追加",
+    publishedAt:"2026-09-04",
+    type:"summary-update",
+    typeLabel:"整理更新",
+    summary:"2026年7月21日の規制改革実施計画を踏まえ、景品表示法・広告表示管理に、総付景品の上限額と不実証広告規制の運用見直しを独立論点として追加した。",
+    whatChanged:"No.1表示とステルスマーケティングを中心としていた整理に、2026年度から2027年度に政府・消費者庁が進める二つの制度見直しを追加した。総付景品は現行の200円・20％を維持したまま上限を検討中であり、不実証広告規制は合理的根拠資料の制度そのものではなく、事前調査・提出要求・措置命令における説明や公表の運用改善が主な検討対象であることを明示した。",
+    affectedTopics:["advertising-display-control"],
+    affectedIssues:[
+      {topic:"advertising-display-control",issue:"display-premium-cap-review",before:"総付景品の上限額と制度見直しを独立論点として管理していなかった。",after:"現行200円・20％と、2026年度検討開始・2027年度結論の見直し工程、未確定の新上限を分けて追う。"},
+      {topic:"advertising-display-control",issue:"display-undemonstrated-ad-review",before:"不実証広告規制の運用見直しを独立論点として管理していなかった。",after:"現行の合理的根拠資料ルールを維持しつつ、当局の表示認識・不採用理由の説明、公表、運用指針改正の検討を追う。"}
+    ],
+    before:"景品表示法・広告表示管理は、No.1表示の合理的根拠と口コミ・ステルスマーケティングを中心に整理していた。",
+    after:"既存の表示根拠・ステマ管理に加え、総付景品の販促規制と不実証広告規制の2026年制度見直しを、現行ルールと未確定事項を分けて追跡する。",
+    keyPoints:["総付景品の現行上限200円・20％はまだ変更されていない","総付景品・不実証広告規制はいずれも2026年度検討開始、2027年度結論、結論後速やかに措置","不実証広告規制では当局の表示認識と合理的根拠資料不採用理由の説明・公表などが検討対象"],
+    importance:"重要",
+    tags:["景品表示法","総付景品","不実証広告規制","規制改革","広告審査"],
+    confidence:"fact"
+  }
+]);

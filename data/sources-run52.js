@@ -1,0 +1,14 @@
+window.SOURCE_DATA=(Array.isArray(window.SOURCE_DATA)?window.SOURCE_DATA:[]).concat([
+  {
+    id:"source-cao-regulatory-reform-plan-2026-advertising",
+    title:"規制改革実施計画（総付景品・不実証広告規制関係）",
+    type:"report",
+    typeLabel:"閣議決定・制度見直し",
+    authority:"内閣府",
+    publishedAt:"2026-07-21",
+    url:"https://www8.cao.go.jp/kisei-kaikaku/kisei/publication/program/260721/01_program.pdf",
+    importance:"最高",
+    whyImportant:"2026年7月21日に閣議決定された規制改革実施計画のうち、総付景品の上限額と不実証広告規制の見直しについて、消費者庁が2026年度に検討を開始し、2027年度に結論を得て速やかに措置する工程と具体的な検討事項を示した一次資料。現行ルールと今後の変更候補を区別して追う基準点になる。",
+    topics:["advertising-display-control"]
+  }
+]);
