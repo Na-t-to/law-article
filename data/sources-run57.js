@@ -1,0 +1,26 @@
+window.SOURCE_DATA=(Array.isArray(window.SOURCE_DATA)?window.SOURCE_DATA:[]).concat([
+  {
+    id:"source-moj-criminal-procedure-it-2025",
+    title:"情報通信技術の進展等に対応するための刑事訴訟法等の一部を改正する法律案",
+    type:"law",
+    typeLabel:"改正法・刑事訴訟法等",
+    authority:"法務省",
+    publishedAt:"2025-05-23",
+    url:"https://www.moj.go.jp/keiji1/keiji12_00210.html",
+    importance:"高",
+    whyImportant:"令和7年法律第39号の成立日・公布日、法律案要綱、新旧対照条文等を確認できる法務省の一次資料。電磁的記録提供命令等を含む刑事手続IT化改正の根拠を確認する起点となる。",
+    topics:["law-enforcement-data-production"]
+  },
+  {
+    id:"source-egov-criminal-procedure-electronic-record-2026",
+    title:"刑事訴訟法（令和7年法律第39号・2026年5月21日施行時点）",
+    type:"law",
+    typeLabel:"施行済み条文・刑事訴訟法",
+    authority:"e-Gov法令検索",
+    publishedAt:"2026-05-21",
+    url:"https://laws.e-gov.go.jp/law/323AC0000000131/20260521_507AC0000000039",
+    importance:"高",
+    whyImportant:"電磁的記録提供命令・秘密保持命令に関する令和7年法律第39号の規定が2026年5月21日に施行されたことと、施行後の刑事訴訟法条文を確認できる一次資料。",
+    topics:["law-enforcement-data-production"]
+  }
+]);
