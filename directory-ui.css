@@ -72,6 +72,48 @@ body[data-directory-page="topics"] .topic-stat {
   color: #5f6a65;
 }
 
+body[data-directory-page="topics"] .list-more {
+  border-top: 1px solid var(--line);
+  padding: 18px 12px 2px;
+  text-align: center;
+}
+
+body[data-directory-page="topics"] .list-more-button {
+  display: inline-flex;
+  min-width: 240px;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: 1px solid var(--rail);
+  background: var(--surface);
+  padding: 9px 14px;
+  color: var(--ink);
+}
+
+body[data-directory-page="topics"] .list-more-button strong {
+  font-size: 11px;
+}
+
+body[data-directory-page="topics"] .list-more-button small {
+  color: #5f6a65;
+  font: 9px var(--mono);
+}
+
+body[data-directory-page="topics"] .list-more-button:hover {
+  background: var(--rail);
+  color: #fff;
+}
+
+body[data-directory-page="topics"] .list-more-button:hover small {
+  color: #d5ddd7;
+}
+
+body[data-directory-page="topics"] .list-more-button:focus-visible {
+  outline: 2px solid #8f382a;
+  outline-offset: 2px;
+}
+
 body[data-directory-page="reforms"] .reform-law-index {
   border-bottom: 0;
   background: transparent;
@@ -184,6 +226,11 @@ body[data-directory-page="reforms"] .reform-law-group > summary:focus-visible {
   body[data-directory-page="topics"] .field-filter {
     min-height: 38px;
     padding: 7px 9px;
+  }
+
+  body[data-directory-page="topics"] .list-more-button {
+    width: 100%;
+    min-width: 0;
   }
 
   body[data-directory-page="reforms"] .reform-status-section + .reform-status-section {
