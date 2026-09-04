@@ -1,0 +1,20 @@
+window.UPDATE_DATA=(Array.isArray(window.UPDATE_DATA)?window.UPDATE_DATA:[]).concat([
+  {
+    id:"update-toriteki-tooling-storage-2026-09",
+    source:"source-jftc-nichirin-tooling-storage-2026",
+    headline:"金型・治具等の無償保管を独立論点として追加",
+    publishedAt:"2026-09-04",
+    type:"summary-update",
+    typeLabel:"整理更新",
+    summary:"公取委Q119と相次ぐ勧告を踏まえ、型等の保管費用、回収・廃棄、継続保管を取適法の継続的な執行論点として追加した。",
+    whatChanged:"取適法の禁止行為を一般的な執行・是正として追う整理から、金型・治具等の無償保管を、発注停止、再使用予定、実質管理、費用負担、回収・廃棄まで別論点として追える整理へ更新した。",
+    affectedTopics:["fair-subcontract-transactions"],
+    affectedIssues:[{topic:"fair-subcontract-transactions",issue:"toriteki-tooling-storage",before:"専用論点なし",after:"Q119の判断要素と反復する勧告を基に、型等の保管・返却・廃棄・費用負担を独立管理"}],
+    before:"取適法の対象判定、価格協議、執行・是正を中心に整理し、型等の無償保管は不当な経済上の利益の提供要請の一例として個別管理していなかった。",
+    after:"型等について所有・実質管理、最終発注、次回発注予定、再使用可能性、保管費用、返却・廃棄を台帳と協議記録で継続管理する。",
+    keyPoints:["Q119は『最終稼働後1年間は無償』という扱いを否定","受託側から請求がなくても保管期間に応じた費用を支払う必要がある","委託者以外が所有していても委託者が事実上管理する型等を含む","2026年9月3日のニチリン勧告でも25事業者・1,048個の無償保管が問題となった"],
+    importance:"重要",
+    tags:["取適法","下請法","金型","治具","受託取引"],
+    confidence:"fact"
+  }
+]);

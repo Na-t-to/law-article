@@ -1,0 +1,26 @@
+window.SOURCE_DATA=(Array.isArray(window.SOURCE_DATA)?window.SOURCE_DATA:[]).concat([
+  {
+    id:"source-toriteki-tooling-storage-qa",
+    title:"よくある質問コーナー（取適法）Q119（型等の無償保管）",
+    type:"guideline",
+    typeLabel:"行政Q&A・運用解釈",
+    authority:"公正取引委員会",
+    publishedAt:"2025-05-01",
+    url:"https://www.jftc.go.jp/toriteki/toriteki_qa.html",
+    importance:"最高",
+    whyImportant:"2025年5月1日に旧下請法Q46として追加され、現行の取適法FAQではQ119として掲載されている型等の無償保管に関する公式Q&A。金型・木型・治具・検具・製造設備等について、発注状況、実質管理、保管費用、廃棄・回収、継続保管の判断を具体化している。",
+    topics:["fair-subcontract-transactions"]
+  },
+  {
+    id:"source-jftc-nichirin-tooling-storage-2026",
+    title:"株式会社ニチリンに対する勧告について",
+    type:"enforcement",
+    typeLabel:"行政処分・勧告",
+    authority:"公正取引委員会・中小企業庁",
+    publishedAt:"2026-09-03",
+    url:"https://www.jftc.go.jp/houdou/pressrelease/2026/sep/260903_kinki_toriteki.html",
+    importance:"高",
+    whyImportant:"金型・治具の無償保管について、25事業者・計1,048個を対象に旧下請法上の不当な経済上の利益の提供要請として勧告した最新の執行例。費用精算と再発防止に加え、2025年12月までの委託には旧法、2026年1月以降の委託には取適法が適用される経過関係も確認できる。",
+    topics:["fair-subcontract-transactions"]
+  }
+]);
