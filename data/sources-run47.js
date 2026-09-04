@@ -1,0 +1,26 @@
+window.SOURCE_DATA=(Array.isArray(window.SOURCE_DATA)?window.SOURCE_DATA:[]).concat([
+  {
+    id:"source-meti-corporate-takeover-guidelines-2023",
+    title:"企業買収における行動指針―企業価値の向上と株主利益の確保に向けて―",
+    type:"guideline",
+    typeLabel:"行政ガイドライン・ベストプラクティス",
+    authority:"経済産業省",
+    publishedAt:"2023-08-31",
+    url:"https://www.meti.go.jp/press/2023/08/20230831003/20230831003.html",
+    importance:"最高",
+    whyImportant:"上場会社の経営支配権を取得する買収を主な対象として、企業価値・株主共同の利益、株主意思、透明性の3原則と、買収提案を受けた取締役・取締役会の行動規範、買収者・対象会社の情報開示、買収への対応方針・対抗措置のベストプラクティスを示した基礎資料。",
+    topics:["listed-company-takeover-guidelines"]
+  },
+  {
+    id:"source-meti-corporate-takeover-guidelines-clarification-2026",
+    title:"「企業買収における行動指針」の解釈・ポイント・Q&A（2026年7月30日公表）",
+    type:"guideline",
+    typeLabel:"行政Q&A・解釈整理",
+    authority:"経済産業省",
+    publishedAt:"2026-07-30",
+    url:"https://www.meti.go.jp/press/2026/07/20260730002.html",
+    importance:"最高",
+    whyImportant:"2023年の行動指針を維持したまま、その趣旨の誤解や認識の乖離を解消するために公表された「解釈について」「ポイント」「Q&A」の公式パッケージ。望ましい買収、真摯な買収提案、真摯な検討、企業価値の定量・定性評価など、対象会社取締役会が実際に迷う場面の判断枠組みを具体化している。",
+    topics:["listed-company-takeover-guidelines"]
+  }
+]);
