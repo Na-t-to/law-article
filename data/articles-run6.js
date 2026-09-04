@@ -116,7 +116,7 @@ window.ARTICLE_DATA = (Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA 
     audienceReason: "2027年に向けたCG報告書・取締役会運営・開示方針の見直しを始める基準資料になるため。",
     categories: ["会社法", "コーポレートガバナンス", "開示・IR"],
     relatedTopics: ["corporate-governance-code-2026"],
-    relatedIssues: ["cg-principle-based", "cg-board-growth", "cg-disclosure-timing"],
+    relatedIssues: ["cg-code-principles-explain", "cg-code-growth-investment", "cg-code-board-function", "cg-code-pre-agm-disclosure", "cg-code-reporting-transition"],
     primarySourceIds: ["source-cg-code-2026"]
   },
   {
@@ -136,7 +136,7 @@ window.ARTICLE_DATA = (Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA 
     audienceReason: "コード改訂の本文と実務上の対応時期をつなぎ、取締役会・CG報告書・開示の改修計画を立てるのに向くため。",
     categories: ["会社法", "コーポレートガバナンス", "開示・IR"],
     relatedTopics: ["corporate-governance-code-2026"],
-    relatedIssues: ["cg-principle-based", "cg-board-growth", "cg-disclosure-timing"],
+    relatedIssues: ["cg-code-principles-explain", "cg-code-growth-investment", "cg-code-board-function", "cg-code-pre-agm-disclosure", "cg-code-reporting-transition"],
     primarySourceIds: ["source-cg-code-2026"]
   }
 ]);
