@@ -72,6 +72,7 @@ body[data-directory-page="topics"] .topic-stat {
   color: #5f6a65;
 }
 
+/* Keep progressive loading visually identical to the article library. */
 body[data-directory-page="topics"] .list-more {
   border-top: 1px solid var(--line);
   padding: 18px 12px 2px;
@@ -80,7 +81,7 @@ body[data-directory-page="topics"] .list-more {
 
 body[data-directory-page="topics"] .list-more-button {
   display: inline-flex;
-  min-width: 240px;
+  min-width: 260px;
   min-height: 46px;
   align-items: center;
   justify-content: center;
@@ -89,10 +90,12 @@ body[data-directory-page="topics"] .list-more-button {
   background: var(--surface);
   padding: 9px 14px;
   color: var(--ink);
+  font: inherit;
 }
 
 body[data-directory-page="topics"] .list-more-button strong {
   font-size: 11px;
+  font-weight: 700;
 }
 
 body[data-directory-page="topics"] .list-more-button small {
@@ -218,6 +221,53 @@ body[data-directory-page="reforms"] .reform-law-group > summary:focus-visible {
   outline-color: var(--state-color);
 }
 
+/* Floating top link shared by topic and reform directory pages. */
+body[data-directory-page] .floating-top {
+  position: fixed;
+  z-index: 20;
+  right: max(22px, env(safe-area-inset-right));
+  bottom: max(22px, env(safe-area-inset-bottom));
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(27, 37, 36, .82);
+  background: rgba(247, 246, 240, .97);
+  padding: 10px 13px;
+  color: var(--ink);
+  box-shadow: 0 8px 24px rgba(23, 33, 31, .15);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  opacity: .94;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .01em;
+  transition: opacity .16s ease, transform .16s ease, background .16s ease, color .16s ease;
+}
+
+body[data-directory-page] .floating-top span {
+  color: #8f382a;
+  font-size: 13px;
+}
+
+body[data-directory-page] .floating-top:hover,
+body[data-directory-page] .floating-top:focus-visible {
+  transform: translateY(-2px);
+  color: #fff;
+  background: var(--rail);
+  opacity: 1;
+}
+
+body[data-directory-page] .floating-top:hover span,
+body[data-directory-page] .floating-top:focus-visible span {
+  color: #f0c2ad;
+}
+
+body[data-directory-page] .floating-top:focus-visible {
+  outline: 2px solid #8f382a;
+  outline-offset: 2px;
+}
+
 @media (max-width: 680px) {
   body[data-directory-page="topics"] .field-filters {
     gap: 7px;
@@ -251,5 +301,13 @@ body[data-directory-page="reforms"] .reform-law-group > summary:focus-visible {
   body[data-directory-page="reforms"] .reform-state-badge {
     display: inline-flex;
     margin: 5px 0 0;
+  }
+
+  body[data-directory-page] .floating-top {
+    right: max(12px, env(safe-area-inset-right));
+    bottom: max(12px, env(safe-area-inset-bottom));
+    min-height: 44px;
+    padding: 9px 11px;
+    font-size: 9px;
   }
 }
