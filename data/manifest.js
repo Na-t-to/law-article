@@ -6,7 +6,7 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({
     "topics-run10.js?v=2", "topics-run11.js?v=2", "topics-run12.js?v=2", "topics-run13.js?v=2",
     "topics-run14.js?v=2", "topics-run15.js?v=2", "topics-run16.js?v=2", "topics-run17.js?v=2",
     "topics-run18.js?v=2", "topics-run19.js?v=2", "topics-run20.js?v=2", "topics-run21.js?v=2",
-    "topics-run22.js?v=2", "topics-run23.js?v=1", "topics-run24.js?v=1", "topics-run25.js?v=1", "topics-run26.js?v=1", "topics-run27.js?v=1", "topics-run28.js?v=1", "topics-run29.js?v=1", "topics-run30.js?v=1", "topics-run31.js?v=1", "topics-run32.js?v=1", "topics-run33.js?v=1", "topics-run34.js?v=2", "topics-run35.js?v=2", "topics-run36.js?v=1", "topics-run37.js?v=1", "topics-run38.js?v=1", "topics-run39.js?v=1"
+    "topics-run22.js?v=2", "topics-run23.js?v=1", "topics-run24.js?v=1", "topics-run25.js?v=1", "topics-run26.js?v=1", "topics-run27.js?v=1", "topics-run28.js?v=1", "topics-run29.js?v=1", "topics-run30.js?v=1", "topics-run31.js?v=1", "topics-run32.js?v=1", "topics-run33.js?v=1", "topics-run34.js?v=2", "topics-run35.js?v=2", "topics-run36.js?v=1", "topics-run37.js?v=1", "topics-run38.js?v=1", "topics-run39.js?v=2"
   ],
   sources: [
     "sources.js?v=10", "sources-extra.js?v=1",
