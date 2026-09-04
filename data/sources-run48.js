@@ -1,0 +1,14 @@
+window.SOURCE_DATA=(Array.isArray(window.SOURCE_DATA)?window.SOURCE_DATA:[]).concat([
+  {
+    id:"source-mof-fefta-bill-2026",
+    title:"第221回国会・外国為替及び外国貿易法の一部を改正する法律案",
+    type:"proposal",
+    typeLabel:"法律案・国会提出資料",
+    authority:"財務省",
+    publishedAt:"2026-03-17",
+    url:"https://www.mof.go.jp/about_mof/bills/221diet/index.html",
+    importance:"最高",
+    whyImportant:"2026年3月17日に国会提出された改正外為法案と概要・要綱・新旧対照表をまとめた財務省の一次資料。成立・公布前の記事について、間接取得規制やリスク軽減措置が当時は法案段階だったことを確認する基準になる。",
+    topics:["fefta-inward-investment-screening"]
+  }
+]);
