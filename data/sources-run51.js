@@ -1,0 +1,14 @@
+window.SOURCE_DATA=(Array.isArray(window.SOURCE_DATA)?window.SOURCE_DATA:[]).concat([
+  {
+    id:"source-privacy-law-2026-proposal",
+    title:"「個人情報の保護に関する法律等の一部を改正する法律案」の閣議決定について",
+    type:"law",
+    typeLabel:"法案・一次資料",
+    authority:"個人情報保護委員会",
+    publishedAt:"2026-04-07",
+    url:"https://www.ppc.go.jp/news/press/2026/260407/",
+    importance:"最高",
+    whyImportant:"2026年改正個人情報保護法の法案提出時点を確認できる一次資料。法案段階で公表された実務解説について、当時の改正段階を根拠付ける基準点になる。",
+    topics:["personal-information-protection-2026-amendment","ai-personal-data"]
+  }
+]);
