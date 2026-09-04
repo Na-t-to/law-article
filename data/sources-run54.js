@@ -1,0 +1,26 @@
+window.SOURCE_DATA=(Array.isArray(window.SOURCE_DATA)?window.SOURCE_DATA:[]).concat([
+  {
+    id:"source-moj-ai-publicity-guidance-2026",
+    title:"肖像、声等の無断利用による民事責任の在り方に関する検討会取りまとめ報告書―生成AIによるパブリシティ権侵害等に関する解釈指針―",
+    type:"government_report",
+    typeLabel:"法務省・解釈指針／生成AI・肖像・声",
+    authority:"法務省",
+    publishedAt:"2026-08-07",
+    url:"https://www.moj.go.jp/MINJI/minji05_00778.html",
+    importance:"最高",
+    whyImportant:"生成AIの普及等に伴う肖像・声等の無断利用について、パブリシティ権、肖像等をみだりに利用されない権利、損害賠償、差止請求、不正競争防止法等を現行法・判例法理から整理した法務省の公式報告書。新たな法律ではなく、生成AI利用時の民事責任を検討する基準点となる。",
+    topics:["ai-publicity-likeness-rights"]
+  },
+  {
+    id:"source-cas-generative-ai-ip-principle-code-2026",
+    title:"生成AIの適切な利活用等に向けた知的財産の保護及び透明性に関するプリンシプル・コード",
+    type:"guideline",
+    typeLabel:"政府ソフトロー・生成AI／知財保護・透明性",
+    authority:"知的財産戦略本部・内閣府知的財産戦略推進事務局",
+    publishedAt:"2026-08-25",
+    url:"https://www.cas.go.jp/jp/seisakukaigi/titeki2/ai_kentoukai/kaisai/index.html",
+    importance:"最高",
+    whyImportant:"生成AI事業者の透明性確保と知的財産権保護について、コンプライ・オア・エクスプレインを基本とする自主的な原則を示した政府のプリンシプル・コード。法令上の義務とは区別しつつ、生成AI開発・提供事業者の情報開示、知財保護措置、権利者等への対応を設計する基準になる。",
+    topics:["generative-ai-ip-principle-code"]
+  }
+]);
