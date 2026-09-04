@@ -1,0 +1,20 @@
+window.UPDATE_DATA=(Array.isArray(window.UPDATE_DATA)?window.UPDATE_DATA:[]).concat([
+  {
+    id:"update-freelance-remuneration-deduction-2026-09",
+    source:"source-jftc-jtop-freelance-recommendation-2026",
+    headline:"振込手数料控除を報酬減額の独立論点として追加",
+    publishedAt:"2026-09-04",
+    type:"summary-update",
+    typeLabel:"整理更新",
+    summary:"公取委の2025年10月の考え方改正と2026年8月のジェイトップ勧告を踏まえ、フリーランス報酬からの振込手数料控除を独立論点として追加した。",
+    whatChanged:"取引条件の明示と支払期日の管理を中心とした整理に、報酬からの控除・減額を追加した。2026年1月1日以降になされた1か月以上の業務委託では、合意の有無にかかわらず振込手数料を報酬から差し引くことが報酬減額に該当する点を明示した。",
+    affectedTopics:["freelance-law"],
+    affectedIssues:[{topic:"freelance-law",issue:"freelance-remuneration-reduction",before:"振込手数料等の控除を独立論点として管理していなかった。",after:"報酬減額禁止の観点から、振込手数料の控除、合意の効力、実費超過控除、支払設定を独立して確認する。"}],
+    before:"フリーランス法について、適用対象、取引条件の明示、報酬支払期日を中心に整理していた。",
+    after:"報酬支払時の振込手数料・その他控除について、契約上の合意だけでなく現行行政解釈と実際の支払ロジックを照合する。",
+    keyPoints:["2026年1月1日以降の1か月以上の業務委託では振込手数料控除は合意の有無にかかわらず報酬減額に該当","ジェイトップは138名について実費を超える合計481,031円を控除し勧告を受けた","契約条項だけでなく経理・振込システムの控除設定を点検する必要がある"],
+    importance:"重要",
+    tags:["フリーランス法","報酬減額","振込手数料","業務委託","支払管理"],
+    confidence:"fact"
+  }
+]);

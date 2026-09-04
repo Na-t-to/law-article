@@ -1,0 +1,23 @@
+window.ARTICLE_DATA=(Array.isArray(window.ARTICLE_DATA)?window.ARTICLE_DATA:[]).concat([
+  {
+    id:"article-jftc-jtop-freelance-recommendation-2026",
+    title:"株式会社ジェイトップに対する勧告について",
+    publisher:"公正取引委員会",
+    author:"公正取引委員会",
+    publishedAt:"2026-08-26",
+    collectedAt:"2026-09-04",
+    url:"https://www.jftc.go.jp/houdou/pressrelease/2026/aug/260826_jtop.html",
+    sourceType:"primary",
+    sourceLabel:"一次資料・フリーランス法／勧告事例",
+    status:"adopted",
+    summary:"家庭用電気製品の運送・設置工事・クリーニング等を委託していたフリーランス138名について、報酬振込時に受託者負担とする合意があったにもかかわらず、ジェイトップが実際に金融機関へ支払う振込手数料を超える合計481,031円を報酬から差し引いたとして、公正取引委員会が報酬減額禁止違反を認定し勧告した事案。公表資料は、2026年1月1日以降になされた1か月以上の業務委託では、合意の有無にかかわらず振込手数料を報酬から差し引くことが報酬減額に該当するとの現行解釈も明示している。",
+    whyImportant:["振込手数料の負担を契約で受託者側に置いていても、支払時の控除額と実費の差が報酬減額として執行対象になることを具体的に確認できる","2026年1月1日以降の1か月以上の業務委託では、合意の有無にかかわらず振込手数料控除自体が報酬減額に該当するため、契約条項だけでなく振込・経理設定の見直しが必要になる","少額の手数料控除でも138名・継続運用で積み上がれば行政勧告に至るため、発注・支払システムの差引ロジックを法務・経理で共同点検する材料になる"],
+    audience:["企業法務","調達・購買担当","経理・支払担当","事業部門の発注担当","業務委託管理担当"],
+    audienceReason:"フリーランスへの報酬支払について、振込手数料・その他の控除を契約上の合意だけで処理せず、現行の報酬減額禁止と実際の支払設定を照合するため。",
+    categories:["契約","労務"],
+    relatedTopics:["freelance-law"],
+    relatedIssues:["freelance-remuneration-reduction"],
+    primarySourceIds:["source-jftc-jtop-freelance-recommendation-2026","source-jftc-freelance-interpretation-2025"],
+    whatChanged:"報酬減額の整理を追加／振込手数料の控除について、2026年1月1日以降の1か月以上の業務委託では合意の有無にかかわらず報酬減額に該当する現行解釈と、実費超過控除に対する勧告事例をテーマへ反映した。"
+  }
+]);
