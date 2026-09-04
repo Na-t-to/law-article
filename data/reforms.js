@@ -341,5 +341,18 @@ window.REFORM_EVENT_DATA=(Array.isArray(window.REFORM_EVENT_DATA)?window.REFORM_
     effectiveDateNote:"有価証券に関する不公正取引規制等の見直し（4-1）は公布後1年以内の政令指定日",
     effectiveDateSourceIds:["source-fsa-fiea-unfair-trading-explanation-2026"],
     sourceIds:["source-fsa-market-system-wg-insider-2025","source-fsa-fiea-law-2026","source-fsa-fiea-unfair-trading-explanation-2026"]
+  },
+  {
+    id:"criminal-procedure-electronic-record-order-2025",
+    title:"刑事訴訟法・電磁的記録提供命令／秘密保持命令",
+    eventType:"law_amendment",
+    lawId:"criminal-procedure-electronic-record-order",
+    lawLabel:"刑事訴訟法・電磁的記録提供命令",
+    relatedTopics:["law-enforcement-data-production"],
+    effectiveDateStatus:"confirmed",
+    effectiveDates:["2026-05-21"],
+    effectiveDateSourceIds:["source-egov-criminal-procedure-electronic-record-2026"],
+    matchSourceIds:["source-moj-criminal-procedure-it-2025","source-egov-criminal-procedure-electronic-record-2026"],
+    sourceIds:["source-moj-criminal-procedure-it-2025","source-egov-criminal-procedure-electronic-record-2026"]
   }
 ]);
