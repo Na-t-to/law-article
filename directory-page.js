@@ -17,6 +17,8 @@
   if (page === "topics") {
     let selectedField = "all";
     let filtersExpanded = false;
+    let topicVisibleCount = 20;
+    const topicPageSize = 20;
     const collapsedFieldLimit = 8;
     const preferredFields = ["AI・デジタル", "個人情報", "労務", "契約", "会社法", "消費者法", "独占禁止法・競争法", "情報セキュリティ", "知的財産", "M&A", "国際取引"];
     const availableFields = [...new Set(topics.flatMap((topic) => topic.categories))];
@@ -36,12 +38,21 @@
       document.querySelector("#fieldFilters").innerHTML = buttons + more;
     };
 
+    const topicRow = (topic) => {
+      const latest = latestUpdateFor(topic);
+      return `<a class="topic-row" href="topics/${escapeHtml(topic.slug)}.html"><div class="topic-name-cell"><div class="topic-name-line"><strong>${escapeHtml(topic.title)}</strong>${topic.isNew ? `<span class="new-badge">NEW</span>` : ""}</div><div class="topic-categories">${topic.categories.map((category) => `<span>${escapeHtml(category)}</span>`).join(" / ")}</div></div><div class="topic-stat"><strong>${pad(topic.issues.length)}</strong><span>論点</span></div><div class="topic-stat"><strong>${pad(topic.sourceIds.length)}</strong><span>主要資料</span></div><div class="topic-change"><strong>最終更新 <time datetime="${escapeHtml(topic.lastUpdated)}">${escapeHtml(topic.lastUpdated)}</time></strong><small>${latest ? escapeHtml(latest.headline) : ""}</small></div></a>`;
+    };
+
     const renderTopics = () => {
       const visible = topics.filter((topic) => selectedField === "all" || topic.categories.includes(selectedField)).sort((left, right) => right.lastUpdated.localeCompare(left.lastUpdated));
-      document.querySelector("#topicList").innerHTML = visible.length ? visible.map((topic) => {
-        const latest = latestUpdateFor(topic);
-        return `<a class="topic-row" href="topics/${escapeHtml(topic.slug)}.html"><div class="topic-name-cell"><div class="topic-name-line"><strong>${escapeHtml(topic.title)}</strong>${topic.isNew ? `<span class="new-badge">NEW</span>` : ""}</div><div class="topic-categories">${topic.categories.map((category) => `<span>${escapeHtml(category)}</span>`).join(" / ")}</div></div><div class="topic-stat"><strong>${pad(topic.issues.length)}</strong><span>論点</span></div><div class="topic-stat"><strong>${pad(topic.sourceIds.length)}</strong><span>主要資料</span></div><div class="topic-change"><strong>最終更新 <time datetime="${escapeHtml(topic.lastUpdated)}">${escapeHtml(topic.lastUpdated)}</time></strong><small>${latest ? escapeHtml(latest.headline) : ""}</small></div></a>`;
-      }).join("") : `<div class="empty-inline">この分野のテーマはまだ登録されていません。</div>`;
+      const shown = visible.slice(0, topicVisibleCount);
+      const remaining = visible.length - shown.length;
+      if (!visible.length) {
+        document.querySelector("#topicList").innerHTML = `<div class="empty-inline">この分野のテーマはまだ登録されていません。</div>`;
+        return;
+      }
+      const more = remaining > 0 ? `<div class="list-more"><button class="list-more-button" type="button" data-topic-more><strong>さらに${Math.min(topicPageSize, remaining)}件表示</strong><small>${shown.length} / ${visible.length}件を表示中</small></button></div>` : "";
+      document.querySelector("#topicList").innerHTML = shown.map(topicRow).join("") + more;
     };
 
     document.querySelector("#topicCount").innerHTML = `<strong>${pad(topics.length)}</strong><span>テーマ</span>`;
@@ -55,7 +66,15 @@
       const button = event.target.closest("[data-field]");
       if (!button) return;
       selectedField = button.dataset.field;
+      topicVisibleCount = topicPageSize;
       renderFilters();
+      renderTopics();
+    });
+    document.querySelector("#topicList").addEventListener("click", (event) => {
+      const moreButton = event.target.closest("[data-topic-more]");
+      if (!moreButton) return;
+      event.preventDefault();
+      topicVisibleCount += topicPageSize;
       renderTopics();
     });
     renderFilters();
@@ -140,7 +159,10 @@
       const leftRank = stateRank[left.timingState];
       const rightRank = stateRank[right.timingState];
       if (leftRank !== rightRank) return leftRank - rightRank;
-      if (leftKey && rightKey) return rightKey.localeCompare(leftKey) || right.latestCollectedAt.localeCompare(left.latestCollectedAt);
+      if (leftKey && rightKey) {
+        if (left.timingState === "upcoming") return leftKey.localeCompare(rightKey) || right.latestCollectedAt.localeCompare(left.latestCollectedAt);
+        return rightKey.localeCompare(leftKey) || right.latestCollectedAt.localeCompare(left.latestCollectedAt);
+      }
       if (leftKey) return -1;
       if (rightKey) return 1;
       if (left.timingState !== right.timingState) return left.timingState === "unverified" ? -1 : 1;
@@ -159,7 +181,7 @@
       return `<details class="reform-law-group" data-timing-state="${escapeHtml(group.timingState)}" id="${escapeHtml(group.id)}"${selected ? " open" : ""}><summary><div><strong>${escapeHtml(group.title)}</strong><small>${escapeHtml(meta)}<time datetime="${escapeHtml(group.latestCollectedAt)}">${escapeHtml(group.latestCollectedAt)}</time><b class="reform-state-badge">${escapeHtml(stateLabel[group.timingState])}</b></small></div><span class="reform-effective-date">${escapeHtml(effectiveLabel(group))}</span><span class="reform-count">${pad(group.items.length)}件</span><em>記事を見る</em></summary><div class="reform-law-articles">${group.items.map(({ article }) => `<article><div><a href="article.html?id=${encodeURIComponent(article.id)}"><strong>${escapeHtml(article.title)}</strong></a><small>${escapeHtml(article.publisher)} / ${escapeHtml(article.sourceLabel)}</small></div><time class="reform-published-date" datetime="${escapeHtml(article.publishedAt)}">${escapeHtml(formatPublishedDate(article.publishedAt))}</time></article>`).join("")}</div></details>`;
     };
     const sections = [
-      { states: ["upcoming"], label: "施行前・適用前", hint: "確定した施行・適用日が遅いものから表示" },
+      { states: ["upcoming"], label: "施行前・適用前", hint: "確定した施行・適用日が近いものから表示" },
       { states: ["pending"], label: "予定・段階施行・時期未確定", hint: "予定日、相対期日、段階施行を確定日と分けて表示" },
       { states: ["completed"], label: "施行済み・適用済み", hint: "確定日が新しいものから表示" },
       { states: ["unverified", "unorganized"], label: "未確認・未整理", hint: "施行時期または改正イベントの整理待ち" }
