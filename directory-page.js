@@ -16,16 +16,24 @@
 
   if (page === "topics") {
     let selectedField = "all";
+    let filtersExpanded = false;
+    const collapsedFieldLimit = 8;
     const preferredFields = ["AI・デジタル", "個人情報", "労務", "契約", "会社法", "消費者法", "独占禁止法・競争法", "情報セキュリティ", "知的財産", "M&A", "国際取引"];
     const availableFields = [...new Set(topics.flatMap((topic) => topic.categories))];
     const fields = [...preferredFields.filter((field) => availableFields.includes(field)), ...availableFields.filter((field) => !preferredFields.includes(field)).sort((left, right) => left.localeCompare(right, "ja"))];
 
     const renderFilters = () => {
-      document.querySelector("#fieldFilters").innerHTML = ["all", ...fields].map((field) => {
+      const collapsedFields = fields.slice(0, collapsedFieldLimit);
+      const selectedIsHidden = selectedField !== "all" && !collapsedFields.includes(selectedField);
+      const visibleFields = filtersExpanded ? fields : [...collapsedFields, ...(selectedIsHidden ? [selectedField] : [])];
+      const hiddenCount = Math.max(0, fields.length - collapsedFieldLimit);
+      const buttons = ["all", ...visibleFields].map((field) => {
         const label = field === "all" ? "すべて" : field;
         const count = field === "all" ? topics.length : topics.filter((topic) => topic.categories.includes(field)).length;
         return `<button class="field-filter${selectedField === field ? " is-active" : ""}" type="button" data-field="${escapeHtml(field)}"><span>${escapeHtml(label)}</span><small>${pad(count)}</small></button>`;
       }).join("");
+      const more = hiddenCount ? `<button class="field-filter filter-more" type="button" data-filter-more aria-expanded="${filtersExpanded ? "true" : "false"}"><span>${filtersExpanded ? "表示を減らす" : "さらに表示"}</span><small>${filtersExpanded ? "−" : `+${hiddenCount}`}</small></button>` : "";
+      document.querySelector("#fieldFilters").innerHTML = buttons + more;
     };
 
     const renderTopics = () => {
@@ -38,6 +46,12 @@
 
     document.querySelector("#topicCount").innerHTML = `<strong>${pad(topics.length)}</strong><span>テーマ</span>`;
     document.querySelector("#fieldFilters").addEventListener("click", (event) => {
+      const moreButton = event.target.closest("[data-filter-more]");
+      if (moreButton) {
+        filtersExpanded = !filtersExpanded;
+        renderFilters();
+        return;
+      }
       const button = event.target.closest("[data-field]");
       if (!button) return;
       selectedField = button.dataset.field;
@@ -82,7 +96,18 @@
       return { article, reform, event, law };
     }).filter(({ reform }) => reform.isReform).sort((left, right) => (right.article.collectedAt || "").localeCompare(left.article.collectedAt || "") || right.article.publishedAt.localeCompare(left.article.publishedAt));
 
-    const todayKey = new Date().toISOString().slice(0, 10);
+    const now = new Date();
+    const todayKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+    const timingStateFor = (group) => {
+      const key = group.event ? (group.eventTiming?.sortKey || "") : (group.effectiveDate?.sortKey || "");
+      if (key) return key >= todayKey ? "upcoming" : "completed";
+      if (group.event && group.eventTiming) return "pending";
+      if (group.event) return "unverified";
+      return "unorganized";
+    };
+    const stateRank = Object.freeze({ upcoming: 0, pending: 1, completed: 2, unverified: 3, unorganized: 3 });
+    const stateLabel = Object.freeze({ upcoming: "施行前・適用前", pending: "施行時期未確定", completed: "施行済み・適用済み", unverified: "施行時期未確認", unorganized: "改正イベント未整理" });
+
     const groups = [...reforms.reduce((map, item) => {
       const groupId = item.event ? `event-${item.event.id}` : `legacy-${item.law.id}`;
       if (!map.has(groupId)) {
@@ -105,14 +130,16 @@
         if (candidate && (!group.effectiveDate || candidate.sortKey > group.effectiveDate.sortKey)) group.effectiveDate = candidate;
       }
       return map;
-    }, new Map()).values()].sort((left, right) => {
+    }, new Map()).values()].map((group) => ({ ...group, timingState: timingStateFor(group) })).sort((left, right) => {
       const leftKey = left.event ? (left.eventTiming?.sortKey || "") : (left.effectiveDate?.sortKey || "");
       const rightKey = right.event ? (right.eventTiming?.sortKey || "") : (right.effectiveDate?.sortKey || "");
-      const leftBucket = leftKey ? (leftKey >= todayKey ? 0 : 1) : 2;
-      const rightBucket = rightKey ? (rightKey >= todayKey ? 0 : 1) : 2;
-      if (leftBucket !== rightBucket) return leftBucket - rightBucket;
-      if (leftBucket === 0) return leftKey.localeCompare(rightKey) || right.latestCollectedAt.localeCompare(left.latestCollectedAt);
-      if (leftBucket === 1) return rightKey.localeCompare(leftKey) || right.latestCollectedAt.localeCompare(left.latestCollectedAt);
+      const leftRank = stateRank[left.timingState];
+      const rightRank = stateRank[right.timingState];
+      if (leftRank !== rightRank) return leftRank - rightRank;
+      if (leftKey && rightKey) return rightKey.localeCompare(leftKey) || right.latestCollectedAt.localeCompare(left.latestCollectedAt);
+      if (leftKey) return -1;
+      if (rightKey) return 1;
+      if (left.timingState !== right.timingState) return left.timingState === "unverified" ? -1 : 1;
       if (Boolean(left.event) !== Boolean(right.event)) return left.event ? -1 : 1;
       return right.latestCollectedAt.localeCompare(left.latestCollectedAt);
     });
@@ -122,14 +149,25 @@
       if (group.effectiveDate) return `施行日 ${group.effectiveDate.label}（記事単位の暫定整理）`;
       return "改正イベント未整理";
     };
+    const renderGroup = (group) => {
+      const selected = selectedLaw && (selectedLaw === group.law.id || selectedLaw === group.event?.id);
+      const meta = group.event ? `法令・制度 ${group.law.label} / 最終追加 ` : "最終追加 ";
+      return `<details class="reform-law-group" data-timing-state="${escapeHtml(group.timingState)}" id="${escapeHtml(group.id)}"${selected ? " open" : ""}><summary><div><strong>${escapeHtml(group.title)}</strong><small>${escapeHtml(meta)}<time datetime="${escapeHtml(group.latestCollectedAt)}">${escapeHtml(group.latestCollectedAt)}</time><b class="reform-state-badge">${escapeHtml(stateLabel[group.timingState])}</b></small></div><span class="reform-effective-date">${escapeHtml(effectiveLabel(group))}</span><span class="reform-count">${pad(group.items.length)}件</span><em>記事を見る</em></summary><div class="reform-law-articles">${group.items.map(({ article }) => `<article><div><a href="article.html?id=${encodeURIComponent(article.id)}"><strong>${escapeHtml(article.title)}</strong></a><small>${escapeHtml(article.publisher)} / ${escapeHtml(article.sourceLabel)}</small></div><time class="reform-published-date" datetime="${escapeHtml(article.publishedAt)}">${escapeHtml(formatPublishedDate(article.publishedAt))}</time></article>`).join("")}</div></details>`;
+    };
+    const sections = [
+      { states: ["upcoming"], label: "施行前・適用前", hint: "施行・適用が遅いものから表示" },
+      { states: ["pending"], label: "施行時期未確定", hint: "相対期日・段階施行など具体日未確定" },
+      { states: ["completed"], label: "施行済み・適用済み", hint: "新しいものから表示" },
+      { states: ["unverified", "unorganized"], label: "未確認・未整理", hint: "施行時期または改正イベントの整理待ち" }
+    ];
 
     const eventCount = groups.filter((group) => group.event).length;
     const unorganizedArticleCount = groups.filter((group) => !group.event).reduce((sum, group) => sum + group.items.length, 0);
     document.querySelector("#reformCount").innerHTML = `<strong>${pad(eventCount)}</strong><span>改正イベント${unorganizedArticleCount ? ` / 未整理 ${pad(unorganizedArticleCount)}記事` : ""}</span>`;
-    document.querySelector("#reformList").innerHTML = groups.length ? groups.map((group) => {
-      const selected = selectedLaw && (selectedLaw === group.law.id || selectedLaw === group.event?.id);
-      const meta = group.event ? `法令・制度 ${group.law.label} / 最終追加 ` : "最終追加 ";
-      return `<details class="reform-law-group" id="${escapeHtml(group.id)}"${selected ? " open" : ""}><summary><div><strong>${escapeHtml(group.title)}</strong><small>${escapeHtml(meta)}<time datetime="${escapeHtml(group.latestCollectedAt)}">${escapeHtml(group.latestCollectedAt)}</time></small></div><span class="reform-effective-date">${escapeHtml(effectiveLabel(group))}</span><span class="reform-count">${pad(group.items.length)}件</span><em>記事を見る</em></summary><div class="reform-law-articles">${group.items.map(({ article }) => `<article><div><a href="article.html?id=${encodeURIComponent(article.id)}"><strong>${escapeHtml(article.title)}</strong></a><small>${escapeHtml(article.publisher)} / ${escapeHtml(article.sourceLabel)}</small></div><time class="reform-published-date" datetime="${escapeHtml(article.publishedAt)}">${escapeHtml(formatPublishedDate(article.publishedAt))}</time></article>`).join("")}</div></details>`;
+    document.querySelector("#reformList").innerHTML = groups.length ? sections.map((section) => {
+      const sectionGroups = groups.filter((group) => section.states.includes(group.timingState));
+      if (!sectionGroups.length) return "";
+      return `<section class="reform-status-section" data-timing-section="${escapeHtml(section.states[0])}"><div class="reform-status-heading"><strong>${escapeHtml(section.label)}</strong><small>${escapeHtml(section.hint)}</small><span>${pad(sectionGroups.length)}件</span></div>${sectionGroups.map(renderGroup).join("")}</section>`;
     }).join("") : `<div class="empty-inline">法改正に該当する記事・資料はまだありません。</div>`;
     if (selectedLaw) {
       const target = groups.find((group) => selectedLaw === group.law.id || selectedLaw === group.event?.id);
