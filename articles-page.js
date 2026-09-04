@@ -16,10 +16,32 @@
   let selectedField = "all";
   let selectedLaw = query.get("law") || "all";
   let reformsOnly = query.get("view") === "reforms";
+  let filtersExpanded = false;
 
   window.assertKnowledgeData?.(topics, sources, allArticles);
 
-  const fields = ["すべて", ...new Set(articles.flatMap((article) => article.categories))];
+  const fieldValues = [...new Set(articles.flatMap((article) => article.categories))];
+  const preferredFieldOrder = [
+    "AI・デジタル",
+    "個人情報",
+    "労務",
+    "労務・人事",
+    "契約",
+    "契約・取引",
+    "会社法",
+    "M&A",
+    "独占禁止法・競争法",
+    "情報セキュリティ",
+    "知的財産",
+    "消費者法・表示",
+    "危機管理・コンプライアンス",
+    "国際取引"
+  ];
+  const primaryFields = [
+    ...preferredFieldOrder.filter((field) => fieldValues.includes(field)),
+    ...fieldValues.filter((field) => !preferredFieldOrder.includes(field))
+  ].slice(0, 8);
+  const secondaryFields = fieldValues.filter((field) => !primaryFields.includes(field));
   const topicsForArticle = (article) => article.relatedTopics.map((slug) => topics.find((topic) => topic.slug === slug)).filter(Boolean);
   const topicNames = (article) => topicsForArticle(article).map((topic) => topic.title);
   const isLegalReform = (article) => window.getLegalReformInfo?.(article, topics)?.isReform || false;
@@ -45,19 +67,28 @@
     (Number(a.__collectionItem ?? 0) - Number(b.__collectionItem ?? 0)) ||
     (b.publishedAt || "").localeCompare(a.publishedAt || "");
 
-  const articleRow = (article) => `<article class="article-row"><time class="article-added-date" datetime="${escapeHtml(article.collectedAt)}"><span>追加</span>${escapeHtml(article.collectedAt)}</time><div class="article-main-cell"><a class="article-title-link" href="article.html?id=${encodeURIComponent(article.id)}"><strong>${escapeHtml(article.title)}</strong></a><small>${escapeHtml(article.publisher)} / ${escapeHtml(article.sourceLabel)}</small></div><time class="article-published-date" datetime="${escapeHtml(article.publishedAt)}"><span>公開</span>${escapeHtml(article.publishedAt)}</time><div class="article-topics">${topicsForArticle(article).map((topic) => `<a href="topics/${escapeHtml(topic.slug)}.html">${escapeHtml(topic.title)} →</a>`).join("")}</div><a class="article-impact" href="article.html?id=${encodeURIComponent(article.id)}">${escapeHtml(changeSummary(article))}</a></article>`;
+  const articleRow = (article) => {
+    const impact = changeSummary(article);
+    return `<article class="article-row"><time class="article-added-date" datetime="${escapeHtml(article.collectedAt)}"><span>追加</span>${escapeHtml(article.collectedAt)}</time><div class="article-main-cell"><a class="article-title-link" href="article.html?id=${encodeURIComponent(article.id)}"><strong>${escapeHtml(article.title)}</strong></a><small>${escapeHtml(article.publisher)} / ${escapeHtml(article.sourceLabel)}</small></div><time class="article-published-date" datetime="${escapeHtml(article.publishedAt)}"><span>公開</span>${escapeHtml(article.publishedAt)}</time><div class="article-topics">${topicsForArticle(article).map((topic) => `<a href="topics/${escapeHtml(topic.slug)}.html" aria-label="${escapeHtml(topic.title)}のテーマページへ">${escapeHtml(topic.title)} →</a>`).join("")}</div><a class="article-impact" href="article.html?id=${encodeURIComponent(article.id)}" title="${escapeHtml(impact)}">${escapeHtml(impact)}</a></article>`;
+  };
+
+  const fieldButton = (value, label) => {
+    const count = value === "all" ? articles.length : articles.filter((article) => article.categories.includes(value)).length;
+    const active = selectedField === value;
+    return `<button class="field-filter${active ? " is-active" : ""}" type="button" data-article-field="${escapeHtml(value)}" aria-pressed="${active}"><span>${escapeHtml(label)}</span><small>${String(count).padStart(2, "0")}</small></button>`;
+  };
 
   const renderFilters = () => {
     if (reformsOnly) {
       $("#articleFilters").innerHTML = `<button class="field-filter reform-filter" type="button" data-reform-filter><span>記事一覧へ戻る</span></button><button class="field-filter${selectedLaw === "all" ? " is-active" : ""}" type="button" data-reform-law="all"><span>法令すべて</span><small>${String(reformCount).padStart(2, "0")}</small></button>${reformLaws.map((law) => `<button class="field-filter${selectedLaw === law.id ? " is-active" : ""}" type="button" data-reform-law="${escapeHtml(law.id)}"><span>${escapeHtml(law.label)}</span><small>${String(law.count).padStart(2, "0")}</small></button>`).join("")}`;
       return;
     }
+
     const reformFilter = `<button class="field-filter reform-filter" type="button" data-reform-filter><span>法改正のみ</span><small>${String(reformCount).padStart(2, "0")}</small></button>`;
-    $("#articleFilters").innerHTML = reformFilter + fields.map((field) => {
-      const value = field === "すべて" ? "all" : field;
-      const count = value === "all" ? articles.length : articles.filter((article) => article.categories.includes(value)).length;
-      return `<button class="field-filter${selectedField === value ? " is-active" : ""}" type="button" data-article-field="${escapeHtml(value)}"><span>${escapeHtml(field)}</span><small>${String(count).padStart(2, "0")}</small></button>`;
-    }).join("");
+    const categoryFields = filtersExpanded ? [...primaryFields, ...secondaryFields] : primaryFields;
+    const categoryButtons = fieldButton("all", "すべて") + categoryFields.map((field) => fieldButton(field, field)).join("");
+    const moreButton = secondaryFields.length ? `<button class="field-filter filter-more${filtersExpanded ? " is-expanded" : ""}" type="button" data-filter-more aria-expanded="${filtersExpanded}"><span>${filtersExpanded ? (secondaryFields.includes(selectedField) ? "主要カテゴリへ戻る" : "カテゴリを閉じる") : "さらに表示"}</span><small>${filtersExpanded ? "−" : `+${secondaryFields.length}`}</small></button>` : "";
+    $("#articleFilters").innerHTML = reformFilter + categoryButtons + moreButton;
   };
 
   const renderArticles = () => {
@@ -76,12 +107,22 @@
 
   $("#articleFilters").addEventListener("click", (event) => {
     const reformButton = event.target.closest("[data-reform-filter]");
-    const fieldButton = event.target.closest("[data-article-field]");
+    const field = event.target.closest("[data-article-field]");
     const lawButton = event.target.closest("[data-reform-law]");
-    if (!reformButton && !fieldButton && !lawButton) return;
-    if (reformButton) { reformsOnly = !reformsOnly; selectedField = "all"; selectedLaw = "all"; }
-    if (fieldButton) selectedField = fieldButton.dataset.articleField;
+    const moreButton = event.target.closest("[data-filter-more]");
+    if (!reformButton && !field && !lawButton && !moreButton) return;
+
+    if (reformButton) { reformsOnly = !reformsOnly; selectedField = "all"; selectedLaw = "all"; filtersExpanded = false; }
+    if (field) {
+      selectedField = field.dataset.articleField;
+      if (secondaryFields.includes(selectedField)) filtersExpanded = true;
+    }
     if (lawButton) selectedLaw = lawButton.dataset.reformLaw;
+    if (moreButton) {
+      if (filtersExpanded && secondaryFields.includes(selectedField)) selectedField = "all";
+      filtersExpanded = !filtersExpanded;
+    }
+
     const url = new URL(window.location.href);
     if (reformsOnly) url.searchParams.set("view", "reforms");
     else url.searchParams.delete("view");
