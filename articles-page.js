@@ -17,6 +17,8 @@
   let selectedLaw = query.get("law") || "all";
   let reformsOnly = query.get("view") === "reforms";
   let filtersExpanded = false;
+  let articleVisibleCount = 30;
+  const articlePageSize = 30;
 
   window.assertKnowledgeData?.(topics, sources, allArticles);
 
@@ -100,7 +102,13 @@
     $("#libraryCount").innerHTML = `<strong>${String(visible.length).padStart(2, "0")}</strong><span>件</span>`;
     $("#articleLibrary").classList.toggle("is-grouped", reformsOnly);
     if (!visible.length) { $("#articleLibrary").innerHTML = `<div class="empty-inline">条件に合う記事・資料はありません。</div>`; return; }
-    if (!reformsOnly) { $("#articleLibrary").innerHTML = visible.map(articleRow).join(""); return; }
+    if (!reformsOnly) {
+      const shown = visible.slice(0, articleVisibleCount);
+      const remaining = visible.length - shown.length;
+      const more = remaining > 0 ? `<div class="list-more"><button class="list-more-button" type="button" data-article-more><strong>さらに${Math.min(articlePageSize, remaining)}件表示</strong><small>${shown.length} / ${visible.length}件を表示中</small></button></div>` : "";
+      $("#articleLibrary").innerHTML = shown.map(articleRow).join("") + more;
+      return;
+    }
     const visibleGroups = reformLaws.map((law) => ({ law, articles: visible.filter((article) => reformLaw(article).id === law.id) })).filter((group) => group.articles.length);
     $("#articleLibrary").innerHTML = visibleGroups.map(({ law, articles: lawArticles }) => `<section class="reform-library-group" aria-labelledby="law-${escapeHtml(law.id)}"><div class="reform-library-heading"><h3 id="law-${escapeHtml(law.id)}">${escapeHtml(law.label)}</h3><span>${String(lawArticles.length).padStart(2, "0")}件</span></div><div class="article-index reform-library-articles">${lawArticles.map(articleRow).join("")}</div></section>`).join("");
   };
@@ -112,14 +120,15 @@
     const moreButton = event.target.closest("[data-filter-more]");
     if (!reformButton && !field && !lawButton && !moreButton) return;
 
-    if (reformButton) { reformsOnly = !reformsOnly; selectedField = "all"; selectedLaw = "all"; filtersExpanded = false; }
+    if (reformButton) { reformsOnly = !reformsOnly; selectedField = "all"; selectedLaw = "all"; filtersExpanded = false; articleVisibleCount = articlePageSize; }
     if (field) {
       selectedField = field.dataset.articleField;
+      articleVisibleCount = articlePageSize;
       if (secondaryFields.includes(selectedField)) filtersExpanded = true;
     }
-    if (lawButton) selectedLaw = lawButton.dataset.reformLaw;
+    if (lawButton) { selectedLaw = lawButton.dataset.reformLaw; articleVisibleCount = articlePageSize; }
     if (moreButton) {
-      if (filtersExpanded && secondaryFields.includes(selectedField)) selectedField = "all";
+      if (filtersExpanded && secondaryFields.includes(selectedField)) { selectedField = "all"; articleVisibleCount = articlePageSize; }
       filtersExpanded = !filtersExpanded;
     }
 
@@ -132,7 +141,16 @@
     renderFilters();
     renderArticles();
   });
-  $("#articleSearch").addEventListener("input", renderArticles);
+  $("#articleLibrary").addEventListener("click", (event) => {
+    const moreButton = event.target.closest("[data-article-more]");
+    if (!moreButton) return;
+    articleVisibleCount += articlePageSize;
+    renderArticles();
+  });
+  $("#articleSearch").addEventListener("input", () => {
+    articleVisibleCount = articlePageSize;
+    renderArticles();
+  });
   renderFilters();
   renderArticles();
 })();
