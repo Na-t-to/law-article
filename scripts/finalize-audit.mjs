@@ -12,3 +12,9 @@ const validator='scripts/validate-data.mjs';
 let v=fs.readFileSync(validator,'utf8');
 v=v.replace('const context = { window: {} };','const context = { window: {}, URL };');
 fs.writeFileSync(validator,v);
+
+const readme='README.md';
+let r=fs.readFileSync(readme,'utf8');
+r=r.replace('`data/articles*.js` — 記事・資料。', '`data/articles.js` — 記事・資料。');
+r=r.replace('- `lastVerified` は、関連情報を確認した最新日です。採用記事が「整理変更なし」と判定された場合、記事の `collectedAt` から関連テーマの確認日だけを進めます。\n- 読み込み時に記事・更新履歴から `lastVerified` を再計算するため、テーマデータの再生成で確認日が巻き戻っても復元できます。`lastUpdated` はこの処理では変更しません。', '- `lastVerified` は、テーマ本文・一次資料を実際に照合し「整理変更なし」を含めて検証した最新日です。記事の収録や自動推定だけでは進めません。\n- 記事データから検証候補日を監査することはできますが、読み込み時に `lastVerified` を自動更新しません。検証日を進める場合は、一次資料との照合結果を確認してテーマデータを明示更新します。');
+fs.writeFileSync(readme,r);
