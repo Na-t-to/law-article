@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import pathModule from 'node:path';
 const path='data/schema.js';
 let s=fs.readFileSync(path,'utf8');
 if(!s.includes('const normalizeKnowledgeUrl =')){
@@ -18,3 +19,10 @@ let r=fs.readFileSync(readme,'utf8');
 r=r.replace('`data/articles*.js` — 記事・資料。', '`data/articles.js` — 記事・資料。');
 r=r.replace('- `lastVerified` は、関連情報を確認した最新日です。採用記事が「整理変更なし」と判定された場合、記事の `collectedAt` から関連テーマの確認日だけを進めます。\n- 読み込み時に記事・更新履歴から `lastVerified` を再計算するため、テーマデータの再生成で確認日が巻き戻っても復元できます。`lastUpdated` はこの処理では変更しません。', '- `lastVerified` は、テーマ本文・一次資料を実際に照合し「整理変更なし」を含めて検証した最新日です。記事の収録や自動推定だけでは進めません。\n- 記事データから検証候補日を監査することはできますが、読み込み時に `lastVerified` を自動更新しません。検証日を進める場合は、一次資料との照合結果を確認してテーマデータを明示更新します。');
 fs.writeFileSync(readme,r);
+
+const walk=(dir)=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(entry=>entry.isDirectory()?walk(pathModule.join(dir,entry.name)):[pathModule.join(dir,entry.name)]);
+for(const file of walk('.').filter(file=>file.endsWith('.html'))){
+  let html=fs.readFileSync(file,'utf8');
+  html=html.replace(/data\/manifest\.js\?v=\d+/g,'data/manifest.js?v=18');
+  fs.writeFileSync(file,html);
+}
