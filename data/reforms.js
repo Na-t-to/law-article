@@ -713,5 +713,31 @@ window.REFORM_EVENT_DATA = [
     "sourceIds": [
       "source-caa-consumer-contract-interim-draft-2026"
     ]
+  },
+  {
+    "id": "economic-security-promotion-jbic-2026-amendment",
+    "title": "経済安全保障推進法・JBIC法 2026年改正",
+    "eventType": "law_amendment",
+    "lawId": "economic-security-promotion-act-jbic-act",
+    "lawLabel": "経済安全保障推進法・株式会社国際協力銀行法",
+    "relatedTopics": [
+      "economic-security-tech-control"
+    ],
+    "effectiveDateStatus": "phased",
+    "effectiveDates": [
+      "2026-07-17"
+    ],
+    "effectiveDateNote": "2026年7月17日に先端的な重要技術の開発支援の基金対象拡大と基幹インフラ制度の一部運用改善が施行。重要物資支援・その他の運用改善・シンクタンク・官民協議会は公布後6月以内、OESA・JBIC法改正は公布後1年以内、医療分野の追加は公布後1年6月以内に段階施行。",
+    "effectiveDateSourceIds": [
+      "source-cao-economic-security-promotion-jbic-overview-2026"
+    ],
+    "matchSourceIds": [
+      "source-cao-economic-security-promotion-jbic-amendment-2026",
+      "source-cao-economic-security-promotion-jbic-overview-2026"
+    ],
+    "sourceIds": [
+      "source-cao-economic-security-promotion-jbic-amendment-2026",
+      "source-cao-economic-security-promotion-jbic-overview-2026"
+    ]
   }
 ];

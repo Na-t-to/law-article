@@ -2165,5 +2165,33 @@ window.SOURCE_DATA = [
     "topics": [
       "consumer-contract-law-review-2026"
     ]
+  },
+  {
+    "id": "source-cao-economic-security-promotion-jbic-amendment-2026",
+    "title": "経済安全保障推進法（令和8年改正）・公式ページ",
+    "type": "law",
+    "typeLabel": "改正法・公的資料",
+    "authority": "内閣府",
+    "publishedAt": "2026-06-17",
+    "url": "https://www.cao.go.jp/keizai_anzen_hosho/suishinhou/suishinhou.html",
+    "importance": "最高",
+    "whyImportant": "2026年改正の成立・公布と、OESA、官民協議会、調査研究を含む制度全体の公式な基準点。",
+    "topics": [
+      "economic-security-tech-control"
+    ]
+  },
+  {
+    "id": "source-cao-economic-security-promotion-jbic-overview-2026",
+    "title": "経済安全保障推進法及び株式会社国際協力銀行法の一部を改正する法律案の概要",
+    "type": "guideline",
+    "typeLabel": "改正法・制度概要",
+    "authority": "内閣府",
+    "publishedAt": "2026-03-13",
+    "url": "https://www.cao.go.jp/keizai_anzen_hosho/suishinhou/doc/houangaiyo.pdf",
+    "importance": "最高",
+    "whyImportant": "重要物資、基幹インフラ、重要技術、OESA・JBIC、官民協議会等の改正内容と段階的な施行時期を項目別に確認できる。",
+    "topics": [
+      "economic-security-tech-control"
+    ]
   }
 ];

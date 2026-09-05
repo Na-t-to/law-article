@@ -10150,5 +10150,84 @@ window.ARTICLE_DATA = [
       "source-civil-code-current"
     ],
     "whatChanged": "新規テーマの基礎解説／EC利用規約の定型約款・不当条項と表示方法を、2026年見直しを読むための現行法の基準点として追加。"
+  },
+  {
+    "id": "article-cao-economic-security-promotion-jbic-amendment-2026",
+    "title": "経済安全保障推進法（令和8年改正）",
+    "publisher": "内閣府",
+    "author": "内閣府 政策統括官（経済安全保障担当）",
+    "publishedAt": "2026-06-17",
+    "collectedAt": "2026-09-06",
+    "url": "https://www.cao.go.jp/keizai_anzen_hosho/suishinhou/suishinhou.html",
+    "sourceType": "primary",
+    "sourceLabel": "一次資料・改正法／制度概要",
+    "status": "adopted",
+    "summary": "2026年6月10日に成立、6月17日に公布された経済安全保障推進法・JBIC法改正の公式ページ。重要物資の安定供給支援、基幹インフラ、重要技術支援を見直し、経済安保海外事業促進制度（OESA）、官民協議会、総合的な調査研究機能を新設する。施行は公布後1月から1年6月以内の段階施行で、2026年9月時点では一部のみ施行済み。",
+    "whyImportant": [
+      "経済安全保障推進法の2026年改正を、成立・公布済みの確定法として追う基準点になる",
+      "重要物資・基幹インフラ・重要技術・海外事業支援を別々の制度としてではなく、一つの改正パッケージとして把握できる",
+      "段階施行のため、施行済み部分と今後の政省令・指定待ちの部分を分けて社内対応を管理できる"
+    ],
+    "audience": [
+      "企業法務",
+      "経済安全保障・輸出管理担当",
+      "サプライチェーン・調達担当",
+      "事業開発・海外事業担当"
+    ],
+    "audienceReason": "自社の供給網、重要設備、研究開発、海外事業が改正後の支援・規制・官民連携のどこに接続し得るかを、確定法と施行時期から確認するため。",
+    "categories": [
+      "危機管理・コンプライアンス",
+      "国際取引"
+    ],
+    "relatedTopics": [
+      "economic-security-tech-control"
+    ],
+    "relatedIssues": [
+      "econsec-governance"
+    ],
+    "primarySourceIds": [
+      "source-cao-economic-security-promotion-jbic-amendment-2026",
+      "source-cao-economic-security-promotion-jbic-overview-2026"
+    ]
+  },
+  {
+    "id": "article-ohebashi-economic-security-law-2026",
+    "title": "経済安全保障法制各論～経済安全保障推進法・外為法（1）",
+    "publisher": "Business & Law",
+    "author": "福冨 友美（弁護士法人大江橋法律事務所）",
+    "publishedAt": "2026-08-17",
+    "collectedAt": "2026-09-06",
+    "url": "https://businessandlaw.jp/articles/a20260817-1/",
+    "sourceType": "secondary",
+    "sourceLabel": "法律事務所弁護士・実務解説",
+    "status": "adopted",
+    "summary": "経済安全保障推進法と外為法の投資審査を、企業が自社への影響範囲を把握するための法制マップとして整理した実務解説。令和8年改正について、重要物資の供給に不可欠な役務への支援・協力要請、基幹インフラへの医療追加、重要技術支援、OESA・JBICによる海外事業支援などを既存制度との関係から解説する。",
+    "whyImportant": [
+      "改正項目を一次資料の要約で終わらせず、事業・サプライチェーン・投資審査のどこに影響するかへ落としている",
+      "主務大臣の協力要請や認定供給確保事業者からの働きかけなど、改正後に企業側で検討すべき関与場面が具体的に分かる",
+      "経済安全保障推進法と外為法投資審査を同じ実務マップで扱うため、法務・コンプライアンスの担当範囲を整理しやすい"
+    ],
+    "audience": [
+      "企業法務",
+      "経済安全保障・輸出管理担当",
+      "M&A・投資担当",
+      "サプライチェーン・調達担当"
+    ],
+    "audienceReason": "複数の経済安全保障制度を、自社事業・投資・供給網のどこで確認するかという実務単位へ落とすため。",
+    "categories": [
+      "危機管理・コンプライアンス",
+      "国際取引",
+      "M&A"
+    ],
+    "relatedTopics": [
+      "economic-security-tech-control"
+    ],
+    "relatedIssues": [
+      "econsec-governance"
+    ],
+    "primarySourceIds": [
+      "source-cao-economic-security-promotion-jbic-amendment-2026",
+      "source-cao-economic-security-promotion-jbic-overview-2026"
+    ]
   }
 ];
