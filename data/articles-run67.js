@@ -1,0 +1,23 @@
+window.ARTICLE_DATA=(Array.isArray(window.ARTICLE_DATA)?window.ARTICLE_DATA:[]).concat([
+  {
+    id:"article-not-ai-civil-liability-governance-2026",
+    title:"＜AI Update＞「AI利活用における民事責任の解釈適用に関する手引き」の概要と事業者におけるAIガバナンスへの示唆",
+    publisher:"長島・大野・常松法律事務所",
+    author:"殿村桂司、小松諒、羽鳥貴広、松宮優貴、山本安珠",
+    publishedAt:"2026-04-22",
+    collectedAt:"2026-09-05",
+    url:"https://www.nagashima.com/publications/publication20260422-1/",
+    sourceType:"secondary",
+    sourceLabel:"法律事務所・実務解説／AI・民事責任",
+    status:"adopted",
+    summary:"経済産業省の2026年4月9日『AI利活用における民事責任の解釈適用に関する手引き〔第1.0版〕』を、不法行為・製造物責任だけでなく、立証・国際手続とAIガバナンスまで含めて実務向けに整理した解説。AI事案では技術的専門性と証拠偏在から文書提出命令、過失・欠陥の事実上の推定、統計的リスクと因果関係が問題となり得ることを示し、同時にガイドライン適合が直ちに免責を意味するものではないと整理する。",
+    whyImportant:["既存テーマで薄かった『事故後に何をどう立証するか』を補い、AI開発・提供・利用過程の文書やログを平時から残す意味を紛争実務へ接続できる。","AI事業者ガイドラインへの適合・不適合が自動的に過失の有無を決めるわけではない一方、合理的なリスク調査・体制構築・回避措置が予見可能性や結果回避義務の評価で考慮され得るという関係を整理している。","国境を跨ぐAIサービスでは国際裁判管轄、準拠法、外国判決・仲裁判断の承認執行も別途問題になることを確認でき、契約・紛争対応まで視野を広げられる。"],
+    audience:["企業法務","AI・DX推進","AIサービス提供者","紛争・リスク管理"],
+    audienceReason:"AI事故を予防するガバナンスだけでなく、実際に紛争化した場合の証拠保全・立証・国際手続まで含めて運用設計を見直すため。",
+    categories:["AI・デジタル","契約・取引","危機管理・コンプライアンス"],
+    relatedTopics:["ai-civil-liability"],
+    relatedIssues:["ai-liability-classification","ai-liability-user-duty","ai-liability-provider-duty","ai-liability-proof-procedure"],
+    primarySourceIds:["source-meti-ai-civil-liability-guidance-2026"],
+    whatChanged:"テーマ更新／AI民事責任の整理に立証・証拠偏在・国際手続とAIガバナンスの訴訟上の意味を追加"
+  }
+]);
