@@ -25,7 +25,7 @@ const articles = context.window.ARTICLE_DATA || [];
 const verificationAdvances = context.window.applyTopicVerificationDates(topics, articles, updates);
 const reformStageValues = new Set(["proposal", "finalized_pending", "partially_effective", "effective"]);
 const reformEventTypes = new Set(["law_amendment", "new_law", "regulation_or_guideline", "policy_review"]);
-const effectiveDateStatuses = new Set(["confirmed", "planned", "relative", "phased"]);
+const effectiveDateStatuses = new Set(["confirmed", "planned", "relative", "phased", "unknown"]);
 const sourceIds = new Set(sources.map((source) => source.id));
 const topicIds = new Set(topics.map((topic) => topic.slug));
 const articleIds = new Set(articles.map((article) => article.id));
@@ -61,7 +61,7 @@ for (const event of reformEvents) {
     else event.articleIds.filter((id) => !articleIds.has(id)).forEach((id) => reformEventErrors.push(`${path}: articleId "${id}" は存在しません。`));
   }
 
-  const status = event.effectiveDateStatus;
+  const status = event.effectiveDateStatus || "unknown";
   if (!effectiveDateStatuses.has(status)) reformEventErrors.push(`${path}: effectiveDateStatus "${status}" は定義外です。`);
   const hasSingleEffectiveDate = Object.prototype.hasOwnProperty.call(event, "effectiveDate");
   const hasMultipleEffectiveDates = Object.prototype.hasOwnProperty.call(event, "effectiveDates");
@@ -72,12 +72,14 @@ for (const event of reformEvents) {
   if (hasMultipleEffectiveDates && !Array.isArray(event.effectiveDates)) reformEventErrors.push(`${path}: effectiveDates は配列で指定してください。`);
   effectiveDateValues.filter((value) => !context.window.parseLegalReformEffectiveDate?.(value)).forEach((value) => reformEventErrors.push(`${path}: effectiveDate "${value}" は YYYY-MM-DD または YYYY-MM の実在する日付で指定してください。`));
 
-  if (!Array.isArray(event.effectiveDateSourceIds) || !event.effectiveDateSourceIds.length) {
+  const hasEffectiveDateSources = Array.isArray(event.effectiveDateSourceIds) && event.effectiveDateSourceIds.length > 0;
+  if (status !== "unknown" && !hasEffectiveDateSources) {
     reformEventErrors.push(`${path}: 施行時期を登録する場合は effectiveDateSourceIds を1件以上指定してください。`);
-  } else {
+  } else if (hasEffectiveDateSources) {
     event.effectiveDateSourceIds.filter((id) => !sourceIds.has(id)).forEach((id) => reformEventErrors.push(`${path}: effectiveDateSourceId "${id}" は存在しません。`));
     event.effectiveDateSourceIds.filter((id) => !(event.sourceIds || []).includes(id)).forEach((id) => reformEventErrors.push(`${path}: effectiveDateSourceId "${id}" は event.sourceIds にも含めてください。`));
   }
+  if (status === "unknown" && effectiveDateValues.length) reformEventErrors.push(`${path}: effectiveDateStatus=unknown では effectiveDate / effectiveDates を登録しないでください。`);
   if (["confirmed", "planned"].includes(status) && !effectiveDateValues.length) reformEventErrors.push(`${path}: effectiveDateStatus=${status} では effectiveDate または effectiveDates が必要です。`);
   if (status === "relative" && !String(event.effectiveDateNote || "").trim()) reformEventErrors.push(`${path}: relative では effectiveDateNote が必要です。`);
   if (status === "phased" && !effectiveDateValues.length && !String(event.effectiveDateNote || "").trim()) reformEventErrors.push(`${path}: phased では effectiveDates または effectiveDateNote が必要です。`);
