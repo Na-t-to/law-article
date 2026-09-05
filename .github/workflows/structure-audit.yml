@@ -1,58 +1,40 @@
-name: Comprehensive structure audit
+name: Consolidate and validate LAW INDEX
 on:
   push:
     branches: [audit/structure-20260905-v2]
 permissions:
-  contents: read
+  contents: write
 jobs:
-  audit:
+  consolidate:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - name: Audit current repository data
+        with:
+          fetch-depth: 0
+      - name: Consolidate current data
         run: |
-          mkdir -p audit-output
-          node scripts/validate-data.mjs > audit-output/validator.out 2> audit-output/validator.err || true
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-          import vm from 'node:vm';
-          const c={window:{},URL,console}; vm.createContext(c);
-          vm.runInContext(fs.readFileSync('data/manifest.js','utf8'),c);
-          const manifest=c.window.LAW_INDEX_DATA_FILES;
-          const loaded=[];
-          for(const [group,files] of Object.entries(manifest)) for(const f0 of files){const f='data/'+f0.split('?')[0]; vm.runInContext(fs.readFileSync(f,'utf8'),c); loaded.push({group,file:f});}
-          const W=c.window;
-          const arrays=Object.fromEntries(Object.entries(W).filter(([,v])=>Array.isArray(v)).map(([k,v])=>[k,v.length]));
-          const articles=W.ARTICLE_DATA||[]; const sources=W.SOURCE_DATA||[]; const topics=W.TOPIC_DATA||[]; const reforms=W.REFORM_DATA||[]; const updates=W.UPDATE_DATA||[];
-          const normUrl=u=>{try{const x=new URL(u);x.protocol='https:';x.hash='';for(const k of [...x.searchParams.keys()])if(/^utm_/i.test(k)||['fbclid','gclid','yclid'].includes(k))x.searchParams.delete(k);x.hostname=x.hostname.toLowerCase();x.pathname=x.pathname.replace(/\/+$/,'')||'/';x.searchParams.sort();return x.toString()}catch{return String(u||'').trim()}};
-          const groupBy=(arr,key)=>{const m=new Map;for(const x of arr){const k=key(x);if(!k)continue;(m.get(k)||m.set(k,[]).get(k)).push(x)}return [...m.entries()].filter(([,v])=>v.length>1).map(([key,items])=>({key,items}))};
-          const cleanTitle=s=>String(s||'').normalize('NFKC').toLowerCase().replace(/[\s\p{P}\p{S}]+/gu,'');
-          const dupArticleId=groupBy(articles,x=>x.id);
-          const dupArticleUrl=groupBy(articles,x=>normUrl(x.url));
-          const dupTitlePublisher=groupBy(articles,x=>cleanTitle(x.title)+'|'+cleanTitle(x.publisher||x.sourceName||''));
-          const dupSourceId=groupBy(sources,x=>x.id);
-          const dupSourceUrl=groupBy(sources,x=>normUrl(x.url));
-          const categories=new Map;
-          for(const x of [...articles,...topics]) for(const cat of (Array.isArray(x.categories)?x.categories:[x.category].filter(Boolean))) categories.set(cat,(categories.get(cat)||0)+1);
-          const categoryList=[...categories.entries()].sort((a,b)=>b[1]-a[1]);
-          const topicRefs=new Map(topics.map(t=>[t.id,t])); const sourceRefs=new Map(sources.map(s=>[s.id,s])); const articleRefs=new Map(articles.map(a=>[a.id,a])); const reformRefs=new Map(reforms.map(r=>[r.id,r]));
-          const missing={topic:[],source:[],article:[],reform:[]};
-          for(const a of articles){for(const id of (a.relatedTopics||a.topicIds||[]))if(!topicRefs.has(id))missing.topic.push({from:a.id,id});for(const id of (a.primarySourceIds||a.sourceIds||[]))if(!sourceRefs.has(id))missing.source.push({from:a.id,id});if(a.reformEventId&&!reformRefs.has(a.reformEventId))missing.reform.push({from:a.id,id:a.reformEventId});}
-          for(const t of topics){for(const id of (t.articleIds||[]))if(!articleRefs.has(id))missing.article.push({from:t.id,id});for(const id of (t.primarySourceIds||t.sourceIds||[]))if(!sourceRefs.has(id))missing.source.push({from:t.id,id});}
-          for(const r of reforms){for(const id of (r.articleIds||[]))if(!articleRefs.has(id))missing.article.push({from:r.id,id});for(const id of (r.sourceIds||r.primarySourceIds||[]))if(!sourceRefs.has(id))missing.source.push({from:r.id,id});}
-          const reformArticles=articles.filter(a=>a.reformEventId||a.stage||a.reformStage||a.isReform||a.relatedIssues?.some?.(x=>/改正|施行|公布|法案/.test(String(x))));
-          const explicitReformArticles=articles.filter(a=>a.reformEventId);
-          const legacyReformArticles=reformArticles.filter(a=>!a.reformEventId);
-          const lastVerifiedFields=[];
-          for(const [kind,arr] of [['article',articles],['topic',topics],['source',sources],['reform',reforms]]) for(const x of arr) if(x.lastVerified||x.lastUpdated) lastVerifiedFields.push({kind,id:x.id,lastVerified:x.lastVerified,lastUpdated:x.lastUpdated});
-          const report={loaded,windowArrays:arrays,counts:{articles:articles.length,sources:sources.length,topics:topics.length,reforms:reforms.length,updates:updates.length},duplicates:{articleId:dupArticleId,articleUrl:dupArticleUrl,articleTitlePublisher:dupTitlePublisher,sourceId:dupSourceId,sourceUrl:dupSourceUrl},categories:categoryList,missingRefs:missing,reform:{candidateArticles:reformArticles.length,explicitArticles:explicitReformArticles.length,legacyArticles:legacyReformArticles.length,legacy:legacyReformArticles.map(a=>({id:a.id,title:a.title,publishedAt:a.publishedAt,relatedTopics:a.relatedTopics,relatedIssues:a.relatedIssues,primarySourceIds:a.primarySourceIds,stage:a.stage,reformStage:a.reformStage})) ,events:reforms.map(r=>({id:r.id,title:r.title||r.name,eventType:r.eventType,stage:r.stage,effectiveDate:r.effectiveDate,effectiveDates:r.effectiveDates,articleIds:r.articleIds,sourceIds:r.sourceIds,topicIds:r.topicIds}))},lastVerifiedFields};
-          fs.writeFileSync('audit-output/report.json',JSON.stringify(report,null,2));
-          fs.writeFileSync('audit-output/summary.txt',[`articles=${articles.length}`,`sources=${sources.length}`,`topics=${topics.length}`,`reforms=${reforms.length}`,`article duplicate normalized URL groups=${dupArticleUrl.length}`,`article duplicate title+publisher groups=${dupTitlePublisher.length}`,`source duplicate normalized URL groups=${dupSourceUrl.length}`,`categories=${categoryList.length}`,`reform candidates=${reformArticles.length}`,`explicit reform=${explicitReformArticles.length}`,`legacy reform=${legacyReformArticles.length}`,`missing topic refs=${missing.topic.length}`,`missing source refs=${missing.source.length}`,`missing article refs=${missing.article.length}`,`missing reform refs=${missing.reform.length}`].join('\n'));
-          NODE
+          node scripts/consolidate-data.mjs > consolidation.json
+      - name: Validate consolidated data
+        run: |
+          node scripts/validate-data.mjs > validator.out 2> validator.err
+      - name: Commit consolidated data to audit branch
+        run: |
+          git config user.name "LAW INDEX audit"
+          git config user.email "actions@users.noreply.github.com"
+          git add data scripts/consolidate-data.mjs
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Consolidate duplicate LAW INDEX data"
+            git push origin HEAD:audit/structure-20260905-v2
+          fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: structure-audit-v2
-          path: audit-output
+          name: consolidation-result
+          path: |
+            consolidation.json
+            validator.out
+            validator.err
           retention-days: 3
