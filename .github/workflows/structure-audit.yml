@@ -18,11 +18,14 @@ jobs:
       - name: Validate consolidated data
         run: |
           node scripts/validate-data.mjs > validator.out 2> validator.err
+      - name: Run semantic structure audit
+        run: |
+          node scripts/audit-final.mjs > final-audit.json
       - name: Commit consolidated data to audit branch
         run: |
           git config user.name "LAW INDEX audit"
           git config user.email "actions@users.noreply.github.com"
-          git add data scripts/consolidate-data.mjs
+          git add data scripts/consolidate-data.mjs scripts/audit-final.mjs
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
@@ -37,4 +40,5 @@ jobs:
             consolidation.json
             validator.out
             validator.err
+            final-audit.json
           retention-days: 3
