@@ -1,0 +1,13 @@
+window.REFORM_EVENT_DATA=(Array.isArray(window.REFORM_EVENT_DATA)?window.REFORM_EVENT_DATA:[]).concat([
+  {
+    id:"consumer-contract-law-review-2026",
+    title:"消費者契約法・2026年見直し",
+    eventType:"policy_review",
+    lawId:"consumer-contract-act",
+    lawLabel:"消費者契約法",
+    relatedTopics:["consumer-contract-law-review-2026"],
+    effectiveDateStatus:"unknown",
+    matchSourceIds:["source-caa-consumer-contract-interim-draft-2026"],
+    sourceIds:["source-caa-consumer-contract-interim-draft-2026"]
+  }
+]);
