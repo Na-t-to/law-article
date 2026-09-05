@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import vm from "node:vm";
 
-const context = { window: {} };
+const context = { window: {}, URL };
 vm.createContext(context);
 vm.runInContext(fs.readFileSync("data/manifest.js", "utf8"), context, { filename: "data/manifest.js" });
 

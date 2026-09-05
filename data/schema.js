@@ -23,6 +23,22 @@
     const articleIds = new Set(articles.map((article) => article.id));
     const topicIds = new Set(topics.map((topic) => topic.slug));
     const issueIds = new Set();
+    const normalizeKnowledgeUrl = (value) => {
+      try {
+        const url = new URL(value);
+        url.protocol = "https:";
+        url.hash = "";
+        [...url.searchParams.keys()].forEach((key) => {
+          if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+        });
+        url.hostname = url.hostname.toLowerCase();
+        url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+        url.searchParams.sort();
+        return url.toString();
+      } catch {
+        return String(value || "").trim();
+      }
+    };
 
     const reportDuplicates = (items, getId, label) => {
       const seen = new Set();
@@ -35,6 +51,10 @@
     };
 
     reportDuplicates(topics, (topic) => topic.slug, "topic");
+    reportDuplicates(sources, (source) => source.id, "source");
+    reportDuplicates(articles, (article) => article.id, "article");
+    reportDuplicates(sources, (source) => normalizeKnowledgeUrl(source.url), "source canonical URL");
+    reportDuplicates(articles, (article) => normalizeKnowledgeUrl(article.url), "article canonical URL");
     sources.filter((source) => !source.id).forEach(() => errors.push("source: id がありません。"));
     articles.filter((article) => !article.id).forEach(() => errors.push("article: id がありません。"));
     articles.filter((article) => !article.url).forEach((article) => errors.push(`${article.id || "article"}: url がありません。`));
@@ -104,24 +124,7 @@
     return warnings;
   };
 
-  const uniqueArticles = (articles = []) => {
-    const merged = new Map();
-    const arrayFields = ["whyImportant", "audience", "categories", "relatedTopics", "relatedIssues", "primarySourceIds"];
-    const longer = (left, right) => String(right || "").length > String(left || "").length ? right : left;
-    articles.forEach((article) => {
-      const key = article.url || article.id;
-      if (!merged.has(key)) {
-        merged.set(key, { ...article });
-        return;
-      }
-      const current = merged.get(key);
-      const next = { ...current, ...article, id: current.id, url: current.url || article.url };
-      arrayFields.forEach((field) => { next[field] = [...new Set([...(current[field] || []), ...(article[field] || [])])]; });
-      ["summary", "audienceReason", "whatChanged"].forEach((field) => { next[field] = longer(current[field], article[field]); });
-      merged.set(key, next);
-    });
-    return [...merged.values()];
-  };
+  const uniqueArticles = (articles = []) => articles.map((article) => ({ ...article }));
 
   const getArticleChangeResult = (article, topics = [], updates = []) => {
     const explicit = String(article.whatChanged || "").trim();
@@ -157,13 +160,10 @@
     return [...latestByTopic].map(([slug, verifiedAt]) => ({ slug, verifiedAt }));
   };
 
-  const applyTopicVerificationDates = (topics = [], articles = [], updates = []) => {
-    const advances = getTopicVerificationAdvances(topics, articles, updates);
-    advances.forEach(({ slug, verifiedAt }) => {
-      const topic = topics.find((item) => item.slug === slug);
-      if (topic && verifiedAt > (topic.lastVerified || "")) topic.lastVerified = verifiedAt;
-    });
-    return advances;
+  const applyTopicVerificationDates = () => {
+    // lastVerified is evidence of an actual primary-source re-check.
+    // Article collection alone must never advance it automatically.
+    return [];
   };
 
   const getKnowledgeAudit = (topics = [], articles = [], updates = []) => {

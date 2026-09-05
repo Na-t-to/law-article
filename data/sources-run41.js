@@ -1,4 +1,0 @@
-window.SOURCE_DATA=(Array.isArray(window.SOURCE_DATA)?window.SOURCE_DATA:[]).concat([
-{"id":"source-moj-security-assignment-act-2025","title":"「譲渡担保契約及び所有権留保契約に関する法律」（譲渡担保法）について","type":"law","typeLabel":"法律・法務省資料","authority":"法務省民事局","publishedAt":"2025-06-16","url":"https://www.moj.go.jp/MINJI/minji07_00371.html","importance":"高","whyImportant":"2025年5月30日に成立、6月6日に公布された譲渡担保法・整備法について、対象となる動産・債権の譲渡担保・所有権留保、実行・倒産手続、動産・債権譲渡登記制度の見直しと、原則として公布後2年6月以内の政令指定日に施行されることを公式に確認できる。","topics":["security-assignment-retention-title"]},
-{"id":"source-meti-startup-ma-guidance-2026","title":"「スタートアップM&Aガイダンス」を公開しました","type":"guideline","typeLabel":"行政ガイダンス","authority":"経済産業省","publishedAt":"2026-05-21","url":"https://www.meti.go.jp/press/2026/05/20260521003/20260521003.html","importance":"高","whyImportant":"スタートアップM&Aを成長・EXITの選択肢として活用するため、売り手・買い手双方について、デュアルトラック経営、資本政策・ガバナンス、買い手側の体制・ソーシング、ストラクチャー、契約・PMI等を体系的に整理した公式ガイダンスを確認できる。","topics":["startup-ma-guidance"]}
-]);
