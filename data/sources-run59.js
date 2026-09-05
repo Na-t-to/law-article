@@ -1,0 +1,14 @@
+window.SOURCE_DATA=(Array.isArray(window.SOURCE_DATA)?window.SOURCE_DATA:[]).concat([
+  {
+    id:"source-fsa-disclosure-wg6-2026",
+    title:"金融審議会「ディスクロージャーワーキング・グループ」（第6回）議事次第・配付資料",
+    type:"proposal",
+    typeLabel:"金融審・審議会資料／企業開示制度",
+    authority:"金融庁／金融審議会",
+    publishedAt:"2026-09-04",
+    url:"https://www.fsa.go.jp/singi/singi_kinyu/disclosure_wg/shiryou/20260904.html",
+    importance:"高",
+    whyImportant:"2026年9月4日の第6回会合で、日本IR協議会、海外投資家NBIM、発行会社側委員から、開示媒体の重複・役割分担・相互参照、有価証券報告書の総会前提出、法定開示と任意開示の関係が具体的に提示された一次資料群。事業報告と有報の単純な統合だけでは解けない開示アーキテクチャの論点を確認できる。",
+    topics:["agm-pre-disclosure-company-law-reform"]
+  }
+]);
