@@ -107,7 +107,8 @@ window.REFORM_EVENT_DATA = [
     "lawId": "personal-information-protection-act",
     "lawLabel": "個人情報保護法",
     "relatedTopics": [
-      "ai-personal-data"
+      "ai-personal-data",
+      "personal-information-protection-2026-amendment"
     ],
     "effectiveDateStatus": "relative",
     "effectiveDateNote": "原則として公布後2年以内の政令指定日",
