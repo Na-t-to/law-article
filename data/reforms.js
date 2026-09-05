@@ -513,24 +513,19 @@ window.REFORM_EVENT_DATA = [
     "relatedTopics": [
       "product-safety-four-acts-ecommerce-child-products"
     ],
-    "effectiveDateStatus": "phased",
+    "effectiveDateStatus": "confirmed",
     "effectiveDates": [
-      "2025-12-25",
-      "2026-07-08"
+      "2025-12-25"
     ],
-    "effectiveDateNote": "製品安全4法改正は2025年12月25日施行／子供用特定製品のベッドガード・ベビーカー追加は2026年7月8日施行",
     "effectiveDateSourceIds": [
-      "source-shikoku-product-safety-amendment-2025",
-      "source-meti-child-product-expansion-2026"
+      "source-shikoku-product-safety-amendment-2025"
     ],
     "matchSourceIds": [
-      "source-shikoku-product-safety-amendment-2025",
-      "source-meti-child-product-expansion-2026"
+      "source-shikoku-product-safety-amendment-2025"
     ],
     "sourceIds": [
       "source-shikoku-product-safety-amendment-2025",
-      "source-meti-product-safety-decree-2024",
-      "source-meti-child-product-expansion-2026"
+      "source-meti-product-safety-decree-2024"
     ]
   },
   {
