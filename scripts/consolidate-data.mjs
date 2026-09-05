@@ -78,9 +78,14 @@ const normalizeCats=(arr)=>uniq((arr||[]).flatMap(c=>categoryMap.get(c)||[c]));
 for(const x of articles){if(Array.isArray(x.categories))x.categories=normalizeCats(x.categories);if(x.category&&categoryMap.has(x.category)){const vals=categoryMap.get(x.category);x.category=vals[0];if(vals.length>1)x.categories=normalizeCats([...(x.categories||[]),...vals]);}}
 for(const x of topics){if(Array.isArray(x.categories))x.categories=normalizeCats(x.categories);if(x.category&&categoryMap.has(x.category)){const vals=categoryMap.get(x.category);x.category=vals[0];if(vals.length>1)x.categories=normalizeCats([...(x.categories||[]),...vals]);}}
 
-const reformIds=new Set(reforms.map(r=>r.id));
+const resolveReform=(article)=>{
+  if(article.reformEventId) return reforms.find(r=>r.id===article.reformEventId)||null;
+  const primary=Array.isArray(article.primarySourceIds)?article.primarySourceIds:[];
+  const matches=reforms.filter(r=>(r.articleIds||[]).includes(article.id)||(r.matchSourceIds||[]).some(id=>primary.includes(id)));
+  return matches.length===1?matches[0]:null;
+};
 for(const a of articles){
-  if(a.reformEventId&&reformIds.has(a.reformEventId)){
+  if(resolveReform(a)){
     delete a.reformEffectiveDate; delete a.reformEffectiveDates; delete a.reformEffectiveDateSourceIds;
   }
 }
