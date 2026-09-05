@@ -35,6 +35,10 @@
     };
 
     reportDuplicates(topics, (topic) => topic.slug, "topic");
+    reportDuplicates(sources, (source) => source.id, "source");
+    reportDuplicates(articles, (article) => article.id, "article");
+    reportDuplicates(sources, (source) => source.url, "source URL");
+    reportDuplicates(articles, (article) => article.url, "article URL");
     sources.filter((source) => !source.id).forEach(() => errors.push("source: id がありません。"));
     articles.filter((article) => !article.id).forEach(() => errors.push("article: id がありません。"));
     articles.filter((article) => !article.url).forEach((article) => errors.push(`${article.id || "article"}: url がありません。`));
@@ -157,13 +161,10 @@
     return [...latestByTopic].map(([slug, verifiedAt]) => ({ slug, verifiedAt }));
   };
 
-  const applyTopicVerificationDates = (topics = [], articles = [], updates = []) => {
-    const advances = getTopicVerificationAdvances(topics, articles, updates);
-    advances.forEach(({ slug, verifiedAt }) => {
-      const topic = topics.find((item) => item.slug === slug);
-      if (topic && verifiedAt > (topic.lastVerified || "")) topic.lastVerified = verifiedAt;
-    });
-    return advances;
+  const applyTopicVerificationDates = () => {
+    // lastVerified is evidence of an actual primary-source re-check.
+    // Article collection alone must never advance it automatically.
+    return [];
   };
 
   const getKnowledgeAudit = (topics = [], articles = [], updates = []) => {

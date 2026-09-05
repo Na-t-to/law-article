@@ -1,4 +1,0 @@
-window.SOURCE_DATA=(Array.isArray(window.SOURCE_DATA)?window.SOURCE_DATA:[]).concat([
-{id:"source-ai-ip-principle-code-2026",title:"生成AIの適切な利活用等に向けた知的財産の保護及び透明性に関するプリンシプル・コード",type:"guideline",typeLabel:"ソフトロー・プリンシプルコード",authority:"内閣府 知的財産戦略推進事務局",publishedAt:"2026-08-25",url:"https://www.cas.go.jp/jp/seisakukaigi/titeki2/ai_kentoukai/kaisai/index.html",importance:"最高",whyImportant:"生成AI開発者・提供者に対し、透明性・知財保護に関する概要開示、権利者・利用者からの照会対応をコンプライ・オア・エクスプレイン方式で求める最終版の公式コード。届出開始時期は別途公表とされており、実装準備の基準点になる。",topics:["generative-ai-ip-principle-code"]},
-{id:"source-moj-ai-legal-support-guideline-2026",title:"AI等法務業務支援サービス提供と弁護士法第72条の関係に係るガイドライン等の公表について",type:"guideline",typeLabel:"行政ガイドライン",authority:"法務省大臣官房司法法制部",publishedAt:"2026-08-21",url:"https://www.moj.go.jp/housei/shihouseido/housei10_00134.html",importance:"最高",whyImportant:"2023年の契約書関連ガイドラインを補完・拡充し、ビジネス分野のAI等法務業務支援サービス全般について弁護士法72条との関係とガバナンス上の考え方を整理した現行の公式基準。",topics:["ai-legal-support-attorney-act"]}
-]);
