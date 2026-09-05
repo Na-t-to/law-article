@@ -354,5 +354,18 @@ window.REFORM_EVENT_DATA=(Array.isArray(window.REFORM_EVENT_DATA)?window.REFORM_
     effectiveDateSourceIds:["source-egov-criminal-procedure-electronic-record-2026"],
     matchSourceIds:["source-moj-criminal-procedure-it-2025","source-egov-criminal-procedure-electronic-record-2026"],
     sourceIds:["source-moj-criminal-procedure-it-2025","source-egov-criminal-procedure-electronic-record-2026"]
+  },
+  {
+    id:"consumer-contract-law-review-2026",
+    title:"消費者契約法・2026年見直し",
+    eventType:"policy_review",
+    lawId:"consumer-contract-act",
+    lawLabel:"消費者契約法",
+    relatedTopics:["consumer-contract-law-review-2026"],
+    effectiveDateStatus:"relative",
+    effectiveDateNote:"検討段階のため施行時期未定",
+    effectiveDateSourceIds:["source-caa-consumer-contract-interim-draft-2026"],
+    matchSourceIds:["source-caa-consumer-contract-interim-draft-2026"],
+    sourceIds:["source-caa-consumer-contract-interim-draft-2026"]
   }
 ]);
