@@ -8,7 +8,7 @@ window.REFORM_EVENT_DATA = [
     "relatedTopics": [
       "cyber-countermeasures-critical-infrastructure"
     ],
-    "effectiveDateStatus": "planned",
+    "effectiveDateStatus": "confirmed",
     "effectiveDates": [
       "2026-10-01"
     ],
