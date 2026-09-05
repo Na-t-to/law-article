@@ -15,6 +15,7 @@ jobs:
       - name: Consolidate current data
         run: |
           node scripts/consolidate-data.mjs > consolidation.json
+          node scripts/finalize-audit.mjs
       - name: Validate consolidated data
         run: |
           node scripts/validate-data.mjs > validator.out 2> validator.err
@@ -25,11 +26,11 @@ jobs:
         run: |
           git config user.name "LAW INDEX audit"
           git config user.email "actions@users.noreply.github.com"
-          git add data scripts/consolidate-data.mjs scripts/audit-final.mjs
+          git add data scripts/validate-data.mjs
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Consolidate duplicate LAW INDEX data"
+            git commit -m "Enforce canonical LAW INDEX data validation"
             git push origin HEAD:audit/structure-20260905-v2
           fi
       - uses: actions/upload-artifact@v4
