@@ -26,7 +26,7 @@ jobs:
         run: |
           git config user.name "LAW INDEX audit"
           git config user.email "actions@users.noreply.github.com"
-          git add data scripts/validate-data.mjs
+          git add data scripts/validate-data.mjs README.md
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
