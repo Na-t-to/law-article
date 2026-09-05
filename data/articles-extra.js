@@ -70,14 +70,15 @@ window.ARTICLE_DATA = (Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA 
     sourceType: "secondary",
     sourceLabel: "法律事務所・実務解説",
     status: "adopted",
-    summary: "経済産業省のAI民事責任手引きを、不法行為・製造物責任の整理に加えて平時のAIガバナンスへ接続するニュースレター。補助／支援型と依拠／代替型の違い、AI利用者・開発者・提供者それぞれの注意義務を整理し、適切なガバナンスを構築・運用していたことが責任を減免する方向で考慮され得る点を実務上の示唆として論じる。",
-    whyImportant: ["手引きの責任論を、導入前のリスク評価・人の関与・説明・モニタリングへ戻して読める", "利用者だけでなく開発者・提供者の設計上・説明上の措置を含め、AIのバリューチェーンごとに役割を考えられる", "契約責任は手引きの検討対象外である点も示しており、手引きで答えが出る範囲と個別契約で詰める範囲を分けられる"],
+    summary: "経済産業省のAI民事責任手引きを、不法行為・製造物責任だけでなく、立証・国際手続と平時のAIガバナンスまで接続するニュースレター。補助／支援型と依拠／代替型、利用者・開発者・提供者の注意義務に加え、AIの専門技術性と証拠偏在を踏まえた文書提出命令、過失・欠陥の事実上の推定、因果関係、国際裁判管轄・準拠法等を整理し、合理的なガバナンスが責任判断で考慮され得る関係を論じる。",
+    whyImportant: ["手引きの責任論を導入前のリスク評価・人の関与・説明・モニタリングへ戻し、平時のガバナンスと事故後の責任判断を接続して読める", "AI事案の証拠偏在に対し、文書提出命令や過失・欠陥の事実上の推定等が問題となり得ることを示し、ログ・判断記録を紛争対応の観点から設計する手掛かりになる", "AI事業者ガイドラインへの適合・不適合が自動的に過失の有無を決めるわけではなく、合理的なリスク調査・体制構築・回避措置が責任判断で考慮され得るという距離感が分かる", "契約責任は手引きの検討対象外であり、国際紛争では管轄・準拠法・外国判決等も別途確認する必要があると切り分けられる"],
     audience: ["企業法務", "AIガバナンス担当", "AIサービス提供事業者", "紛争・リスク管理"],
-    audienceReason: "公的手引きを読むだけでは見えにくい、平時に何を設計・記録しておくべきかを企業実務へ引き直しているため。",
+    audienceReason: "公的手引きの責任論を、平時のリスク管理・記録と事故後の証拠保全・立証・国際手続まで一続きの実務として検討するため。",
     categories: ["AI・デジタル", "危機管理・コンプライアンス", "契約"],
-    relatedTopics: ["ai-governance-liability"],
-    relatedIssues: ["ai-gov-classification", "ai-gov-process", "ai-gov-provider", "ai-gov-records"],
-    primarySourceIds: ["source-ai-civil-liability-2026", "source-ai-guideline"]
+    relatedTopics: ["ai-governance-liability", "ai-civil-liability"],
+    relatedIssues: ["ai-gov-classification", "ai-gov-process", "ai-gov-provider", "ai-gov-records", "ai-liability-proof-procedure"],
+    primarySourceIds: ["source-ai-civil-liability-2026", "source-ai-guideline"],
+    whatChanged: "テーマ更新／AI民事責任テーマに立証・証拠偏在・国際手続の論点を接続"
   },
   {
     id: "article-scs-evaluation-2026",
