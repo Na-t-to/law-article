@@ -711,11 +711,6 @@ window.REFORM_EVENT_DATA = [
     "relatedTopics": [
       "consumer-contract-law-review-2026"
     ],
-    "effectiveDateStatus": "relative",
-    "effectiveDateNote": "検討段階のため施行時期未定",
-    "effectiveDateSourceIds": [
-      "source-caa-consumer-contract-interim-draft-2026"
-    ],
     "matchSourceIds": [
       "source-caa-consumer-contract-interim-draft-2026"
     ],
