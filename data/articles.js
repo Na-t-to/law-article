@@ -945,7 +945,10 @@ window.ARTICLE_DATA = [
       "通報後の人事措置について、合理的理由と判断過程を同時点で記録する重要性が分かる",
       "改正法の推定規定を単なる制度説明で終わらせず、実際の裁判例の判断要素と接続している",
       "通報後の懲戒・配置・評価等について、正当な理由と時系列を残す必要性を企業実務へ落としている",
-      "人事労務上の措置を公益通報者保護法の観点から再点検するための材料になる"
+      "人事労務上の措置を公益通報者保護法の観点から再点検するための材料になる",
+      "改正法の推定規定だけでは見えにくい『報復目的・主たる動機』の裁判例上の評価要素を確認できる",
+      "通報者自身に別のコンプライアンス違反がある場合でも、処分根拠と決定過程の客観的証拠が必要になることを示す",
+      "推定規定の直接対象外となる配置転換等も社内の不利益取扱い禁止として管理すべきことが分かる"
     ],
     "audience": [
       "企業法務",
@@ -954,16 +957,18 @@ window.ARTICLE_DATA = [
       "管理職",
       "人事・労務担当",
       "コンプライアンス担当",
-      "社内調査担当"
+      "社内調査担当",
+      "危機管理・コンプライアンス"
     ],
-    "audienceReason": "公益通報後の人事・懲戒措置について、報復と評価されないための判断・記録の仕方を裁判例から確認するため。",
+    "audienceReason": "通報後に懲戒・配転・評価等を検討する場面で、法務と人事が何を確認・記録すべきかを判例から具体化できるため。",
     "categories": [
       "危機管理・コンプライアンス",
       "労務"
     ],
     "relatedTopics": [
       "whistleblower-system",
-      "whistleblower-internal-reporting"
+      "whistleblower-internal-reporting",
+      "whistleblower-protection-internal-reporting"
     ],
     "relatedIssues": [
       "whistleblower-retaliation",
@@ -971,7 +976,8 @@ window.ARTICLE_DATA = [
     ],
     "primarySourceIds": [
       "source-caa-whistleblower-amendment-2025",
-      "source-whistleblower-guideline-2026"
+      "source-whistleblower-guideline-2026",
+      "source-caa-whistleblower-guideline-2026"
     ]
   },
   {
@@ -5812,44 +5818,6 @@ window.ARTICLE_DATA = [
       "source-privacy-law-2026-proposal"
     ],
     "whatChanged": "整理変更なし／オプトアウト第三者提供の提供先事前確認と、勧告・命令等の実効性強化について参考解説を追加。"
-  },
-  {
-    "id": "article-nagashima-whistleblower-retaliation-2025",
-    "title": "公益通報者保護法改正を見据えた「公益通報をしたことを理由とする不利益な取扱い」の認定について",
-    "publisher": "長島・大野・常松法律事務所",
-    "author": "辺誠祐・杉江裕太・堀田昇",
-    "publishedAt": "2025-08-01",
-    "collectedAt": "2026-09-03",
-    "url": "https://www.noandt.com/wp-content/uploads/2025/08/compliance_no111.pdf",
-    "sourceType": "secondary",
-    "sourceLabel": "法律事務所・判例実務解説",
-    "status": "adopted",
-    "summary": "公益通報後の解雇・懲戒・配置等が「公益通報をしたことを理由とする」不利益取扱いに当たるかについて、近年の裁判例を比較し、改正法の1年間の推定規定を踏まえた企業側の証拠化・意思決定実務を検討する。処分の経緯、合理的根拠・必要性、関係者の言動、他の正当な動機をどう残すかが中心。",
-    "whyImportant": [
-      "改正法の推定規定だけでは見えにくい『報復目的・主たる動機』の裁判例上の評価要素を確認できる",
-      "通報者自身に別のコンプライアンス違反がある場合でも、処分根拠と決定過程の客観的証拠が必要になることを示す",
-      "推定規定の直接対象外となる配置転換等も社内の不利益取扱い禁止として管理すべきことが分かる"
-    ],
-    "audience": [
-      "企業法務",
-      "人事・労務",
-      "危機管理・コンプライアンス"
-    ],
-    "audienceReason": "通報後に懲戒・配転・評価等を検討する場面で、法務と人事が何を確認・記録すべきかを判例から具体化できるため。",
-    "categories": [
-      "危機管理・コンプライアンス",
-      "労務"
-    ],
-    "relatedTopics": [
-      "whistleblower-protection-internal-reporting"
-    ],
-    "relatedIssues": [
-      "whistleblower-retaliation"
-    ],
-    "primarySourceIds": [
-      "source-caa-whistleblower-amendment-2025",
-      "source-caa-whistleblower-guideline-2026"
-    ]
   },
   {
     "id": "article-cao-security-clearance-report-2026",
