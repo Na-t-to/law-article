@@ -637,8 +637,7 @@ window.ARTICLE_DATA = [
     ],
     "primarySourceIds": [
       "source-customer-harassment-guideline-2026"
-    ],
-    "reformEffectiveDate": "2026-10-01"
+    ]
   },
   {
     "id": "article-not-customer-harassment-2026",
@@ -6862,7 +6861,6 @@ window.ARTICLE_DATA = [
     "primarySourceIds": [
       "source-bunka-copyright-amendment-2023"
     ],
-    "reformEffectiveDate": "2026-04-01",
     "whatChanged": "許諾取得が困難な著作物等について、2026年4月開始の未管理著作物裁定制度を独立テーマとして追加した。"
   },
   {
@@ -6905,8 +6903,7 @@ window.ARTICLE_DATA = [
     ],
     "primarySourceIds": [
       "source-bunka-copyright-amendment-2023"
-    ],
-    "reformEffectiveDate": "2026-04-01"
+    ]
   },
   {
     "id": "article-shikoku-product-safety-amendment-2025",
@@ -6952,7 +6949,6 @@ window.ARTICLE_DATA = [
       "source-meti-product-safety-decree-2024",
       "source-meti-child-product-expansion-2026"
     ],
-    "reformEffectiveDate": "2025-12-25",
     "whatChanged": "越境ECの海外直接販売と子供向け製品の安全規制を、製品安全4法の独立テーマとして追加した。"
   },
   {
@@ -6998,8 +6994,7 @@ window.ARTICLE_DATA = [
       "source-shikoku-product-safety-amendment-2025",
       "source-meti-product-safety-decree-2024",
       "source-meti-child-product-expansion-2026"
-    ],
-    "reformEffectiveDate": "2025-12-25"
+    ]
   },
   {
     "id": "article-cfa-child-sexual-violence-qa-2026",
@@ -7043,7 +7038,6 @@ window.ARTICLE_DATA = [
       "source-cfa-child-sexual-violence-guideline-2026",
       "source-cfa-child-sexual-violence-qa-2026"
     ],
-    "reformEffectiveDate": "2026-12-25",
     "whatChanged": "2026年12月25日施行のこども性暴力防止法について、犯罪事実確認だけでなく採用・就業規則、防止措置、情報管理までを追う独立テーマを追加した。"
   },
   {
@@ -7087,8 +7081,7 @@ window.ARTICLE_DATA = [
     "primarySourceIds": [
       "source-cfa-child-sexual-violence-guideline-2026",
       "source-cfa-child-sexual-violence-checklist-2026"
-    ],
-    "reformEffectiveDate": "2026-12-25"
+    ]
   },
   {
     "id": "article-tmi-child-sexual-violence-overview-2026",
@@ -7131,8 +7124,7 @@ window.ARTICLE_DATA = [
       "source-cfa-child-sexual-violence-guideline-2026",
       "source-cfa-child-sexual-violence-qa-2026",
       "source-cfa-child-sexual-violence-checklist-2026"
-    ],
-    "reformEffectiveDate": "2026-12-25"
+    ]
   },
   {
     "id": "article-tmi-child-sexual-violence-protected-conduct-2026",
@@ -7172,8 +7164,7 @@ window.ARTICLE_DATA = [
     "primarySourceIds": [
       "source-cfa-child-sexual-violence-guideline-2026",
       "source-cfa-child-sexual-violence-qa-2026"
-    ],
-    "reformEffectiveDate": "2026-12-25"
+    ]
   },
   {
     "id": "article-jftc-nichirin-mold-storage-2026",
