@@ -1,0 +1,49 @@
+name: AI guidance source duplicate cleanup 20260906
+on:
+  push:
+    branches: [audit/ai-source-dedupe-20260906-37e3]
+permissions:
+  contents: write
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/ai-source-dedupe-20260906-37e3
+      - name: Merge duplicate AI civil-liability source records
+        shell: bash
+        run: |
+          cat > /tmp/dedupe.mjs <<'NODE'
+          import fs from 'node:fs';import vm from 'node:vm';
+          const c={window:{},URL};vm.createContext(c);vm.runInContext(fs.readFileSync('data/manifest.js','utf8'),c);for(const f of Object.values(c.window.LAW_INDEX_DATA_FILES).flat())vm.runInContext(fs.readFileSync('data/'+f.split('?')[0],'utf8'),c,{filename:f});
+          let topics=c.window.TOPIC_DATA||[], sources=c.window.SOURCE_DATA||[], updates=c.window.UPDATE_DATA||[], reforms=c.window.REFORM_EVENT_DATA||[], articles=c.window.ARTICLE_DATA||[];
+          const oldId='source-ai-civil-liability-2026', newId='source-meti-ai-civil-liability-guidance-2026';
+          const old=sources.find(s=>s.id===oldId), canonical=sources.find(s=>s.id===newId);if(!old||!canonical)throw new Error('AI guidance source pair missing');
+          const uniq=a=>[...new Set((a||[]).filter(v=>v!==undefined&&v!==null&&v!==''))];
+          canonical.topics=uniq([...(canonical.topics||[]),...(old.topics||[])]);
+          canonical.importance=canonical.importance==='最高'||old.importance==='最高'?'最高':canonical.importance||old.importance;
+          sources=sources.filter(s=>s.id!==oldId);
+          const replace=v=>{if(typeof v==='string')return v===oldId?newId:v;if(Array.isArray(v)){const arr=v.map(replace);return arr.every(x=>['string','number','boolean'].includes(typeof x)||x===null)?[...new Set(arr)]:arr;}if(v&&typeof v==='object')for(const k of Object.keys(v))v[k]=replace(v[k]);return v;};
+          topics=replace(topics);sources=replace(sources);updates=replace(updates);reforms=replace(reforms);articles=replace(articles);
+          const write=(file,name,data)=>fs.writeFileSync(file,`window.${name} = ${JSON.stringify(data,null,2)};\n`);
+          write('data/topics.js','TOPIC_DATA',topics);write('data/sources.js','SOURCE_DATA',sources);write('data/updates.js','UPDATE_DATA',updates);write('data/reforms.js','REFORM_EVENT_DATA',reforms);write('data/articles.js','ARTICLE_DATA',articles);
+          let manifest=fs.readFileSync('data/manifest.js','utf8');
+          manifest=manifest.replace('topics.js?v=12','topics.js?v=13').replace('sources.js?v=13','sources.js?v=14').replace('updates.js?v=11','updates.js?v=12').replace('reforms.js?v=18','reforms.js?v=19').replace('articles.js?v=14','articles.js?v=15');
+          fs.writeFileSync('data/manifest.js',manifest);
+          const html=['index.html','articles.html','article.html','topics.html','reforms.html','update.html',...fs.readdirSync('topics').filter(f=>f.endsWith('.html')).map(f=>'topics/'+f)];for(const file of html){let s=fs.readFileSync(file,'utf8');s=s.replace(/manifest\.js\?v=23/g,'manifest.js?v=24');fs.writeFileSync(file,s);}
+          NODE
+          node /tmp/dedupe.mjs
+          node scripts/validate-data.mjs > source-dedupe-validator.json 2> source-dedupe-warnings.txt
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';import vm from 'node:vm';const c={window:{},URL};vm.createContext(c);vm.runInContext(fs.readFileSync('data/manifest.js','utf8'),c);for(const f of Object.values(c.window.LAW_INDEX_DATA_FILES).flat())vm.runInContext(fs.readFileSync('data/'+f.split('?')[0],'utf8'),c);const s=c.window.SOURCE_DATA||[],a=c.window.ARTICLE_DATA||[];if(s.some(x=>x.id==='source-ai-civil-liability-2026'))throw new Error('old source remains');if(s.filter(x=>x.title==='AI利活用における民事責任の解釈適用に関する手引き〔第1.0版〕').length!==1)throw new Error('source title duplicate remains');if(JSON.stringify({s,a,c}).includes('source-ai-civil-liability-2026'))throw new Error('old source reference remains');console.log(JSON.stringify({sources:s.length,articles:a.length,canonical:s.find(x=>x.id==='source-meti-ai-civil-liability-guidance-2026')},null,2));
+          NODE
+          git diff --check
+      - name: Commit cleanup on audit branch
+        run: |
+          git config user.name "LAW INDEX Audit"
+          git config user.email "audit@users.noreply.github.com"
+          git add data/*.js index.html articles.html article.html topics.html reforms.html update.html topics/*.html source-dedupe-validator.json source-dedupe-warnings.txt
+          git commit -m "Merge duplicate AI civil-liability source record"
+          git push origin HEAD:audit/ai-source-dedupe-20260906-37e3
