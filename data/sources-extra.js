@@ -105,3 +105,42 @@ window.SOURCE_DATA = (window.SOURCE_DATA || []).concat([
     "topics": ["family-business-governance"]
   }
 ]);
+
+window.SOURCE_DATA = (window.SOURCE_DATA || []).concat([
+  {
+    "id": "source-mhlw-labor-policy-amendment-2025-treatment-work",
+    "title": "令和7年労働施策総合推進法等の一部改正について",
+    "type": "law",
+    "typeLabel": "改正法・制度概要",
+    "authority": "厚生労働省",
+    "publishedAt": "2025-06-11",
+    "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyoukintou/zaitaku/index_00003.html",
+    "importance": "最高",
+    "whyImportant": "令和7年法律第63号による治療と就業の両立支援の努力義務化と、2026年4月1日施行となる改正の法的な基準点。",
+    "topics": ["treatment-work-support"]
+  },
+  {
+    "id": "source-mhlw-treatment-work-guideline-2026",
+    "title": "治療と就業の両立支援指針（令和8年厚生労働省告示第28号）",
+    "type": "guideline",
+    "typeLabel": "法定指針",
+    "authority": "厚生労働省",
+    "publishedAt": "2026-02-10",
+    "url": "https://www.mhlw.go.jp/content/11200000/001653964.pdf",
+    "importance": "最高",
+    "whyImportant": "労働施策総合推進法27条の3に基づき、2026年4月1日からの努力義務について、環境整備、個別支援、医療機関連携、健康情報管理等の具体的な実施事項を定める。",
+    "topics": ["treatment-work-support"]
+  },
+  {
+    "id": "source-mhlw-treatment-work-integrated-2026",
+    "title": "治療と就業の両立支援指針（参考資料との統合版）",
+    "type": "guideline",
+    "typeLabel": "指針・様式例／実務資料",
+    "authority": "厚生労働省",
+    "publishedAt": "2026-03-05",
+    "url": "https://www.mhlw.go.jp/content/11200000/001666578.pdf",
+    "importance": "高",
+    "whyImportant": "法定指針に疾病別留意事項や勤務情報・主治医意見・両立支援プラン等の様式例を統合し、社内手順と医療機関連携へ落とすための実務資料。",
+    "topics": ["treatment-work-support"]
+  }
+]);

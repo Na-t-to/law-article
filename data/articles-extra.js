@@ -270,3 +270,107 @@ window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
     "whatChanged": "新規テーマ作成／改正法の施行政省令で今後確定する事項を切り分け、施行準備の確認点を追加した。"
   }
 ]);
+
+window.REFORM_EVENT_DATA = (window.REFORM_EVENT_DATA || []).concat([
+  {
+    "id": "treatment-work-support-2025-amendment",
+    "title": "労働施策総合推進法・治療と就業の両立支援 努力義務化",
+    "eventType": "law_amendment",
+    "lawId": "labor-policy-treatment-work-support",
+    "lawLabel": "労働施策総合推進法・治療と就業の両立支援",
+    "relatedTopics": ["treatment-work-support"],
+    "effectiveDateStatus": "confirmed",
+    "effectiveDates": ["2026-04-01"],
+    "effectiveDateSourceIds": ["source-mhlw-treatment-work-guideline-2026"],
+    "matchSourceIds": ["source-mhlw-labor-policy-amendment-2025-treatment-work", "source-mhlw-treatment-work-guideline-2026", "source-mhlw-treatment-work-integrated-2026"],
+    "sourceIds": ["source-mhlw-labor-policy-amendment-2025-treatment-work", "source-mhlw-treatment-work-guideline-2026", "source-mhlw-treatment-work-integrated-2026"]
+  }
+]);
+
+window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
+  {
+    "id": "article-mhlw-labor-policy-amendment-treatment-work-2025",
+    "title": "令和7年労働施策総合推進法等の一部改正について",
+    "publisher": "厚生労働省",
+    "author": "厚生労働省",
+    "publishedAt": "2025-06-11",
+    "collectedAt": "2026-09-07",
+    "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyoukintou/zaitaku/index_00003.html",
+    "sourceType": "primary",
+    "sourceLabel": "一次資料・改正法／治療と就業の両立支援",
+    "status": "adopted",
+    "summary": "令和7年法律第63号による労働施策総合推進法等の改正をまとめた厚生労働省の公式ページ。治療と就業の両立支援について、事業主が必要な措置を講ずる努力義務と、その適切な実施のための指針を制度化した改正の基準点として読める。",
+    "whyImportant": [
+      "治療と就業の両立支援が任意の健康施策から、労働施策総合推進法上の事業主の努力義務へ位置付けられた法改正を公式資料から確認できる",
+      "カスタマーハラスメント等と同じ改正法パッケージに含まれるが、治療と就業の両立支援は2026年4月1日施行であることを切り分けて追える",
+      "法定指針へ進む前に、法律上の根拠と改正全体の位置付けを確認できる"
+    ],
+    "audience": ["人事・労務", "企業法務", "安全衛生・産業保健担当", "管理職"],
+    "audienceReason": "治療と就業の両立支援を福利厚生施策だけとして扱わず、法改正に基づく人事・労務体制整備として位置付けるため。",
+    "categories": ["労務", "危機管理・コンプライアンス"],
+    "relatedTopics": ["treatment-work-support"],
+    "relatedIssues": ["treatment-work-effort-duty"],
+    "primarySourceIds": ["source-mhlw-labor-policy-amendment-2025-treatment-work", "source-mhlw-treatment-work-guideline-2026"],
+    "reformEventId": "treatment-work-support-2025-amendment",
+    "reformStageAtPublication": "finalized_pending",
+    "reformStageSourceIds": ["source-mhlw-labor-policy-amendment-2025-treatment-work"],
+    "whatChanged": "新規テーマ作成／治療と就業の両立支援を2026年4月1日からの事業主の努力義務として法改正の基準点から整理した。"
+  },
+  {
+    "id": "article-mhlw-treatment-work-guideline-2026",
+    "title": "治療と就業の両立支援指針（令和8年厚生労働省告示第28号）",
+    "publisher": "厚生労働省",
+    "author": "厚生労働省",
+    "publishedAt": "2026-02-10",
+    "collectedAt": "2026-09-07",
+    "url": "https://www.mhlw.go.jp/content/11200000/001653964.pdf",
+    "sourceType": "primary",
+    "sourceLabel": "一次資料・法定指針",
+    "status": "adopted",
+    "summary": "労働施策総合推進法27条の3に基づき、治療と就業の両立支援の具体的な留意事項・環境整備・進め方を定めた法定指針。2026年4月1日から適用され、基本方針、研修、相談窓口、休暇・勤務制度、本人申出、主治医・産業医等との連携、健康情報管理、個別の就業上の措置までを一連の運用として示す。",
+    "whyImportant": [
+      "努力義務への対応を抽象的な理念で終わらせず、社内ルール・相談窓口・研修・勤務制度へ落とす一次資料になる",
+      "本人申出を起点に主治医・産業医等の意見を得て就業上の措置を検討する標準的な手順を確認できる",
+      "健康情報は原則として本人同意なく取得しないことや、取扱者の範囲・漏えい防止を含む管理体制まで明示している",
+      "同じ改正法の他の労務施策と施行日を混同せず、治療と就業の両立支援は2026年4月1日から適用済みと確認できる"
+    ],
+    "audience": ["人事・労務", "企業法務", "安全衛生・産業保健担当", "管理職"],
+    "audienceReason": "社内方針、相談フロー、就業上の措置、医療機関連携、健康情報管理を現行の法定指針に合わせて点検するため。",
+    "categories": ["労務", "危機管理・コンプライアンス"],
+    "relatedTopics": ["treatment-work-support"],
+    "relatedIssues": ["treatment-work-effort-duty", "treatment-work-environment", "treatment-work-individual-process", "treatment-work-health-information"],
+    "primarySourceIds": ["source-mhlw-treatment-work-guideline-2026", "source-mhlw-labor-policy-amendment-2025-treatment-work"],
+    "reformEventId": "treatment-work-support-2025-amendment",
+    "reformStageAtPublication": "finalized_pending",
+    "reformStageSourceIds": ["source-mhlw-treatment-work-guideline-2026"],
+    "whatChanged": "新規テーマ作成／努力義務化後に必要な環境整備、本人申出、医療機関連携、健康情報管理、個別支援の手順を法定指針から整理した。"
+  },
+  {
+    "id": "article-mhlw-treatment-work-integrated-2026",
+    "title": "治療と就業の両立支援指針（参考資料との統合版）",
+    "publisher": "厚生労働省",
+    "author": "厚生労働省",
+    "publishedAt": "2026-03-05",
+    "collectedAt": "2026-09-07",
+    "url": "https://www.mhlw.go.jp/content/11200000/001666578.pdf",
+    "sourceType": "primary",
+    "sourceLabel": "一次資料・指針／様式例・実務資料",
+    "status": "adopted",
+    "summary": "治療と就業の両立支援指針に疾病別留意事項や各種様式例等を統合した実務資料。勤務情報を主治医へ提供する様式、主治医意見書、両立支援カード、両立支援プラン／職場復帰支援プラン等を使い、会社と医療機関の情報往復を具体的な業務手順に落とせる。",
+    "whyImportant": [
+      "法定指針の要求を、誰がどの情報を主治医へ渡し、どの意見を受け取り、支援内容へ変換するかという実務フローに落とせる",
+      "勤務情報・主治医意見・両立支援プラン等の様式例を自社書式へ調整する出発点として使える",
+      "がん等の疾病別留意事項と合わせて、同じ疾病名でも治療・副作用・職務条件により必要な配慮が異なることを実務的に確認できる"
+    ],
+    "audience": ["人事・労務", "安全衛生・産業保健担当", "企業法務", "管理職"],
+    "audienceReason": "努力義務対応を規程だけで終わらせず、申出受付から医師との情報共有、支援プラン作成、職場復帰まで運用可能な手順にするため。",
+    "categories": ["労務", "危機管理・コンプライアンス"],
+    "relatedTopics": ["treatment-work-support"],
+    "relatedIssues": ["treatment-work-environment", "treatment-work-individual-process", "treatment-work-health-information"],
+    "primarySourceIds": ["source-mhlw-treatment-work-integrated-2026", "source-mhlw-treatment-work-guideline-2026"],
+    "reformEventId": "treatment-work-support-2025-amendment",
+    "reformStageAtPublication": "finalized_pending",
+    "reformStageSourceIds": ["source-mhlw-treatment-work-guideline-2026"],
+    "whatChanged": "新規テーマ作成／指針の様式例・疾病別資料を接続し、勤務情報提供、主治医意見、両立支援プラン等を実際の人事・産業保健フローへ落とした。"
+  }
+]);
