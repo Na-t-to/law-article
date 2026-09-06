@@ -429,7 +429,7 @@ window.UPDATE_DATA = [
     "summary": "買収提案の真摯性、取締役会の比較検討、企業価値評価と株主説明を新規テーマとして整理した。",
     "whatChanged": "M&A一般の資料収集から、買収提案を受けた対象会社の取締役会実務を独立して追えるようにした。",
     "affectedTopics": [
-      "acquisition-guidelines"
+      "listed-company-takeover-guidelines"
     ],
     "affectedIssues": [],
     "before": "企業買収行動指針の専用テーマなし。",
@@ -638,14 +638,14 @@ window.UPDATE_DATA = [
     "summary": "金融庁によるSSBJ基準の段階的義務化とSSBJの現行基準、Scope3のサプライチェーン法務を一つの棚に整理した。",
     "whatChanged": "サステナビリティ開示を単発資料として扱う状態から、適用判定、開示工程、Scope3責任、取引先データ収集まで企業実務として横断できるテーマへ更新した。",
     "affectedTopics": [
-      "sustainability-disclosure-ssbj"
+      "ssbj-statutory-sustainability-disclosure"
     ],
     "affectedIssues": [
-      "ssbj-applicability",
+      "ssbj-application-scope",
       "ssbj-two-step-disclosure",
-      "ssbj-scope3-safe-harbor",
+      "ssbj-scope3-liability",
       "ssbj-current-standard",
-      "ssbj-scope3-supplychain"
+      "ssbj-supplychain-data"
     ],
     "before": "SSBJ基準・サステナビリティ開示の専用テーマなし。",
     "after": "金融庁・SSBJの一次資料と法律事務所のScope3実務解説を分けて確認できる。",
@@ -1002,13 +1002,13 @@ window.UPDATE_DATA = [
     "summary": "2026年12月1日施行の改正公益通報者保護法と2026年3月31日公表の法定指針を基礎に、従事者指定、フリーランス対応、通報妨害・通報者探索、不利益取扱い、外部通報認知時の調査対応を一つの棚へ整理した。",
     "whatChanged": "危機管理や労務の個別論点はあったが、公益通報者保護法と内部通報制度を、改正法・法定指針・判例実務まで横断して参照する専用テーマがなかった。2026年12月施行前の実装準備をまとめて確認できるようにした。",
     "affectedTopics": [
-      "whistleblower-protection-internal-reporting"
+      "whistleblower-internal-reporting"
     ],
     "affectedIssues": [
-      "whistleblower-system-duties",
-      "whistleblower-protected-persons",
-      "whistleblower-obstruction-identification",
-      "whistleblower-retaliation",
+      "wb-system-controls",
+      "wb-scope-freelance",
+      "wb-obstruction-search",
+      "wb-retaliation-employment",
       "whistleblower-external-report-response"
     ],
     "before": "公益通報者保護法の改正、内部通報窓口、従事者指定、不利益取扱いを横断して追う専用テーマなし。",

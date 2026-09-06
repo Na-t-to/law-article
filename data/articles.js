@@ -153,46 +153,6 @@ window.ARTICLE_DATA = [
     ]
   },
   {
-    "id": "article-whistleblower-qa-2026",
-    "title": "公益通報者保護制度Q&A（令和8年12月1日施行対応）",
-    "publisher": "消費者庁",
-    "author": "消費者庁 参事官（公益通報・協働担当）",
-    "publishedAt": "2026-05-29",
-    "collectedAt": "2026-09-02",
-    "url": "https://www.caa.go.jp/policies/policy/consumer_partnerships/whisleblower_protection_system/faq/assets/consumer_partnerships_cms205_260529_01.pdf",
-    "sourceType": "primary",
-    "sourceLabel": "一次資料・行政Q&A",
-    "status": "adopted",
-    "summary": "2026年12月1日施行の改正公益通報者保護法を織り込んだ消費者庁のQ&A。解雇・懲戒への直罰と推定規定、フリーランス・元フリーランスの保護、業務委託関係での通報先、不利益取扱い、範囲外共有、通報妨害・通報者探索などを具体的な設例で確認できる。",
-    "whyImportant": [
-      "改正法の条文だけでは迷いやすい通報主体・通報先・不利益取扱いを具体例で確認できる",
-      "フリーランスへの窓口周知や業務委託関係終了後の取扱いなど、購買・委託実務に直接つながる",
-      "施行前の内部通報規程、調査手順、人事・契約上の報復防止を点検する材料になる"
-    ],
-    "audience": [
-      "企業法務",
-      "コンプライアンス・内部監査",
-      "人事・労務",
-      "購買・委託管理"
-    ],
-    "audienceReason": "内部通報制度の改定を、従業員だけでなくフリーランスや取引関係まで含む具体的な運用へ落とすため。",
-    "categories": [
-      "危機管理・コンプライアンス",
-      "労務"
-    ],
-    "relatedTopics": [
-      "whistleblower-system"
-    ],
-    "relatedIssues": [
-      "whistleblower-scope",
-      "whistleblower-retaliation",
-      "whistleblower-system-design"
-    ],
-    "primarySourceIds": [
-      "source-whistleblower-qa-2026"
-    ]
-  },
-  {
     "id": "article-whistleblower-guideline-2026",
     "title": "公益通報者保護法に基づく指針の解説（令和8年3月31日一部改正）",
     "publisher": "消費者庁",
@@ -220,11 +180,11 @@ window.ARTICLE_DATA = [
       "危機管理・コンプライアンス"
     ],
     "relatedTopics": [
-      "whistleblower-system"
+      "whistleblower-internal-reporting"
     ],
     "relatedIssues": [
-      "whistleblower-retaliation",
-      "whistleblower-system-design"
+      "wb-retaliation-employment",
+      "wb-system-controls"
     ],
     "primarySourceIds": [
       "source-whistleblower-guideline-2026"
@@ -380,17 +340,13 @@ window.ARTICLE_DATA = [
       "労務"
     ],
     "relatedTopics": [
-      "whistleblower-internal-reporting",
-      "whistleblower-system"
+      "whistleblower-internal-reporting"
     ],
     "relatedIssues": [
       "wb-scope-freelance",
       "wb-obstruction-search",
       "wb-retaliation-employment",
-      "wb-system-controls",
-      "whistleblower-scope",
-      "whistleblower-retaliation",
-      "whistleblower-system-design"
+      "wb-system-controls"
     ],
     "primarySourceIds": [
       "source-caa-whistleblower-amendment-2025"
@@ -578,11 +534,11 @@ window.ARTICLE_DATA = [
       "労務"
     ],
     "relatedTopics": [
-      "whistleblower-system"
+      "whistleblower-internal-reporting"
     ],
     "relatedIssues": [
-      "whistleblower-scope",
-      "whistleblower-system-design"
+      "wb-scope-freelance",
+      "wb-system-controls"
     ],
     "primarySourceIds": [
       "source-caa-whistleblower-amendment-2025",
@@ -757,14 +713,12 @@ window.ARTICLE_DATA = [
       "労務"
     ],
     "relatedTopics": [
-      "whistleblower-system",
       "whistleblower-internal-reporting"
     ],
     "relatedIssues": [
-      "whistleblower-retaliation",
-      "whistleblower-system-design",
-      "wb-obstruction-search",
       "wb-retaliation-employment",
+      "wb-system-controls",
+      "wb-obstruction-search",
       "wb-scope-freelance"
     ],
     "primarySourceIds": [
@@ -896,21 +850,14 @@ window.ARTICLE_DATA = [
       "契約"
     ],
     "relatedTopics": [
-      "whistleblower-protection-internal-reporting",
-      "whistleblower-system",
       "whistleblower-internal-reporting"
     ],
     "relatedIssues": [
-      "whistleblower-system-duties",
-      "whistleblower-protected-persons",
-      "whistleblower-obstruction-identification",
-      "whistleblower-external-report-response",
-      "whistleblower-retaliation",
-      "whistleblower-system-design",
-      "whistleblower-scope",
       "wb-system-controls",
       "wb-scope-freelance",
       "wb-obstruction-search",
+      "whistleblower-external-report-response",
+      "wb-retaliation-employment",
       "wb-records-notice"
     ],
     "primarySourceIds": [
@@ -966,12 +913,9 @@ window.ARTICLE_DATA = [
       "労務"
     ],
     "relatedTopics": [
-      "whistleblower-system",
-      "whistleblower-internal-reporting",
-      "whistleblower-protection-internal-reporting"
+      "whistleblower-internal-reporting"
     ],
     "relatedIssues": [
-      "whistleblower-retaliation",
       "wb-retaliation-employment"
     ],
     "primarySourceIds": [
@@ -1536,22 +1480,14 @@ window.ARTICLE_DATA = [
       "M&A"
     ],
     "relatedTopics": [
-      "acquisition-guidelines",
-      "listed-company-takeover-guidelines",
-      "corporate-takeover-guidelines"
+      "listed-company-takeover-guidelines"
     ],
     "relatedIssues": [
-      "acq-sincere-proposal",
-      "acq-board-review",
-      "acq-value-explanation",
-      "takeover-guidelines-scope-principles",
-      "takeover-desirable-acquisition",
       "takeover-serious-proposal",
       "takeover-sincere-review-comparison",
       "takeover-qualitative-enterprise-value",
-      "takeover-desirable",
-      "takeover-bona-fide",
-      "takeover-board-review"
+      "takeover-guidelines-scope-principles",
+      "takeover-desirable-acquisition"
     ],
     "primarySourceIds": [
       "source-meti-corporate-takeover-guidelines-2023",
@@ -1599,21 +1535,13 @@ window.ARTICLE_DATA = [
       "M&A"
     ],
     "relatedTopics": [
-      "acquisition-guidelines",
-      "corporate-takeover-guidelines",
       "listed-company-takeover-guidelines"
     ],
     "relatedIssues": [
-      "acq-sincere-proposal",
-      "acq-board-review",
-      "acq-value-explanation",
-      "takeover-desirable",
-      "takeover-bona-fide",
-      "takeover-board-review",
-      "takeover-desirable-acquisition",
       "takeover-serious-proposal",
       "takeover-sincere-review-comparison",
-      "takeover-qualitative-enterprise-value"
+      "takeover-qualitative-enterprise-value",
+      "takeover-desirable-acquisition"
     ],
     "primarySourceIds": [
       "source-meti-corporate-takeover-guidelines-2023",
@@ -1769,18 +1697,15 @@ window.ARTICLE_DATA = [
       "会社法・ガバナンス"
     ],
     "relatedTopics": [
-      "tob-large-shareholding-2026",
-      "tender-offer-large-shareholding"
+      "tob-large-shareholding-2026"
     ],
     "relatedIssues": [
       "tob-thirty-rule",
       "tob-transaction-design",
       "largeholder-joint-holder",
       "largeholder-reporting",
-      "tob-30-percent-rule",
       "tob-de-minimis",
-      "largeholding-joint-holder",
-      "largeholding-derivatives"
+      "largeholder-derivatives"
     ],
     "primarySourceIds": [
       "source-fsa-tob-largeholder-final-2025"
@@ -1860,14 +1785,11 @@ window.ARTICLE_DATA = [
       "会社法・ガバナンス"
     ],
     "relatedTopics": [
-      "tob-large-shareholding-2026",
-      "tender-offer-large-shareholding"
+      "tob-large-shareholding-2026"
     ],
     "relatedIssues": [
       "largeholder-joint-holder",
-      "largeholder-important-proposal",
-      "largeholding-important-proposal",
-      "largeholding-joint-holder"
+      "largeholder-important-proposal"
     ],
     "primarySourceIds": [
       "source-fsa-tob-largeholder-final-2025",
@@ -2502,7 +2424,6 @@ window.ARTICLE_DATA = [
     ],
     "relatedTopics": [
       "generative-ai-likeness-publicity",
-      "ai-publicity-likeness-rights",
       "generative-ai-ip-rights"
     ],
     "relatedIssues": [
@@ -2511,9 +2432,7 @@ window.ARTICLE_DATA = [
       "ai-likeness-publicity-use",
       "ai-likeness-personality-harm",
       "ai-likeness-provider-risk",
-      "ai-publicity-rights-scope",
       "ai-publicity-remedies",
-      "ai-publicity-provider-risk",
       "ai-ip-publicity"
     ],
     "primarySourceIds": [
@@ -2556,13 +2475,13 @@ window.ARTICLE_DATA = [
       "消費者法・表示"
     ],
     "relatedTopics": [
-      "ai-publicity-likeness-rights",
+      "generative-ai-likeness-publicity",
       "generative-ai-ip-rights"
     ],
     "relatedIssues": [
-      "ai-publicity-rights-scope",
+      "ai-likeness-legal-framework",
       "ai-publicity-remedies",
-      "ai-publicity-provider-risk",
+      "ai-likeness-provider-risk",
       "ai-ip-publicity"
     ],
     "primarySourceIds": [
@@ -2761,16 +2680,13 @@ window.ARTICLE_DATA = [
     ],
     "relatedTopics": [
       "ssbj-statutory-sustainability-disclosure",
-      "agm-pre-disclosure-company-law-reform",
-      "sustainability-disclosure-ssbj"
+      "agm-pre-disclosure-company-law-reform"
     ],
     "relatedIssues": [
       "ssbj-application-scope",
       "ssbj-two-step-disclosure",
       "ssbj-scope3-liability",
-      "agm-disclosure-rationalization",
-      "ssbj-applicability",
-      "ssbj-scope3-safe-harbor"
+      "agm-disclosure-rationalization"
     ],
     "primarySourceIds": [
       "source-fsa-disclosure-ordinance-2026"
@@ -2805,11 +2721,11 @@ window.ARTICLE_DATA = [
       "会社法・ガバナンス"
     ],
     "relatedTopics": [
-      "sustainability-disclosure-ssbj"
+      "ssbj-statutory-sustainability-disclosure"
     ],
     "relatedIssues": [
       "ssbj-current-standard",
-      "ssbj-scope3-safe-harbor"
+      "ssbj-scope3-liability"
     ],
     "primarySourceIds": [
       "source-ssbj-ghg-amendment-2026"
@@ -2851,14 +2767,11 @@ window.ARTICLE_DATA = [
       "危機管理・コンプライアンス"
     ],
     "relatedTopics": [
-      "ssbj-statutory-sustainability-disclosure",
-      "sustainability-disclosure-ssbj"
+      "ssbj-statutory-sustainability-disclosure"
     ],
     "relatedIssues": [
       "ssbj-scope3-liability",
-      "ssbj-supplychain-data",
-      "ssbj-scope3-supplychain",
-      "ssbj-scope3-safe-harbor"
+      "ssbj-supplychain-data"
     ],
     "primarySourceIds": [
       "source-fsa-disclosure-ordinance-2026",
@@ -3290,17 +3203,14 @@ window.ARTICLE_DATA = [
       "契約"
     ],
     "relatedTopics": [
-      "whistleblower-internal-reporting",
-      "whistleblower-protection-internal-reporting"
+      "whistleblower-internal-reporting"
     ],
     "relatedIssues": [
       "wb-system-controls",
       "wb-obstruction-search",
       "wb-records-notice",
-      "whistleblower-system-duties",
-      "whistleblower-protected-persons",
-      "whistleblower-obstruction-identification",
-      "whistleblower-retaliation",
+      "wb-scope-freelance",
+      "wb-retaliation-employment",
       "whistleblower-external-report-response"
     ],
     "primarySourceIds": [
@@ -3313,7 +3223,7 @@ window.ARTICLE_DATA = [
     "id": "article-caa-whistleblower-qa-2026",
     "title": "公益通報者保護制度Q&A（令和8年12月1日施行対応）",
     "publisher": "消費者庁",
-    "author": "消費者庁",
+    "author": "消費者庁 参事官（公益通報・協働担当）",
     "publishedAt": "2026-05-29",
     "collectedAt": "2026-09-02",
     "url": "https://www.caa.go.jp/policies/policy/consumer_partnerships/whisleblower_protection_system/faq",
@@ -3344,13 +3254,16 @@ window.ARTICLE_DATA = [
     "relatedIssues": [
       "wb-scope-freelance",
       "wb-system-controls",
-      "wb-records-notice"
+      "wb-records-notice",
+      "wb-retaliation-employment"
     ],
     "primarySourceIds": [
       "source-caa-whistleblower-qa-2026",
       "source-caa-whistleblower-amendment-2025",
-      "source-caa-whistleblower-guideline-2026"
-    ]
+      "source-caa-whistleblower-guideline-2026",
+      "source-whistleblower-qa-2026"
+    ],
+    "reformEventId": "whistleblower-protection-2025-amendment"
   },
   {
     "id": "article-mhlw-women-advancement-amendment-2026",
@@ -4441,11 +4354,11 @@ window.ARTICLE_DATA = [
     ],
     "relatedTopics": [
       "business-human-rights-dd",
-      "sustainability-disclosure-ssbj"
+      "ssbj-statutory-sustainability-disclosure"
     ],
     "relatedIssues": [
       "bhr-ma-dd",
-      "ssbj-applicability"
+      "ssbj-application-scope"
     ],
     "primarySourceIds": [
       "source-fsa-disclosure-ordinance-2026",
@@ -4485,11 +4398,11 @@ window.ARTICLE_DATA = [
     ],
     "relatedTopics": [
       "business-human-rights-dd",
-      "sustainability-disclosure-ssbj"
+      "ssbj-statutory-sustainability-disclosure"
     ],
     "relatedIssues": [
       "bhr-ma-dd",
-      "ssbj-applicability"
+      "ssbj-application-scope"
     ],
     "primarySourceIds": [
       "source-fsa-disclosure-ordinance-2026",
@@ -4828,10 +4741,10 @@ window.ARTICLE_DATA = [
       "金融商品取引・開示・IR"
     ],
     "relatedTopics": [
-      "tender-offer-large-shareholding"
+      "tob-large-shareholding-2026"
     ],
     "relatedIssues": [
-      "tob-30-percent-rule",
+      "tob-thirty-rule",
       "tob-de-minimis"
     ],
     "primarySourceIds": [
@@ -4868,12 +4781,12 @@ window.ARTICLE_DATA = [
       "金融商品取引・開示・IR"
     ],
     "relatedTopics": [
-      "tender-offer-large-shareholding"
+      "tob-large-shareholding-2026"
     ],
     "relatedIssues": [
-      "largeholding-important-proposal",
-      "largeholding-joint-holder",
-      "largeholding-derivatives"
+      "largeholder-important-proposal",
+      "largeholder-joint-holder",
+      "largeholder-derivatives"
     ],
     "primarySourceIds": [
       "source-fsa-tob-largeholder-final-2025",
