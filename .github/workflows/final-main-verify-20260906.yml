@@ -1,0 +1,49 @@
+name: Final main verification 20260906
+on:
+  push:
+    branches: [audit/final-structure-20260906-90c3]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Validate data and structural invariants
+        shell: bash
+        run: |
+          mkdir -p verify-output
+          node scripts/validate-data.mjs > verify-output/validator.json 2> verify-output/warnings.txt
+          cat verify-output/validator.json
+          cat verify-output/warnings.txt
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';import vm from 'node:vm';import {execSync} from 'node:child_process';
+          const c={window:{},URL};vm.createContext(c);vm.runInContext(fs.readFileSync('data/manifest.js','utf8'),c);for(const f of Object.values(c.window.LAW_INDEX_DATA_FILES).flat())vm.runInContext(fs.readFileSync('data/'+f.split('?')[0],'utf8'),c,{filename:f});
+          const topics=c.window.TOPIC_DATA||[],sources=c.window.SOURCE_DATA||[],articles=c.window.ARTICLE_DATA||[],updates=c.window.UPDATE_DATA||[],events=c.window.REFORM_EVENT_DATA||[];const unique=c.window.uniqueKnowledgeArticles?.(articles)||articles;const adopted=unique.filter(a=>a.status==='adopted');
+          const n=s=>String(s||'').normalize('NFKC').toLowerCase().replace(/[\s\u3000「」『』（）()【】\[\],，.。:：・･!！?？\-_–—]/g,'');const nu=s=>{try{const u=new URL(s);u.protocol='https:';u.hash='';for(const k of [...u.searchParams.keys()])if(/^utm_/i.test(k)||['fbclid','gclid','yclid'].includes(k))u.searchParams.delete(k);u.hostname=u.hostname.toLowerCase();u.pathname=u.pathname.replace(/\/+$/,'')||'/';return u.toString().replace(/\?$/,'')}catch{return String(s||'').trim()}};const groups=(arr,key)=>{const m=new Map();for(const x of arr){const k=key(x);if(!k)continue;if(!m.has(k))m.set(k,[]);m.get(k).push(x)}return[...m.entries()].filter(([,v])=>v.length>1).map(([key,items])=>({key,ids:items.map(i=>i.id),titles:items.map(i=>i.title)}))};
+          const matches=a=>events.filter(e=>(e.articleIds||[]).includes(a.id)||(e.matchSourceIds||[]).some(id=>(a.primarySourceIds||[]).includes(id)));const eventFor=a=>{if(a.reformEventId)return events.find(e=>e.id===a.reformEventId)||null;const m=matches(a);return m.length===1?m[0]:null};const legal=adopted.filter(a=>eventFor(a)||(c.window.getLegalReformInfo?.(a,topics)||{}).isReform);const fresh=JSON.parse(JSON.stringify(topics));const verificationAdvances=c.window.applyTopicVerificationDates?.(fresh,articles,updates)||[];
+          const categories=[...new Set(topics.flatMap(t=>t.categories||[]))].sort((a,b)=>a.localeCompare(b,'ja')).map(name=>({name,count:topics.filter(t=>(t.categories||[]).includes(name)).length}));
+          const html=['index.html','articles.html','article.html','topics.html','reforms.html','update.html',...fs.readdirSync('topics').filter(f=>f.endsWith('.html')).map(f=>'topics/'+f)];const expected=['新着','記事一覧','テーマ','法改正'];const ui=[];for(const p of html){const s=fs.readFileSync(p,'utf8');const nav=(s.match(/<nav class="main-nav"[\s\S]*?<\/nav>/)||[''])[0];const labels=[...nav.matchAll(/<a[^>]*>([^<]+)<\/a>/g)].map(m=>m[1].trim());const footer=(s.match(/<footer class="site-footer">[\s\S]*?<\/footer>/)||[''])[0];ui.push({path:p,navOk:!nav||JSON.stringify(labels)===JSON.stringify(expected),footerTop:/href="#top"/.test(footer),redirect:/http-equiv="refresh"/.test(s)});}
+          const report={commit:execSync('git rev-parse HEAD').toString().trim(),counts:{topics:topics.length,issues:topics.reduce((z,t)=>z+(t.issues||[]).length,0),sources:sources.length,updates:updates.length,reformEvents:events.length,articlesRaw:articles.length,articlesUnique:unique.length,articlesAdopted:adopted.length,legalReformArticles:legal.length,reformLinked:legal.filter(a=>eventFor(a)).length,reformUnlinked:legal.filter(a=>!eventFor(a)).length},duplicates:{articleIds:groups(articles,a=>a.id),articleUrls:groups(articles,a=>nu(a.url)),articleTitlePublisherDate:groups(articles,a=>[n(a.title),n(a.publisher),a.publishedAt||''].join('|')),sourceIds:groups(sources,s=>s.id),sourceUrls:groups(sources,s=>nu(s.url)),sourceTitleDate:groups(sources,s=>[n(s.title),s.publishedAt||''].join('|'))},categories,verificationAdvances,uiIssues:ui.filter(x=>!x.navOk||x.footerTop),redirectPages:ui.filter(x=>x.redirect).map(x=>x.path)};fs.writeFileSync('verify-output/structure.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+          NODE
+      - name: Check external URLs
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';import vm from 'node:vm';const c={window:{},URL};vm.createContext(c);vm.runInContext(fs.readFileSync('data/manifest.js','utf8'),c);for(const f of Object.values(c.window.LAW_INDEX_DATA_FILES).flat())vm.runInContext(fs.readFileSync('data/'+f.split('?')[0],'utf8'),c);const urls=[...new Set([...(c.window.ARTICLE_DATA||[]),...(c.window.SOURCE_DATA||[])].map(x=>x.url).filter(Boolean))];const out=[];let cursor=0;async function worker(){while(cursor<urls.length){const url=urls[cursor++];try{const r=await fetch(url,{signal:AbortSignal.timeout(12000),redirect:'follow',headers:{'User-Agent':'LAW-INDEX-Audit/1.0'}});await r.body?.cancel();out.push({url,status:r.status,finalUrl:r.url});}catch(e){out.push({url,status:null,error:e.message})}}}await Promise.all(Array.from({length:8},worker));const counts={};for(const x of out)counts[String(x.status)]=(counts[String(x.status)]||0)+1;fs.writeFileSync('verify-output/links.json',JSON.stringify(out,null,2));console.log('LINK_COUNTS '+JSON.stringify(counts));
+          NODE
+      - name: Verify GitHub Pages matches main
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';const base='https://na-t-to.github.io/law-article/';const paths=['index.html','articles.html','article.html','topics.html','reforms.html','data/manifest.js','data/schema.js','data/articles.js','data/topics.js','data/sources.js','data/reforms.js'];let final=[];for(let attempt=0;attempt<12;attempt++){final=[];for(const p of paths){try{const r=await fetch(base+p+'?audit='+Date.now(),{signal:AbortSignal.timeout(15000)});const text=await r.text();final.push({path:p,status:r.status,matchesMain:text===fs.readFileSync(p,'utf8')});}catch(e){final.push({path:p,error:e.message,matchesMain:false})}}if(final.every(x=>x.status===200&&x.matchesMain))break;await new Promise(r=>setTimeout(r,10000));}fs.writeFileSync('verify-output/public.json',JSON.stringify(final,null,2));console.log('PUBLIC '+JSON.stringify(final));if(!final.every(x=>x.status===200&&x.matchesMain))process.exit(2);
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: final-main-verification-20260906
+          path: verify-output
+          retention-days: 3
