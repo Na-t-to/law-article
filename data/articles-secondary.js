@@ -44,5 +44,34 @@ window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
     "reformStageAtPublication": "finalized_pending",
     "reformStageSourceIds": ["source-fsa-fiea-law-text-2026"],
     "whatChanged": "整理変更なし／2026年金商法改正の成立後解説として、SSBJ法定開示・第三者保証・セーフハーバー・段階的な適用時期を既存テーマへ補完した。"
+  },
+  {
+    "id": "article-businesslawyers-uga-privacy-2026",
+    "title": "宇賀克也教授に聞く令和8年個人情報保護法改正 法務が真に備えるべきは？",
+    "publisher": "BUSINESS LAWYERS",
+    "author": "BUSINESS LAWYERS編集部（宇賀克也教授インタビュー）",
+    "publishedAt": "2026-09-01",
+    "collectedAt": "2026-09-07",
+    "url": "https://www.businesslawyers.jp/articles/1556",
+    "sourceType": "secondary",
+    "sourceLabel": "専門家インタビュー・実務解説／2026年個人情報保護法改正",
+    "status": "adopted",
+    "summary": "2026年改正個人情報保護法について、規制遵守の実効性強化とリスクベース・アプローチによる規制の重点化をどう評価するかを、宇賀克也教授へのインタビュー形式で整理する。特定生体個人情報、連絡可能個人関連情報、16歳未満の子供の個人情報、課徴金等の執行強化に加え、AI開発を念頭に置く統計作成等特例について、本人同意を不要とする利活用促進だけでなく、安全管理、提供前の加工、再識別リスク、PETs（プライバシー強化技術）等の保護措置まで論じている。",
+    "whyImportant": [
+      "改正項目を一律の規制強化・緩和として読むのではなく、情報のリスクに応じて規律を強弱付けするという考え方から、施行準備の優先順位を整理できる",
+      "AI開発等の統計作成等特例について、本人同意不要という結論だけでなく、提供前の不要情報の除去、PETs、再識別・推論リスクなど下位ルールで具体化すべき安全管理上の論点まで踏み込んでいる",
+      "特定生体個人情報、連絡可能個人関連情報、子供の個人情報、課徴金・命令等の執行強化を横断し、法務・プライバシー部門がどの業務フローから見直すべきか考える材料になる",
+      "課徴金や団体訴訟、闇名簿対策に関する評価は専門家の見解として示されており、法令上確定した内容と政策・運用上の課題を分けて読める"
+    ],
+    "audience": ["企業法務", "プライバシー担当", "AI・データ利活用担当", "コンプライアンス担当"],
+    "audienceReason": "改正法の施行準備を条文の差分確認だけで終わらせず、データのリスク、AI開発時の安全管理、本人対応、執行リスクを業務フローへ落とし込むため。",
+    "categories": ["個人情報", "AI・デジタル", "危機管理・コンプライアンス"],
+    "relatedTopics": ["personal-information-protection-2026-amendment", "ai-personal-data"],
+    "relatedIssues": ["privacy-2026-children", "privacy-2026-biometric", "privacy-2026-contactable-related-info", "privacy-2026-surcharge", "ai-statistical-use"],
+    "primarySourceIds": ["source-privacy-law-2026-amendment", "source-privacy-law-2026-rulemap"],
+    "reformEventId": "privacy-law-2026-amendment",
+    "reformStageAtPublication": "finalized_pending",
+    "reformStageSourceIds": ["source-privacy-law-2026-amendment"],
+    "whatChanged": "整理変更なし／2026年個人情報保護法改正について、リスクベースの規律設計、AI開発の統計作成等特例に伴う安全管理・PETs、執行強化を専門家の視点から補完した。"
   }
 ]);
