@@ -1,0 +1,95 @@
+name: Company law duplicate cleanup 20260906
+on:
+  push:
+    branches: [audit/company-law-dedupe-20260906-c5ec]
+permissions:
+  contents: write
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/company-law-dedupe-20260906-c5ec
+      - name: Consolidate duplicated interim-proposal article and source
+        shell: bash
+        run: |
+          cat > /tmp/dedupe.mjs <<'NODE'
+          import fs from 'node:fs';
+          import vm from 'node:vm';
+          const c={window:{},URL};vm.createContext(c);
+          vm.runInContext(fs.readFileSync('data/manifest.js','utf8'),c);
+          for(const f of Object.values(c.window.LAW_INDEX_DATA_FILES).flat()) vm.runInContext(fs.readFileSync('data/'+f.split('?')[0],'utf8'),c,{filename:f});
+          let topics=c.window.TOPIC_DATA||[], sources=c.window.SOURCE_DATA||[], updates=c.window.UPDATE_DATA||[], reforms=c.window.REFORM_EVENT_DATA||[], articles=c.window.ARTICLE_DATA||[];
+          const canonicalArticle=articles.find(a=>a.id==='article-moj-company-law-interim-2026');
+          const duplicateArticle=articles.find(a=>a.id==='article-moj-companies-act-interim-2026');
+          const canonicalSource=sources.find(s=>s.id==='source-moj-company-law-interim-2026');
+          const duplicateSource=sources.find(s=>s.id==='source-moj-companies-act-interim-2026');
+          if(!canonicalArticle||!duplicateArticle||!canonicalSource||!duplicateSource) throw new Error('company-law duplicate records missing');
+          const uniq=a=>[...new Set((a||[]).filter(v=>v!==undefined&&v!==null&&v!==''))];
+          canonicalArticle.author=duplicateArticle.author||canonicalArticle.author;
+          canonicalArticle.publishedAt='2026-03-18';
+          canonicalArticle.collectedAt=[canonicalArticle.collectedAt,duplicateArticle.collectedAt].filter(Boolean).sort()[0];
+          canonicalArticle.url='https://www.moj.go.jp/shingi1/shingi04900001_00333.html';
+          canonicalArticle.publisher='法務省';
+          canonicalArticle.sourceType='primary';
+          canonicalArticle.sourceLabel='一次資料・法制審中間試案';
+          canonicalArticle.summary=duplicateArticle.summary||canonicalArticle.summary;
+          canonicalArticle.whyImportant=uniq([...(duplicateArticle.whyImportant||[]),...(canonicalArticle.whyImportant||[])]);
+          canonicalArticle.audience=uniq([...(duplicateArticle.audience||[]),...(canonicalArticle.audience||[])]);
+          canonicalArticle.audienceReason=duplicateArticle.audienceReason||canonicalArticle.audienceReason;
+          canonicalArticle.categories=uniq([...(duplicateArticle.categories||[]),...(canonicalArticle.categories||[])]);
+          canonicalArticle.relatedTopics=uniq([...(duplicateArticle.relatedTopics||[]),...(canonicalArticle.relatedTopics||[])]);
+          canonicalArticle.relatedIssues=uniq([...(duplicateArticle.relatedIssues||[]),...(canonicalArticle.relatedIssues||[])]);
+          canonicalArticle.primarySourceIds=['source-moj-company-law-interim-2026'];
+          articles=articles.filter(a=>a.id!=='article-moj-companies-act-interim-2026');
+
+          canonicalSource.title='会社法制（株式・株主総会等関係）の見直しに関する中間試案';
+          canonicalSource.type='proposal';
+          canonicalSource.typeLabel='法制審・中間試案';
+          canonicalSource.authority='法務省／法制審議会';
+          canonicalSource.publishedAt='2026-03-18';
+          canonicalSource.url='https://www.moj.go.jp/shingi1/shingi04900001_00333.html';
+          canonicalSource.importance='最高';
+          canonicalSource.whyImportant=duplicateSource.whyImportant||canonicalSource.whyImportant;
+          canonicalSource.topics=uniq([...(duplicateSource.topics||[]),...(canonicalSource.topics||[])]);
+          sources=sources.filter(s=>s.id!=='source-moj-companies-act-interim-2026');
+
+          const oldSource='source-moj-companies-act-interim-2026', newSource='source-moj-company-law-interim-2026';
+          const replace=v=>{
+            if(typeof v==='string') return v===oldSource?newSource:v;
+            if(Array.isArray(v)){
+              const arr=v.map(replace);
+              return arr.every(x=>['string','number','boolean'].includes(typeof x)||x===null)?[...new Set(arr)]:arr;
+            }
+            if(v&&typeof v==='object') for(const k of Object.keys(v)) v[k]=replace(v[k]);
+            return v;
+          };
+          topics=replace(topics); sources=replace(sources); updates=replace(updates); reforms=replace(reforms); articles=replace(articles);
+          const write=(file,name,data)=>fs.writeFileSync(file,`window.${name} = ${JSON.stringify(data,null,2)};\n`);
+          write('data/topics.js','TOPIC_DATA',topics);
+          write('data/sources.js','SOURCE_DATA',sources);
+          write('data/updates.js','UPDATE_DATA',updates);
+          write('data/reforms.js','REFORM_EVENT_DATA',reforms);
+          write('data/articles.js','ARTICLE_DATA',articles);
+          let manifest=fs.readFileSync('data/manifest.js','utf8');
+          manifest=manifest.replace('topics.js?v=11','topics.js?v=12').replace('sources.js?v=12','sources.js?v=13').replace('updates.js?v=10','updates.js?v=11').replace('reforms.js?v=17','reforms.js?v=18').replace('articles.js?v=13','articles.js?v=14');
+          fs.writeFileSync('data/manifest.js',manifest);
+          const html=['index.html','articles.html','article.html','topics.html','reforms.html','update.html',...fs.readdirSync('topics').filter(f=>f.endsWith('.html')).map(f=>'topics/'+f)];
+          for(const file of html){let s=fs.readFileSync(file,'utf8');s=s.replace(/manifest\.js\?v=22/g,'manifest.js?v=23');fs.writeFileSync(file,s);}
+          NODE
+          node /tmp/dedupe.mjs
+          node scripts/validate-data.mjs > dedupe-validator.json 2> dedupe-warnings.txt
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';import vm from 'node:vm';const c={window:{},URL};vm.createContext(c);vm.runInContext(fs.readFileSync('data/manifest.js','utf8'),c);for(const f of Object.values(c.window.LAW_INDEX_DATA_FILES).flat())vm.runInContext(fs.readFileSync('data/'+f.split('?')[0],'utf8'),c);const a=c.window.ARTICLE_DATA||[],s=c.window.SOURCE_DATA||[];const assert=(x,m)=>{if(!x)throw new Error(m)};assert(!a.some(x=>x.id==='article-moj-companies-act-interim-2026'),'old article remains');assert(a.filter(x=>x.title==='会社法制（株式・株主総会等関係）の見直しに関する中間試案').length===1,'article title duplicate remains');assert(!s.some(x=>x.id==='source-moj-companies-act-interim-2026'),'old source remains');assert(s.filter(x=>x.title==='会社法制（株式・株主総会等関係）の見直しに関する中間試案').length===1,'source title duplicate remains');console.log(JSON.stringify({articles:a.length,sources:s.length,canonicalArticle:a.find(x=>x.id==='article-moj-company-law-interim-2026'),canonicalSource:s.find(x=>x.id==='source-moj-company-law-interim-2026')},null,2));
+          NODE
+          git diff --check
+      - name: Commit cleanup on audit branch
+        shell: bash
+        run: |
+          git config user.name "LAW INDEX Audit"
+          git config user.email "audit@users.noreply.github.com"
+          git add data/*.js index.html articles.html article.html topics.html reforms.html update.html topics/*.html dedupe-validator.json dedupe-warnings.txt
+          git commit -m "Merge duplicate company-law interim proposal records"
+          git push origin HEAD:audit/company-law-dedupe-20260906-c5ec
