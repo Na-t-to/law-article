@@ -1,0 +1,152 @@
+name: Apply structure cleanup 20260906
+on:
+  push:
+    branches: [audit/structure-20260906-a8aa]
+permissions:
+  contents: write
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/structure-20260906-a8aa
+      - name: Consolidate confirmed duplicates
+        shell: bash
+        run: |
+          cat > /tmp/cleanup.mjs <<'NODE'
+          import fs from 'node:fs';
+          import vm from 'node:vm';
+          const c={window:{},URL};vm.createContext(c);
+          vm.runInContext(fs.readFileSync('data/manifest.js','utf8'),c);
+          for(const f of Object.values(c.window.LAW_INDEX_DATA_FILES).flat())vm.runInContext(fs.readFileSync('data/'+f.split('?')[0],'utf8'),c);
+          let topics=c.window.TOPIC_DATA||[], articles=c.window.ARTICLE_DATA||[], updates=c.window.UPDATE_DATA||[], reforms=c.window.REFORM_EVENT_DATA||[];
+          const topicBy=s=>topics.find(t=>t.slug===s);
+          const uniq=a=>[...new Set((a||[]).filter(v=>v!==undefined&&v!==null))];
+          const mergeTopic=(canonicalSlug,removedSlugs,{title,addIssueIds=[]}={})=>{
+            const canonical=topicBy(canonicalSlug); if(!canonical)throw new Error('missing canonical '+canonicalSlug);
+            const removed=removedSlugs.map(topicBy).filter(Boolean);
+            const all=[canonical,...removed];
+            canonical.categories=uniq(all.flatMap(t=>t.categories||[]));
+            canonical.sourceIds=uniq(all.flatMap(t=>t.sourceIds||[]));
+            canonical.practicalImpacts=uniq(all.flatMap(t=>t.practicalImpacts||[]));
+            canonical.lastUpdated='2026-09-06';
+            canonical.lastVerified=all.map(t=>t.lastVerified||'').sort().at(-1)||canonical.lastVerified;
+            if(title)canonical.title=title;
+            for(const id of addIssueIds){
+              if((canonical.issues||[]).some(i=>i.id===id))continue;
+              let found=null; for(const t of removed){found=(t.issues||[]).find(i=>i.id===id);if(found)break;}
+              if(!found)throw new Error(`missing issue ${id} for ${canonicalSlug}`);
+              canonical.issues.push(JSON.parse(JSON.stringify(found)));
+            }
+            topics=topics.filter(t=>!removedSlugs.includes(t.slug));
+          };
+          mergeTopic('generative-ai-likeness-publicity',['ai-publicity-likeness-rights'],{addIssueIds:['ai-publicity-remedies']});
+          mergeTopic('whistleblower-internal-reporting',['whistleblower-system','whistleblower-protection-internal-reporting'],{title:'公益通報者保護法・内部通報制度',addIssueIds:['whistleblower-external-report-response']});
+          mergeTopic('listed-company-takeover-guidelines',['acquisition-guidelines','corporate-takeover-guidelines'],{title:'企業買収行動指針・買収提案対応'});
+          mergeTopic('tob-large-shareholding-2026',['tender-offer-large-shareholding'],{title:'公開買付・大量保有報告制度',addIssueIds:['tob-de-minimis']});
+          mergeTopic('ssbj-statutory-sustainability-disclosure',['sustainability-disclosure-ssbj'],{addIssueIds:['ssbj-current-standard']});
+
+          const canonicalArticle=articles.find(a=>a.id==='article-caa-whistleblower-qa-2026');
+          const duplicateArticle=articles.find(a=>a.id==='article-whistleblower-qa-2026');
+          if(!canonicalArticle||!duplicateArticle)throw new Error('whistleblower Q&A duplicate pair missing');
+          canonicalArticle.author=duplicateArticle.author||canonicalArticle.author;
+          canonicalArticle.categories=uniq([...(canonicalArticle.categories||[]),...(duplicateArticle.categories||[])]);
+          canonicalArticle.relatedTopics=uniq([...(canonicalArticle.relatedTopics||[]),...(duplicateArticle.relatedTopics||[])]);
+          canonicalArticle.relatedIssues=uniq([...(canonicalArticle.relatedIssues||[]),...(duplicateArticle.relatedIssues||[])]);
+          canonicalArticle.primarySourceIds=uniq([...(canonicalArticle.primarySourceIds||[]),...(duplicateArticle.primarySourceIds||[])]);
+          canonicalArticle.reformEventId='whistleblower-protection-2025-amendment';
+          articles=articles.filter(a=>a.id!=='article-whistleblower-qa-2026');
+
+          const replacements=new Map(Object.entries({
+            'ai-publicity-likeness-rights':'generative-ai-likeness-publicity',
+            'whistleblower-system':'whistleblower-internal-reporting',
+            'whistleblower-protection-internal-reporting':'whistleblower-internal-reporting',
+            'acquisition-guidelines':'listed-company-takeover-guidelines',
+            'corporate-takeover-guidelines':'listed-company-takeover-guidelines',
+            'tender-offer-large-shareholding':'tob-large-shareholding-2026',
+            'sustainability-disclosure-ssbj':'ssbj-statutory-sustainability-disclosure',
+            'article-whistleblower-qa-2026':'article-caa-whistleblower-qa-2026',
+            'ai-publicity-rights-scope':'ai-likeness-legal-framework',
+            'ai-publicity-provider-risk':'ai-likeness-provider-risk',
+            'whistleblower-scope':'wb-scope-freelance',
+            'whistleblower-retaliation':'wb-retaliation-employment',
+            'whistleblower-system-design':'wb-system-controls',
+            'whistleblower-system-duties':'wb-system-controls',
+            'whistleblower-protected-persons':'wb-scope-freelance',
+            'whistleblower-obstruction-identification':'wb-obstruction-search',
+            'acq-sincere-proposal':'takeover-serious-proposal',
+            'acq-board-review':'takeover-sincere-review-comparison',
+            'acq-value-explanation':'takeover-qualitative-enterprise-value',
+            'takeover-desirable':'takeover-desirable-acquisition',
+            'takeover-bona-fide':'takeover-serious-proposal',
+            'takeover-board-review':'takeover-sincere-review-comparison',
+            'tob-30-percent-rule':'tob-thirty-rule',
+            'largeholding-important-proposal':'largeholder-important-proposal',
+            'largeholding-joint-holder':'largeholder-joint-holder',
+            'largeholding-derivatives':'largeholder-derivatives',
+            'ssbj-applicability':'ssbj-application-scope',
+            'ssbj-scope3-safe-harbor':'ssbj-scope3-liability',
+            'ssbj-scope3-supplychain':'ssbj-supplychain-data'
+          }));
+          const deepReplace=v=>{
+            if(typeof v==='string')return replacements.get(v)??v;
+            if(Array.isArray(v)){
+              const arr=v.map(deepReplace);
+              if(arr.every(x=>['string','number','boolean'].includes(typeof x)||x===null))return [...new Set(arr)];
+              return arr;
+            }
+            if(v&&typeof v==='object'){for(const k of Object.keys(v))v[k]=deepReplace(v[k]);}
+            return v;
+          };
+          topics=deepReplace(topics); articles=deepReplace(articles); updates=deepReplace(updates); reforms=deepReplace(reforms);
+          const write=(file,name,data)=>fs.writeFileSync(file,`window.${name} = ${JSON.stringify(data,null,2)};\n`);
+          write('data/topics.js','TOPIC_DATA',topics);
+          write('data/articles.js','ARTICLE_DATA',articles);
+          write('data/updates.js','UPDATE_DATA',updates);
+          write('data/reforms.js','REFORM_EVENT_DATA',reforms);
+
+          let manifest=fs.readFileSync('data/manifest.js','utf8');
+          manifest=manifest.replace('topics.js?v=10','topics.js?v=11').replace('updates.js?v=9','updates.js?v=10').replace('reforms.js?v=16','reforms.js?v=17').replace('articles.js?v=12','articles.js?v=13');
+          fs.writeFileSync('data/manifest.js',manifest);
+
+          const redirects={
+            'ai-publicity-likeness-rights':'generative-ai-likeness-publicity',
+            'whistleblower-system':'whistleblower-internal-reporting',
+            'whistleblower-protection-internal-reporting':'whistleblower-internal-reporting',
+            'acquisition-guidelines':'listed-company-takeover-guidelines',
+            'corporate-takeover-guidelines':'listed-company-takeover-guidelines',
+            'tender-offer-large-shareholding':'tob-large-shareholding-2026',
+            'sustainability-disclosure-ssbj':'ssbj-statutory-sustainability-disclosure'
+          };
+          for(const [oldSlug,newSlug] of Object.entries(redirects)){
+            const html=`<!doctype html>\n<html lang="ja"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta http-equiv="refresh" content="0; url=${newSlug}.html" /><link rel="canonical" href="${newSlug}.html" /><title>テーマを移動しました — LAW / INDEX</title></head><body><p>このテーマは統合されました。<a href="${newSlug}.html">現在のテーマページへ移動</a></p><script>location.replace(${JSON.stringify(newSlug+'.html')});<\/script></body></html>\n`;
+            fs.writeFileSync(`topics/${oldSlug}.html`,html);
+          }
+          const allHtml=['index.html','articles.html','article.html','topics.html','reforms.html','update.html',...fs.readdirSync('topics').filter(f=>f.endsWith('.html')).map(f=>'topics/'+f)];
+          const order=['index.html','articles.html','topics.html','reforms.html'];
+          for(const file of allHtml){
+            if(Object.hasOwn(redirects,file.replace(/^topics\//,'').replace(/\.html$/,'')))continue;
+            let s=fs.readFileSync(file,'utf8');
+            s=s.replace(/manifest\.js\?v=\d+/g,'manifest.js?v=22');
+            s=s.replace(/<nav class="main-nav"([^>]*)>([\s\S]*?)<\/nav>/g,(whole,attrs,inner)=>{
+              const links=inner.match(/<a\b[^>]*>[\s\S]*?<\/a>/g)||[];
+              links.sort((a,b)=>{const href=x=>(x.match(/href="([^"]+)"/)||[])[1]||'';const idx=x=>{const h=href(x).split(/[?#]/)[0];const i=order.findIndex(n=>h.endsWith(n));return i<0?order.length:i};return idx(a)-idx(b)});
+              return `<nav class="main-nav"${attrs}>${links.join('')}</nav>`;
+            });
+            s=s.replace(/(<footer class="site-footer">[\s\S]*?)<a[^>]*href="#top"[^>]*>[^<]*(?:<span>[^<]*<\/span>)?[^<]*<\/a>([\s\S]*?<\/footer>)/g,'$1$2');
+            fs.writeFileSync(file,s);
+          }
+          NODE
+          node /tmp/cleanup.mjs
+          node scripts/validate-data.mjs > cleanup-validator.json 2> cleanup-warnings.txt
+          git diff --check
+          git status --short
+      - name: Commit cleanup to audit branch
+        shell: bash
+        run: |
+          git config user.name "LAW INDEX Audit"
+          git config user.email "audit@users.noreply.github.com"
+          git add data/topics.js data/articles.js data/updates.js data/reforms.js data/manifest.js index.html articles.html article.html topics.html reforms.html update.html topics/*.html cleanup-validator.json cleanup-warnings.txt
+          git commit -m "Consolidate duplicate LAW INDEX records and themes"
+          git push origin HEAD:audit/structure-20260906-a8aa
