@@ -90,3 +90,18 @@ window.SOURCE_DATA = (window.SOURCE_DATA || []).concat([
     "topics": ["ssbj-statutory-sustainability-disclosure", "insider-trading-information-management"]
   }
 ]);
+
+window.SOURCE_DATA = (window.SOURCE_DATA || []).concat([
+  {
+    "id": "source-meti-family-governance-guidance-2026",
+    "title": "ファミリーガバナンス・ガイダンス",
+    "type": "guideline",
+    "typeLabel": "行政ガイダンス・任意規範",
+    "authority": "経済産業省",
+    "publishedAt": "2026-06-05",
+    "url": "https://www.meti.go.jp/press/2026/06/20260605001/20260605001.html",
+    "importance": "高",
+    "whyImportant": "ファミリービジネスの持続的成長に向け、ファミリー内および株主等のステークホルダーとの間で合意する事項を体系化した2026年の公式ガイダンス。任意規範であること、主な対象、参考資料・チェックリストへの導線を確認できる。",
+    "topics": ["family-business-governance"]
+  }
+]);
