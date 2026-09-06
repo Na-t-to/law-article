@@ -1,4 +1,4 @@
-name: Weekly structure audit
+name: Weekly structure audit details
 on:
   push:
     branches: [audit/structure-20260906-90c3]
@@ -7,99 +7,32 @@ permissions:
 jobs:
   audit:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - name: Audit data, links and published files
+      - name: Capture unresolved audit details
         run: |
           mkdir -p audit-output
           node scripts/validate-data.mjs > audit-output/validator.json 2> audit-output/validator-stderr.txt || true
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
           import vm from 'node:vm';
-
           const c={window:{},URL,console};vm.createContext(c);
           vm.runInContext(fs.readFileSync('data/manifest.js','utf8'),c);
-          const manifest=c.window.LAW_INDEX_DATA_FILES;
-          for(const f of Object.values(manifest).flat()) vm.runInContext(fs.readFileSync('data/'+f.split('?')[0],'utf8'),c);
-          const topics=c.window.TOPIC_DATA||[];
-          const sources=c.window.SOURCE_DATA||[];
-          const articles=c.window.ARTICLE_DATA||[];
-          const updates=c.window.UPDATE_DATA||[];
-          const events=c.window.REFORM_EVENT_DATA||[];
-
-          const normalizeUrl=(value)=>{try{const u=new URL(value);u.protocol='https:';u.hash='';for(const k of [...u.searchParams.keys()])if(/^utm_/i.test(k)||['fbclid','gclid','yclid'].includes(k))u.searchParams.delete(k);u.hostname=u.hostname.toLowerCase();u.pathname=u.pathname.replace(/\/+$/,'')||'/';u.searchParams.sort();return u.toString()}catch{return String(value||'').trim()}};
-          const duplicates=(items,keyFn)=>{const m=new Map();for(const x of items){const k=keyFn(x);if(!k)continue;if(!m.has(k))m.set(k,[]);m.get(k).push(x)}return [...m].filter(([,xs])=>xs.length>1)};
-          const normText=(v)=>String(v||'').normalize('NFKC').toLowerCase().replace(/[\s　「」『』（）()【】\[\]・:：,，.。!！?？―—\-_/\\]/g,'');
-          const articleByTopic=new Map(topics.map(t=>[t.slug,new Set()]));
-          for(const a of articles)for(const slug of a.relatedTopics||[])articleByTopic.get(slug)?.add(a.id);
-          const jaccard=(a,b)=>{const u=new Set([...a,...b]);if(!u.size)return 0;let n=0;for(const x of a)if(b.has(x))n++;return n/u.size};
-          const topicPairs=[];
-          for(let i=0;i<topics.length;i++)for(let j=i+1;j<topics.length;j++){
-            const a=topics[i],b=topics[j];
-            const art=jaccard(articleByTopic.get(a.slug)||new Set(),articleByTopic.get(b.slug)||new Set());
-            const src=jaccard(new Set(a.sourceIds||[]),new Set(b.sourceIds||[]));
-            const name=normText(a.title)===normText(b.title)?1:0;
-            const score=Math.max(name, art*0.75+src*0.25);
-            if(name||art>=0.6||(art>=0.4&&src>=0.5))topicPairs.push({a:a.slug,aTitle:a.title,b:b.slug,bTitle:b.title,articleJaccard:+art.toFixed(3),sourceJaccard:+src.toFixed(3),score:+score.toFixed(3)});
-          }
-          topicPairs.sort((x,y)=>y.score-x.score);
-
-          const eventForArticle=(article)=>{
-            if(article.reformEventId)return events.find(e=>e.id===article.reformEventId)||null;
-            const ps=Array.isArray(article.primarySourceIds)?article.primarySourceIds:[];
-            const matches=events.filter(e=>(Array.isArray(e.articleIds)&&e.articleIds.includes(article.id))||(Array.isArray(e.matchSourceIds)&&e.matchSourceIds.some(id=>ps.includes(id))));
-            return matches.length===1?matches[0]:null;
-          };
-          const reforms=articles.filter(a=>a.status==='adopted').map(article=>{
-            const event=eventForArticle(article);
-            const inferred=c.window.getLegalReformInfo?.(article,topics)||{isReform:false};
-            if(!event&&!inferred.isReform)return null;
-            const law=event?{id:event.lawId,label:event.lawLabel}:(c.window.getLegalReformLaw?.(article,topics)||{id:'unknown',label:'未整理'});
-            return {article,event,law};
-          }).filter(Boolean);
-          const reformGroups=new Map();
-          for(const item of reforms){const key=item.event?'event-'+item.event.id:'legacy-'+item.law.id;if(!reformGroups.has(key))reformGroups.set(key,{id:key,title:item.event?.title||item.law.label,lawId:item.law.id,lawLabel:item.law.label,eventId:item.event?.id||null,articleIds:[]});reformGroups.get(key).articleIds.push(item.article.id)}
-          const groups=[...reformGroups.values()];
-          const eventAndLegacy=[];
-          for(const g of groups.filter(g=>g.eventId))for(const l of groups.filter(g=>!g.eventId))if(g.lawId===l.lawId||normText(g.lawLabel)===normText(l.lawLabel))eventAndLegacy.push({event:g,legacy:l});
-
-          const categories=[...new Set(topics.flatMap(t=>t.categories||[]))].sort((a,b)=>a.localeCompare(b,'ja'));
-          const categoryCounts=Object.fromEntries(categories.map(cat=>[cat,topics.filter(t=>(t.categories||[]).includes(cat)).length]));
-          const audit=c.window.getKnowledgeAudit?.(topics,articles,updates)||{};
-          const stageCounts={};for(const t of topics)for(const i of t.issues||[])stageCounts[i.stage]=(stageCounts[i.stage]||0)+1;
-
-          const report={
-            commit:process.env.GITHUB_SHA,
-            manifest,
-            counts:{topics:topics.length,sources:sources.length,articles:articles.length,adoptedArticles:articles.filter(a=>a.status==='adopted').length,updates:updates.length,reformEvents:events.length,categories:categories.length,reformArticles:reforms.length,mappedReformArticles:reforms.filter(x=>x.event).length,unmappedReformArticles:reforms.filter(x=>!x.event).length,reformDisplayGroups:groups.length},
-            duplicates:{articleIds:duplicates(articles,x=>x.id).map(([key,xs])=>({key,ids:xs.map(x=>x.id)})),articleCanonicalUrls:duplicates(articles,x=>normalizeUrl(x.url)).map(([key,xs])=>({key,ids:xs.map(x=>x.id),titles:xs.map(x=>x.title)})),articleTitlePublisherDate:duplicates(articles,x=>[normText(x.title),normText(x.publisher),x.publishedAt||''].join('|')).map(([key,xs])=>({key,ids:xs.map(x=>x.id),urls:xs.map(x=>x.url)})),sourceIds:duplicates(sources,x=>x.id).map(([key,xs])=>({key,ids:xs.map(x=>x.id)})),sourceCanonicalUrls:duplicates(sources,x=>normalizeUrl(x.url)).map(([key,xs])=>({key,ids:xs.map(x=>x.id),titles:xs.map(x=>x.title||x.label)}))},
-            categories:categoryCounts,
-            singletonCategories:Object.entries(categoryCounts).filter(([,n])=>n===1).map(([k])=>k),
-            topicDuplicateCandidates:topicPairs.slice(0,30),
-            knowledgeAudit:audit,
-            stageCounts,
-            reformGroups:groups,
-            eventLegacyDuplicateCandidates:eventAndLegacy
-          };
-          fs.writeFileSync('audit-output/metrics.json',JSON.stringify(report,null,2));
-
-          const urls=[...new Set([...articles,...sources].map(x=>x.url).filter(Boolean))];
-          const linkResults=[];let cursor=0;
-          async function worker(){while(cursor<urls.length){const url=urls[cursor++];try{const r=await fetch(url,{redirect:'follow',signal:AbortSignal.timeout(15000),headers:{'User-Agent':'LAW-INDEX-Link-Audit/1.0'}});linkResults.push({url,status:r.status,finalUrl:r.url,redirected:r.redirected});await r.body?.cancel();}catch(e){linkResults.push({url,status:null,error:e.message})}}}
-          await Promise.all(Array.from({length:8},worker));
-          fs.writeFileSync('audit-output/links.json',JSON.stringify(linkResults,null,2));
-          const linkSummary={total:linkResults.length,ok:linkResults.filter(x=>x.status&&x.status>=200&&x.status<400).length,forbidden:linkResults.filter(x=>x.status===403).length,notFound:linkResults.filter(x=>x.status===404||x.status===410).length,otherHttp:linkResults.filter(x=>x.status&&!(x.status>=200&&x.status<400)&&x.status!==403&&x.status!==404&&x.status!==410).length,networkErrors:linkResults.filter(x=>x.status==null).length,dead:linkResults.filter(x=>x.status===404||x.status===410).map(x=>x.url)};
-          fs.writeFileSync('audit-output/link-summary.json',JSON.stringify(linkSummary,null,2));
-
-          const base='https://na-t-to.github.io/law-article/';
-          const publicChecks=[];
-          for(const p of ['index.html','articles.html','article.html','topics.html','reforms.html','data/manifest.js','data/schema.js','data/topics.js','data/sources.js','data/reforms.js','data/articles.js']){try{const r=await fetch(base+p+'?audit='+Date.now(),{signal:AbortSignal.timeout(20000)});const body=await r.text();const local=fs.readFileSync(p,'utf8');publicChecks.push({path:p,status:r.status,matchesBranch:body===local,bytes:body.length,localBytes:local.length});}catch(e){publicChecks.push({path:p,error:e.message})}}
-          fs.writeFileSync('audit-output/public-files.json',JSON.stringify(publicChecks,null,2));
+          for(const f of Object.values(c.window.LAW_INDEX_DATA_FILES).flat()) vm.runInContext(fs.readFileSync('data/'+f.split('?')[0],'utf8'),c);
+          const topics=c.window.TOPIC_DATA||[], sources=c.window.SOURCE_DATA||[], articles=c.window.ARTICLE_DATA||[], updates=c.window.UPDATE_DATA||[], events=c.window.REFORM_EVENT_DATA||[];
+          const eventForArticle=(article)=>{if(article.reformEventId)return events.find(e=>e.id===article.reformEventId)||null;const ps=article.primarySourceIds||[];const m=events.filter(e=>(e.articleIds||[]).includes(article.id)||(e.matchSourceIds||[]).some(id=>ps.includes(id)));return m.length===1?m[0]:null};
+          const unmapped=articles.filter(a=>a.status==='adopted'&&!eventForArticle(a)&&(c.window.getLegalReformInfo?.(a,topics)||{}).isReform).map(a=>({id:a.id,title:a.title,publisher:a.publisher,publishedAt:a.publishedAt,collectedAt:a.collectedAt,relatedTopics:a.relatedTopics,relatedIssues:a.relatedIssues,primarySourceIds:a.primarySourceIds,reformStageAtPublication:a.reformStageAtPublication||null,reformStageSourceIds:a.reformStageSourceIds||[]}));
+          const diverged=topics.filter(t=>t.lastUpdated!==t.lastVerified).map(t=>({slug:t.slug,title:t.title,lastUpdated:t.lastUpdated,lastVerified:t.lastVerified}));
+          const selectedTopics=topics.filter(t=>['ai-governance-liability','ai-civil-liability'].includes(t.slug)).map(t=>({slug:t.slug,title:t.title,categories:t.categories,summary:t.summary,lastUpdated:t.lastUpdated,lastVerified:t.lastVerified,issueIds:(t.issues||[]).map(i=>i.id),issueTitles:(t.issues||[]).map(i=>i.title),sourceIds:t.sourceIds,articleIds:articles.filter(a=>(a.relatedTopics||[]).includes(t.slug)).map(a=>a.id)}));
+          const unmappedSourceIds=[...new Set(unmapped.flatMap(a=>a.primarySourceIds||[]))];
+          const sourceDetails=sources.filter(s=>unmappedSourceIds.includes(s.id)).map(s=>({id:s.id,title:s.title,type:s.type,typeLabel:s.typeLabel,authority:s.authority,publishedAt:s.publishedAt,url:s.url,topics:s.topics}));
+          const eventDetails=events.map(e=>({id:e.id,title:e.title,eventType:e.eventType,lawId:e.lawId,lawLabel:e.lawLabel,effectiveDateStatus:e.effectiveDateStatus,effectiveDate:e.effectiveDate||null,effectiveDates:e.effectiveDates||[],effectiveDateNote:e.effectiveDateNote||null,effectiveDateSourceIds:e.effectiveDateSourceIds||[],sourceIds:e.sourceIds||[],matchSourceIds:e.matchSourceIds||[],relatedTopics:e.relatedTopics||[]}));
+          fs.writeFileSync('audit-output/details.json',JSON.stringify({commit:process.env.GITHUB_SHA,diverged,unmapped,selectedTopics,sourceDetails,eventDetails},null,2));
           NODE
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: weekly-structure-audit
+          name: weekly-structure-audit-details
           path: audit-output
           retention-days: 3
