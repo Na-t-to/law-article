@@ -130,3 +130,189 @@ window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
     "whatChanged": "整理変更なし／2026年外為法改正の成立後解説として、間接取得、リスク軽減措置、高リスク主体、非指定業種への事後介入と段階施行を既存テーマへ補完した。"
   }
 ]);
+
+window.TOPIC_DATA = (window.TOPIC_DATA || []).concat([
+  {
+    "slug": "job-seeker-sexual-harassment",
+    "title": "求職者等セクシュアルハラスメント対策",
+    "categories": ["労務", "危機管理・コンプライアンス"],
+    "summary": "2026年10月1日から全事業主に義務付けられる、求職者・インターンシップ参加者・実習生等に対するセクシュアルハラスメント防止措置について、対象範囲、採用活動ルール、相談・事後対応を整理する。",
+    "lastUpdated": "2026-09-07",
+    "lastVerified": "2026-09-07",
+    "isNew": true,
+    "overview": [
+      "2025年改正男女雇用機会均等法により、2026年10月1日から、事業主には求職者等に対するセクシュアルハラスメントを防止するための雇用管理上の措置が義務付けられます。",
+      "対象は採用面接や会社説明会に限られず、従業員への訪問、インターンシップ、教育実習・看護実習等、SNS等のオンラインを介した活動や、通常の就業場所外で行われる活動も含まれます。",
+      "既存の従業員向けセクハラ規程をそのまま流用するだけではなく、採用活動時の面談ルール、求職者等への相談窓口の周知、事実確認・被害者対応・再発防止まで採用プロセスへ組み込む必要があります。"
+    ],
+    "currentSummary": {
+      "facts": [
+        "令和7年法律第63号による男女雇用機会均等法の改正で、求職者等に対するセクシュアルハラスメント防止措置が新たに事業主の義務となり、2026年10月1日に施行される。",
+        "保護対象となる求職者等には、求職者のほか、事業主の実施する採用に資する活動の参加者、教育実習・看護実習等の実習を受ける者が含まれる。",
+        "求職活動等には採用面接、就職説明会、従業員への訪問、インターンシップ、実習が含まれ、SNS等のオンラインや通常の就業場所外で行われるものも対象になる。",
+        "事業主は、方針の明確化・周知、行為者への対処方針、採用活動等のルールの明確化、相談体制、事実確認・被害者及び行為者への適切な措置、再発防止、プライバシー保護等を講じる必要がある。"
+      ],
+      "interpretations": [
+        "従業員向けの職場セクハラ防止措置を整備済みでも、求職者等に対して面談ルールや相談窓口を周知するなど、採用活動固有の追加対応が必要になる。",
+        "人事部門だけでなく、面接官、リクルーター、OB・OG訪問に関わる従業員、インターンシップ受入部門を含めて、誰が求職者等と接触するかを把握したうえでルールと研修を設計する必要がある。"
+      ],
+      "implications": [
+        "就業規則・ハラスメント方針・懲戒規定に、求職活動等におけるセクシュアルハラスメントを禁止し厳正に対処する旨を反映する。",
+        "面談の時間・場所・連絡手段、1対1での接触、懇親会、OB・OG訪問、SNS上の連絡など、採用活動の実態に応じたルールを定め、従業員と求職者等へ周知する。",
+        "求職者等が利用できる相談窓口を定めて社外に周知し、採用担当者への相談をためらう場合も想定して人事以外や外部窓口の利用を検討する。",
+        "相談受付後の事実確認、被害者への配慮、行為者への措置、再発防止、プライバシー保護を既存のハラスメント調査手順と接続する。"
+      ],
+      "uncertain": [
+        "内定者が求職者等として扱われるか、既に労働契約が成立した労働者として扱われるかは内定の法的性質によって異なり得るため、個別の契約成立状況を確認する必要がある。",
+        "面談時間・場所、複数名対応、私的連絡の制限などの具体的な運用水準は各社の採用方法や実態に応じて設計する必要がある。"
+      ]
+    },
+    "issues": [
+      {
+        "id": "jobseeker-sh-scope",
+        "title": "誰のどの活動が保護対象になるか",
+        "status": "authoritative",
+        "stage": "enacted",
+        "views": [],
+        "conclusion": "求職者、採用に資する活動への参加者、教育実習・看護実習等の実習を受ける者を保護対象とし、採用面接・説明会・従業員への訪問・インターンシップ・実習のほか、オンラインや就業場所以外で行われる活動も求職活動等に含めて確認する。",
+        "exception": "内定者については労働契約が既に成立しているかにより、従業員向けの職場セクハラ防止措置の対象として整理される場合がある。",
+        "uncertain": "採用活動の延長に当たる懇親の場など、形式上の採用行事ではない接点は実態に即して判断する。",
+        "sourceIds": ["source-mhlw-jobseeker-sexual-harassment-guideline-2026"]
+      },
+      {
+        "id": "jobseeker-sh-recruiting-rules",
+        "title": "採用担当者・面接・OB/OG訪問等のルールをどう設計するか",
+        "status": "interpreted",
+        "stage": "enacted",
+        "views": [],
+        "conclusion": "法令・指針が求める方針明確化と周知を基礎に、面談の時間・場所・連絡方法、複数名対応、懇親会や私的接触の扱い等を自社の採用実態に合わせてルール化し、採用に関与する従業員へ研修する。",
+        "exception": "指針は特定の時間帯や人数を一律に義務付けているわけではなく、具体的な運用ルールは各社の採用方法に応じて設計する。",
+        "uncertain": "社外のOB・OG訪問サービスや非公式な接点をどこまで会社の採用活動として管理できるかは、会社の関与・把握可能性を含めて個別に検討する。",
+        "sourceIds": ["source-mhlw-jobseeker-sexual-harassment-guideline-2026", "source-mhlw-harassment-amendment-2025"]
+      },
+      {
+        "id": "jobseeker-sh-consultation-response",
+        "title": "相談受付から調査・再発防止まで何を整えるか",
+        "status": "authoritative",
+        "stage": "enacted",
+        "views": [],
+        "conclusion": "求職者等が利用できる相談窓口をあらかじめ定めて周知し、相談には広く柔軟に対応する。事案発生時は事実関係を迅速かつ正確に確認し、被害者・行為者への適切な措置、再発防止、プライバシー保護等を行う。",
+        "exception": "採用担当者への相談をためらうことも想定されるため、人事担当者以外や外部機関を相談窓口とすることも検討対象になる。",
+        "uncertain": "採用選考情報とハラスメント相談情報のアクセス権限・保存範囲は、相談者が不利益を懸念せず利用できるよう自社の情報管理体制に合わせて具体化する必要がある。",
+        "sourceIds": ["source-mhlw-jobseeker-sexual-harassment-guideline-2026"]
+      }
+    ],
+    "sourceIds": ["source-mhlw-harassment-amendment-2025", "source-mhlw-jobseeker-sexual-harassment-guideline-2026"],
+    "practicalImpacts": [
+      "就業規則・ハラスメント方針・懲戒規定",
+      "採用面接・OB/OG訪問・インターンシップの運用ルール",
+      "面接官・リクルーター・受入部門向け研修",
+      "求職者向け相談窓口・採用サイト等での周知",
+      "ハラスメント調査・記録・プライバシー管理"
+    ]
+  }
+]);
+
+window.SOURCE_DATA = (window.SOURCE_DATA || []).concat([
+  {
+    "id": "source-mhlw-harassment-amendment-2025",
+    "title": "令和7年労働施策総合推進法等の一部改正について",
+    "type": "law",
+    "typeLabel": "改正法・施行法令・公式概要",
+    "authority": "厚生労働省",
+    "publishedAt": "2025-06-11",
+    "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyoukintou/zaitaku/index_00003.html",
+    "importance": "最高",
+    "whyImportant": "令和7年法律第63号による男女雇用機会均等法改正、関係政省令・告示と、求職者等に対するセクシュアルハラスメント防止措置の2026年10月1日施行を公式に確認できる。",
+    "topics": ["job-seeker-sexual-harassment"]
+  },
+  {
+    "id": "source-mhlw-jobseeker-sexual-harassment-guideline-2026",
+    "title": "事業主が求職活動等における性的な言動に起因する問題に関して雇用管理上講ずべき措置等についての指針（令和8年厚生労働省告示第52号）",
+    "type": "guideline",
+    "typeLabel": "法定指針",
+    "authority": "厚生労働省",
+    "publishedAt": "2026-02-26",
+    "url": "https://www.mhlw.go.jp/content/11900000/001662589.pdf",
+    "importance": "最高",
+    "whyImportant": "求職者等・求職活動等の範囲、性的な言動の定義、事業主の方針・採用活動ルール・相談体制・事後対応・プライバシー保護等の必須措置を具体化する基準資料。",
+    "topics": ["job-seeker-sexual-harassment"]
+  }
+]);
+
+window.REFORM_EVENT_DATA = (window.REFORM_EVENT_DATA || []).concat([
+  {
+    "id": "equal-opportunity-jobseeker-sexual-harassment-2025",
+    "title": "男女雇用機会均等法・求職者等セクシュアルハラスメント防止措置義務化",
+    "eventType": "law_amendment",
+    "lawId": "equal-employment-opportunity-act-jobseeker-sexual-harassment",
+    "lawLabel": "男女雇用機会均等法・求職者等セクシュアルハラスメント対策",
+    "relatedTopics": ["job-seeker-sexual-harassment"],
+    "effectiveDateStatus": "confirmed",
+    "effectiveDates": ["2026-10-01"],
+    "effectiveDateSourceIds": ["source-mhlw-harassment-amendment-2025"],
+    "matchSourceIds": ["source-mhlw-harassment-amendment-2025", "source-mhlw-jobseeker-sexual-harassment-guideline-2026"],
+    "articleIds": ["article-mhlw-jobseeker-sexual-harassment-2026", "article-businesslawyers-jobseeker-sexual-harassment-2026"],
+    "sourceIds": ["source-mhlw-harassment-amendment-2025", "source-mhlw-jobseeker-sexual-harassment-guideline-2026"]
+  }
+]);
+
+window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
+  {
+    "id": "article-mhlw-jobseeker-sexual-harassment-2026",
+    "title": "求職活動等をする方を守るために ― 求職者等に対するセクシュアルハラスメント対策の新ルール",
+    "publisher": "厚生労働省",
+    "author": "厚生労働省",
+    "publishedAt": "2026-09-01",
+    "collectedAt": "2026-09-07",
+    "url": "https://www.mhlw.go.jp/web_magazine/series/20260901.html",
+    "sourceType": "primary",
+    "sourceLabel": "一次資料・行政解説／求職者等セクシュアルハラスメント",
+    "status": "adopted",
+    "summary": "2026年10月1日から義務化される求職者等へのセクシュアルハラスメント防止措置について、採用面接、インターンシップ、教育実習等を対象とする制度の背景と、企業が整えるべき防止・相談・対応のポイントを厚生労働省が施行直前に整理した行政解説。法定指針と併せて、採用活動のどの接点を社内運用へ落とすべきか確認できる。",
+    "whyImportant": [
+      "2026年10月1日から全事業主に義務化される制度を、施行直前の厚生労働省解説で確認できる",
+      "従業員向け職場セクハラ対策とは別に、採用面接・インターンシップ・実習等の求職活動に対応が必要であることを把握できる",
+      "法定指針への入口として、人事・採用担当が社内ルール、相談体制、研修の点検箇所を把握しやすい"
+    ],
+    "audience": ["人事・採用担当", "企業法務", "コンプライアンス担当", "現場管理者"],
+    "audienceReason": "2026年10月1日の施行前に、採用プロセスと既存ハラスメント対応をつなぎ、求職者等への周知・相談・事後対応を実装するため。",
+    "categories": ["労務", "危機管理・コンプライアンス"],
+    "relatedTopics": ["job-seeker-sexual-harassment"],
+    "relatedIssues": ["jobseeker-sh-scope", "jobseeker-sh-recruiting-rules", "jobseeker-sh-consultation-response"],
+    "primarySourceIds": ["source-mhlw-harassment-amendment-2025", "source-mhlw-jobseeker-sexual-harassment-guideline-2026"],
+    "reformEventId": "equal-opportunity-jobseeker-sexual-harassment-2025",
+    "reformStageAtPublication": "finalized_pending",
+    "reformStageSourceIds": ["source-mhlw-harassment-amendment-2025"],
+    "whatChanged": "新テーマ作成／求職者等へのセクシュアルハラスメント防止措置を、対象範囲・採用活動ルール・相談対応の独立テーマとして追加した。"
+  },
+  {
+    "id": "article-businesslawyers-jobseeker-sexual-harassment-2026",
+    "title": "10月施行！就活セクハラ防止義務とは？該当行為や講ずべき措置、違反時のリスクを解説",
+    "publisher": "BUSINESS LAWYERS",
+    "author": "伊部 隆登（松下法律事務所）",
+    "publishedAt": "2026-09-02",
+    "collectedAt": "2026-09-07",
+    "url": "https://www.businesslawyers.jp/articles/1571",
+    "sourceType": "secondary",
+    "sourceLabel": "法律事務所・実務解説／求職者等セクシュアルハラスメント",
+    "status": "adopted",
+    "summary": "2026年10月1日施行の求職者等セクシュアルハラスメント防止義務について、従来の職場セクハラ規制との違い、求職者等・求職活動等の範囲、典型行為、事業主が講ずべき4類型の措置、違反時の助言・指導・勧告・公表リスクまで整理する。面接・説明会だけでなくOB・OG訪問、インターンシップ、実習、社外の懇親の場、SNS等を含むことや、求職者等への面談ルール・相談窓口の周知が新たな対応事項となる点を具体化している。",
+    "whyImportant": [
+      "従業員向けの従来のセクハラ防止措置と比較し、求職者等へのルール周知や相談窓口の社外周知など新たに必要となる対応を切り分けている",
+      "OB・OG訪問、インターンシップ後の懇親、SNS、社外面談など採用現場で境界が曖昧になりやすい接点まで対象範囲を具体例で確認できる",
+      "面談の時間・場所、複数名対応、人事以外・外部相談窓口など、法定指針を実際の採用運用へ落とす選択肢を示している",
+      "事実確認、行為者への措置、再発防止、プライバシー保護に加え、違反時の行政上の助言・指導・勧告・公表まで一連で把握できる"
+    ],
+    "audience": ["人事・採用担当", "企業法務", "コンプライアンス担当", "面接官・リクルーター管理者"],
+    "audienceReason": "施行前に、既存のハラスメント規程だけでは不足する採用活動固有のルール、相談窓口、面接官等への周知・研修を具体化するため。",
+    "categories": ["労務", "危機管理・コンプライアンス"],
+    "relatedTopics": ["job-seeker-sexual-harassment"],
+    "relatedIssues": ["jobseeker-sh-scope", "jobseeker-sh-recruiting-rules", "jobseeker-sh-consultation-response"],
+    "primarySourceIds": ["source-mhlw-harassment-amendment-2025", "source-mhlw-jobseeker-sexual-harassment-guideline-2026"],
+    "reformEventId": "equal-opportunity-jobseeker-sexual-harassment-2025",
+    "reformStageAtPublication": "finalized_pending",
+    "reformStageSourceIds": ["source-mhlw-harassment-amendment-2025"],
+    "whatChanged": "新テーマ作成／求職者等セクシュアルハラスメント防止義務を、採用現場の面談ルール・相談窓口・調査対応へ落とす実務解説を追加した。"
+  }
+]);
