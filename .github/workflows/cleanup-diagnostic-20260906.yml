@@ -1,0 +1,25 @@
+name: Cleanup diagnostic 20260906
+on:
+  push:
+    branches: [audit/structure-20260906-a8aa]
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/structure-20260906-a8aa
+      - name: Reproduce cleanup and print validator result
+        shell: bash
+        run: |
+          awk '/cat > \/tmp\/cleanup.mjs <<'\''NODE'\''/{flag=1;next} /^          NODE$/{flag=0} flag{sub(/^          /,"");print}' .github/workflows/apply-structure-cleanup-20260906.yml > /tmp/cleanup.mjs
+          node /tmp/cleanup.mjs
+          set +e
+          node scripts/validate-data.mjs > validator.json 2> warnings.txt
+          code=$?
+          set -e
+          cat validator.json
+          cat warnings.txt
+          exit $code
