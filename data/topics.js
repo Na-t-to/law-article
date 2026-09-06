@@ -1325,7 +1325,7 @@ window.TOPIC_DATA = [
         "exception": "具体的な要件や対象会社は最終案で変更され得る。",
         "uncertain": "成立法・施行時期は未確定。",
         "sourceIds": [
-          "source-moj-companies-act-interim-2026"
+          "source-moj-company-law-interim-2026"
         ]
       },
       {
@@ -1338,7 +1338,7 @@ window.TOPIC_DATA = [
         "exception": "確認対象、通知事項、違反時の効果などは制度案の確定を待つ。",
         "uncertain": "最終要綱での制度設計は未確定。",
         "sourceIds": [
-          "source-moj-companies-act-interim-2026"
+          "source-moj-company-law-interim-2026"
         ]
       },
       {
@@ -1351,7 +1351,7 @@ window.TOPIC_DATA = [
         "exception": "株主権保護との調整が必要。",
         "uncertain": "最終案の要件・効果は未確定。",
         "sourceIds": [
-          "source-moj-companies-act-interim-2026"
+          "source-moj-company-law-interim-2026"
         ]
       },
       {
@@ -1364,7 +1364,7 @@ window.TOPIC_DATA = [
         "exception": "権利行使機会と会社側の総会準備負担の調整が必要。",
         "uncertain": "採用される案は未確定。",
         "sourceIds": [
-          "source-moj-companies-act-interim-2026"
+          "source-moj-company-law-interim-2026"
         ]
       },
       {
@@ -1377,12 +1377,12 @@ window.TOPIC_DATA = [
         "exception": "監査・開示責任・総会時期との整合が必要。",
         "uncertain": "一本化・省略の最終的な範囲は未確定。",
         "sourceIds": [
-          "source-moj-companies-act-interim-2026"
+          "source-moj-company-law-interim-2026"
         ]
       }
     ],
     "sourceIds": [
-      "source-moj-companies-act-interim-2026"
+      "source-moj-company-law-interim-2026"
     ],
     "practicalImpacts": [
       "株主総会運営・定款",

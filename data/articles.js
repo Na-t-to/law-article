@@ -2780,48 +2780,6 @@ window.ARTICLE_DATA = [
     ]
   },
   {
-    "id": "article-moj-companies-act-interim-2026",
-    "title": "会社法制（株式・株主総会等関係）の見直しに関する中間試案",
-    "publisher": "法務省・e-Gov",
-    "author": "法制審議会会社法制（株式・株主総会等関係）部会",
-    "publishedAt": "2026-04-02",
-    "collectedAt": "2026-09-02",
-    "url": "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000311934",
-    "sourceType": "primary",
-    "sourceLabel": "一次資料・会社法制中間試案",
-    "status": "adopted",
-    "summary": "次期会社法制見直しの中間試案。株式の無償交付・株式交付・現物出資、バーチャル株主総会、実質株主確認制度、株主総会のデジタル化、会議体規律、株主提案権、指名委員会等設置会社、責任限定契約、事業報告等と有価証券報告書の開示合理化までを一体で検討している。",
-    "whyImportant": [
-      "今後の会社法改正候補を、個別ニュースではなく公式の全体像から確認できる",
-      "実質株主確認やバーチャル総会など、上場会社の総会・IR実務を変え得る論点が具体案として並んでいる",
-      "事業報告等と有価証券報告書の開示合理化など、会社法と金商法をまたぐ業務変更を早期に把握できる"
-    ],
-    "audience": [
-      "企業法務",
-      "総務・株主総会担当",
-      "IR・開示担当",
-      "コーポレートガバナンス担当"
-    ],
-    "audienceReason": "成立前の検討段階と理解した上で、将来の総会・開示・株主管理実務への影響を追うため。",
-    "categories": [
-      "会社法・ガバナンス",
-      "金融商品取引・開示・IR"
-    ],
-    "relatedTopics": [
-      "companies-act-review-shareholders"
-    ],
-    "relatedIssues": [
-      "companies-act-virtual-meetings",
-      "companies-act-beneficial-shareholders",
-      "companies-act-meeting-body",
-      "companies-act-shareholder-proposals",
-      "companies-act-disclosure-rationalization"
-    ],
-    "primarySourceIds": [
-      "source-moj-companies-act-interim-2026"
-    ]
-  },
-  {
     "id": "article-amt-companies-act-interim-2026",
     "title": "会社法改正の最新動向―法制審議会会社法制部会第12回 議事概要（中間試案（案）の検討）―",
     "publisher": "アンダーソン・毛利・友常法律事務所",
@@ -2859,7 +2817,7 @@ window.ARTICLE_DATA = [
       "companies-act-shareholder-proposals"
     ],
     "primarySourceIds": [
-      "source-moj-companies-act-interim-2026"
+      "source-moj-company-law-interim-2026"
     ]
   },
   {
@@ -2905,7 +2863,6 @@ window.ARTICLE_DATA = [
       "agm-beneficial-shareholder"
     ],
     "primarySourceIds": [
-      "source-moj-companies-act-interim-2026",
       "source-moj-company-law-interim-2026",
       "source-fsa-agm-pre-disclosure-2026"
     ]
@@ -5372,31 +5329,43 @@ window.ARTICLE_DATA = [
     "publisher": "法務省",
     "author": "法制審議会会社法制（株式・株主総会等関係）部会",
     "publishedAt": "2026-03-18",
-    "collectedAt": "2026-09-03",
+    "collectedAt": "2026-09-02",
     "url": "https://www.moj.go.jp/shingi1/shingi04900001_00333.html",
     "sourceType": "primary",
     "sourceLabel": "一次資料・法制審中間試案",
     "status": "adopted",
-    "summary": "株式の発行、株主総会、企業統治等に関する会社法制見直しの中間試案。バーチャル株主総会、実質株主確認制度、会議体としての株主総会や株主提案権等を含む。2026年5月までパブリックコメントに付された検討資料であり、成立法とは分けて読む必要がある。",
+    "summary": "次期会社法制見直しの中間試案。株式の無償交付・株式交付・現物出資、バーチャル株主総会、実質株主確認制度、株主総会のデジタル化、会議体規律、株主提案権、指名委員会等設置会社、責任限定契約、事業報告等と有価証券報告書の開示合理化までを一体で検討している。",
     "whyImportant": [
+      "今後の会社法改正候補を、個別ニュースではなく公式の全体像から確認できる",
+      "実質株主確認やバーチャル総会など、上場会社の総会・IR実務を変え得る論点が具体案として並んでいる",
+      "事業報告等と有価証券報告書の開示合理化など、会社法と金商法をまたぐ業務変更を早期に把握できる",
       "今後の会社法改正候補を公式の中間試案で全体把握できる",
       "実質株主確認やバーチャル総会など上場会社実務への影響が大きい論点を含む",
       "現行法と検討中の案を混ぜないための基準点になる"
     ],
     "audience": [
       "企業法務",
-      "株主総会担当",
+      "総務・株主総会担当",
+      "IR・開示担当",
       "コーポレートガバナンス担当",
+      "株主総会担当",
       "IR"
     ],
-    "audienceReason": "将来の会社法改正に備えつつ、未確定案を現行義務として扱わないため。",
+    "audienceReason": "成立前の検討段階と理解した上で、将来の総会・開示・株主管理実務への影響を追うため。",
     "categories": [
-      "会社法・ガバナンス"
+      "会社法・ガバナンス",
+      "金融商品取引・開示・IR"
     ],
     "relatedTopics": [
+      "companies-act-review-shareholders",
       "agm-pre-disclosure-company-law-reform"
     ],
     "relatedIssues": [
+      "companies-act-virtual-meetings",
+      "companies-act-beneficial-shareholders",
+      "companies-act-meeting-body",
+      "companies-act-shareholder-proposals",
+      "companies-act-disclosure-rationalization",
       "agm-disclosure-rationalization",
       "agm-beneficial-shareholder",
       "agm-virtual-reform"
