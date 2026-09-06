@@ -1,0 +1,38 @@
+name: Apply structure cleanup v2 20260906
+on:
+  push:
+    branches: [audit/structure-20260906-a8aa]
+permissions:
+  contents: write
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/structure-20260906-a8aa
+      - name: Apply cleanup with content dates preserved
+        shell: bash
+        run: |
+          awk '/cat > \/tmp\/cleanup.mjs <<'\''NODE'\''/{flag=1;next} /^          NODE$/{flag=0} flag{sub(/^          /,"");print}' .github/workflows/apply-structure-cleanup-20260906.yml > /tmp/cleanup.mjs
+          python3 - <<'PY'
+          p='/tmp/cleanup.mjs'
+          s=open(p).read()
+          old="canonical.lastUpdated='2026-09-06';"
+          new="canonical.lastUpdated=all.map(t=>t.lastUpdated||'').sort().at(-1)||canonical.lastUpdated;"
+          if old not in s: raise SystemExit('target line missing')
+          open(p,'w').write(s.replace(old,new))
+          PY
+          node /tmp/cleanup.mjs
+          node scripts/validate-data.mjs > cleanup-validator.json 2> cleanup-warnings.txt
+          git diff --check
+          cat cleanup-validator.json
+          cat cleanup-warnings.txt
+      - name: Commit cleanup to audit branch
+        shell: bash
+        run: |
+          git config user.name "LAW INDEX Audit"
+          git config user.email "audit@users.noreply.github.com"
+          git add data/topics.js data/articles.js data/updates.js data/reforms.js data/manifest.js index.html articles.html article.html topics.html reforms.html update.html topics/*.html cleanup-validator.json cleanup-warnings.txt
+          git commit -m "Consolidate duplicate LAW INDEX records and themes"
+          git push origin HEAD:audit/structure-20260906-a8aa
