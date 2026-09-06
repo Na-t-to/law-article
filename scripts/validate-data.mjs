@@ -7,7 +7,7 @@ vm.runInContext(fs.readFileSync("data/manifest.js", "utf8"), context, { filename
 
 const manifest = context.window.LAW_INDEX_DATA_FILES || {};
 const listedFiles = Object.values(manifest).flat().map((file) => file.split("?")[0]);
-const actualFiles = fs.readdirSync("data").filter((file) => /^(schema|reform-policy|reforms|topics(?:-extra|-run\d+)?|sources(?:-extra|-run\d+)?|updates(?:-run\d+)?|articles(?:-secondary|-extra|-run\d+)?)\.js$/.test(file));
+const actualFiles = fs.readdirSync("data").filter((file) => /^(schema|reform-policy|reforms|topics(?:-extra|-run\d+)?|sources(?:-extra|-run\d+)?|updates(?:-run\d+)?|articles(?:-secondary(?:-\d+)?|-extra|-run\d+)?)\.js$/.test(file));
 const manifestErrors = [
   ...actualFiles.filter((file) => !listedFiles.includes(file)).map((file) => `data/${file}: manifest.js に登録されていません。`),
   ...listedFiles.filter((file) => !actualFiles.includes(file)).map((file) => `data/${file}: manifest.js にありますがファイルが存在しません。`)
