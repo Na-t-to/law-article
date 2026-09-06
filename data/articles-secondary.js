@@ -99,5 +99,34 @@ window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
     "relatedIssues": ["family-governance-values-decision", "family-governance-ownership-succession", "family-governance-operation-review"],
     "primarySourceIds": ["source-meti-family-governance-guidance-2026"],
     "whatChanged": "新テーマ作成／経産省ガイダンスの制度設計を、ファミリー内の対話・信頼・合意形成と継続運用の観点から補完した。"
+  },
+  {
+    "id": "article-businesslawyers-amt-fefta-2026",
+    "title": "対内直接投資等に関する令和8年外為法改正の概要と実務ポイント",
+    "publisher": "BUSINESS LAWYERS",
+    "author": "松本 拓・武士俣 隆介・伊原 ひかり（アンダーソン・毛利・友常法律事務所外国法共同事業）",
+    "publishedAt": "2026-09-03",
+    "collectedAt": "2026-09-07",
+    "url": "https://www.businesslawyers.jp/articles/1569",
+    "sourceType": "secondary",
+    "sourceLabel": "法律事務所・実務解説／2026年外為法改正・対内直接投資審査",
+    "status": "adopted",
+    "summary": "2026年5月29日成立・6月5日公布の改正外為法について、現行の対内直接投資審査の基礎から、行為時事前届出・指定業種の絞り込み、リスク軽減措置、間接取得、高リスク主体のみなし、非指定業種への事後介入、日本版CFIUSまでを一連で整理する成立後の実務解説。株式取得やTOBだけでなく資本業務提携、合弁、海外親会社等の買収にも届出・審査が案件日程へ影響し得ること、直接出資者だけでなくグループ上流の支配関係まで確認する必要が高まること、施行済み部分と政省令等の具体化待ちの部分を分けて解説している。",
+    "whyImportant": [
+      "法案段階の解説から一歩進み、成立・公布後の条文と施行スケジュールを基準に2026年改正の全体像を確認できる",
+      "間接取得規制により海外親会社・持株会社の買収やグループ再編でも日本企業への投資関係を上流まで確認する必要があることを、取引実務として具体化している",
+      "リスク軽減措置の手続法定化、高リスク主体へのみなし規定、非指定業種への事後介入を、届出・審査・クロージング日程へどう影響させるか整理できる",
+      "2026年6月5日から一部が施行済みである一方、主要部分は公布後1年以内の政令指定日で施行されるという現在地を誤認せずに追える"
+    ],
+    "audience": ["M&A法務", "企業法務", "経営企画・投資担当", "クロスボーダー取引担当"],
+    "audienceReason": "クロスボーダーM&A・資本提携・合弁の初期段階から、投資家属性、対象会社の指定業種、間接取得、届出要否、審査日程を取引スケジュールへ織り込むため。",
+    "categories": ["M&A", "国際取引", "危機管理・コンプライアンス"],
+    "relatedTopics": ["fefta-inward-investment-screening"],
+    "relatedIssues": ["fdi-indirect-acquisition", "fdi-risk-mitigation", "fdi-high-risk-investor", "fdi-nondesignated-postcontrol"],
+    "primarySourceIds": ["source-mof-fefta-amendment-2026", "source-mof-fefta-subrules-proposal-2026"],
+    "reformEventId": "fefta-inward-investment-2026-amendment",
+    "reformStageAtPublication": "partially_effective",
+    "reformStageSourceIds": ["source-mof-fefta-amendment-2026"],
+    "whatChanged": "整理変更なし／2026年外為法改正の成立後解説として、間接取得、リスク軽減措置、高リスク主体、非指定業種への事後介入と段階施行を既存テーマへ補完した。"
   }
 ]);
