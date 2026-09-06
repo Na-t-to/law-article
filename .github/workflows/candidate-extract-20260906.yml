@@ -1,0 +1,27 @@
+name: Duplicate candidate extractor 20260906
+on:
+  push:
+    branches: [audit/structure-20260906-a8aa]
+permissions:
+  contents: read
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract candidate topic and article records
+        run: |
+          mkdir -p audit-output
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs'; import vm from 'node:vm';
+          const c={window:{},URL};vm.createContext(c);vm.runInContext(fs.readFileSync('data/manifest.js','utf8'),c);for(const f of Object.values(c.window.LAW_INDEX_DATA_FILES).flat())vm.runInContext(fs.readFileSync('data/'+f.split('?')[0],'utf8'),c);
+          const slugs=new Set(['generative-ai-likeness-publicity','ai-publicity-likeness-rights','whistleblower-system','whistleblower-internal-reporting','whistleblower-protection-internal-reporting','acquisition-guidelines','corporate-takeover-guidelines','listed-company-takeover-guidelines','tob-large-shareholding-2026','tender-offer-large-shareholding','sustainability-disclosure-ssbj','ssbj-statutory-sustainability-disclosure','ai-governance-liability','ai-civil-liability']);
+          const ids=new Set(['article-whistleblower-qa-2026','article-caa-whistleblower-qa-2026']);
+          const out={topics:(c.window.TOPIC_DATA||[]).filter(t=>slugs.has(t.slug)),articles:(c.window.ARTICLE_DATA||[]).filter(a=>ids.has(a.id)),events:(c.window.REFORM_EVENT_DATA||[]).filter(e=>(e.relatedTopics||[]).some(t=>slugs.has(t))),updates:(c.window.UPDATE_DATA||[]).filter(u=>(u.affectedTopics||[]).some(t=>slugs.has(t)))};
+          fs.writeFileSync('audit-output/candidates.json',JSON.stringify(out,null,2));
+          NODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: duplicate-candidates-20260906
+          path: audit-output/candidates.json
+          retention-days: 3
