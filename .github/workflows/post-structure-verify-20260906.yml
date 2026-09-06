@@ -1,0 +1,44 @@
+name: Post structure verification 20260906
+on:
+  push:
+    branches: [audit/post-structure-20260906-c5ec]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Validate current main and public deployment
+        shell: bash
+        run: |
+          mkdir -p verify-output
+          node scripts/validate-data.mjs > verify-output/validator.json 2> verify-output/warnings.txt
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs'; import vm from 'node:vm'; import {execSync} from 'node:child_process';
+          const c={window:{},URL};vm.createContext(c);vm.runInContext(fs.readFileSync('data/manifest.js','utf8'),c);for(const f of Object.values(c.window.LAW_INDEX_DATA_FILES).flat())vm.runInContext(fs.readFileSync('data/'+f.split('?')[0],'utf8'),c);
+          const topics=c.window.TOPIC_DATA||[], articles=c.window.ARTICLE_DATA||[], events=c.window.REFORM_EVENT_DATA||[];
+          const uniq=c.window.uniqueKnowledgeArticles?.(articles)||articles;
+          const normText=s=>String(s||'').normalize('NFKC').toLowerCase().replace(/[\s\u3000・･:：,，.。!！?？「」『』（）()\[\]【】\-_–—]/g,'');
+          const normUrl=s=>{try{const u=new URL(s);u.protocol='https:';u.hash='';for(const k of [...u.searchParams.keys()])if(/^utm_/i.test(k)||['fbclid','gclid','yclid'].includes(k))u.searchParams.delete(k);u.hostname=u.hostname.toLowerCase();u.pathname=u.pathname.replace(/\/+$/,'')||'/';return u.toString().replace(/\?$/,'')}catch{return String(s||'').trim()}};
+          const groups=(arr,key)=>{const m=new Map();for(const x of arr){const k=key(x);if(!k)continue;(m.get(k)||m.set(k,[]).get(k)).push(x)}return[...m.entries()].filter(([,v])=>v.length>1).map(([key,items])=>({key,ids:items.map(i=>i.id)}))};
+          const eventFor=a=>{if(a.reformEventId)return events.find(e=>e.id===a.reformEventId)||null;const ms=events.filter(e=>(e.articleIds||[]).includes(a.id)||(e.matchSourceIds||[]).some(id=>(a.primarySourceIds||[]).includes(id)));return ms.length===1?ms[0]:null};
+          const legal=uniq.filter(a=>a.status==='adopted'&&(eventFor(a)||(c.window.getLegalReformInfo?.(a,topics)||{}).isReform));
+          const categories=[...new Set(topics.flatMap(t=>t.categories||[]))].sort().map(name=>({name,count:topics.filter(t=>(t.categories||[]).includes(name)).length}));
+          const html=['index.html','articles.html','article.html','topics.html','reforms.html','update.html',...fs.readdirSync('topics').filter(f=>f.endsWith('.html')).map(f=>'topics/'+f)];
+          const expected=['新着','記事一覧','テーマ','法改正'];
+          const nav=[];for(const p of html){const s=fs.readFileSync(p,'utf8');const n=(s.match(/<nav class="main-nav"[\s\S]*?<\/nav>/)||[''])[0];const labels=[...n.matchAll(/<a[^>]*>([^<]+)<\/a>/g)].map(m=>m[1].trim());nav.push({path:p,labels,ok:!n||JSON.stringify(labels)===JSON.stringify(expected),footerTop:/site-footer[\s\S]*?href="#top"/.test(s),redirect:/http-equiv="refresh"/.test(s)});}
+          const paths=['index.html','articles.html','article.html','topics.html','reforms.html','data/manifest.js','data/schema.js','data/articles.js','data/topics.js','data/reforms.js'];const pub=[];const base='https://na-t-to.github.io/law-article/';for(const p of paths){try{const r=await fetch(base+p+'?audit='+Date.now(),{signal:AbortSignal.timeout(15000)});const text=await r.text();pub.push({path:p,status:r.status,matchesMain:text===fs.readFileSync(p,'utf8'),bytes:text.length});}catch(e){pub.push({path:p,error:e.message})}}
+          const report={commit:execSync('git rev-parse HEAD').toString().trim(),counts:{topics:topics.length,articles:articles.length,uniqueArticles:uniq.length,reformEvents:events.length,legalReforms:legal.length,reformLinked:legal.filter(a=>eventFor(a)).length,reformUnlinked:legal.filter(a=>!eventFor(a)).length},duplicates:{id:groups(articles,a=>a.id),url:groups(articles,a=>normUrl(a.url)),titlePublisherDate:groups(articles,a=>[normText(a.title),normText(a.publisher),a.publishedAt||''].join('|'))},categories,navIssues:nav.filter(x=>!x.ok||x.footerTop),public:pub};
+          fs.writeFileSync('verify-output/report.json',JSON.stringify(report,null,2));
+          console.log(JSON.stringify(report,null,2));
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: post-structure-verification-20260906
+          path: verify-output
+          retention-days: 3
