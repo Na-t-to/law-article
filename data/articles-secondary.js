@@ -73,5 +73,31 @@ window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
     "reformStageAtPublication": "finalized_pending",
     "reformStageSourceIds": ["source-privacy-law-2026-amendment"],
     "whatChanged": "整理変更なし／2026年個人情報保護法改正について、リスクベースの規律設計、AI開発の統計作成等特例に伴う安全管理・PETs、執行強化を専門家の視点から補完した。"
+  },
+  {
+    "id": "article-fbaa-family-governance-relationships-2026",
+    "title": "経産省ファミリーガバナンス・ガイダンスと、その先にある『ファミリーを整える』という視点",
+    "publisher": "日本ファミリービジネスアドバイザー協会（FBAA）",
+    "author": "武井 一喜",
+    "publishedAt": "2026-07-14",
+    "collectedAt": "2026-09-07",
+    "url": "https://fbaa.jp/archives/5183",
+    "sourceType": "secondary",
+    "sourceLabel": "専門団体・実務解説／ファミリーガバナンス",
+    "status": "adopted",
+    "summary": "経済産業省のファミリーガバナンス・ガイダンスが理念・価値観、意思決定、承継、株主間ルール等を体系化した意義を評価しつつ、ファミリー憲章や会議体など制度の整備だけではガバナンスが機能しないと指摘する専門団体の実務解説。親子・兄弟姉妹・配偶者・世代間の関係性や対話、信頼が意思決定へ与える影響を踏まえ、『ルールの前に関係性を整える』という運用面の課題を示している。",
+    "whyImportant": [
+      "公式ガイダンスの項目をそのままチェックリスト化せず、制度が形骸化する原因としてファミリー内の関係性・信頼・対話を明示している",
+      "ファミリー憲章、ファミリー集会、株主間契約などを作成した後に誰がどう運用するかという、一次資料だけでは薄くなりやすい実務上の論点を補える",
+      "法務・税務・承継手法の選択より前に、関係者の意向を言語化して合意形成の土台を作る必要があるという支援現場の視点を得られる",
+      "ガイドラインに従うこと自体を目的にせず、自社のファミリーとビジネスの関係に応じて継続的に見直すというテーマ設計に役立つ"
+    ],
+    "audience": ["企業法務", "経営企画", "オーナー企業・ファミリービジネス経営者", "事業承継支援者"],
+    "audienceReason": "規程・契約・憲章を作るだけで終わらせず、合意形成と運用まで含むガバナンスとして設計するため。",
+    "categories": ["会社法・ガバナンス", "M&A", "契約"],
+    "relatedTopics": ["family-business-governance"],
+    "relatedIssues": ["family-governance-values-decision", "family-governance-ownership-succession", "family-governance-operation-review"],
+    "primarySourceIds": ["source-meti-family-governance-guidance-2026"],
+    "whatChanged": "新テーマ作成／経産省ガイダンスの制度設計を、ファミリー内の対話・信頼・合意形成と継続運用の観点から補完した。"
   }
 ]);
