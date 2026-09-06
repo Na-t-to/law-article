@@ -224,20 +224,6 @@ window.SOURCE_DATA = [
     "topics": []
   },
   {
-    "id": "source-ai-civil-liability-2026",
-    "title": "AI利活用における民事責任の解釈適用に関する手引き〔第1.0版〕",
-    "type": "guideline",
-    "typeLabel": "行政手引き",
-    "authority": "経済産業省",
-    "publishedAt": "2026-04-09",
-    "url": "https://www.meti.go.jp/press/2026/04/20260409001/20260409001.html",
-    "importance": "最高",
-    "whyImportant": "AI利用時の不法行為責任・製造物責任を、補助／支援型と依拠／代替型の想定事例から現行法上どう評価し得るか整理した基準資料。",
-    "topics": [
-      "ai-governance-liability"
-    ]
-  },
-  {
     "id": "source-scs-evaluation-2026",
     "title": "サプライチェーン強化に向けたセキュリティ対策評価制度に関する制度構築方針",
     "type": "guideline",
@@ -1912,7 +1898,8 @@ window.SOURCE_DATA = [
     "importance": "最高",
     "whyImportant": "AIの開発・提供・利用に伴う民事責任について、不法行為法・製造物責任法を中心に現行法の解釈適用の方向性を示した公式手引き。補助／支援型と依拠／代替型を整理し、企業のAI導入・運用時の責任検討の基準となる。",
     "topics": [
-      "ai-civil-liability"
+      "ai-civil-liability",
+      "ai-governance-liability"
     ]
   },
   {

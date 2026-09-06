@@ -494,7 +494,7 @@ window.TOPIC_DATA = [
             "label": "利用類型を起点にする見方",
             "summary": "補助・支援型か依拠・代替型かを先に分け、人が判断を保持している程度に応じて注意義務を検討する。",
             "sourceIds": [
-              "source-ai-civil-liability-2026"
+              "source-meti-ai-civil-liability-guidance-2026"
             ],
             "articleIds": [
               "article-tmi-ai-liability-substitute-2026"
@@ -505,7 +505,7 @@ window.TOPIC_DATA = [
             "label": "具体的な注意義務を起点にする見方",
             "summary": "類型は整理の手掛かりにとどめ、名称ではなく用途、権限、人の確認、予見可能な損害から具体的な注意義務を判断する。",
             "sourceIds": [
-              "source-ai-civil-liability-2026"
+              "source-meti-ai-civil-liability-guidance-2026"
             ],
             "articleIds": [
               "article-not-ai-civil-liability-governance-2026"
@@ -516,7 +516,7 @@ window.TOPIC_DATA = [
         "exception": "一つのAIでも用途や場面によって類型が変わり得る。",
         "uncertain": "訴訟では類型名そのものより具体的な注意義務が中心になる可能性がある。",
         "sourceIds": [
-          "source-ai-civil-liability-2026"
+          "source-meti-ai-civil-liability-guidance-2026"
         ]
       },
       {
@@ -530,7 +530,7 @@ window.TOPIC_DATA = [
             "label": "人の関与を中心に設計する見方",
             "summary": "重要判断や高リスク回答ではHuman-in-the-loopとエスカレーションを厚くし、AIへの依拠を人が修正できる工程を重視する。",
             "sourceIds": [
-              "source-ai-civil-liability-2026",
+              "source-meti-ai-civil-liability-guidance-2026",
               "source-ai-guideline"
             ],
             "articleIds": [
@@ -553,7 +553,7 @@ window.TOPIC_DATA = [
         "exception": "消費者の重要な利益や生命・身体など高リスク領域では、より強い人の関与や安全措置が必要になり得る。",
         "uncertain": "必要な管理水準は用途・損害の重大性・技術水準により個別に変わる。",
         "sourceIds": [
-          "source-ai-civil-liability-2026",
+          "source-meti-ai-civil-liability-guidance-2026",
           "source-ai-guideline"
         ]
       },
@@ -568,7 +568,7 @@ window.TOPIC_DATA = [
             "label": "利用者の業務管理を中心に見る見方",
             "summary": "利用目的、入力、出力確認、人の関与を決める利用者が、AIを組み込んだ業務プロセス全体の適切な構築・運用について主要な責任を負うと見る。",
             "sourceIds": [
-              "source-ai-civil-liability-2026"
+              "source-meti-ai-civil-liability-guidance-2026"
             ],
             "articleIds": [
               "article-tmi-ai-liability-substitute-2026"
@@ -579,7 +579,7 @@ window.TOPIC_DATA = [
             "label": "開発者・提供者の設計と説明を重く見る見方",
             "summary": "利用者が制御できない性能、安全措置、既知のリスク、想定用途に関する情報は開発者・提供者側に偏在するため、その設計・警告・説明を責任判断で重視する。",
             "sourceIds": [
-              "source-ai-civil-liability-2026",
+              "source-meti-ai-civil-liability-guidance-2026",
               "source-ai-guideline"
             ],
             "articleIds": [
@@ -591,7 +591,7 @@ window.TOPIC_DATA = [
         "exception": "責任分担は契約内容や実際の開発・提供関係にも左右される。",
         "uncertain": "契約責任は手引きの主対象外であり、個別契約の検討が別途必要。",
         "sourceIds": [
-          "source-ai-civil-liability-2026",
+          "source-meti-ai-civil-liability-guidance-2026",
           "source-ai-guideline"
         ]
       },
@@ -617,7 +617,7 @@ window.TOPIC_DATA = [
             "label": "リスク比例で記録範囲を絞る見方",
             "summary": "一律の全件保存はコストや個人情報・機密管理の負担を増やすため、用途、損害の重大性、保存目的に応じて必要な記録だけを定める。",
             "sourceIds": [
-              "source-ai-civil-liability-2026",
+              "source-meti-ai-civil-liability-guidance-2026",
               "source-ai-guideline"
             ],
             "articleIds": [
@@ -629,13 +629,13 @@ window.TOPIC_DATA = [
         "exception": "すべてを同じ粒度で保存するのではなく、用途とリスクに応じて記録水準を決める。",
         "uncertain": "どの記録が法的責任判断で決定的になるかは個別事案による。",
         "sourceIds": [
-          "source-ai-civil-liability-2026",
+          "source-meti-ai-civil-liability-guidance-2026",
           "source-ai-guideline"
         ]
       }
     ],
     "sourceIds": [
-      "source-ai-civil-liability-2026",
+      "source-meti-ai-civil-liability-guidance-2026",
       "source-ai-guideline"
     ],
     "practicalImpacts": [

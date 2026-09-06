@@ -1048,7 +1048,6 @@ window.ARTICLE_DATA = [
       "ai-liability-physical-product"
     ],
     "primarySourceIds": [
-      "source-ai-civil-liability-2026",
       "source-meti-ai-civil-liability-guidance-2026"
     ],
     "whatChanged": "新規テーマ作成／AI利活用時の民事責任を現行法の公式手引きに基づいて整理"
@@ -1141,9 +1140,8 @@ window.ARTICLE_DATA = [
       "ai-liability-physical-product"
     ],
     "primarySourceIds": [
-      "source-ai-civil-liability-2026",
-      "source-ai-guideline",
-      "source-meti-ai-civil-liability-guidance-2026"
+      "source-meti-ai-civil-liability-guidance-2026",
+      "source-ai-guideline"
     ],
     "whatChanged": "新規テーマ作成／依拠・代替型の業務プロセス設計、フィジカルAI、継続的リスク管理を補完"
   },
@@ -1189,7 +1187,7 @@ window.ARTICLE_DATA = [
       "ai-liability-proof-procedure"
     ],
     "primarySourceIds": [
-      "source-ai-civil-liability-2026",
+      "source-meti-ai-civil-liability-guidance-2026",
       "source-ai-guideline"
     ],
     "whatChanged": "テーマ更新／AI民事責任テーマに立証・証拠偏在・国際手続の論点を接続"
