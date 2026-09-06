@@ -1,0 +1,23 @@
+name: AI guidance duplicate extractor 20260906
+on:
+  push:
+    branches: [audit/final-structure-20260906-37e3]
+permissions:
+  contents: read
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Extract source records and references
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';import vm from 'node:vm';
+          const c={window:{},URL};vm.createContext(c);vm.runInContext(fs.readFileSync('data/manifest.js','utf8'),c);for(const f of Object.values(c.window.LAW_INDEX_DATA_FILES).flat())vm.runInContext(fs.readFileSync('data/'+f.split('?')[0],'utf8'),c);
+          const ids=['source-ai-civil-liability-2026','source-meti-ai-civil-liability-guidance-2026'];
+          const records=(c.window.SOURCE_DATA||[]).filter(s=>ids.includes(s.id));
+          const refs={};for(const id of ids){refs[id]={articles:(c.window.ARTICLE_DATA||[]).filter(a=>(a.primarySourceIds||[]).includes(id)).map(a=>a.id),topics:(c.window.TOPIC_DATA||[]).filter(t=>(t.sourceIds||[]).includes(id)||(t.issues||[]).some(i=>(i.sourceIds||[]).includes(id)||(i.views||[]).some(v=>(v.sourceIds||[]).includes(id)))).map(t=>t.slug),events:(c.window.REFORM_EVENT_DATA||[]).filter(e=>(e.sourceIds||[]).includes(id)||(e.matchSourceIds||[]).includes(id)||(e.effectiveDateSourceIds||[]).includes(id)).map(e=>e.id),updates:(c.window.UPDATE_DATA||[]).filter(u=>JSON.stringify(u).includes(id)).map(u=>u.id||u.date||'update')}}
+          console.log(JSON.stringify({records,refs},null,2));
+          NODE
