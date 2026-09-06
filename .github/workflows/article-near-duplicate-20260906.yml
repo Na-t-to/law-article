@@ -1,0 +1,28 @@
+name: Article near duplicate audit 20260906
+on:
+  push:
+    branches: [audit/post-structure-20260906-c5ec]
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Detect semantic article duplicate candidates
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';import vm from 'node:vm';
+          const c={window:{},URL};vm.createContext(c);vm.runInContext(fs.readFileSync('data/manifest.js','utf8'),c);for(const f of Object.values(c.window.LAW_INDEX_DATA_FILES).flat())vm.runInContext(fs.readFileSync('data/'+f.split('?')[0],'utf8'),c);
+          const A=(c.window.ARTICLE_DATA||[]).filter(a=>a.status==='adopted');
+          const n=s=>String(s||'').normalize('NFKC').toLowerCase().replace(/[\s\u3000「」『』（）()【】\[\],，.。:：・･!！?？\-_–—]/g,'');
+          const grams=s=>{s=n(s);const x=new Set();for(let i=0;i<Math.max(1,s.length-2);i++)x.add(s.slice(i,i+3));return x};
+          const sim=(a,b)=>{const x=grams(a),y=grams(b);const u=new Set([...x,...y]);let i=0;for(const z of x)if(y.has(z))i++;return u.size?i/u.size:0};
+          const days=(a,b)=>{const x=Date.parse(a||''),y=Date.parse(b||'');return Number.isFinite(x)&&Number.isFinite(y)?Math.abs(x-y)/86400000:99999};
+          const pairs=[];
+          for(let i=0;i<A.length;i++)for(let j=i+1;j<A.length;j++){const a=A[i],b=A[j];const titleSim=sim(a.title,b.title);const publisherSame=n(a.publisher)===n(b.publisher);const dateGap=days(a.publishedAt,b.publishedAt);const sharedSources=(a.primarySourceIds||[]).filter(x=>(b.primarySourceIds||[]).includes(x));const sharedTopics=(a.relatedTopics||[]).filter(x=>(b.relatedTopics||[]).includes(x));if((publisherSame&&titleSim>=0.62&&dateGap<=45)||(titleSim>=0.82&&dateGap<=180)||(publisherSame&&sharedSources.length&&titleSim>=0.48)){pairs.push({score:+titleSim.toFixed(3),dateGap,publisherSame,sharedSources,sharedTopics,a:{id:a.id,title:a.title,publisher:a.publisher,publishedAt:a.publishedAt,url:a.url},b:{id:b.id,title:b.title,publisher:b.publisher,publishedAt:b.publishedAt,url:b.url}})}}
+          pairs.sort((x,y)=>y.score-x.score||x.dateGap-y.dateGap);console.log(JSON.stringify(pairs.slice(0,80),null,2));
+          NODE
