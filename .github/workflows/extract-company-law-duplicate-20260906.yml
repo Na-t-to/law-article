@@ -1,0 +1,24 @@
+name: Company law duplicate extractor 20260906
+on:
+  push:
+    branches: [audit/post-structure-20260906-c5ec]
+permissions:
+  contents: read
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Extract duplicate records and references
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';import vm from 'node:vm';
+          const c={window:{},URL};vm.createContext(c);vm.runInContext(fs.readFileSync('data/manifest.js','utf8'),c);for(const f of Object.values(c.window.LAW_INDEX_DATA_FILES).flat())vm.runInContext(fs.readFileSync('data/'+f.split('?')[0],'utf8'),c);
+          const ids=new Set(['article-moj-companies-act-interim-2026','article-moj-company-law-interim-2026']);
+          const arts=(c.window.ARTICLE_DATA||[]).filter(a=>ids.has(a.id));
+          const txt=JSON.stringify({topics:c.window.TOPIC_DATA,updates:c.window.UPDATE_DATA,reforms:c.window.REFORM_EVENT_DATA});
+          const refs={};for(const id of ids)refs[id]=(txt.match(new RegExp(id,'g'))||[]).length;
+          console.log(JSON.stringify({articles:arts,refs},null,2));
+          NODE
