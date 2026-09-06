@@ -3,6 +3,6 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({
   topics: ["topics.js?v=10"],
   sources: ["sources.js?v=12"],
   updates: ["updates.js?v=9"],
-  reforms: ["reforms.js?v=15"],
+  reforms: ["reforms.js?v=16"],
   articles: ["articles.js?v=12"]
 });
