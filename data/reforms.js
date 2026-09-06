@@ -715,6 +715,22 @@ window.REFORM_EVENT_DATA = [
     ]
   },
   {
+    "id": "premium-representations-review-2026",
+    "title": "景品表示法・総付景品／不実証広告規制 2026年見直し",
+    "eventType": "policy_review",
+    "lawId": "premium-representations-act",
+    "lawLabel": "景品表示法",
+    "relatedTopics": [
+      "advertising-display-control"
+    ],
+    "matchSourceIds": [
+      "source-cao-regulatory-reform-plan-2026-advertising"
+    ],
+    "sourceIds": [
+      "source-cao-regulatory-reform-plan-2026-advertising"
+    ]
+  },
+  {
     "id": "economic-security-promotion-jbic-2026-amendment",
     "title": "経済安全保障推進法・JBIC法 2026年改正",
     "eventType": "law_amendment",
