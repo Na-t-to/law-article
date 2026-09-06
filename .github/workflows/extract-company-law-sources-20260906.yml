@@ -1,0 +1,18 @@
+name: Company law source extractor 20260906
+on:
+  push:
+    branches: [audit/post-structure-20260906-c5ec]
+permissions:
+  contents: read
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Extract source records
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';import vm from 'node:vm';const c={window:{},URL};vm.createContext(c);vm.runInContext(fs.readFileSync('data/manifest.js','utf8'),c);for(const f of Object.values(c.window.LAW_INDEX_DATA_FILES).flat())vm.runInContext(fs.readFileSync('data/'+f.split('?')[0],'utf8'),c);const ids=new Set(['source-moj-companies-act-interim-2026','source-moj-company-law-interim-2026']);console.log(JSON.stringify((c.window.SOURCE_DATA||[]).filter(s=>ids.has(s.id)),null,2));
+          NODE
