@@ -666,7 +666,7 @@ window.UPDATE_DATA = [
   },
   {
     "id": "update-companies-act-review-2026-09-topic",
-    "source": "source-moj-companies-act-interim-2026",
+    "source": "source-moj-company-law-interim-2026",
     "headline": "会社法制見直し・株主総会／実質株主を新規テーマ化",
     "publishedAt": "2026-09-02",
     "type": "topic-created",

@@ -585,20 +585,6 @@ window.SOURCE_DATA = [
     ]
   },
   {
-    "id": "source-moj-companies-act-interim-2026",
-    "title": "会社法制（株式・株主総会等関係）の見直しに関する中間試案",
-    "type": "proposal",
-    "typeLabel": "会社法制・中間試案",
-    "authority": "法務省 法制審議会会社法制（株式・株主総会等関係）部会",
-    "publishedAt": "2026-04-02",
-    "url": "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000311934",
-    "importance": "最高",
-    "whyImportant": "株式発行、バーチャル株主総会、実質株主確認、株主提案権、企業統治、事業報告等と有価証券報告書の開示合理化まで、次期会社法制見直しの検討範囲を体系的に示す公式案。",
-    "topics": [
-      "companies-act-review-shareholders"
-    ]
-  },
-  {
     "id": "source-jftc-distribution-guideline-2026",
     "title": "「流通・取引慣行に関する独占禁止法上の指針」の改正について",
     "type": "guideline",
@@ -1154,8 +1140,9 @@ window.SOURCE_DATA = [
     "publishedAt": "2026-03-18",
     "url": "https://www.moj.go.jp/shingi1/shingi04900001_00333.html",
     "importance": "最高",
-    "whyImportant": "株式、株主総会、実質株主、バーチャル総会、企業統治等の会社法制見直しの中間試案。成立法ではないため、現行実務と将来制度を分離して追うための基準資料。",
+    "whyImportant": "株式発行、バーチャル株主総会、実質株主確認、株主提案権、企業統治、事業報告等と有価証券報告書の開示合理化まで、次期会社法制見直しの検討範囲を体系的に示す公式案。",
     "topics": [
+      "companies-act-review-shareholders",
       "agm-pre-disclosure-company-law-reform"
     ]
   },
