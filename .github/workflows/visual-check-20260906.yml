@@ -1,0 +1,25 @@
+name: Visual verification 20260906
+on:
+  push:
+    branches: [audit/final-structure-20260906-90c3]
+permissions:
+  contents: read
+jobs:
+  visual:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Capture public pages at desktop and mobile widths
+        shell: bash
+        run: |
+          mkdir -p shots
+          browser=$(command -v google-chrome || command -v chromium || command -v chromium-browser)
+          test -n "$browser"
+          for page in index articles topics reforms; do
+            "$browser" --headless --disable-gpu --no-sandbox --hide-scrollbars --window-size=1440,1100 --screenshot="shots/${page}-desktop.png" "https://na-t-to.github.io/law-article/${page}.html?visual=20260906"
+            "$browser" --headless --disable-gpu --no-sandbox --hide-scrollbars --window-size=390,844 --screenshot="shots/${page}-mobile.png" "https://na-t-to.github.io/law-article/${page}.html?visual=20260906"
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: visual-verification-20260906
+          path: shots
+          retention-days: 3
