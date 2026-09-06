@@ -156,7 +156,7 @@ window.REFORM_EVENT_DATA = [
     "lawId": "whistleblower-protection-act",
     "lawLabel": "公益通報者保護法",
     "relatedTopics": [
-      "whistleblower-protection-internal-reporting"
+      "whistleblower-internal-reporting"
     ],
     "effectiveDateStatus": "confirmed",
     "effectiveDates": [
@@ -210,8 +210,7 @@ window.REFORM_EVENT_DATA = [
     "lawId": "financial-instruments-exchange-act",
     "lawLabel": "金融商品取引法・公開買付／大量保有報告制度",
     "relatedTopics": [
-      "tob-large-shareholding-2026",
-      "tender-offer-large-shareholding"
+      "tob-large-shareholding-2026"
     ],
     "effectiveDateStatus": "confirmed",
     "effectiveDates": [
