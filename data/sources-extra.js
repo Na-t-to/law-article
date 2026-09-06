@@ -109,14 +109,14 @@ window.SOURCE_DATA = (window.SOURCE_DATA || []).concat([
 window.SOURCE_DATA = (window.SOURCE_DATA || []).concat([
   {
     "id": "source-mhlw-labor-policy-amendment-2025-treatment-work",
-    "title": "令和7年労働施策総合推進法等の一部改正について",
+    "title": "労働施策総合推進法等の一部を改正する法律（令和7年法律第63号）条文・理由",
     "type": "law",
-    "typeLabel": "改正法・制度概要",
+    "typeLabel": "改正法・法律本文",
     "authority": "厚生労働省",
     "publishedAt": "2025-06-11",
-    "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyoukintou/zaitaku/index_00003.html",
+    "url": "https://www.mhlw.go.jp/content/001502753.pdf",
     "importance": "最高",
-    "whyImportant": "令和7年法律第63号による治療と就業の両立支援の努力義務化と、2026年4月1日施行となる改正の法的な基準点。",
+    "whyImportant": "労働施策総合推進法27条の3として治療と就業の両立支援を新設し、事業主の努力義務と厚生労働大臣による指針策定を定めた改正法本文を確認できる。",
     "topics": ["treatment-work-support"]
   },
   {
