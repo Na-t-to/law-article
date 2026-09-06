@@ -440,7 +440,7 @@ window.REFORM_EVENT_DATA = [
     "relatedTopics": [
       "smartphone-software-competition-act"
     ],
-    "effectiveDateStatus": "phased",
+    "effectiveDateStatus": "confirmed",
     "effectiveDates": [
       "2025-12-18"
     ],
