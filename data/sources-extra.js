@@ -75,3 +75,18 @@ window.SOURCE_DATA = (window.SOURCE_DATA || []).concat([
     "topics": ["workers-compensation-insurance-2026-reform"]
   }
 ]);
+
+window.SOURCE_DATA = (window.SOURCE_DATA || []).concat([
+  {
+    "id": "source-fsa-fiea-law-text-2026",
+    "title": "金融商品取引法及び資金決済に関する法律の一部を改正する法律（令和8年法律第64号）",
+    "type": "law",
+    "typeLabel": "改正法・法律本文／施行期日",
+    "authority": "金融庁",
+    "publishedAt": "2026-07-23",
+    "url": "https://www.fsa.go.jp/common/diet/221/02/01.pdf",
+    "importance": "最高",
+    "whyImportant": "サステナビリティ情報の開示・第三者保証、スタートアップ資金調達、不公正取引等の改正条文と附則を確認でき、第一条の主要規定が2027年4月1日に施行されることを一次資料で確定できる。",
+    "topics": ["ssbj-statutory-sustainability-disclosure", "insider-trading-information-management"]
+  }
+]);
