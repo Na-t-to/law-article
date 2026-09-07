@@ -1,34 +1,5 @@
 window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
   {
-    "id": "article-tmi-aml-amendment-overview-2026",
-    "title": "【犯収法ブログ】令和8年改正犯罪収益移転防止法の概要",
-    "publisher": "TMI総合法律事務所",
-    "author": "TMI総合法律事務所",
-    "publishedAt": "2026-07-30",
-    "collectedAt": "2026-09-07",
-    "url": "https://www.tmi.gr.jp/eyes/blog/2026/18642.html",
-    "sourceType": "secondary",
-    "sourceLabel": "法律事務所・2026年犯収法改正実務解説",
-    "status": "adopted",
-    "summary": "2026年改正犯罪収益移転防止法について、預貯金通帳等の不正譲渡等への罰則引上げ、送金犯罪の新設、架空名義口座を利用した犯罪利用防止措置の三本柱を、施行時期と構成要件を分けて整理する。送金犯罪については、銀行口座だけでなく資金移動・電子決済手段・暗号資産交換等の役務も対象になり得ること、有償性と正当な理由が適用除外の重要な境界となること、法人にも両罰規定が及び得ることを実務上の留意点として示す。",
-    "whyImportant": [
-      "2026年7月10日に施行済みの罰則強化・送金犯罪と、政令指定日まで未施行の架空名義口座措置を混同せず読める。",
-      "送金犯罪の対象が銀行口座に限られず、資金移動サービス、電子決済手段、暗号資産交換等の役務にも及び得ることを条文構造から確認できる。",
-      "『有償』『正当な理由』という構成要件を、通常の商取引・金融取引との境界として説明しており、決済・送金を伴うサービスの業務設計に落としやすい。",
-      "口座開設時審査だけでなく、既存口座の取引モニタリングや疑わしい取引の届出、利用者への注意喚起まで実務対応を広げている。"
-    ],
-    "audience": ["企業法務", "AML・コンプライアンス担当", "金融・決済事業者", "Fintech・暗号資産事業者"],
-    "audienceReason": "送金・決済機能を提供又は利用する事業で、2026年改正の刑事規制がどの行為・サービスに及び得るかを確認し、不正利用対策と取引設計へ反映するため。",
-    "categories": ["危機管理・コンプライアンス", "契約"],
-    "relatedTopics": ["aml-kyc-criminal-proceeds"],
-    "relatedIssues": ["aml-2026-account-remittance", "aml-fictitious-account"],
-    "primarySourceIds": ["source-npa-aml-amendment-2026"],
-    "reformEventId": "aml-account-remittance-2026-amendment",
-    "reformStageAtPublication": "partially_effective",
-    "reformStageSourceIds": ["source-npa-aml-amendment-2026"],
-    "whatChanged": "整理変更なし／2026年犯収法改正について、送金犯罪の対象役務・正当な理由・法人対応と未施行の架空名義口座措置を実務解説で補完した。"
-  },
-  {
     "id": "article-miyake-aml-remittance-enforcement-2026",
     "title": "改正犯罪収益移転防止法の全体像―「口座を渡していない」では免責されない―（AML／CFTニュース No.1）",
     "publisher": "弁護士法人三宅法律事務所",
