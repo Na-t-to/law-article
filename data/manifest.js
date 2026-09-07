@@ -4,5 +4,5 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({
   sources: ["sources.js?v=14", "sources-extra.js?v=6"],
   updates: ["updates.js?v=12"],
   reforms: ["reforms.js?v=19"],
-  articles: ["articles.js?v=15", "articles-extra.js?v=3", "articles-secondary.js?v=5", "articles-secondary-2.js?v=1", "articles-secondary-3.js?v=1", "articles-secondary-4.js?v=1"]
+  articles: ["articles.js?v=15", "articles-extra.js?v=3", "articles-secondary.js?v=5", "articles-secondary-2.js?v=1", "articles-secondary-3.js?v=1", "articles-secondary-4.js?v=1", "articles-secondary-5.js?v=1"]
 });
