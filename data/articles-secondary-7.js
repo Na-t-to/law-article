@@ -46,7 +46,7 @@ window.TOPIC_DATA = (window.TOPIC_DATA || []).concat([
         "conclusion": "暗号資産の定義・範囲を基本的に維持しつつ、暗号資産取引に係る主要な業規制を資金決済法から金商法へ移し、暗号資産交換業を暗号資産取引業として金融商品取引業の枠組みに取り込む。",
         "exception": "改正法の主要部分はまだ施行前であり、現在の業務については現行の資金決済法等の規制を基準に判断する。経過措置により施行後も一定期間の業務継続が認められる類型がある。",
         "uncertain": "具体的な施行日と下位法令上の登録・行為規制の詳細は今後確定する。",
-        "sourceIds": ["source-fsa-crypto-fiea-amendment-2026"]
+        "sourceIds": ["source-fsa-fiea-law-2026"]
       },
       {
         "id": "crypto-fiea-disclosure-business-rules",
@@ -57,7 +57,7 @@ window.TOPIC_DATA = (window.TOPIC_DATA || []).concat([
         "conclusion": "改正法は暗号資産の新規販売・継続的な情報公表の仕組みを整え、暗号資産取引業、投資運用・助言、借入れ、重要システム提供等について業規制を拡充する。",
         "exception": "発行者の有無、取扱行為、既存登録の状況等により義務主体と経過措置が異なるため、すべての暗号資産関連企業へ同じ義務が課されるわけではない。",
         "uncertain": "情報公表事項、監査・投資上限、重要システム提供業者等の具体的要件は内閣府令等の整備を確認する必要がある。",
-        "sourceIds": ["source-fsa-crypto-fiea-amendment-2026"]
+        "sourceIds": ["source-fsa-fiea-law-2026"]
       },
       {
         "id": "crypto-fiea-insider-unfair-trading",
@@ -68,27 +68,15 @@ window.TOPIC_DATA = (window.TOPIC_DATA || []).concat([
         "conclusion": "改正法は暗号資産についてインサイダー取引規制を新設し、相場操縦その他の不公正取引規制とエンフォースメントを強化する。施行後は、対象となる重要事実と情報受領者を把握できる社内管理が必要となる。",
         "exception": "有価証券のインサイダー取引規制をそのまま機械的に流用するのではなく、暗号資産について定められた主体・重要事実・取引類型と下位ルールを確認する。",
         "uncertain": "重要事実の具体化その他の詳細要件は下位法令等の最終化を継続確認する必要がある。",
-        "sourceIds": ["source-fsa-crypto-fiea-amendment-2026"]
+        "sourceIds": ["source-fsa-fiea-law-2026"]
       }
     ],
-    "sourceIds": ["source-fsa-crypto-fiea-amendment-2026", "source-fsa-crypto-fiea-early-enforcement-2026"],
+    "sourceIds": ["source-fsa-fiea-law-2026", "source-fsa-crypto-fiea-early-enforcement-2026"],
     "practicalImpacts": ["暗号資産関連業務の登録・届出", "発行・販売時の情報公表", "暗号資産取引業の社内規程・顧客対応", "未公表情報・役職員取引管理", "重要システム提供・委託契約", "施行移行計画"]
   }
 ]);
 
 window.SOURCE_DATA = (window.SOURCE_DATA || []).concat([
-  {
-    "id": "source-fsa-crypto-fiea-amendment-2026",
-    "title": "第221回国会における金融庁関連法律案―金融商品取引法及び資金決済に関する法律の一部を改正する法律",
-    "type": "government_material",
-    "typeLabel": "一次資料・成立法／説明資料",
-    "authority": "金融庁",
-    "publishedAt": "2026-07-15",
-    "url": "https://www.fsa.go.jp/common/diet/221/index.html",
-    "importance": "最高",
-    "whyImportant": "2026年の暗号資産規制見直しについて、金商法への移管、情報公表、業規制、不公正取引規制等の改正内容と成立状況を確認する基準資料。",
-    "topics": ["crypto-assets-fiea-regulation-2026"]
-  },
   {
     "id": "source-fsa-crypto-fiea-early-enforcement-2026",
     "title": "令和8年金融商品取引法等改正（20日後施行）に係る政令の公布について",
@@ -114,9 +102,9 @@ window.REFORM_EVENT_DATA = (window.REFORM_EVENT_DATA || []).concat([
     "effectiveDateStatus": "phased",
     "effectiveDates": ["2026-08-12"],
     "effectiveDateNote": "無登録業に対する罰則引上げと証券取引等監視委員会の犯則調査権限追加は2026年8月12日施行。暗号資産規制の金商法移管、情報公表、業規制、インサイダー取引等の主要部分は2026年7月23日の公布日から1年以内の政令指定日施行で、2026年9月7日時点では具体的施行日未確定。",
-    "effectiveDateSourceIds": ["source-fsa-crypto-fiea-amendment-2026", "source-fsa-crypto-fiea-early-enforcement-2026"],
-    "matchSourceIds": ["source-fsa-crypto-fiea-amendment-2026", "source-fsa-crypto-fiea-early-enforcement-2026"],
-    "sourceIds": ["source-fsa-crypto-fiea-amendment-2026", "source-fsa-crypto-fiea-early-enforcement-2026"]
+    "effectiveDateSourceIds": ["source-fsa-fiea-law-2026", "source-fsa-crypto-fiea-early-enforcement-2026"],
+    "matchSourceIds": ["source-fsa-crypto-fiea-early-enforcement-2026"],
+    "sourceIds": ["source-fsa-fiea-law-2026", "source-fsa-crypto-fiea-early-enforcement-2026"]
   }
 ]);
 
@@ -143,10 +131,10 @@ window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
     "categories": ["金融商品取引・開示・IR", "危機管理・コンプライアンス"],
     "relatedTopics": ["crypto-assets-fiea-regulation-2026"],
     "relatedIssues": ["crypto-fiea-regulatory-transfer", "crypto-fiea-disclosure-business-rules", "crypto-fiea-insider-unfair-trading"],
-    "primarySourceIds": ["source-fsa-crypto-fiea-amendment-2026"],
+    "primarySourceIds": ["source-fsa-fiea-law-2026"],
     "reformEventId": "crypto-assets-fiea-2026-amendment",
     "reformStageAtPublication": "finalized_pending",
-    "reformStageSourceIds": ["source-fsa-crypto-fiea-amendment-2026"],
+    "reformStageSourceIds": ["source-fsa-fiea-law-2026"],
     "whatChanged": "新規テーマ作成／暗号資産規制の金商法移管、情報公表、業規制、不公正取引規制を2026年成立法から整理した。"
   },
   {
@@ -171,7 +159,7 @@ window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
     "categories": ["金融商品取引・開示・IR", "危機管理・コンプライアンス"],
     "relatedTopics": ["crypto-assets-fiea-regulation-2026"],
     "relatedIssues": ["crypto-fiea-regulatory-transfer", "crypto-fiea-disclosure-business-rules", "crypto-fiea-insider-unfair-trading"],
-    "primarySourceIds": ["source-fsa-crypto-fiea-early-enforcement-2026", "source-fsa-crypto-fiea-amendment-2026"],
+    "primarySourceIds": ["source-fsa-crypto-fiea-early-enforcement-2026", "source-fsa-fiea-law-2026"],
     "reformEventId": "crypto-assets-fiea-2026-amendment",
     "reformStageAtPublication": "finalized_pending",
     "reformStageSourceIds": ["source-fsa-crypto-fiea-early-enforcement-2026"],
@@ -200,10 +188,10 @@ window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
     "categories": ["金融商品取引・開示・IR", "危機管理・コンプライアンス"],
     "relatedTopics": ["crypto-assets-fiea-regulation-2026"],
     "relatedIssues": ["crypto-fiea-regulatory-transfer", "crypto-fiea-disclosure-business-rules", "crypto-fiea-insider-unfair-trading"],
-    "primarySourceIds": ["source-fsa-crypto-fiea-amendment-2026", "source-fsa-crypto-fiea-early-enforcement-2026"],
+    "primarySourceIds": ["source-fsa-fiea-law-2026", "source-fsa-crypto-fiea-early-enforcement-2026"],
     "reformEventId": "crypto-assets-fiea-2026-amendment",
     "reformStageAtPublication": "partially_effective",
-    "reformStageSourceIds": ["source-fsa-crypto-fiea-amendment-2026", "source-fsa-crypto-fiea-early-enforcement-2026"],
+    "reformStageSourceIds": ["source-fsa-fiea-law-2026", "source-fsa-crypto-fiea-early-enforcement-2026"],
     "whatChanged": "整理補完／成立後の暗号資産規制について、事業者類型、情報公表、業規制、インサイダー取引、経過措置を実務対応へ具体化した。"
   }
 ]);
