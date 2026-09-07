@@ -124,6 +124,22 @@ window.SOURCE_DATA = (window.SOURCE_DATA || []).concat([
   }
 ]);
 
+window.REFORM_EVENT_DATA = (window.REFORM_EVENT_DATA || []).concat([
+  {
+    "id": "health-longevity-nonclinical-testing-guideline-2025",
+    "title": "健康寿命延伸産業ガイドライン・2025年改正（非臨床検査）",
+    "eventType": "regulation_or_guideline",
+    "lawId": "health-longevity-industry-guideline",
+    "lawLabel": "健康寿命延伸産業分野における新事業活動のガイドライン",
+    "relatedTopics": ["consumer-nonclinical-testing-health-services"],
+    "effectiveDateStatus": "confirmed",
+    "effectiveDates": ["2025-03-28"],
+    "effectiveDateSourceIds": ["source-mhlw-meti-health-longevity-guideline-2025"],
+    "matchSourceIds": ["source-mhlw-meti-health-longevity-guideline-2025"],
+    "sourceIds": ["source-mhlw-meti-health-longevity-guideline-2025"]
+  }
+]);
+
 window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
   {
     "id": "article-mhlw-health-longevity-guideline-2025",
@@ -148,6 +164,9 @@ window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
     "relatedTopics": ["consumer-nonclinical-testing-health-services"],
     "relatedIssues": ["consumer-test-medical-practice-boundary", "consumer-test-sampling-lab-registration", "consumer-test-result-screen-disclaimer"],
     "primarySourceIds": ["source-mhlw-meti-health-longevity-guideline-2025"],
+    "reformEventId": "health-longevity-nonclinical-testing-guideline-2025",
+    "reformStageAtPublication": "effective",
+    "reformStageSourceIds": ["source-mhlw-meti-health-longevity-guideline-2025"],
     "whatChanged": "新規テーマ作成／2025年改正ガイドラインに基づき、非臨床の消費者向け検査サービスについて医業該当性、検体採取・衛生検査所登録、結果通知・誤認防止表示の境界を整理した。"
   },
   {
@@ -173,6 +192,9 @@ window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
     "relatedTopics": ["consumer-nonclinical-testing-health-services"],
     "relatedIssues": ["consumer-test-medical-practice-boundary", "consumer-test-result-screen-disclaimer", "consumer-test-samd-boundary"],
     "primarySourceIds": ["source-mhlw-meti-health-longevity-guideline-2025", "source-mhlw-samd-applicability-2023"],
+    "reformEventId": "health-longevity-nonclinical-testing-guideline-2025",
+    "reformStageAtPublication": "effective",
+    "reformStageSourceIds": ["source-mhlw-meti-health-longevity-guideline-2025"],
     "whatChanged": "論点補強／医師法上の医業該当性とSaMD該当性で参照する基準が同一ではないことを明示し、デジタル検査サービスの二重チェックを追加した。"
   },
   {
@@ -198,6 +220,9 @@ window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
     "relatedTopics": ["consumer-nonclinical-testing-health-services"],
     "relatedIssues": ["consumer-test-medical-practice-boundary", "consumer-test-sampling-lab-registration", "consumer-test-samd-boundary"],
     "primarySourceIds": ["source-mhlw-meti-health-longevity-guideline-2025", "source-mhlw-samd-applicability-2023"],
+    "reformEventId": "health-longevity-nonclinical-testing-guideline-2025",
+    "reformStageAtPublication": "effective",
+    "reformStageSourceIds": ["source-mhlw-meti-health-longevity-guideline-2025"],
     "whatChanged": "論点補強／グレーゾーン解消制度の蓄積とSaMD判断事例を接続し、医師法・薬機法を横断して検査サービスを評価する観点を追加した。"
   }
 ]);
