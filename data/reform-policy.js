@@ -78,11 +78,56 @@
     return null;
   };
 
+  const getReformEventForArticle = (article) => {
+    if (!article) return null;
+    const events = Array.isArray(window.REFORM_EVENT_DATA) ? window.REFORM_EVENT_DATA : [];
+    if (article.reformEventId) return events.find((event) => event.id === article.reformEventId) || null;
+    const primarySourceIds = Array.isArray(article.primarySourceIds) ? article.primarySourceIds : [];
+    const matches = events.filter((event) => {
+      if (Array.isArray(event.articleIds) && event.articleIds.includes(article.id)) return true;
+      return Array.isArray(event.matchSourceIds) && event.matchSourceIds.some((id) => primarySourceIds.includes(id));
+    });
+    return matches.length === 1 ? matches[0] : null;
+  };
+
+  const reformStageLabel = Object.freeze({
+    draft: "検討・案段階",
+    enacted: "公布・施行待ち",
+    effective: "施行済み",
+    under_revision: "改正・整備中"
+  });
+
+  const eventBackedStage = (article, topics = []) => {
+    const explicit = article?.reformStageAtPublication;
+    if (explicit === "proposal") return "draft";
+    if (explicit === "finalized_pending") return "enacted";
+    if (["partially_effective", "effective"].includes(explicit)) return "effective";
+    const issueStages = new Set((article?.relatedIssues || []).flatMap((issueId) =>
+      topics.flatMap((topic) => topic.issues || []).filter((issue) => issue.id === issueId).map((issue) => issue.stage)
+    ));
+    if (issueStages.has("draft")) return "draft";
+    if (issueStages.has("enacted")) return "enacted";
+    if (issueStages.has("under_revision")) return "under_revision";
+    if (issueStages.has("effective")) return "effective";
+    return null;
+  };
+
   const originalGetLegalReformInfo = window.getLegalReformInfo;
   if (typeof originalGetLegalReformInfo === "function") {
     window.getLegalReformInfo = (article, topics = []) => {
       const result = originalGetLegalReformInfo(article, topics);
-      return article?.reformEventId ? { ...result, isReform: true } : result;
+      const event = getReformEventForArticle(article);
+      if (!event) return result;
+      const stage = result.stage || eventBackedStage(article, topics);
+      return { ...result, isReform: true, stage, stageLabel: result.stageLabel || reformStageLabel[stage] || "法改正情報", reformEventId: event.id };
+    };
+  }
+
+  const originalGetLegalReformLaw = window.getLegalReformLaw;
+  if (typeof originalGetLegalReformLaw === "function") {
+    window.getLegalReformLaw = (article, topics = []) => {
+      const event = getReformEventForArticle(article);
+      return event ? { id: event.lawId, label: event.lawLabel } : originalGetLegalReformLaw(article, topics);
     };
   }
 
@@ -92,4 +137,5 @@
   window.hasLegalReformEventEffectiveDateGrounding = hasEventTimingGrounding;
   window.getLegalReformEventEffectiveDate = getStrictReformEventEffectiveDate;
   window.getLegalReformEventTiming = getReformEventTiming;
+  window.getLegalReformEventForArticle = getReformEventForArticle;
 })();
