@@ -91,19 +91,19 @@ window.TOPIC_DATA = (window.TOPIC_DATA || []).concat([
 
 window.SOURCE_DATA = (window.SOURCE_DATA || []).concat([
   {
-    "id": "source-patent-act-current-employee-invention", "title": "特許法（昭和三十四年法律第百二十一号）第35条", "type": "law", "typeLabel": "法令", "authority": "e-Gov法令検索", "publishedAt": "1959-04-13", "url": "https://laws.e-gov.go.jp/law/334AC0000000121", "importance": "職務発明の範囲、使用者への権利帰属、相当の利益、規程の不合理性判断、相当の利益の算定を定める現行法の基礎。", "whyImportant": "職務発明規程の権利帰属と報奨制度を設計・検証する際の直接の法的根拠。", "topics": ["employee-inventions-patent-act-35"]
+    "id": "source-patent-act-current-employee-invention", "title": "特許法（昭和三十四年法律第百二十一号）第35条", "type": "law", "typeLabel": "法令", "authority": "e-Gov法令検索", "publishedAt": "1959-04-13", "url": "https://laws.e-gov.go.jp/law/334AC0000000121", "importance": "最高", "whyImportant": "職務発明規程の権利帰属と報奨制度を設計・検証する際の直接の法的根拠。", "topics": ["employee-inventions-patent-act-35"]
   },
   {
-    "id": "source-jpo-employee-invention-overview", "title": "職務発明制度の概要", "type": "government_guidance", "typeLabel": "行政資料", "authority": "特許庁", "publishedAt": "2016-04-22", "url": "https://www.jpo.go.jp/system/patent/shutugan/shokumu/shokumu.html", "importance": "2015年改正による使用者への原始帰属、「相当の利益」への変更、手続を重視する制度趣旨を特許庁が整理する基礎資料。", "whyImportant": "現行の職務発明制度が何を変え、規程のどの手続を重視するのかを行政の公式説明から確認できる。", "topics": ["employee-inventions-patent-act-35"]
+    "id": "source-jpo-employee-invention-overview", "title": "職務発明制度の概要", "type": "government", "typeLabel": "行政資料", "authority": "特許庁", "publishedAt": "2016-04-22", "url": "https://www.jpo.go.jp/system/patent/shutugan/shokumu/shokumu.html", "importance": "高", "whyImportant": "2015年改正による使用者への原始帰属、「相当の利益」への変更、手続を重視する制度趣旨を特許庁の公式説明から確認できる。", "topics": ["employee-inventions-patent-act-35"]
   },
   {
-    "id": "source-jpo-employee-invention-guideline-2016", "title": "特許法第35条第6項の指針（ガイドライン）", "type": "government_guidance", "typeLabel": "行政指針", "authority": "特許庁", "publishedAt": "2016-04-22", "url": "https://www.jpo.go.jp/system/patent/shutugan/shokumu/shokumu_guideline.html", "importance": "相当の利益の不合理性を判断する際の協議・開示・意見聴取等について、特許法35条6項に基づき具体化した公式指針。", "whyImportant": "職務発明規程の策定・改定・運用手続を社内実務へ落とす直接の基準になる。", "topics": ["employee-inventions-patent-act-35"]
+    "id": "source-jpo-employee-invention-guideline-2016", "title": "特許法第35条第6項の指針（ガイドライン）", "type": "guideline", "typeLabel": "行政指針", "authority": "特許庁", "publishedAt": "2016-04-22", "url": "https://www.jpo.go.jp/system/patent/shutugan/shokumu/shokumu_guideline.html", "importance": "最高", "whyImportant": "相当の利益の不合理性を判断する際の協議・開示・意見聴取等について、特許法35条6項に基づき具体化した公式指針。", "topics": ["employee-inventions-patent-act-35"]
   },
   {
-    "id": "source-osaka-dc-daifuku-employee-invention-2025", "title": "大阪地裁2025年9月18日判決（令和6年（ワ）第7193号 職務発明対価請求事件）", "type": "court_case", "typeLabel": "裁判例", "authority": "大阪地方裁判所", "publishedAt": "2025-09-18", "url": "https://www.courts.go.jp/assets/hanrei/hanrei-pdf-95035.pdf", "importance": "2015年改正後の特許法35条5項の下で、職務発明規程による相当の利益の付与が不合理かを協議・開示・意見聴取の運用から判断した第一審判決。", "whyImportant": "2026年知財高裁判決が引用した事実認定と職務発明制度の具体的な運用を確認できる。", "topics": ["employee-inventions-patent-act-35"]
+    "id": "source-osaka-dc-daifuku-employee-invention-2025", "title": "大阪地裁2025年9月18日判決（令和6年（ワ）第7193号 職務発明対価請求事件）", "type": "court_case", "typeLabel": "裁判例", "authority": "大阪地方裁判所", "publishedAt": "2025-09-18", "url": "https://www.courts.go.jp/assets/hanrei/hanrei-pdf-95035.pdf", "importance": "高", "whyImportant": "2015年改正後の特許法35条5項の下で、職務発明規程による相当の利益の付与が不合理かを協議・開示・意見聴取の運用から判断した第一審判決。", "topics": ["employee-inventions-patent-act-35"]
   },
   {
-    "id": "source-iphc-daifuku-employee-invention-2026", "title": "知財高裁2026年3月24日判決（令和7年（ネ）第10077号 職務発明対価請求控訴事件）", "type": "court_case", "typeLabel": "裁判例", "authority": "知的財産高等裁判所", "publishedAt": "2026-03-24", "url": "https://www.courts.go.jp/assets/hanrei/hanrei-pdf-95936.pdf", "importance": "2015年改正後の特許法35条について、規程策定後に入社した発明者、規程の開示、個別報奨時の意見聴取、外国特許を受ける権利の扱いを判断した控訴審判決。", "whyImportant": "職務発明規程の手続的合理性を企業がどのような証拠・運用で支えるべきかを具体的に示す重要裁判例。", "topics": ["employee-inventions-patent-act-35"]
+    "id": "source-iphc-daifuku-employee-invention-2026", "title": "知財高裁2026年3月24日判決（令和7年（ネ）第10077号 職務発明対価請求控訴事件）", "type": "court_case", "typeLabel": "裁判例", "authority": "知的財産高等裁判所", "publishedAt": "2026-03-24", "url": "https://www.courts.go.jp/assets/hanrei/hanrei-pdf-95936.pdf", "importance": "最高", "whyImportant": "2015年改正後の特許法35条について、規程策定後に入社した発明者、規程の開示、個別報奨時の意見聴取、外国特許を受ける権利の扱いを判断した控訴審判決。", "topics": ["employee-inventions-patent-act-35"]
   }
 ]);
 
