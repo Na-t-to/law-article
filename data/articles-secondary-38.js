@@ -1,108 +1,26 @@
-window.TOPIC_DATA = (window.TOPIC_DATA || []).concat([
-  {
-    "slug": "ai-legal-services-attorney-act-72",
-    "title": "AI法務業務支援・弁護士法72条／事件性・価値中立性・ガバナンス",
-    "categories": ["AI・デジタル", "契約", "危機管理・コンプライアンス"],
-    "summary": "法務省の2026年ガイドラインと実務解説から、AI・リーガルテックによる企業法務支援が弁護士法72条との関係でどこまで許容されるかを、事件性、サービス設計・機能の価値中立性、提供後のガバナンス、企業側の利用ルールに分けて追う。",
-    "lastUpdated": "2026-09-08",
-    "lastVerified": "2026-09-08",
-    "isNew": true,
-    "overview": [
-      "法務省は2026年8月21日、2023年の契約書等関連業務支援サービス向けガイドラインを補完・拡充し、ビジネス分野のAI等法務業務支援サービス一般と弁護士法72条の関係を整理する新ガイドラインを公表した。汎用型AIの提供者も、法務業務支援機能を有するサービスを報酬目的で提供する場合には射程に入り得る。",
-      "新ガイドラインでは、利用者がプロンプトを入力するだけで提供者の関与が当然に切れるとは整理せず、法的観点の指摘・助言等を自動提供する機能をサービスへ組み込んだ場合には、その設計・機能・提供態様を含めて提供者の行為を評価する。",
-      "事件性のある案件への利用可能性が抽象的に存在するだけで直ちに違反となるわけではなく、サービスが事件性のある案件への利用を目的・特化した設計や機能になっているか、提供者が不適切利用を認識・認容した後に合理的措置を取っているかなどが重要になる。",
-      "企業側の通常法務では、リサーチ、法的問題点の検討、文書作成・審査・管理、ガバナンス・リスク管理、内部通報調査、新規事業・再編、トラブルの内部調査、株主総会・取締役会支援などが一定条件の下で通常は弁護士法72条に抵触しない類型として整理される一方、既に紛争化した案件の交渉方針や訴訟書面等への利用は別途慎重な検討が必要になる。"
-    ],
-    "currentSummary": {
-      "facts": [
-        "2026年ガイドラインは2023年ガイドラインを置き換えるものではなく、同ガイドラインを補完・拡充し、両方を併せて参照する位置付けで公表された。",
-        "対象は主として企業等の事業者が自己の事業活動に関連して利用するビジネス分野のAI等法務業務支援サービスで、汎用型AIの提供者や、利用目的・利用態様を認識し得るAPI提供者にもガイドラインの趣旨が及び得る。",
-        "弁護士法72条の『その他一般の法律事件』については事件性が必要とされ、通常の企業法務における契約締結に向けた話し合いや法的問題点の検討等は、多くの場合、事件性がないと整理されてきた。",
-        "2026年ガイドラインは、リサーチ・法的問題点の検討、文書の作成・審査・管理、社内研修等を含むガバナンス・リスク管理・コンプライアンス、内部通報調査、新規事業スキーム・事業再編、トラブル発生時の内部調査、株主総会・取締役会等の会議業務について、一定の条件の下で通常は72条に抵触しない利用類型を示した。",
-        "同日、法務省はAIを活用した法務業務とその支援について、ガイドラインを超えた継続的なルールメイキングを検討するロードマップも公表した。"
-      ],
-      "interpretations": [
-        "境界判断は『AIが法的な文章を出したか』だけでは足りず、事件性のある案件を対象にしたサービス設計・機能か、不適切利用を認識した後に警告・利用範囲制限・弁護士相談案内・停止等の合理的措置を取ったかまで含めて見る必要がある。",
-        "提供者が利用規約に『弁護士の代替ではない』と書くだけでは十分ではない。営業表示、UI、入力前後の注意表示、利用者の適格性確認、問い合わせ・ログ等から得た不適切利用情報のエスカレーションを一体で設計する方がガイドラインの考え方に沿う。",
-        "利用企業にとっても、契約レビューや法務相談支援をAIへ広く委ねられる余地が明確になった一方、紛争が顕在化した案件について相手方との交渉戦略、和解案、訴訟書面等までAIへ委ねる場合は、平時の法務支援と同じ運用で処理しない方がよい。",
-        "親会社法務部門がグループ会社を支援する場面や組織内弁護士がAI出力を精査・修正して利用する場面についても整理が示され、AI利用ルールはサービス提供者だけでなく企業法務部門側の業務分担設計にも直結する。"
-      ],
-      "implications": [
-        "社内で利用している契約レビュー、法務相談、リサーチ、ドラフト、内部通報・調査支援等のAI機能を棚卸しし、通常企業法務と紛争・交渉・訴訟対応の利用経路を分ける。",
-        "リーガルテック・汎用AIのベンダー選定では、対象業務、事件性のある案件への利用制限、弁護士の実質的関与、注意表示、問い合わせ窓口、濫用把握後の停止・制限措置等を確認する。",
-        "利用規程や研修では、AI出力を最終的な専門判断の代替としないこと、事件性が疑われる案件を法務責任者・弁護士へエスカレーションすること、他社・第三者の法律事務を安易に扱わないことを明示する。",
-        "サービス提供側では、機能要件・UI・営業表示・利用規約・インシデント対応を別々に作らず、事件性のある案件への特化を避ける設計と、不適切利用を把握した後の対応フローを一体で記録する。",
-        "法務省のロードマップに沿う今後の検討でルールが具体化し得るため、2026年ガイドラインを固定的な最終到達点とせず、後続の有識者検討・指針改訂を継続確認する。"
-      ],
-      "uncertain": [
-        "ガイドラインは一般的な解釈指針であり、個別サービスが弁護士法72条に違反するかの最終判断は具体的事実関係に基づく裁判所の判断に委ねられる。",
-        "消費者を主たる対象とするAI法務サービスについては、ビジネス分野を対象とする2026年ガイドラインと別の考慮が必要となる場合がある。",
-        "全プロンプトの監視や技術的な出力制限を一律に義務付ける整理にはなっておらず、技術的制御の水準は今後のルールメイキングでも検討対象となり得る。"
-      ]
-    },
-    "issues": [
-      {
-        "id": "ai-legal-services-eventfulness",
-        "title": "『事件性』のある案件と通常企業法務をどう分けるか",
-        "status": "interpreted",
-        "stage": "effective",
-        "views": [],
-        "conclusion": "弁護士法72条の『その他一般の法律事件』には事件性が必要とされ、通常の企業活動に伴う契約締結前の話し合いや法的問題点の検討等は多くの場合これを欠く一方、既に紛争が生じた当事者間の和解等は事件性が認められ得る。契約類型だけで機械的に決めず、権利義務の争い・疑義、当事者関係、経緯等を個別に確認する。",
-        "exception": "事件性の有無は個別事情に左右され、同じ文書種別・業務名でも紛争状況や背景事情により結論が変わり得る。",
-        "uncertain": "新しいAIエージェント型サービスが複数業務を連続処理する場合、どの時点で事件性のある業務へ移行したと評価されるかは個別設計・利用態様に依存する。",
-        "sourceIds": ["source-moj-ai-legal-services-guideline-2026", "source-moj-ai-contract-guideline-2023"]
-      },
-      {
-        "id": "ai-legal-services-value-neutrality",
-        "title": "サービス設計・機能の『価値中立性』をどう判断するか",
-        "status": "interpreted",
-        "stage": "effective",
-        "views": [],
-        "conclusion": "事件性のある案件への利用可能性が抽象的にあるだけで直ちに問題となるのではなく、サービスの設計・中核機能がそのような法律事務を目的・特化したものか、提供者が不適切利用を認識・認容しているか、合理的な防止・対応措置を講じているかを総合して評価する。",
-        "exception": "設計・機能自体が事件性のある案件への利用に特化している場合、注意表示や利用規約等のガバナンス措置だけで価値中立性が当然に確保されるわけではない。",
-        "uncertain": "汎用AI、API、エージェント型機能では提供者が利用目的・利用態様をどの程度認識し得るかがサービス構造ごとに異なる。",
-        "sourceIds": ["source-moj-ai-legal-services-guideline-2026"]
-      },
-      {
-        "id": "ai-legal-services-corporate-use",
-        "title": "企業法務でAIを利用しやすい業務と慎重に扱う業務は何か",
-        "status": "interpreted",
-        "stage": "effective",
-        "views": [],
-        "conclusion": "リサーチ、法的問題点の検討、文書作成・審査・管理、ガバナンス・リスク管理、内部通報調査、新規事業・再編、トラブルの内部調査、株主総会・取締役会支援等は一定条件下で通常は72条に抵触しない類型として整理される。他方、既に事件性のある紛争について相手方との交渉・訴訟遂行を直接支援する機能は同じ前提で扱わない。",
-        "exception": "業務名だけで安全性が決まるわけではなく、具体的な案件の事件性、出力内容、利用主体、提供者の機能設計・認識等を確認する必要がある。",
-        "uncertain": "自律的なAIエージェントが内部調査から対外対応・交渉まで連続して処理する場合の境界は、機能分離や人による承認設計を含めて個別に検討する必要がある。",
-        "sourceIds": ["source-moj-ai-legal-services-guideline-2026", "source-moj-ai-contract-guideline-2023"]
-      },
-      {
-        "id": "ai-legal-services-governance",
-        "title": "提供者・利用企業はどのガバナンスを設計するか",
-        "status": "interpreted",
-        "stage": "effective",
-        "views": [],
-        "conclusion": "提供者側は、対象業務・利用者・表示・UI・問い合わせ窓口・不適切利用把握後の警告や制限等を一体で設計し、利用企業側もAIを最終的な専門判断の代替とせず、事件性が疑われる案件を弁護士等へエスカレーションする利用ルールを整備することが望ましい。",
-        "exception": "全利用者の全プロンプトを常時監視することや、特定の技術的出力制限を一律に実装することまで当然に要求する整理ではない。",
-        "uncertain": "ロードマップに基づく今後の検討により、提供者・利用者双方の具体的な推奨措置や技術的制御の位置付けが更新される可能性がある。",
-        "sourceIds": ["source-moj-ai-legal-services-guideline-2026", "source-moj-ai-legal-rulemaking-roadmap-2026"]
-      }
-    ],
-    "sourceIds": ["source-moj-ai-legal-services-announcement-2026", "source-moj-ai-legal-services-guideline-2026", "source-moj-ai-contract-guideline-2023", "source-moj-ai-legal-rulemaking-roadmap-2026"]
-  }
-]);
+(() => {
+  const topic = (window.TOPIC_DATA || []).find((item) => item.slug === "ai-legal-support-attorney-act");
+  if (!topic) return;
+  topic.lastVerified = "2026-09-08";
+  const addUnique = (target, values) => {
+    if (!Array.isArray(target)) return;
+    values.forEach((value) => { if (!target.includes(value)) target.push(value); });
+  };
+  addUnique(topic.sourceIds, [
+    "source-moj-ai-legal-services-guideline-2026",
+    "source-moj-ai-contract-guideline-2023",
+    "source-moj-ai-legal-rulemaking-roadmap-2026"
+  ]);
+  const issueSources = {
+    "ai-legal-incident-scope": ["source-moj-ai-legal-services-guideline-2026", "source-moj-ai-contract-guideline-2023"],
+    "ai-legal-value-neutral": ["source-moj-ai-legal-services-guideline-2026"],
+    "ai-legal-governance": ["source-moj-ai-legal-services-guideline-2026", "source-moj-ai-legal-rulemaking-roadmap-2026"],
+    "ai-legal-user-procurement": ["source-moj-ai-legal-services-guideline-2026", "source-moj-ai-legal-rulemaking-roadmap-2026"]
+  };
+  (topic.issues || []).forEach((issue) => addUnique(issue.sourceIds, issueSources[issue.id] || []));
+})();
 
 window.SOURCE_DATA = (window.SOURCE_DATA || []).concat([
-  {
-    "id": "source-moj-ai-legal-services-announcement-2026",
-    "title": "AI等法務業務支援サービス提供と弁護士法第72条の関係に係るガイドライン等の公表について",
-    "type": "government",
-    "typeLabel": "法務省・ガイドライン公表ページ",
-    "authority": "法務省大臣官房司法法制部",
-    "publishedAt": "2026-08-21",
-    "url": "https://www.moj.go.jp/housei/shihouseido/housei10_00134.html",
-    "importance": "最高",
-    "whyImportant": "2026年ガイドラインが2023年ガイドラインを補完・拡充すること、対象をビジネス分野のAI等法務業務支援サービスへ広げたこと、同時に継続的なルールメイキングのロードマップを策定したことを法務省自身が示す公式入口。",
-    "topics": ["ai-legal-services-attorney-act-72"]
-  },
   {
     "id": "source-moj-ai-legal-services-guideline-2026",
     "title": "ビジネス分野におけるAI等法務業務支援サービス提供と弁護士法第72条の関係について",
@@ -113,7 +31,7 @@ window.SOURCE_DATA = (window.SOURCE_DATA || []).concat([
     "url": "https://www.moj.go.jp/content/001469040.pdf",
     "importance": "最高",
     "whyImportant": "事件性、サービス提供者への行為帰属、価値中立性、企業法務で通常抵触しない利用類型、提供者・利用者のガバナンス上の留意事項を具体化した中心一次資料。",
-    "topics": ["ai-legal-services-attorney-act-72"]
+    "topics": ["ai-legal-support-attorney-act"]
   },
   {
     "id": "source-moj-ai-contract-guideline-2023",
@@ -125,7 +43,7 @@ window.SOURCE_DATA = (window.SOURCE_DATA || []).concat([
     "url": "https://www.moj.go.jp/content/001400675.pdf",
     "importance": "最高",
     "whyImportant": "報酬目的、事件性、鑑定その他の法律事務、利用者が弁護士である場合等の基本整理を示し、2026年ガイドラインが補完・拡充する基礎となる一次資料。",
-    "topics": ["ai-legal-services-attorney-act-72"]
+    "topics": ["ai-legal-support-attorney-act"]
   },
   {
     "id": "source-moj-ai-legal-rulemaking-roadmap-2026",
@@ -137,36 +55,11 @@ window.SOURCE_DATA = (window.SOURCE_DATA || []).concat([
     "url": "https://www.moj.go.jp/content/001469041.pdf",
     "importance": "高",
     "whyImportant": "2026年ガイドラインを最終到達点とせず、AIを活用した法務業務・支援について継続的にルールメイキングを検討する方針を確認する一次資料。",
-    "topics": ["ai-legal-services-attorney-act-72"]
+    "topics": ["ai-legal-support-attorney-act"]
   }
 ]);
 
 window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
-  {
-    "id": "article-moj-ai-legal-services-guideline-2026",
-    "title": "AI等法務業務支援サービス提供と弁護士法第72条の関係に係るガイドライン等の公表について",
-    "publisher": "法務省",
-    "author": "法務省大臣官房司法法制部",
-    "publishedAt": "2026-08-21",
-    "collectedAt": "2026-09-08",
-    "url": "https://www.moj.go.jp/housei/shihouseido/housei10_00134.html",
-    "sourceType": "primary",
-    "sourceLabel": "一次資料・AI法務支援／弁護士法72条",
-    "status": "adopted",
-    "summary": "法務省が2026年8月21日に、2023年の契約書等関連業務支援サービス向けガイドラインを補完・拡充する新ガイドラインと、今後のルールメイキングのロードマップを公表した公式ページ。新ガイドラインは対象をビジネス分野のAI等法務業務支援サービス一般へ広げ、事件性、サービス設計・機能の価値中立性、提供者による不適切利用把握後の対応、企業法務での利用類型、ガバナンス上の留意・推奨事項を具体化する。",
-    "whyImportant": [
-      "契約レビュー専用サービスだけでなく、汎用型AIやAPIを含むビジネス法務支援一般へ弁護士法72条との関係整理を広げた公式一次資料の入口である",
-      "事件性のある案件への抽象的な利用可能性だけでなく、設計・機能・提供後のガバナンスを含めて境界を判断する2026年の新しい行政解釈を追える",
-      "同日に継続的なルールメイキングのロードマップも公表されており、今後の制度・指針変更を追う起点になる"
-    ],
-    "audience": ["企業法務", "リーガルテック事業者", "AIプロダクト担当", "コンプライアンス担当", "組織内弁護士"],
-    "audienceReason": "契約レビュー、法務相談、リサーチ、ドラフト、内部調査等のAI機能を提供・利用する際に、弁護士法72条との境界と社内外のガバナンス要件を確認するため。",
-    "categories": ["AI・デジタル", "契約", "危機管理・コンプライアンス"],
-    "relatedTopics": ["ai-legal-services-attorney-act-72"],
-    "relatedIssues": ["ai-legal-services-eventfulness", "ai-legal-services-value-neutrality", "ai-legal-services-corporate-use", "ai-legal-services-governance"],
-    "primarySourceIds": ["source-moj-ai-legal-services-announcement-2026", "source-moj-ai-legal-services-guideline-2026", "source-moj-ai-contract-guideline-2023", "source-moj-ai-legal-rulemaking-roadmap-2026"],
-    "whatChanged": "行政解釈の具体化／2023年ガイドラインを補完・拡充し、AI法務業務支援一般について事件性、価値中立性、通常の企業法務利用、提供者・利用者のガバナンスを具体化した2026年ガイドラインを新規整理した。"
-  },
   {
     "id": "article-jila-ai-legal-services-guideline-2026",
     "title": "＜速報・有識者解説＞ 法務省『ビジネス分野におけるAI等法務業務支援サービス提供と弁護士法第72条の関係について』（令和8年ガイドライン）―対話で学ぶ、組織内弁護士・法務部門のための5つの核心",
@@ -178,7 +71,7 @@ window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
     "sourceType": "secondary",
     "sourceLabel": "実務解説・AI法務支援／事件性・価値中立性",
     "status": "adopted",
-    "summary": "2026年ガイドラインを2023年版との関係から読み解き、対象が契約書等関連業務からビジネス分野のAI法務支援一般・汎用AI・一定のAPI提供へ広がったこと、利用者の入力があっても提供者の設計した自動法務支援機能は提供者の行為として評価され得ること、事件性のある利用への設計・機能上の特化と不適切利用把握後の対応を『価値中立性』の観点から整理する。企業側の7つの通常利用類型、親会社法務部門による子会社支援、組織内弁護士による精査、ベンダーDD・利用規程・表示・エスカレーションまで具体化している。",
+    "summary": "2026年ガイドラインを2023年版との関係から読み解き、対象が契約書等関連業務からビジネス分野のAI法務支援一般・汎用AI・一定のAPI提供へ広がったこと、利用者の入力があっても提供者の設計した自動法務支援機能は提供者の行為として評価され得ること、事件性のある利用への設計・機能上の特化と不適切利用把握後の対応を『価値中立性』の観点から整理する。企業側の通常利用類型、親会社法務部門による子会社支援、組織内弁護士による精査、ベンダーDD・利用規程・表示・エスカレーションまで具体化している。",
     "whyImportant": [
       "2023年版との連続性、新たに追加された対象範囲、行為帰属と価値中立性という難しい論点を原文の注記まで追って整理している",
       "契約レビューだけでなく、リサーチ、内部通報調査、事業再編、内部調査、取締役会支援等の企業法務ユースケースを具体的に分けて読める",
@@ -187,35 +80,10 @@ window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
     "audience": ["企業法務", "組織内弁護士", "リーガルテック事業者", "AIプロダクト担当", "購買・ベンダー管理"],
     "audienceReason": "2026年ガイドラインを条文・判例・注記と企業法務の具体的ユースケースへ接続し、AI利用ルールとベンダーDDを設計するため。",
     "categories": ["AI・デジタル", "契約", "危機管理・コンプライアンス"],
-    "relatedTopics": ["ai-legal-services-attorney-act-72"],
-    "relatedIssues": ["ai-legal-services-eventfulness", "ai-legal-services-value-neutrality", "ai-legal-services-corporate-use", "ai-legal-services-governance"],
+    "relatedTopics": ["ai-legal-support-attorney-act"],
+    "relatedIssues": ["ai-legal-incident-scope", "ai-legal-value-neutral", "ai-legal-governance", "ai-legal-user-procurement"],
     "primarySourceIds": ["source-moj-ai-legal-services-guideline-2026", "source-moj-ai-contract-guideline-2023", "source-moj-ai-legal-rulemaking-roadmap-2026"],
-    "whatChanged": "実務整理の補強／2026年ガイドラインの事件性・価値中立性・通常利用類型を、社内AI利用ルール、ベンダーDD、注意表示、エスカレーションへ落とし込む解説を追加した。"
-  },
-  {
-    "id": "article-miyake-ai-legal-services-guideline-2026",
-    "title": "ビジネス分野におけるAI等法務業務支援サービス提供と弁護士法第72条（令和8年8月ガイドライン）～ガイドラインが示した分水嶺と、企業実務への落とし込み：設計・用法・ガバナンスから社内利用ルール・ベンダー選定まで",
-    "publisher": "三宅法律事務所",
-    "author": "渡邉雅之",
-    "publishedAt": "2026-08-26",
-    "collectedAt": "2026-09-08",
-    "url": "https://www.miyake.gr.jp/notice/%E3%80%90%E5%8B%95%E7%94%BB%E8%A7%A3%E8%AA%AC%E3%83%BB%E5%8B%95%E7%94%BB%E8%B3%87%E6%96%99%E3%80%91%E3%83%93%E3%82%B8%E3%83%8D%E3%82%B9%E5%88%86%E9%87%8E%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%EF%BD%81/",
-    "sourceType": "secondary",
-    "sourceLabel": "法律事務所解説・AI法務支援／設計・用法・ガバナンス",
-    "status": "adopted",
-    "summary": "2026年ガイドラインを弁護士法72条の構成要件・判例から説き起こし、提供者への行為帰属と価値中立性、設計・機能・ガバナンスの三層、企業法務で通常抵触しない7類型と慎重に扱うべき紛争利用を整理する。特に、設計・機能が事件性のある案件に特化する場合は注意表示等だけで中立化できない一方、中立的設計でも不適切利用を認識・認容して漫然と提供し続ければ問題となり得る点を、社内利用ルール、ベンダー選定、UI、利用者確認、問い合わせ・停止対応まで落としている。",
-    "whyImportant": [
-      "『価値中立性』を設計・機能・ガバナンスに分解し、どの層で何を制御すべきかを具体的に説明している",
-      "契約レビューSaaS、訴状作成AI、内部通報調査AI、グループ内利用などのケースで、平時法務と紛争利用の境界を確認できる",
-      "提供者向けの法解釈だけで終わらず、利用企業の社内ルール、ベンダーDD、注意表示・エスカレーションへ実装可能な論点を示している"
-    ],
-    "audience": ["企業法務", "リーガルテック事業者", "AIプロダクト担当", "コンプライアンス担当", "購買・ベンダー管理"],
-    "audienceReason": "AI法務サービスの企画・選定・利用規程を、弁護士法72条の判断要素とUI・機能・運用の具体的な統制へ接続するため。",
-    "categories": ["AI・デジタル", "契約", "危機管理・コンプライアンス"],
-    "relatedTopics": ["ai-legal-services-attorney-act-72"],
-    "relatedIssues": ["ai-legal-services-value-neutrality", "ai-legal-services-corporate-use", "ai-legal-services-governance"],
-    "primarySourceIds": ["source-moj-ai-legal-services-guideline-2026", "source-moj-ai-contract-guideline-2023", "source-moj-ai-legal-rulemaking-roadmap-2026"],
-    "whatChanged": "実務整理の補強／設計・機能・ガバナンスの三層と企業側の利用ルール・ベンダー選定を接続する法律事務所解説を追加した。"
+    "whatChanged": "整理変更なし／2026年ガイドラインの事件性・価値中立性・通常利用類型を、社内AI利用ルール、ベンダーDD、注意表示、エスカレーションへ落とし込む解説を既存テーマへ追加した。"
   },
   {
     "id": "article-jila-legaltech-guideline-training-2023",
@@ -237,9 +105,9 @@ window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
     "audience": ["企業法務", "組織内弁護士", "リーガルテック事業者", "AIプロダクト担当"],
     "audienceReason": "2026年ガイドラインだけでは省略される2023年版の基本要件を確認し、事件性・法律事務・弁護士利用の判断を時系列で理解するため。",
     "categories": ["AI・デジタル", "契約", "危機管理・コンプライアンス"],
-    "relatedTopics": ["ai-legal-services-attorney-act-72"],
-    "relatedIssues": ["ai-legal-services-eventfulness", "ai-legal-services-corporate-use"],
+    "relatedTopics": ["ai-legal-support-attorney-act"],
+    "relatedIssues": ["ai-legal-incident-scope", "ai-legal-user-procurement"],
     "primarySourceIds": ["source-moj-ai-contract-guideline-2023"],
-    "whatChanged": "基礎資料のバックフィル／2026年ガイドラインが維持する2023年版の報酬目的・事件性・法律事務・弁護士利用の基本整理を追加した。"
+    "whatChanged": "整理変更なし／2026年ガイドラインが維持する2023年版の報酬目的・事件性・法律事務・弁護士利用の基本整理を既存テーマへバックフィルした。"
   }
 ]);
