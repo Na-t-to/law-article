@@ -115,14 +115,14 @@ window.TOPIC_DATA = (window.TOPIC_DATA || []).concat([
 window.SOURCE_DATA = (window.SOURCE_DATA || []).concat([
   {
     "id": "source-fsa-payments-act-bill-2025",
-    "title": "第217回国会における金融庁関連法律案（資金決済に関する法律の一部を改正する法律）",
+    "title": "資金決済に関する法律の一部を改正する法律案　説明資料",
     "type": "law",
-    "typeLabel": "改正法・国会提出資料",
+    "typeLabel": "改正法案・金融庁説明資料",
     "authority": "金融庁",
     "publishedAt": "2025-03-07",
-    "url": "https://www.fsa.go.jp/common/diet/217/index.html",
+    "url": "https://www.fsa.go.jp/common/diet/217/02/setsumei.pdf",
     "importance": "最高",
-    "whyImportant": "2025年資金決済法改正について、提出日、成立日、法律・理由、概要、説明資料、新旧対照条文を一括して確認できる公式資料。",
+    "whyImportant": "電子決済手段・暗号資産サービス仲介業の創設を含む2025年資金決済法改正の制度趣旨と主要な改正内容を確認できる金融庁の公式説明資料。",
     "topics": ["crypto-e-money-service-intermediary"]
   },
   {
