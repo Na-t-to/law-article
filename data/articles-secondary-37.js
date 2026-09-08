@@ -76,7 +76,7 @@ window.TOPIC_DATA = (window.TOPIC_DATA || []).concat([
       {
         "id": "privacy-incident-forensics-readiness",
         "title": "不正アクセス発生時にフォレンジック調査を活かすには何を準備するか",
-        "status": "authoritative",
+        "status": "interpreted",
         "stage": "effective",
         "views": [],
         "conclusion": "平時から情報資産・ネットワーク構成を把握し、必要なログを適切に保管し、初動時のエスカレーション・証拠保全・調査会社への依頼範囲を決めておくことで、原因・被害範囲の把握と再発防止へフォレンジック調査を活用しやすくする。",
