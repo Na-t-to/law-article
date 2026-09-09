@@ -4,8 +4,8 @@ window.TOPIC_DATA = (window.TOPIC_DATA || []).concat([
     "title": "従業員向け株式報酬・賃金該当性",
     "categories": ["労務", "会社法・ガバナンス"],
     "summary": "従業員向け株式報酬について、現行会社法上の株式無償交付の扱い、2026年会社法制見直しで示された対象拡大案、労働基準法上の賃金該当性と通貨払原則、制度設計・規程整備上の留意点を整理する。",
-    "lastUpdated": "2026-09-07",
-    "lastVerified": "2026-09-07",
+    "lastUpdated": "2026-09-10",
+    "lastVerified": "2026-09-10",
     "isNew": true,
     "overview": [
       "現行会社法では、上場会社が取締役等に報酬として株式を無償交付する仕組みは設けられている一方、使用人等への同様の無償交付は一般化されておらず、実務では金銭報酬債権の現物出資等を用いる設計が行われています。",
@@ -16,16 +16,19 @@ window.TOPIC_DATA = (window.TOPIC_DATA || []).concat([
       "facts": [
         "会社法202条の2は上場会社の取締役等に対する報酬等としての株式交付に特則を置いているが、使用人等への株式無償交付を同じ仕組みで一般的に認める現行規定にはなっていない。",
         "法制審議会会社法制（株式・株主総会等関係）部会は2026年3月18日に中間試案を取りまとめ、使用人等への株式無償交付の対象拡大を検討対象とした。中間試案は、結論を得るに当たり労働基準法上の『賃金』該当性の整理が必要であるとしている。",
-        "労働基準法11条は賃金を『労働の対償として使用者が労働者に支払うすべてのもの』と定義し、24条は通貨払・直接払・全額払・毎月払等を原則とする。"
+        "労働基準法11条は賃金を『労働の対償として使用者が労働者に支払うすべてのもの』と定義し、24条は通貨払・直接払・全額払・毎月払等を原則とする。",
+        "経済産業省は2023年3月31日にインセンティブプラン導入の手引を改訂し、従業員への自社株報酬に関するQ78～Q83と、従業員向けの譲渡制限付株式割当契約書例・株式報酬規程例を追加した。"
       ],
       "interpretations": [
         "株式報酬という名称だけで賃金該当性を一律に判断せず、現金賃金を代替しているか、労働契約・就業規則・報酬規程でどのように位置付けているか、給付条件や金銭給付との関係を制度ごとに確認する必要がある。",
-        "経済産業省のインセンティブ報酬ガイダンス等で示される既存の整理は重要な参照材料になるが、RS・RSU・PSU・ストックオプション・ファントムストック等で給付構造が異なるため、同じ要件を機械的に当てはめるのは避けるべきである。"
+        "経済産業省のインセンティブ報酬ガイダンス等で示される既存の整理は重要な参照材料になるが、RS・RSU・PSU・ストックオプション・ファントムストック等で給付構造が異なるため、同じ要件を機械的に当てはめるのは避けるべきである。",
+        "2023年の経済産業省手引が示す、既存の金銭賃金を減額せず付加的に付与すること等の整理は制度設計上の有力な参考になるが、厚生労働省が株式報酬全般について示した一律のセーフハーバーではない。"
       ],
       "implications": [
         "新たに従業員向け株式報酬を導入・変更する場合は、現金賃金・賞与を減額して置き換える設計になっていないかを確認する。",
         "就業規則、労働条件通知書、株式報酬規程、取締役会・株主総会資料で、賃金とインセンティブ報酬の位置付けが矛盾しないようにする。",
-        "会社法制見直しが具体化した場合は、会社法上の交付手続だけでなく、厚生労働省による賃金該当性の整理や労働基準法24条との関係を併せて確認する。"
+        "会社法制見直しが具体化した場合は、会社法上の交付手続だけでなく、厚生労働省による賃金該当性の整理や労働基準法24条との関係を併せて確認する。",
+        "経済産業省の従業員向け契約書例・株式報酬規程例をたたき台にしつつ、自社の就業規則・労働条件通知・現金賃金との関係を照合して文書間の不整合を避ける。"
       ],
       "uncertain": [
         "使用人等への株式無償交付の対象拡大は中間試案段階であり、最終的な改正内容・要件・施行時期は確定していない。",
@@ -53,7 +56,7 @@ window.TOPIC_DATA = (window.TOPIC_DATA || []).concat([
         "conclusion": "株式報酬を一律に賃金外と扱うのではなく、労働の対償性、現金賃金との代替関係、制度規程上の位置付け、給付形態等から個別に検討する。中間試案も使用人等への無償交付を制度化する前提として賃金該当性の整理が必要であると明示している。",
         "exception": "金銭で決済するファントムストック等と実株式・新株予約権を交付する制度では、労働基準法24条との問題の現れ方が同じとは限らない。",
         "uncertain": "広範な株式報酬類型に共通する最終的な行政整理は確認できず、今後の厚生労働省等の整理を追う必要がある。",
-        "sourceIds": ["source-labour-standards-act", "source-moj-company-law-interim-2026", "source-meti-incentive-compensation-guidance-2025"]
+        "sourceIds": ["source-labour-standards-act", "source-moj-company-law-interim-2026", "source-meti-incentive-compensation-guidance-2025", "source-meti-incentive-compensation-guidebook-2023"]
       },
       {
         "id": "employee-stock-compensation-documentation",
@@ -64,10 +67,10 @@ window.TOPIC_DATA = (window.TOPIC_DATA || []).concat([
         "conclusion": "株式報酬を導入する場合は、既存の現金賃金を代替する制度か、別建てのインセンティブかを明確にし、就業規則・労働条件通知書・報酬規程・付与契約の記載と実際の運用を整合させる。",
         "exception": "規程に『賃金ではない』と記載するだけで賃金該当性が当然に決まるものではなく、実質的な給付構造と労働の対償性の検討が必要である。",
         "uncertain": "マルス・クローバック等を含む株式報酬固有の労働法上の有効性については、制度類型や事案ごとの検討が残る。",
-        "sourceIds": ["source-labour-standards-act", "source-meti-incentive-compensation-guidance-2025"]
+        "sourceIds": ["source-labour-standards-act", "source-meti-incentive-compensation-guidance-2025", "source-meti-incentive-compensation-guidebook-2023"]
       }
     ],
-    "sourceIds": ["source-companies-act-current", "source-labour-standards-act", "source-moj-company-law-interim-2026", "source-meti-incentive-compensation-guidance-2025"]
+    "sourceIds": ["source-companies-act-current", "source-labour-standards-act", "source-moj-company-law-interim-2026", "source-meti-incentive-compensation-guidance-2025", "source-meti-incentive-compensation-guidebook-2023"]
   },
   {
     "slug": "bank-subsidiary-business-succession",
@@ -165,6 +168,18 @@ window.SOURCE_DATA = (window.SOURCE_DATA || []).concat([
     "topics": ["employee-stock-compensation-wage-status"]
   },
   {
+    "id": "source-meti-incentive-compensation-guidebook-2023",
+    "title": "『「攻めの経営」を促す役員報酬－企業の持続的成長のためのインセンティブプラン導入の手引－』（2023年3月時点版）",
+    "type": "guideline",
+    "typeLabel": "行政ガイダンス・株式報酬実務",
+    "authority": "経済産業省",
+    "publishedAt": "2023-03-31",
+    "url": "https://www.meti.go.jp/policy/economy/keiei_innovation/keizaihousei/pdf/230331incentiveplan.pdf",
+    "importance": "高",
+    "whyImportant": "従業員への自社株報酬についてQ78～Q83を新設し、労働基準法上の賃金・通貨払い原則との関係、会社法上の発行方法、譲渡制限付株式割当契約書例・株式報酬規程例をまとめた経済産業省の公式実務資料。",
+    "topics": ["employee-stock-compensation-wage-status"]
+  },
+  {
     "id": "source-fsa-bank-investment-subsidiary-2026",
     "title": "『銀行法施行規則等の一部を改正する内閣府令』等の公布及びパブリックコメントの結果等について",
     "type": "guideline",
@@ -205,6 +220,31 @@ window.REFORM_EVENT_DATA = (window.REFORM_EVENT_DATA || []).concat([
 ]);
 
 window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
+  {
+    "id": "article-meti-employee-stock-compensation-guidebook-2023",
+    "title": "『「攻めの経営」を促す役員報酬－企業の持続的成長のためのインセンティブプラン導入の手引－』を改訂しました",
+    "publisher": "経済産業省",
+    "author": "経済産業省",
+    "publishedAt": "2023-03-31",
+    "collectedAt": "2026-09-10",
+    "url": "https://www.meti.go.jp/press/2022/03/20230331008/20230331008.html",
+    "sourceType": "primary",
+    "sourceLabel": "一次資料・行政ガイダンス／従業員向け株式報酬",
+    "status": "adopted",
+    "summary": "経済産業省が2023年版のインセンティブプラン導入手引を改訂し、従業員への自社株報酬についてQ78～Q83、従業員向けの譲渡制限付株式割当契約書例、株式報酬規程例を追加した公式資料。労働基準法上の賃金・通貨払い原則との関係と、会社法上の発行実務を同じ資料から確認できる。",
+    "whyImportant": [
+      "従業員株式報酬を会社法だけでなく労働基準法上の賃金・通貨払い原則と結び付けて確認できる公式の基礎資料",
+      "金銭賃金を減額せず付加的に付与すること等、株式報酬を通常賃金と切り分ける際の実務上の参考条件を確認できる",
+      "譲渡制限付株式割当契約書例と株式報酬規程例まであり、制度設計を社内文書へ落とす出発点になる"
+    ],
+    "audience": ["企業法務", "人事・労務", "報酬制度担当", "上場会社・スタートアップのコーポレート担当"],
+    "audienceReason": "従業員向けRS等を導入・見直す際に、労働法と会社法の両面から制度・規程・契約を設計する基準資料になるため。",
+    "categories": ["労務", "会社法・ガバナンス"],
+    "relatedTopics": ["employee-stock-compensation-wage-status"],
+    "relatedIssues": ["employee-stock-compensation-wage-status", "employee-stock-compensation-documentation"],
+    "primarySourceIds": ["source-meti-incentive-compensation-guidebook-2023"],
+    "whatChanged": "整理変更なし／従業員向け株式報酬の賃金該当性・通貨払い・規程整備を検討する公式の基礎資料をバックフィルした。"
+  },
   {
     "id": "article-tmi-employee-stock-compensation-wage-status-2026",
     "title": "【労働法ブログ】株式報酬の賃金該当性について",
