@@ -136,3 +136,14 @@ window.REFORM_EVENT_DATA = (window.REFORM_EVENT_DATA || []).concat([
     "sourceIds": ["source-meti-startup-investment-agreement-guidelines-2025"]
   }
 ]);
+
+(() => {
+  const topic = (window.TOPIC_DATA || []).find((item) => item.slug === "startup-ma-guidance");
+  if (!topic) return;
+  topic.lastVerified = "2026-09-09";
+  topic.sourceIds = [...new Set([...(topic.sourceIds || []), "source-meti-startup-investment-agreement-guidelines-2025"] )];
+  const investment = (topic.issues || []).find((item) => item.id === "startup-ma-investment-contract");
+  if (investment) investment.sourceIds = [...new Set([...(investment.sourceIds || []), "source-meti-startup-investment-agreement-guidelines-2025", "source-companies-act-current"] )];
+  const convertibles = (topic.issues || []).find((item) => item.id === "startup-ma-structure-convertibles");
+  if (convertibles) convertibles.sourceIds = [...new Set([...(convertibles.sourceIds || []), "source-companies-act-current"] )];
+})();
