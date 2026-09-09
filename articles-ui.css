@@ -120,15 +120,16 @@
 }
 
 #articlesPage .article-impact {
-  display: -webkit-box;
-  overflow: hidden;
+  display: block;
+  overflow: visible;
   align-self: stretch;
-  padding: 8px 2px;
+  padding: 10px 2px;
   color: #394641;
   font-size: 11px;
   line-height: 1.75;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 
 #articlesPage .article-impact:hover {
@@ -260,9 +261,8 @@
   }
 
   #articlesPage .article-impact {
-    padding-top: 9px;
-    padding-bottom: 9px;
-    -webkit-line-clamp: 3;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   #articlesPage .list-more-button {
