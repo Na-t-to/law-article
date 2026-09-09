@@ -67,7 +67,7 @@ window.TOPIC_DATA = (window.TOPIC_DATA || []).concat([
         "sourceIds": ["source-jpo-patent-system-committee-57-2026"]
       }
     ],
-    "sourceIds": ["source-jpo-patent-system-committee-57-2026"],
+    "sourceIds": ["source-jpo-patent-system-committee-56-2026", "source-jpo-patent-system-committee-57-2026"],
     "practicalImpacts": ["クラウド・SaaSの特許クリアランス", "特許出願・クレーム設計", "ライセンス交渉", "特許訴訟・損害立証", "証拠保全・紛争対応"]
   }
 ]);
@@ -96,8 +96,8 @@ window.REFORM_EVENT_DATA = (window.REFORM_EVENT_DATA || []).concat([
     "lawLabel": "特許法・特許制度見直し",
     "relatedTopics": ["patent-network-infringement-review-2026"],
     "effectiveDateStatus": "unknown",
-    "matchSourceIds": ["source-jpo-patent-system-committee-57-2026"],
-    "sourceIds": ["source-jpo-patent-system-committee-57-2026"]
+    "matchSourceIds": ["source-jpo-patent-system-committee-56-2026", "source-jpo-patent-system-committee-57-2026"],
+    "sourceIds": ["source-jpo-patent-system-committee-56-2026", "source-jpo-patent-system-committee-57-2026"]
   }
 ]);
 
