@@ -28,6 +28,7 @@ window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
     "primarySourceIds": ["source-nco-critical-infrastructure-unified-standard-2026", "source-cao-cyber-countermeasures-law"],
     "reformEventId": "critical-infrastructure-unified-standard-2026",
     "reformStageAtPublication": "finalized_pending",
+    "reformStageSourceIds": ["source-nco-critical-infrastructure-unified-standard-2026"],
     "whatChanged": "整理変更なし／2026年10月1日施行予定の重要インフラ統一基準について、政府の統一基準から分野別安全基準へ落ちる実務構造と主要管理策を補完した。"
   },
   {
