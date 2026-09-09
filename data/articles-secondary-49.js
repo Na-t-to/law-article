@@ -10,18 +10,6 @@ window.SOURCE_DATA = (window.SOURCE_DATA || []).concat([
     "importance": "最高",
     "whyImportant": "2018年策定・2022年改訂の投資契約ガイドラインを増補し、成長段階に応じたボードガバナンス、投資家指名取締役、事前承認事項、株式買取請求権等の投資契約実務を2025年時点で更新した公式資料。",
     "topics": ["startup-ma-guidance"]
-  },
-  {
-    "id": "source-egov-companies-act-startup-investment",
-    "title": "会社法（平成17年法律第86号）",
-    "type": "law",
-    "typeLabel": "法令",
-    "authority": "e-Gov法令検索",
-    "publishedAt": "2005-07-26",
-    "url": "https://laws.e-gov.go.jp/law/417AC0000000086",
-    "importance": "最高",
-    "whyImportant": "種類株式・種類株主総会、取締役選任権付種類株式、取締役の任期・員数等、スタートアップの優先株式・投資家権利設計を検討する法的基礎。",
-    "topics": ["startup-ma-guidance"]
   }
 ]);
 
@@ -49,7 +37,7 @@ window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
     "categories": ["契約", "会社法・ガバナンス", "M&A"],
     "relatedTopics": ["startup-ma-guidance"],
     "relatedIssues": ["startup-ma-investment-contract"],
-    "primarySourceIds": ["source-meti-startup-investment-agreement-guidelines-2025", "source-egov-companies-act-startup-investment"],
+    "primarySourceIds": ["source-meti-startup-investment-agreement-guidelines-2025", "source-companies-act-current"],
     "reformEventId": "startup-investment-agreement-guidelines-2025-expanded",
     "reformStageAtPublication": "effective",
     "reformStageSourceIds": ["source-meti-startup-investment-agreement-guidelines-2025"],
@@ -77,7 +65,7 @@ window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
     "categories": ["契約", "会社法・ガバナンス", "M&A"],
     "relatedTopics": ["startup-ma-guidance"],
     "relatedIssues": ["startup-ma-investment-contract"],
-    "primarySourceIds": ["source-meti-startup-investment-agreement-guidelines-2025", "source-egov-companies-act-startup-investment"],
+    "primarySourceIds": ["source-meti-startup-investment-agreement-guidelines-2025", "source-companies-act-current"],
     "reformEventId": "startup-investment-agreement-guidelines-2025-expanded",
     "reformStageAtPublication": "effective",
     "reformStageSourceIds": ["source-meti-startup-investment-agreement-guidelines-2025"],
@@ -105,7 +93,7 @@ window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
     "categories": ["会社法・ガバナンス", "契約"],
     "relatedTopics": ["startup-ma-guidance"],
     "relatedIssues": ["startup-ma-investment-contract", "startup-ma-structure-convertibles"],
-    "primarySourceIds": ["source-egov-companies-act-startup-investment"],
+    "primarySourceIds": ["source-companies-act-current"],
     "whatChanged": "整理変更なし／優先株式・コンバーティブルの設計が、将来の資金調達・M&A時の種類株主総会と拒否権へ波及する会社法上の実務解説を追加。"
   },
   {
@@ -130,7 +118,7 @@ window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
     "categories": ["会社法・ガバナンス", "契約"],
     "relatedTopics": ["startup-ma-guidance"],
     "relatedIssues": ["startup-ma-investment-contract"],
-    "primarySourceIds": ["source-egov-companies-act-startup-investment"],
+    "primarySourceIds": ["source-companies-act-current"],
     "whatChanged": "整理変更なし／投資家指名取締役について、株主間契約・定款・種類株式・任期・員数をつないで確認する会社法実務解説を追加。"
   }
 ]);
