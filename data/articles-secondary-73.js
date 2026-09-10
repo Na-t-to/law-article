@@ -1,13 +1,8 @@
 (() => {
-  const addUniqueById = (target, additions) => {
-    const existing = new Set((target || []).map((item) => item.id));
-    return (target || []).concat(additions.filter((item) => !existing.has(item.id)));
-  };
-
   const topicSlug = "digital-commerce-tokusho-review";
   const sourceId = "source-caa-digital-tokusho-interim-2026";
   const articleId = "article-caa-digital-tokusho-interim-2026";
-  const reformEventId = "digital-transactions-specified-commercial-transactions-review-2026";
+  const reformEventId = "digital-commerce-tokusho-2026-review";
   const finalUrl = "https://www.caa.go.jp/policies/policy/consumer_transaction/meeting_materials/review_meeting_005/assets/consumer_transaction_cms101_260910_01.pdf";
 
   window.SOURCE_DATA = (window.SOURCE_DATA || []).map((source) =>
@@ -92,21 +87,6 @@
       sourceIds: Array.from(new Set([...(topic.sourceIds || []), sourceId]))
     };
   });
-
-  window.REFORM_EVENT_DATA = addUniqueById(window.REFORM_EVENT_DATA, [
-    {
-      id: reformEventId,
-      title: "デジタル取引・特定商取引法等・2026年制度見直し",
-      eventType: "policy_review",
-      lawId: "digital-transactions-specified-commercial-transactions-review",
-      lawLabel: "デジタル取引・特定商取引法等見直し",
-      relatedTopics: [topicSlug],
-      effectiveDateStatus: "unknown",
-      matchSourceIds: [sourceId],
-      sourceIds: [sourceId],
-      articleIds: [articleId]
-    }
-  ]);
 
   window.ARTICLE_DATA = (window.ARTICLE_DATA || []).map((article) =>
     article.id !== articleId
