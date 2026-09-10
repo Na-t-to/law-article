@@ -1,10 +1,10 @@
 (() => {
   const topicSlug = "ssbj-statutory-sustainability-disclosure";
-  const lawSourceId = "source-fsa-fiea-law-2026";
+  const lawSourceId = "source-fsa-fiea-law-text-2026";
   const roadmapSourceId = "source-fsa-sustainability-disclosure-assurance-report-2026";
   const assuranceSourceId = "source-fsa-sustainability-assurance-subcommittee-2026";
   const assuranceIssueId = "ssbj-statutory-assurance";
-  const reformEventId = "fiea-sustainability-disclosure-assurance-2026-amendment";
+  const reformEventId = "fiea-sustainability-disclosure-assurance-2026";
 
   const lawArticleId = "article-fsa-fiea-sustainability-assurance-2026";
   const roadmapArticleId = "article-fsa-sustainability-disclosure-assurance-report-2026";
@@ -100,26 +100,18 @@
     };
   });
 
-  window.REFORM_EVENT_DATA = (window.REFORM_EVENT_DATA || []).map((event) =>
-    event.lawId === "financial-instruments-exchange-act" ? { ...event, lawLabel: "金融商品取引法" } : event
-  );
-
-  window.REFORM_EVENT_DATA = addUniqueById(window.REFORM_EVENT_DATA, [
-    {
-      id: reformEventId,
-      title: "金融商品取引法・2026年サステナビリティ開示／第三者保証改正",
-      eventType: "law_amendment",
-      lawId: "financial-instruments-exchange-act",
-      lawLabel: "金融商品取引法",
-      relatedTopics: [topicSlug],
-      effectiveDateStatus: "confirmed",
-      effectiveDates: ["2027-04-01"],
-      effectiveDateSourceIds: [lawSourceId],
-      sourceIds: [lawSourceId, roadmapSourceId, assuranceSourceId],
-      matchSourceIds: [roadmapSourceId, assuranceSourceId],
-      articleIds: [lawArticleId, roadmapArticleId, assuranceArticleId]
-    }
-  ]);
+  window.REFORM_EVENT_DATA = (window.REFORM_EVENT_DATA || []).map((event) => {
+    const normalized = event.lawId === "financial-instruments-exchange-act"
+      ? { ...event, lawLabel: "金融商品取引法" }
+      : event;
+    if (normalized.id !== reformEventId) return normalized;
+    return {
+      ...normalized,
+      sourceIds: addUniqueStrings(normalized.sourceIds, [roadmapSourceId, assuranceSourceId]),
+      matchSourceIds: addUniqueStrings(normalized.matchSourceIds, [roadmapSourceId, assuranceSourceId]),
+      articleIds: addUniqueStrings(normalized.articleIds, [lawArticleId, roadmapArticleId, assuranceArticleId])
+    };
+  });
 
   window.UPDATE_DATA = addUniqueById(window.UPDATE_DATA, [
     {
@@ -139,6 +131,11 @@
     }
   ]);
 
+  window.ARTICLE_DATA = (window.ARTICLE_DATA || []).map((article) => {
+    if (article.id !== "article-pwc-fiea-sustainability-assurance-2026") return article;
+    return { ...article, relatedIssues: addUniqueStrings(article.relatedIssues, [assuranceIssueId]) };
+  });
+
   window.ARTICLE_DATA = addUniqueById(window.ARTICLE_DATA, [
     {
       id: lawArticleId,
@@ -147,7 +144,7 @@
       author: "金融庁",
       publishedAt: "2026-07-23",
       collectedAt: "2026-09-11",
-      url: "https://www.fsa.go.jp/common/diet/221/02/02.pdf",
+      url: "https://www.fsa.go.jp/common/diet/221/02/01.pdf",
       sourceType: "primary",
       sourceLabel: "一次資料・令和8年金商法改正／第三者保証",
       status: "adopted",
@@ -166,8 +163,6 @@
       reformEventId,
       reformStageAtPublication: "finalized_pending",
       reformStageSourceIds: [lawSourceId],
-      reformEffectiveDates: ["2027-04-01"],
-      reformEffectiveDateSourceIds: [lawSourceId],
       whatChanged: "法定枠組み確定／SSBJ情報の第三者保証について、令和8年法律第64号による制度成立・公布と2027年4月1日の主要規定施行を反映した。"
     },
     {
