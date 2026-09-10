@@ -1,6 +1,6 @@
 (() => {
   const topicSlug = "ip-knowhow-data-transactions";
-  const sourceId = "source-jftc-ip-transactions-survey-2026";
+  const sourceId = "source-jftc-ip-transaction-survey-2026";
   const articleId = "article-jftc-ip-transactions-survey-2026";
   const supportedIssueIds = new Set([
     "iptx-information-disclosure",
@@ -14,21 +14,6 @@
     return (target || []).concat(additions.filter((item) => !existing.has(item.id)));
   };
   const addUniqueStrings = (target, additions) => Array.from(new Set([...(target || []), ...additions]));
-
-  window.SOURCE_DATA = addUniqueById(window.SOURCE_DATA, [
-    {
-      id: sourceId,
-      title: "知的財産権・ノウハウ・データを対象とした優越的地位の濫用行為等に関する実態調査報告書",
-      type: "government_material",
-      typeLabel: "実態調査・取引事例",
-      authority: "公正取引委員会",
-      publishedAt: "2026-03-11",
-      url: "https://www.jftc.go.jp/houdou/pressrelease/2026/mar/260311_chizai.html",
-      importance: "高",
-      whyImportant: "91業種を対象とするアンケートとヒアリング71事例から、NDA、ノウハウ・データ開示、知財譲渡・対価、共同研究開発、知財訴訟リスク転嫁等の取引実態を示し、2026年6月の知財取引指針の事実的基礎となった資料。",
-      topics: [topicSlug]
-    }
-  ]);
 
   window.TOPIC_DATA = (window.TOPIC_DATA || []).map((topic) => {
     if (topic.slug !== topicSlug) return topic;
