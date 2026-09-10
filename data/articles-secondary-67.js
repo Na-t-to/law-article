@@ -3,6 +3,10 @@
     const existing = new Set((target || []).map((item) => item.id));
     return (target || []).concat(additions.filter((item) => !existing.has(item.id)));
   };
+  const addUniqueBySlug = (target, additions) => {
+    const existing = new Set((target || []).map((item) => item.slug));
+    return (target || []).concat(additions.filter((item) => !existing.has(item.slug)));
+  };
   const addUniqueString = (target, value) => {
     const next = Array.isArray(target) ? [...target] : [];
     if (value && !next.includes(value)) next.push(value);
@@ -32,7 +36,7 @@
   const fsaSource = (window.SOURCE_DATA || []).find((item) => item.id === fsaSourceId);
   if (fsaSource) fsaSource.topics = addUniqueString(fsaSource.topics, topicSlug);
 
-  window.TOPIC_DATA = addUniqueById(window.TOPIC_DATA, [
+  window.TOPIC_DATA = addUniqueBySlug(window.TOPIC_DATA, [
     {
       slug: topicSlug,
       title: "人的資本開示・人材戦略（2026年改正）",
@@ -133,7 +137,7 @@
       effectiveDates: ["2026-03-31"],
       effectiveDateNote: "改正府令は2026年2月20日公布・施行。人的資本開示の新規定は2026年3月31日以後に終了する事業年度に係る有価証券報告書等から適用。",
       effectiveDateSourceIds: [fsaSourceId],
-      matchSourceIds: [fsaSourceId],
+      matchSourceIds: [],
       sourceIds: [fsaSourceId],
       articleIds: ["article-ey-human-capital-disclosure-2026"]
     }
