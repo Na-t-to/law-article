@@ -8,8 +8,9 @@
   const tkiArticleId = "article-tki-logistics-special-designation-2026";
 
   const addUniqueById = (target, additions) => {
-    const existing = new Set((target || []).map((item) => item.id));
-    return (target || []).concat(additions.filter((item) => !existing.has(item.id)));
+    const keyOf = (item) => item && (item.id || item.slug);
+    const existing = new Set((target || []).map(keyOf));
+    return (target || []).concat(additions.filter((item) => !existing.has(keyOf(item))));
   };
 
   window.SOURCE_DATA = addUniqueById(window.SOURCE_DATA, [
