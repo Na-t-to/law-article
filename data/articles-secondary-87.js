@@ -1,166 +1,94 @@
 (() => {
-  const topicSlug = "short-time-social-insurance-expansion";
-  const mhlwSourceId = "source-mhlw-social-insurance-expansion-2025";
-  const jpsSourceId = "source-jps-premium-adjustment-2026";
-  const reformEventId = "pension-reform-social-insurance-expansion-2025";
-  const jpsArticleId = "article-jps-premium-adjustment-2026";
-  const tmiArticleId = "article-tmi-pension-reform-social-insurance-2025";
+  const topicSlug = "social-insurance-expansion-pension-reform-2025";
+  const reformEventId = "pension-reform-2025-social-insurance-expansion";
+  const jpsSourceId = "source-jps-premium-adjustment-guide-2026";
+  const decreeSourceId = "source-mhlw-premium-adjustment-decree-2026-09-04";
+  const orderSourceId = "source-mhlw-premium-adjustment-order-2026-09-04";
+  const articleId = "article-jps-premium-adjustment-guide-2026-09-11";
+  const updateId = "update-social-insurance-premium-adjustment-procedures-2026-09-11";
 
   const addUniqueById = (target, additions) => {
-    const keyOf = (item) => item && (item.id || item.slug);
-    const existing = new Set((target || []).map(keyOf));
-    return (target || []).concat(additions.filter((item) => !existing.has(keyOf(item))));
+    const existing = new Set((target || []).map((item) => item.id));
+    return (target || []).concat(additions.filter((item) => !existing.has(item.id)));
   };
+  const addUniqueStrings = (target, additions) => Array.from(new Set([...(target || []), ...additions]));
 
-  window.SOURCE_DATA = addUniqueById(window.SOURCE_DATA, [
-    {
-      id: mhlwSourceId,
-      title: "令和7年年金制度改正法・社会保険の加入対象の拡大について",
-      type: "law",
-      typeLabel: "成立法・制度改正概要",
-      authority: "厚生労働省",
-      publishedAt: "2025-06-20",
-      url: "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000147284_00021.html",
-      importance: "最高",
-      whyImportant: "令和7年年金制度改正法による短時間労働者の企業規模要件の段階的撤廃、月額8.8万円の賃金要件撤廃、個人事業所の適用拡大、保険料調整措置を厚生労働省が一体で示す一次資料。",
-      topics: [topicSlug]
-    },
-    {
-      id: jpsSourceId,
-      title: "保険料調整制度のご案内",
-      type: "guidance",
-      typeLabel: "施行準備・事業主手続",
-      authority: "日本年金機構",
-      publishedAt: "2026-09-11",
-      url: "https://www.nenkin.go.jp/tokusetsu/hokenryochosei.html",
-      importance: "最高",
-      whyImportant: "2026年10月開始の保険料調整制度について、対象事業所・対象被保険者、3年間の軽減、事業主の一時負担と後日の調整、開始申出や停止・再開手続を日本年金機構が具体化した最新の一次実務資料。",
-      topics: [topicSlug]
-    }
-  ]);
+  window.SOURCE_DATA = (window.SOURCE_DATA || []).map((source) =>
+    source.id !== jpsSourceId
+      ? source
+      : {
+          ...source,
+          typeLabel: "一次資料・日本年金機構／実務案内（2026年9月11日更新）",
+          whyImportant: "2026年9月11日更新の公式実務案内。対象事業所・申出期限、対象被保険者、保険料計算、事業主追加負担分の還付、開始申出、自動停止・停止解除（再開）まで、2026年10月1日の制度開始に必要な手続を具体化している。"
+        }
+  );
 
-  window.TOPIC_DATA = addUniqueById(window.TOPIC_DATA, [
-    {
-      slug: topicSlug,
-      title: "短時間労働者・社会保険適用拡大／保険料調整制度",
-      categories: ["労務"],
-      summary: "2025年年金制度改正による短時間労働者の被用者保険適用拡大と、2026年10月から始まる保険料調整制度を、人事・給与実務の観点から整理する。",
+  window.TOPIC_DATA = (window.TOPIC_DATA || []).map((topic) => {
+    if (topic.slug !== topicSlug) return topic;
+
+    const issues = (topic.issues || []).map((issue) => {
+      if (issue.id === "social-insurance-employer-preparation") {
+        return {
+          ...issue,
+          conclusion: "適用拡大の対象者を事前に抽出し、資格取得手続、給与・勤怠システム、社会保険料負担、雇用条件、本人説明を施行時期に合わせて更新する。保険料調整制度を利用する場合は、事業所が対象となった日と区分ごとの申出期限を確認し、開始申出、給与計算、還付、自動停止・停止解除（再開）までを一連の運用に組み込む。",
+          exception: "保険料調整制度はすべての短時間労働者・事業所に一律適用される制度ではない。2026年10月1日時点ですでに特定適用事業所（任意特定適用事業所を含む）である事業所等は対象外となり、対象被保険者も短時間労働者かつ標準報酬月額126,000円以下等の要件を満たす必要がある。",
+          uncertain: "対象事業所となる契機が複数あるため、個別事業所では任意特定適用・企業規模要件による適用拡大・個人事業所の区分と、その最初の該当日を日本年金機構の最新案内で確認する。",
+          sourceIds: addUniqueStrings(issue.sourceIds, [jpsSourceId])
+        };
+      }
+      if (issue.id === "social-insurance-premium-adjustment") {
+        return {
+          ...issue,
+          conclusion: "2026年10月1日から、対象事業所の事業主が申出を行うことで、一定の短時間労働者の健康保険・厚生年金保険料の本人負担を通算3年間軽減できる。対象被保険者は短時間労働者として加入し標準報酬月額126,000円以下である者。対象事業所は該当区分ごとに定められ、原則として対象となった日から2年を経過した日が属する月の前月までに開始申出を行う。",
+          exception: "2026年10月1日時点ですでに特定適用事業所（任意特定適用事業所を含む）となっている事業所や、対象区分へ該当する前に被保険者数が常時51人以上となった事業所等は対象外となる。複数の対象区分に該当する場合は、最初に該当した区分が申出期限の基準となる。",
+          uncertain: "法人・強制適用の個人事業所・任意適用の個人事業所で対象範囲が異なるため、事業所区分と適用日を個別に照合する。",
+          sourceIds: addUniqueStrings(issue.sourceIds, [jpsSourceId])
+        };
+      }
+      return issue;
+    });
+
+    const staleUncertain = ((topic.currentSummary && topic.currentSummary.uncertain) || []).filter(
+      (item) => !String(item).includes("届書様式") && !String(item).includes("手続きの詳細を今後掲載予定")
+    );
+
+    return {
+      ...topic,
       lastUpdated: "2026-09-11",
       lastVerified: "2026-09-11",
-      isNew: true,
-      overview: [
-        "2025年年金制度改正法は、短時間労働者の社会保険について、企業規模要件を段階的に縮小・撤廃し、月額8.8万円以上という賃金要件も公布から3年以内に撤廃する枠組みを定めた。",
-        "企業規模要件は2027年10月以降段階的に対象を広げ、2035年10月に撤廃される。常時5人以上を使用する個人事業所の業種要件も2029年10月から見直されるが、既存事業所には経過措置がある。",
-        "適用拡大に伴う就業調整を抑えるため、対象事業所が申出を行うことで、標準報酬月額12.6万円以下の対象短時間労働者の本人保険料負担を通算3年間軽減する保険料調整制度が2026年10月から始まる。"
-      ],
       currentSummary: {
-        facts: [
-          "短時間労働者に係る企業規模要件は、2027年10月から36人以上、2029年10月から21人以上、2032年10月から11人以上へ段階的に縮小され、2035年10月に企業規模要件が撤廃される。",
-          "月額8.8万円以上という賃金要件は、2025年6月20日の改正法公布から3年以内に、最低賃金の状況を踏まえて政令で定める日に撤廃される。厚生労働省は現在、2026年10月撤廃予定と案内している。",
-          "常時5人以上を使用する個人事業所は、2029年10月から業種要件が撤廃され全業種が適用対象となるが、同日時点ですでに存在する事業所は当分の間対象外とされる。",
-          "保険料調整制度は2026年10月から開始し、対象事業所の事業主が被保険者の健康保険・厚生年金保険料を一時的に追加負担することで、対象被保険者の本人負担を通算3年間軽減する。一定期間経過後に追加負担分が調整されるため、最終的な事業主の納付保険料は増えず、将来の年金額にも影響しない。",
-          "保険料調整制度の対象被保険者は短時間労働者として加入する者のうち標準報酬月額12.6万円以下の者で、制度利用には事業主による期限内の開始申出が必要である。"
-        ],
-        interpretations: [
-          "『106万円の壁が2026年10月に必ず撤廃済みになる』と決め打ちせず、賃金要件の法的な施行日は政令指定事項として追跡する必要がある。一方、保険料調整制度の2026年10月開始とは別の論点である。",
-          "企業規模要件の段階縮小は一度の制度改修では終わらないため、自社の厚生年金被保険者数と適用開始年度を継続して管理し、採用・シフト・給与・社会保険手続きを同じ移行計画に載せる必要がある。"
-        ],
-        implications: [
-          "短時間労働者について、週所定労働時間、賃金、学生該当性、事業所規模を棚卸しし、2027年以降の適用時期を事業所ごとに特定する。",
-          "保険料調整制度を利用する可能性がある事業所は、対象事業所該当日と申出期限を管理し、標準報酬月額12.6万円以下の対象者を抽出できるようにする。",
-          "制度利用時は、本人保険料の軽減、事業主の一時的追加負担、後日の調整・還付、停止・再開を給与計算と社会保険手続の双方へ反映する。",
-          "従業員説明では、賃金要件撤廃、130万円基準、企業規模要件、保険料調整制度を別制度として説明し、手取りへの影響を混同しない。"
-        ],
-        uncertain: [
-          "月額8.8万円の賃金要件の撤廃日は改正法上『公布から3年以内の政令で定める日』であり、厚生労働省は2026年10月撤廃予定と案内しているものの、このテーマでは施行日を政令等の一次資料で継続確認する。"
-        ]
+        ...(topic.currentSummary || {}),
+        facts: addUniqueStrings((topic.currentSummary && topic.currentSummary.facts) || [], [
+          "日本年金機構は2026年9月11日、保険料調整制度について、対象事業所・申出期限、対象被保険者、保険料計算、事業主追加負担分の還付、開始申出、自動停止・停止解除（再開）の各手続ページを公開・更新した。",
+          "対象事業所が制度利用を申し出る期限は、原則としてその事業所が対象となった日から2年を経過した日が属する月の前月までである。例えば2026年10月中に任意特定適用事業所となった場合は2028年9月末までに開始申出書を提出する。",
+          "2026年10月1日時点ですでに特定適用事業所（任意特定適用事業所を含む）である事業所は、保険料調整制度の対象外とされている。"
+        ]),
+        implications: addUniqueStrings((topic.currentSummary && topic.currentSummary.implications) || [], [
+          "保険料調整制度を利用する事業所は、対象となった契機と日付を記録し、開始申出の期限を月単位で管理する。",
+          "給与・社会保険手続には、開始申出だけでなく、保険料軽減額の計算、事業主追加負担分の還付、自動停止・停止解除（再開）までを手順として組み込む。"
+        ]),
+        uncertain: staleUncertain
       },
-      issues: [
-        {
-          id: "short-time-insurance-company-size",
-          title: "企業規模要件はいつ、どの規模まで縮小・撤廃されるか",
-          status: "authoritative",
-          stage: "enacted",
-          conclusion: "2027年10月に36人以上、2029年10月に21人以上、2032年10月に11人以上へ段階的に拡大し、2035年10月に企業規模要件を撤廃する。",
-          sourceIds: [mhlwSourceId],
-          articleIds: [tmiArticleId],
-          views: []
-        },
-        {
-          id: "short-time-insurance-wage-threshold",
-          title: "月額8.8万円の賃金要件はいつ撤廃されるか",
-          status: "pending",
-          stage: "enacted",
-          conclusion: "改正法は公布から3年以内に政令で定める日としており、厚生労働省は2026年10月撤廃予定と案内している。予定表示と確定した施行日を区別して管理する。",
-          sourceIds: [mhlwSourceId],
-          articleIds: [tmiArticleId],
-          views: []
-        },
-        {
-          id: "individual-business-social-insurance-expansion",
-          title: "個人事業所の業種要件撤廃はどこまで及ぶか",
-          status: "authoritative",
-          stage: "enacted",
-          conclusion: "2029年10月から常時5人以上を使用する個人事業所の業種要件を撤廃する。ただし施行日時点ですでに存在する事業所は当分の間対象外となる。",
-          sourceIds: [mhlwSourceId],
-          articleIds: [tmiArticleId],
-          views: []
-        },
-        {
-          id: "premium-adjustment-scope",
-          title: "保険料調整制度を利用できる事業所・被保険者は誰か",
-          status: "authoritative",
-          stage: "enacted",
-          conclusion: "2026年10月以降に任意特定適用事業所となる事業所や、2027年10月以降の適用拡大で新たに特定適用事業所となる事業所等が対象となり、対象被保険者は短時間労働者のうち標準報酬月額12.6万円以下の者である。",
-          sourceIds: [mhlwSourceId, jpsSourceId],
-          articleIds: [jpsArticleId, tmiArticleId],
-          views: []
-        },
-        {
-          id: "premium-adjustment-operation",
-          title: "保険料調整制度を給与・社会保険手続へどう実装するか",
-          status: "authoritative",
-          stage: "enacted",
-          conclusion: "事業主が期限内に開始申出を行い、本人負担を通算3年間軽減する。追加負担分の調整・還付や自動停止・再開手続まで含めて運用する必要がある。",
-          sourceIds: [jpsSourceId],
-          articleIds: [jpsArticleId],
-          views: []
-        }
-      ],
-      sourceIds: [mhlwSourceId, jpsSourceId],
-      checklist: [
-        "事業所ごとの厚生年金被保険者数と適用拡大時期を確認する",
-        "短時間労働者の週所定労働時間・賃金・学生該当性を抽出する",
-        "賃金要件の撤廃日は予定情報ではなく政令等の一次資料で確定確認する",
-        "保険料調整制度の対象事業所該当日と申出期限を管理する",
-        "標準報酬月額12.6万円以下の対象者を給与システムで識別する",
-        "本人負担軽減・事業主追加負担・還付・停止再開の処理を手順化する"
-      ]
-    }
-  ]);
+      issues,
+      sourceIds: addUniqueStrings(topic.sourceIds, [jpsSourceId]),
+      practicalImpacts: addUniqueStrings(topic.practicalImpacts, ["保険料調整制度の申出期限管理", "制度の自動停止・停止解除（再開）手続"])
+    };
+  });
 
-  window.REFORM_EVENT_DATA = addUniqueById(window.REFORM_EVENT_DATA, [
-    {
-      id: reformEventId,
-      title: "令和7年年金制度改正・被用者保険適用拡大",
-      eventType: "law_amendment",
-      lawId: "pension-system-reform-2025",
-      lawLabel: "年金制度改正法（令和7年法律第74号）",
-      relatedTopics: [topicSlug],
-      effectiveDateStatus: "phased",
-      effectiveDates: ["2026-10-01", "2027-10-01", "2029-10-01", "2032-10-01", "2035-10-01"],
-      effectiveDateSourceIds: [mhlwSourceId, jpsSourceId],
-      effectiveDateNote: "保険料調整制度は2026年10月1日開始。企業規模要件は2027年10月から段階的に縮小し2035年10月に撤廃。賃金要件は公布から3年以内の政令指定日で、厚生労働省は2026年10月撤廃予定と案内している。",
-      matchSourceIds: [mhlwSourceId],
-      sourceIds: [mhlwSourceId, jpsSourceId],
-      articleIds: [jpsArticleId, tmiArticleId]
-    }
-  ]);
+  window.REFORM_EVENT_DATA = (window.REFORM_EVENT_DATA || []).map((event) =>
+    event.id !== reformEventId
+      ? event
+      : {
+          ...event,
+          sourceIds: addUniqueStrings(event.sourceIds, [jpsSourceId]),
+          articleIds: addUniqueStrings(event.articleIds, [articleId])
+        }
+  );
 
   window.ARTICLE_DATA = addUniqueById(window.ARTICLE_DATA, [
     {
-      id: jpsArticleId,
-      title: "保険料調整制度のご案内",
+      id: articleId,
+      title: "保険料調整制度のご案内（2026年9月11日更新）",
       publisher: "日本年金機構",
       author: "日本年金機構",
       publishedAt: "2026-09-11",
@@ -169,48 +97,54 @@
       sourceType: "primary",
       sourceLabel: "一次資料・施行準備／事業主手続",
       status: "adopted",
-      summary: "2026年10月から開始する保険料調整制度の実務案内。対象事業所が申出を行い、対象短時間労働者の健康保険・厚生年金保険の本人負担を通算3年間軽減する仕組み、対象被保険者、申出、還付、停止・再開までを日本年金機構が具体化している。",
+      summary: "2026年10月1日に始まる保険料調整制度について、日本年金機構が2026年9月11日付で実務手続を具体化した案内。対象事業所と区分別の申出期限、標準報酬月額126,000円以下の対象被保険者、保険料計算、事業主追加負担分の還付、開始申出、自動停止・停止解除（再開）までを一つの導線で確認できる。",
       whyImportant: [
-        "2026年10月の制度開始直前に、対象事業所・被保険者・手続を最新の実装資料で確認できる",
-        "事業主の一時的追加負担が最終的な追加納付にならず、将来年金額にも影響しない仕組みを確認できる",
-        "申出期限や自動停止・再開まで給与・社会保険実務へ落とし込める"
+        "前回まで『届書様式・手続の詳細待ち』だった部分が、制度開始直前の公式実務案内で具体化した",
+        "対象事業所となった日から申出期限をどう数えるかを区分別に確認できる",
+        "開始申出だけでなく、給与計算・還付・自動停止・停止解除まで運用フローを作れる"
       ],
       audience: ["人事・労務", "給与・社会保険担当", "企業法務", "中小企業管理部門"],
-      audienceReason: "短時間労働者の適用拡大に備え、2026年10月から利用可能となる保険料調整制度の対象判定と実際の申出・給与処理を準備するため。",
+      audienceReason: "2026年10月1日の制度開始前に、自社が対象事業所か、いつまでに申出が必要か、給与・社会保険システムへどの手続を実装するかを確定するため。",
       categories: ["労務"],
       relatedTopics: [topicSlug],
-      relatedIssues: ["premium-adjustment-scope", "premium-adjustment-operation"],
-      primarySourceIds: [jpsSourceId, mhlwSourceId],
+      relatedIssues: ["social-insurance-premium-adjustment", "social-insurance-employer-preparation"],
+      primarySourceIds: [jpsSourceId, decreeSourceId, orderSourceId],
       reformEventId,
       reformStageAtPublication: "finalized_pending",
-      reformStageSourceIds: [jpsSourceId, mhlwSourceId]
-    },
+      reformStageSourceIds: [jpsSourceId, decreeSourceId, orderSourceId],
+      whatChanged: "実務具体化／日本年金機構が対象事業所・申出期限、開始、保険料計算・還付、自動停止・停止解除（再開）の手続を2026年9月11日付で具体化した。"
+    }
+  ]);
+
+  window.UPDATE_DATA = addUniqueById(window.UPDATE_DATA, [
     {
-      id: tmiArticleId,
-      title: "【労働法ブログ】令和7年年金制度改正法の成立について",
-      publisher: "TMI総合法律事務所",
-      author: "TMI総合法律事務所",
-      publishedAt: "2025-06-20",
-      collectedAt: "2026-09-11",
-      url: "https://www.tmi.gr.jp/eyes/blog/2025/17174.html",
-      sourceType: "secondary",
-      sourceLabel: "法律事務所・実務解説",
-      status: "adopted",
-      summary: "令和7年年金制度改正法の成立・公布を受け、企業人事に直結する短時間労働者の社会保険適用拡大を整理した実務解説。賃金要件の撤廃、企業規模要件の10年間の段階縮小、個人事業所の業種要件撤廃、3年間の保険料負担軽減措置を一つの移行工程として把握できる。",
-      whyImportant: [
-        "複数年にまたがる適用拡大を企業規模別の時系列で整理している",
-        "個人事業所の経過措置や最低賃金と賃金要件撤廃の関係まで一次資料を補足している",
-        "社会保険加入拡大を人事労務上の準備課題として読み替えやすい"
+      id: updateId,
+      source: jpsSourceId,
+      headline: "保険料調整制度の申出・運用手続が具体化",
+      publishedAt: "2026-09-11",
+      type: "law-update",
+      typeLabel: "施行準備",
+      summary: "日本年金機構が2026年9月11日、対象事業所・申出期限、開始申出、保険料計算、還付、自動停止・停止解除（再開）等の実務案内を公開・更新した。",
+      whatChanged: "前回の『届書様式・具体的な提出実務は今後の案内を確認』という状態から、制度開始に必要な主要手続と申出期限を具体的に確認できる状態へ更新した。",
+      affectedTopics: [topicSlug],
+      affectedIssues: [
+        {
+          topic: topicSlug,
+          issue: "social-insurance-premium-adjustment",
+          before: "政令・省令で主要ルールは確定したが、届書様式・具体的な提出実務は日本年金機構の今後の掲載待ち",
+          after: "対象事業所・申出期限、開始申出、計算・還付、自動停止・停止解除（再開）の実務案内を確認済み"
+        }
       ],
-      audience: ["人事・労務", "給与・社会保険担当", "企業法務", "中小企業管理部門"],
-      audienceReason: "2027年以降の企業規模要件縮小を含む長期の適用拡大を、自社の人員構成と社会保険実務へ落とし込むため。",
-      categories: ["労務"],
-      relatedTopics: [topicSlug],
-      relatedIssues: ["short-time-insurance-company-size", "short-time-insurance-wage-threshold", "individual-business-social-insurance-expansion", "premium-adjustment-scope"],
-      primarySourceIds: [mhlwSourceId],
-      reformEventId,
-      reformStageAtPublication: "finalized_pending",
-      reformStageSourceIds: [mhlwSourceId]
+      before: "保険料調整制度の主要ルールは確定していたが、制度利用開始時の具体的な手続案内は継続確認としていた。",
+      after: "日本年金機構の2026年9月11日更新ページを基準に、対象事業所の区分、申出期限、開始から停止・再開までを実務単位で確認できる。",
+      keyPoints: [
+        "対象事業所の申出期限は原則として対象となった日から2年を経過した日が属する月の前月まで",
+        "2026年10月1日時点ですでに特定適用事業所（任意特定適用を含む）の事業所等は対象外",
+        "開始申出・保険料計算・還付・自動停止・停止解除まで一連の手続として管理する"
+      ],
+      importance: "重要",
+      tags: ["労務", "社会保険"],
+      confidence: "fact"
     }
   ]);
 })();
