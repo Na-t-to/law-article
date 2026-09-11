@@ -164,8 +164,6 @@
       reformEventId,
       reformStageAtPublication: "finalized_pending",
       reformStageSourceIds: [remoteSourceId],
-      reformEffectiveDates: ["2027-04-01"],
-      reformEffectiveDateSourceIds: [remoteSourceId],
       whatChanged: "制度変更／非対面本人確認について、本人確認書類の画像・写しに依存する複数の方式を廃止・厳格化し、2027年4月1日に施行する。"
     },
     {
@@ -190,8 +188,6 @@
       reformEventId,
       reformStageAtPublication: "finalized_pending",
       reformStageSourceIds: [faceSourceId],
-      reformEffectiveDates: ["2027-04-01"],
-      reformEffectiveDateSourceIds: [faceSourceId],
       whatChanged: "制度変更／対面本人確認について、ICチップ読取りを組み込む方式への厳格化等を行い、2027年4月1日に施行する。"
     },
     {
@@ -216,8 +212,6 @@
       reformEventId,
       reformStageAtPublication: "finalized_pending",
       reformStageSourceIds: [remoteSourceId, faceSourceId],
-      reformEffectiveDates: ["2027-04-01"],
-      reformEffectiveDateSourceIds: [remoteSourceId, faceSourceId],
       whatChanged: "実務整理／2025年・2026年の施行規則改正を統合し、2027年4月以降の対面・非対面本人確認方式とシステム・規程対応を整理した。"
     }
   ]);
