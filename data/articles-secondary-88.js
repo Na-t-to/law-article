@@ -33,6 +33,7 @@
       return {
         ...topic,
         lastUpdated: "2026-09-11",
+        lastVerified: "2026-09-11",
         currentSummary: {
           ...(topic.currentSummary || {}),
           facts: addUniqueStrings((topic.currentSummary && topic.currentSummary.facts) || [], [
@@ -55,6 +56,7 @@
       return {
         ...topic,
         lastUpdated: "2026-09-11",
+        lastVerified: "2026-09-11",
         currentSummary: {
           ...(topic.currentSummary || {}),
           facts: addUniqueStrings((topic.currentSummary && topic.currentSummary.facts) || [], [
