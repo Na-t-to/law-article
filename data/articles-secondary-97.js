@@ -2,7 +2,7 @@
   const addUniqueStrings = (target, additions) => Array.from(new Set([...(target || []), ...additions]));
 
   // 2026-09-12: reconcile overlapping backfill entries against the canonical
-  // topics/articles that were already loaded by the current manifest.
+  // topics/articles/reform events that were already loaded by the current manifest.
   const duplicateArticleIds = new Set([
     "article-tmi-aml-identity-verification-2026-03-30",
     "article-meti-corporate-takeover-guidelines-qa-2026",
@@ -15,11 +15,24 @@
   const duplicateTopicSlugs = new Set([
     "corporate-takeover-guidelines-2026"
   ]);
+  const duplicateAmlReformEventId = "aml-identity-verification-regulations-2027";
+  const canonicalAmlReformEventId = "aml-identity-verification-2027-rules";
+  const amlRemoteArticleId = "article-jafic-aml-rule-2025-order-3";
+  const amlFaceArticleId = "article-jafic-aml-rule-2026-order-1";
+  const amlCanonicalSecondaryId = "article-tmi-aml-identity-2026";
+  const amlRemoteSourceId = "source-jafic-aml-rule-2025-order-3";
+  const amlFaceSourceId = "source-jafic-aml-rule-2026-order-1";
 
   window.ARTICLE_DATA = (window.ARTICLE_DATA || [])
     .filter((article) => !duplicateArticleIds.has(article.id))
     .map((article) => {
-      if (article.id !== "article-tmi-aml-identity-2026") return article;
+      if (article.id === amlRemoteArticleId || article.id === amlFaceArticleId) {
+        return {
+          ...article,
+          reformEventId: canonicalAmlReformEventId
+        };
+      }
+      if (article.id !== amlCanonicalSecondaryId) return article;
       return {
         ...article,
         author: "大塚尚・菊田行紘・野間敬和・野口真吾・片尾すみれ・片桐龍也",
@@ -41,27 +54,30 @@
           "aml-kyc-system-operations"
         ]),
         primarySourceIds: addUniqueStrings(article.primarySourceIds, [
-          "source-jafic-aml-rule-2025-order-3",
-          "source-jafic-aml-rule-2026-order-1"
+          amlRemoteSourceId,
+          amlFaceSourceId
         ]),
-        reformEventId: "aml-identity-verification-regulations-2027",
+        reformEventId: canonicalAmlReformEventId,
         reformStageAtPublication: "finalized_pending",
-        reformStageSourceIds: ["source-jafic-aml-rule-2025-order-3", "source-jafic-aml-rule-2026-order-1"],
-        whatChanged: "実務整理／既存のTMI解説を正本として再利用し、2027年本人確認厳格化の新しい詳細テーマにも接続して重複ARTICLEを解消した。"
+        reformStageSourceIds: [amlRemoteSourceId, amlFaceSourceId],
+        whatChanged: "実務整理／既存のTMI解説を正本として再利用し、2027年本人確認厳格化の詳細テーマと既存の改正イベントへ接続して重複ARTICLE・改正イベントを解消した。"
       };
     });
 
   window.SOURCE_DATA = (window.SOURCE_DATA || []).filter((source) => !duplicateSourceIds.has(source.id));
   window.TOPIC_DATA = (window.TOPIC_DATA || []).filter((topic) => !duplicateTopicSlugs.has(topic.slug));
 
-  window.REFORM_EVENT_DATA = (window.REFORM_EVENT_DATA || []).map((event) => {
-    if (event.id !== "aml-identity-verification-regulations-2027") return event;
-    return {
-      ...event,
-      articleIds: addUniqueStrings(
-        (event.articleIds || []).filter((id) => id !== "article-tmi-aml-identity-verification-2026-03-30"),
-        ["article-tmi-aml-identity-2026"]
-      )
-    };
-  });
+  window.REFORM_EVENT_DATA = (window.REFORM_EVENT_DATA || [])
+    .filter((event) => event.id !== duplicateAmlReformEventId)
+    .map((event) => {
+      if (event.id !== canonicalAmlReformEventId) return event;
+      return {
+        ...event,
+        relatedTopics: addUniqueStrings(event.relatedTopics, ["aml-identity-verification-2027"]),
+        effectiveDateSourceIds: addUniqueStrings(event.effectiveDateSourceIds, [amlRemoteSourceId, amlFaceSourceId]),
+        matchSourceIds: addUniqueStrings(event.matchSourceIds, [amlRemoteSourceId, amlFaceSourceId]),
+        sourceIds: addUniqueStrings(event.sourceIds, [amlRemoteSourceId, amlFaceSourceId]),
+        articleIds: addUniqueStrings(event.articleIds, [amlRemoteArticleId, amlFaceArticleId, amlCanonicalSecondaryId])
+      };
+    });
 })();
