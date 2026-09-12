@@ -1,7 +1,6 @@
 (() => {
   const topicSlug = "consumer-contract-law-review-2026";
   const sourceId = "source-caa-consumer-contract-interim-2026";
-  const draftSourceId = "source-caa-consumer-contract-interim-draft-2026";
   const reformEventId = "consumer-contract-law-review-2026";
   const issueIds = new Set([
     "consumer-contract-vulnerability-release",
@@ -79,6 +78,9 @@
     const facts = addUniqueStrings(existingFacts.map((item) => {
       if (item.startsWith("中間取りまとめ（案）は")) {
         return item.replace("中間取りまとめ（案）は", "中間取りまとめは");
+      }
+      if (item.startsWith("案は解約妨害")) {
+        return item.replace("案は", "中間取りまとめは");
       }
       if (item.includes("解約料については") && item.includes("一律の立証責任転換")) {
         return "中間取りまとめは、消費者契約法9条1項1号の『平均的な損害』規律について今回は見直しを行わず、まず事業者の説明責任を強化する方向を示した。複数の解約条件がある場合の情報提供や、解約料の算定根拠に通常費用以外の要素・業界の考え方が含まれる場合の説明を促すことが検討されている。";
