@@ -30,6 +30,9 @@
       relatedTopics: [topicSlug],
       relatedIssues: ["toriteki-enforcement"],
       primarySourceIds: ["source-toriteki-law-2026", "source-toriteki-operation-2026"],
+      reformEventId: "fair-subcontract-transactions-2025-amendment",
+      reformStageAtPublication: "effective",
+      reformStageSourceIds: ["source-toriteki-law-2026"],
       whatChanged: "バックフィル／取適法改正後の勧告制度と再発防止措置の実務的な読み方を補強した。"
     }
   ]);
