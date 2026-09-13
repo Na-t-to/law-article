@@ -1,0 +1,90 @@
+name: Weekly structure audit
+on:
+  push:
+    branches: [audit/structure-20260913-current]
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run validator and structure audit
+        run: |
+          mkdir -p audit-output
+          set +e
+          node scripts/validate-data.mjs > audit-output/validator.json 2> audit-output/validator-warnings.txt
+          echo $? > audit-output/validator-exit.txt
+          set -e
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import vm from 'node:vm';
+          import path from 'node:path';
+
+          const context={window:{},URL};vm.createContext(context);
+          vm.runInContext(fs.readFileSync('data/manifest.js','utf8'),context,{filename:'data/manifest.js'});
+          const manifest=context.window.LAW_INDEX_DATA_FILES||{};
+          const files=Object.values(manifest).flat().map(x=>x.split('?')[0]);
+          for(const f of files) vm.runInContext(fs.readFileSync('data/'+f,'utf8'),context,{filename:'data/'+f});
+          const topics=context.window.TOPIC_DATA||[];
+          const sources=context.window.SOURCE_DATA||[];
+          const updates=context.window.UPDATE_DATA||[];
+          const events=context.window.REFORM_EVENT_DATA||[];
+          const articles=context.window.ARTICLE_DATA||[];
+          const adopted=articles.filter(a=>a.status==='adopted');
+          const unique=context.window.uniqueKnowledgeArticles?.(articles)||articles;
+
+          const normUrl=value=>{try{const u=new URL(value);u.protocol='https:';u.hash='';for(const k of [...u.searchParams.keys()])if(/^utm_/i.test(k)||['fbclid','gclid','yclid'].includes(k))u.searchParams.delete(k);u.hostname=u.hostname.toLowerCase();u.pathname=u.pathname.replace(/\/+$/,'')||'/';u.searchParams.sort();return u.toString()}catch{return String(value||'').trim()}};
+          const normText=value=>String(value||'').normalize('NFKC').toLowerCase().replace(/[\s\p{P}\p{S}]+/gu,'');
+          const groups=(items,keyFn)=>{const m=new Map();for(const x of items){const k=keyFn(x);if(!k)continue;(m.get(k)||m.set(k,[]).get(k)).push(x)}return [...m].filter(([,v])=>v.length>1).map(([key,v])=>({key,items:v}))};
+          const brief=a=>({id:a.id,title:a.title,url:a.url,publisher:a.publisher,publishedAt:a.publishedAt,collectedAt:a.collectedAt,relatedTopics:a.relatedTopics,relatedIssues:a.relatedIssues,primarySourceIds:a.primarySourceIds,reformEventId:a.reformEventId});
+          const duplicateAudit={
+            rawArticles:articles.length,uniqueArticles:unique.length,
+            duplicateIds:groups(articles,a=>a.id).map(([key,items])=>({key,items:items.map(brief)})),
+            duplicateExactUrls:groups(articles,a=>a.url).map(([key,items])=>({key,items:items.map(brief)})),
+            duplicateCanonicalUrls:groups(articles,a=>normUrl(a.url)).map(([key,items])=>({key,items:items.map(brief)})),
+            duplicateTitlePublisherDate:groups(articles,a=>[normText(a.title),normText(a.publisher),a.publishedAt||''].join('|')).map(([key,items])=>({key,items:items.map(brief)})),
+            nearTitlePublisher:groups(articles,a=>[normText(a.title),normText(a.publisher)].join('|')).filter(([,items])=>new Set(items.map(x=>x.url)).size>1).map(([key,items])=>({key,items:items.map(brief)})),
+            sourceDuplicateIds:groups(sources,s=>s.id).map(([key,items])=>({key,items:items.map(x=>({id:x.id,title:x.title,url:x.url}))})),
+            sourceDuplicateCanonicalUrls:groups(sources,s=>normUrl(s.url)).map(([key,items])=>({key,items:items.map(x=>({id:x.id,title:x.title,url:x.url}))}))
+          };
+          fs.writeFileSync('audit-output/duplicates.json',JSON.stringify(duplicateAudit,null,2));
+
+          const categoryCounts={};for(const t of topics)for(const c of t.categories||[])categoryCounts[c]=(categoryCounts[c]||0)+1;
+          const topicArticleMap=new Map(topics.map(t=>[t.slug,new Set()]));for(const a of adopted)for(const s of a.relatedTopics||[])topicArticleMap.get(s)?.add(a.id);
+          const jacc=(a,b)=>{const u=new Set([...a,...b]);if(!u.size)return 0;let i=0;for(const x of a)if(b.has(x))i++;return i/u.size};
+          const overlap=[];for(let i=0;i<topics.length;i++)for(let j=i+1;j<topics.length;j++){const a=topics[i],b=topics[j];const art=jacc(topicArticleMap.get(a.slug)||new Set(),topicArticleMap.get(b.slug)||new Set());const src=jacc(new Set(a.sourceIds||[]),new Set(b.sourceIds||[]));const cat=(a.categories||[]).some(c=>(b.categories||[]).includes(c));if(art>=.35||src>=.35||(cat&&art>=.2))overlap.push({a:a.slug,aTitle:a.title,b:b.slug,bTitle:b.title,articleJaccard:+art.toFixed(3),sourceJaccard:+src.toFixed(3),sharedCategories:(a.categories||[]).filter(c=>(b.categories||[]).includes(c))})}
+          overlap.sort((x,y)=>(y.articleJaccard+y.sourceJaccard)-(x.articleJaccard+x.sourceJaccard));
+          fs.writeFileSync('audit-output/topics.json',JSON.stringify({count:topics.length,categoryCounts,singletonCategories:Object.entries(categoryCounts).filter(([,n])=>n===1),overlap},null,2));
+
+          const eventFor=a=>{if(a.reformEventId)return events.find(e=>e.id===a.reformEventId)||null;const p=a.primarySourceIds||[];const m=events.filter(e=>(e.articleIds||[]).includes(a.id)||(e.matchSourceIds||[]).some(id=>p.includes(id)));return m.length===1?m[0]:null};
+          const reformRows=adopted.map(a=>{const e=eventFor(a);const info=context.window.getLegalReformInfo?.(a,topics)||{isReform:false};const law=e?{id:e.lawId,label:e.lawLabel}:context.window.getLegalReformLaw?.(a,topics);return {article:a,event:e,info,law}}).filter(x=>x.event||x.info.isReform);
+          const reformGroups=new Map();for(const row of reformRows){const id=row.event?'event-'+row.event.id:'legacy-'+(row.law?.id||'unknown');if(!reformGroups.has(id))reformGroups.set(id,{id,type:row.event?'event':'legacy',eventId:row.event?.id||null,title:row.event?.title||row.law?.label||'不明',lawId:row.event?.lawId||row.law?.id||null,lawLabel:row.event?.lawLabel||row.law?.label||null,articles:[],sourceIds:new Set(),topics:new Set()});const g=reformGroups.get(id);g.articles.push(row.article.id);for(const x of row.article.primarySourceIds||[])g.sourceIds.add(x);for(const x of row.article.relatedTopics||[])g.topics.add(x)}
+          const rg=[...reformGroups.values()].map(g=>({...g,sourceIds:[...g.sourceIds],topics:[...g.topics]}));
+          const suspects=[];for(const e of rg.filter(g=>g.type==='event'))for(const l of rg.filter(g=>g.type==='legacy')){const labelMatch=normText(e.lawLabel)===normText(l.lawLabel)||normText(e.title).includes(normText(l.lawLabel))||normText(l.title).includes(normText(e.lawLabel));const topicOverlap=jacc(new Set(e.topics),new Set(l.topics));const sourceOverlap=jacc(new Set(e.sourceIds),new Set(l.sourceIds));if(labelMatch||topicOverlap>=.5||sourceOverlap>=.25)suspects.push({event:e.id,eventTitle:e.title,legacy:l.id,legacyTitle:l.title,labelMatch,topicOverlap:+topicOverlap.toFixed(3),sourceOverlap:+sourceOverlap.toFixed(3),eventArticles:e.articles,legacyArticles:l.articles})}
+          const timing=events.map(e=>({id:e.id,title:e.title,lawLabel:e.lawLabel,eventType:e.eventType,effectiveDateStatus:e.effectiveDateStatus,effectiveDate:e.effectiveDate,effectiveDates:e.effectiveDates,effectiveDateNote:e.effectiveDateNote,effectiveDateSourceIds:e.effectiveDateSourceIds,timing:context.window.getLegalReformEventTiming?.(e)||null}));
+          fs.writeFileSync('audit-output/reforms.json',JSON.stringify({reformArticles:reformRows.length,eventCount:events.length,linkedArticles:reformRows.filter(x=>x.event).length,unlinkedArticles:reformRows.filter(x=>!x.event).map(x=>brief(x.article)),groups:rg,suspectedEventLegacyDuplicates:suspects,eventTiming:timing},null,2));
+
+          const audit=context.window.getKnowledgeAudit?.(topics,articles,updates)||{};
+          fs.writeFileSync('audit-output/knowledge.json',JSON.stringify(audit,null,2));
+
+          const htmlFiles=[];const walk=d=>{for(const ent of fs.readdirSync(d,{withFileTypes:true})){const p=path.join(d,ent.name);if(ent.isDirectory()){if(!p.startsWith('.git'))walk(p)}else if(p.endsWith('.html'))htmlFiles.push(p)}};walk('.');
+          const broken=[];const navOrders={};let footerTopLinks=0;let floatingTopLinks=0;
+          for(const f of htmlFiles){const text=fs.readFileSync(f,'utf8');for(const m of text.matchAll(/href=["']([^"']+)["']/g)){const href=m[1];if(/^(https?:|mailto:|tel:|javascript:|#)/.test(href))continue;const base=path.dirname(f);const clean=decodeURIComponent(href.split(/[?#]/)[0]);if(!clean)continue;const target=path.normalize(path.join(base,clean));if(!fs.existsSync(target))broken.push({file:f,href,target})}const nav=text.match(/<nav class="main-nav"[\s\S]*?<\/nav>/)?.[0]||'';navOrders[f]=[...nav.matchAll(/>(新着|記事一覧|テーマ|法改正)</g)].map(m=>m[1]);footerTopLinks+=(text.match(/site-footer[\s\S]{0,400}ページ上部へ/g)||[]).length;floatingTopLinks+=(text.match(/class="floating-top"/g)||[]).length}
+          fs.writeFileSync('audit-output/internal-links.json',JSON.stringify({htmlFiles:htmlFiles.length,broken,navOrders:[...Object.entries(navOrders)].filter(([,v])=>v.length&&v.join('|')!=='新着|記事一覧|テーマ|法改正'),footerTopLinks,floatingTopLinks},null,2));
+
+          const urls=[...new Set([...articles,...sources].map(x=>x.url).filter(Boolean))];const linkResults=[];let cursor=0;async function worker(){while(cursor<urls.length){const url=urls[cursor++];try{const r=await fetch(url,{redirect:'follow',signal:AbortSignal.timeout(12000),headers:{'User-Agent':'LAW-INDEX-Link-Audit/1.0','Accept':'text/html,application/xhtml+xml,application/pdf;q=0.9,*/*;q=0.8'}});const result={url,status:r.status,finalUrl:r.url,type:r.headers.get('content-type')||''};if(result.type.includes('text/html')){const text=(await r.text()).slice(0,250000);result.title=text.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]?.replace(/\s+/g,' ').trim()||'';result.canonical=text.match(/<link[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)/i)?.[1]||text.match(/<link[^>]*href=["']([^"']+)["'][^>]*rel=["']canonical["']/i)?.[1]||''}else await r.body?.cancel();linkResults.push(result)}catch(e){linkResults.push({url,status:null,error:e.message})}}}await Promise.all(Array.from({length:20},worker));fs.writeFileSync('audit-output/external-links.json',JSON.stringify(linkResults,null,2));
+
+          const publicBase='https://na-t-to.github.io/law-article/';const publicPaths=['index.html','articles.html','article.html','topics.html','reforms.html','data/manifest.js','data/schema.js','data/reform-policy.js','data/topics.js','data/sources.js','data/updates.js','data/reforms.js'];const publicChecks=[];for(const p of publicPaths){try{const r=await fetch(publicBase+p+'?audit='+Date.now(),{signal:AbortSignal.timeout(15000)});const body=await r.text();publicChecks.push({path:p,status:r.status,matchesMain:fs.existsSync(p)?body===fs.readFileSync(p,'utf8'):null,length:body.length})}catch(e){publicChecks.push({path:p,status:null,error:e.message})}}fs.writeFileSync('audit-output/public.json',JSON.stringify(publicChecks,null,2));
+
+          const validatorWarnings=fs.existsSync('audit-output/validator-warnings.txt')?fs.readFileSync('audit-output/validator-warnings.txt','utf8').split('\n').filter(Boolean):[];
+          const summary={sha:process.env.GITHUB_SHA,manifestCounts:Object.fromEntries(Object.entries(manifest).map(([k,v])=>[k,v.length])),topics:topics.length,issues:topics.reduce((n,t)=>n+(t.issues||[]).length,0),sources:sources.length,updates:updates.length,reformEvents:events.length,articles:articles.length,adopted:adopted.length,uniqueArticles:unique.length,categories:categoryCounts,duplicates:{ids:duplicateAudit.duplicateIds.length,exactUrls:duplicateAudit.duplicateExactUrls.length,canonicalUrls:duplicateAudit.duplicateCanonicalUrls.length,titlePublisherDate:duplicateAudit.duplicateTitlePublisherDate.length,nearTitlePublisher:duplicateAudit.nearTitlePublisher.length,sourceIds:duplicateAudit.sourceDuplicateIds.length,sourceCanonicalUrls:duplicateAudit.sourceDuplicateCanonicalUrls.length},reforms:{articles:reformRows.length,linked:reformRows.filter(x=>x.event).length,unlinked:reformRows.filter(x=>!x.event).length,groups:rg.length,suspects:suspects.length},internalLinks:{broken:broken.length,badNavOrder:Object.values(navOrders).filter(v=>v.length&&v.join('|')!=='新着|記事一覧|テーマ|法改正').length,footerTopLinks,floatingTopLinks},validator:{exit:+fs.readFileSync('audit-output/validator-exit.txt','utf8').trim(),warnings:validatorWarnings.length},external:{total:linkResults.length,ok:linkResults.filter(x=>x.status>=200&&x.status<400).length,forbidden:linkResults.filter(x=>[401,403,429].includes(x.status)).length,notFound:linkResults.filter(x=>[404,410].includes(x.status)).length,serverError:linkResults.filter(x=>x.status>=500).length,network:linkResults.filter(x=>x.status==null).length},public:{checked:publicChecks.length,ok:publicChecks.filter(x=>x.status===200).length,matches:publicChecks.filter(x=>x.matchesMain===true).length,mismatches:publicChecks.filter(x=>x.status===200&&x.matchesMain===false).map(x=>x.path)}};
+          fs.writeFileSync('audit-output/summary.json',JSON.stringify(summary,null,2));console.log(JSON.stringify(summary,null,2));
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: weekly-structure-audit-20260913
+          path: audit-output
+          retention-days: 7
