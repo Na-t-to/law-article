@@ -30,7 +30,7 @@
   const reformEventId = "privacy-law-2026-amendment";
   const source = {
     id: sourceId,
-    title: "個人情報の保護に関する法律等の一部を改正する法律 政令・規則・ガイドライン等の整備に関する今後の進め方",
+    title: "個人情報の保護に関する法律等の一部を改正する法律 政令・規則・ガイドライン等の整備に関する今後の進め方（案）",
     type: "guideline",
     typeLabel: "個人情報保護委員会・施行ルール整備ロードマップ",
     authority: "個人情報保護委員会",
@@ -68,7 +68,8 @@
       "privacy-2026-contactable-related-info",
       "privacy-2026-outsourcing",
       "privacy-2026-surcharge",
-      "ai-statistical-use"
+      "ai-statistical-use",
+      "ai-outsourcing"
     ],
     primarySourceIds: [sourceId, "source-privacy-law-2026-amendment", "source-privacy-law-2026-rulemap"],
     reformEventId,
