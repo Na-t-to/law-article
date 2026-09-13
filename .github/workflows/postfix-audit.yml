@@ -1,0 +1,39 @@
+name: Post-fix structure audit
+on:
+  push:
+    branches: [audit/structure-20260913-postfix]
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate and summarize
+        run: |
+          mkdir -p audit-output
+          node scripts/validate-data.mjs > audit-output/validator.json 2> audit-output/warnings.txt
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs'; import vm from 'node:vm';
+          const c={window:{},URL};vm.createContext(c);vm.runInContext(fs.readFileSync('data/manifest.js','utf8'),c);
+          const manifest=c.window.LAW_INDEX_DATA_FILES||{};for(const f of Object.values(manifest).flat().map(x=>x.split('?')[0]))vm.runInContext(fs.readFileSync('data/'+f,'utf8'),c,{filename:f});
+          const topics=c.window.TOPIC_DATA||[],sources=c.window.SOURCE_DATA||[],updates=c.window.UPDATE_DATA||[],events=c.window.REFORM_EVENT_DATA||[],articles=c.window.ARTICLE_DATA||[];
+          const norm=v=>{try{const u=new URL(v);u.protocol='https:';u.hash='';for(const k of [...u.searchParams.keys()])if(/^utm_/i.test(k)||['fbclid','gclid','yclid'].includes(k))u.searchParams.delete(k);u.pathname=u.pathname.replace(/\/+$/,'')||'/';u.searchParams.sort();return u.toString()}catch{return String(v||'')}};
+          const countDup=(items,key)=>{const m=new Map();for(const x of items){const k=key(x);if(!k)continue;m.set(k,(m.get(k)||0)+1)}return [...m.values()].filter(n=>n>1).length};
+          const eventFor=a=>{if(a.reformEventId)return events.find(e=>e.id===a.reformEventId)||null;const p=a.primarySourceIds||[];const m=events.filter(e=>(e.articleIds||[]).includes(a.id)||(e.matchSourceIds||[]).some(id=>p.includes(id)));return m.length===1?m[0]:null};
+          const legal=articles.filter(a=>eventFor(a)||(c.window.getLegalReformInfo?.(a,topics)||{}).isReform);
+          const categories={};for(const t of topics)for(const x of t.categories||[])categories[x]=(categories[x]||0)+1;
+          const summary={topics:topics.length,issues:topics.reduce((n,t)=>n+(t.issues||[]).length,0),sources:sources.length,updates:updates.length,articles:articles.length,uniqueArticles:(c.window.uniqueKnowledgeArticles?.(articles)||articles).length,reformEvents:events.length,legalReforms:legal.length,linked:legal.filter(a=>eventFor(a)).length,unlinked:legal.filter(a=>!eventFor(a)).length,categories,duplicates:{id:countDup(articles,a=>a.id),url:countDup(articles,a=>a.url),canonicalUrl:countDup(articles,a=>norm(a.url)),sourceId:countDup(sources,s=>s.id),sourceCanonicalUrl:countDup(sources,s=>norm(s.url))},verificationAdvancesApplied:c.window.applyTopicVerificationDates?.(topics,articles,updates)||[],warnings:fs.readFileSync('audit-output/warnings.txt','utf8').split('\n').filter(Boolean)};
+          fs.writeFileSync('audit-output/summary.json',JSON.stringify(summary,null,2));console.log(JSON.stringify(summary,null,2));
+          const paths=['index.html','articles.html','article.html','topics.html','reforms.html','data/manifest.js','data/articles-secondary-125.js'];let checks=[];
+          for(let attempt=0;attempt<6;attempt++){checks=[];for(const p of paths){try{const r=await fetch('https://na-t-to.github.io/law-article/'+p+'?audit='+Date.now(),{signal:AbortSignal.timeout(10000)});const b=await r.text();checks.push({path:p,status:r.status,matchesMain:b===fs.readFileSync(p,'utf8')})}catch(e){checks.push({path:p,status:null,error:e.message})}}if(checks.every(x=>x.status===200&&x.matchesMain))break;await new Promise(r=>setTimeout(r,10000));}
+          fs.writeFileSync('audit-output/public.json',JSON.stringify(checks,null,2));
+          const ca=await fetch('https://www8.cao.go.jp/kisei-kaikaku/kisei/meeting/wg/2501_04startup/260413/startup13_agenda.html',{signal:AbortSignal.timeout(10000)}).catch(()=>null);fs.writeFileSync('audit-output/url-check.json',JSON.stringify({caoStatus:ca?.status??null},null,2));
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: postfix-audit-20260913
+          path: audit-output
+          retention-days: 7
