@@ -25,6 +25,9 @@
     whatChanged: "整理変更なし／2026年Q&Aを、取締役会の情報収集・比較検討・交渉・説明責任の具体的工程として読む長島・大野・常松の実務解説を補完した。"
   };
 
-  const existing = new Set((window.ARTICLE_DATA || []).map((item) => item && item.id));
-  if (!existing.has(article.id)) window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat(article);
+  const existingIds = new Set((window.ARTICLE_DATA || []).map((item) => item && item.id));
+  const existingUrls = new Set((window.ARTICLE_DATA || []).map((item) => item && item.url).filter(Boolean));
+  if (!existingIds.has(article.id) && !existingUrls.has(article.url)) {
+    window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat(article);
+  }
 })();
