@@ -40,7 +40,7 @@
       categories: ["危機管理・コンプライアンス", "労務・人事", "契約・取引"],
       relatedTopics: ["whistleblower-internal-reporting", "business-human-rights-dd"],
       relatedIssues: ["wb-scope-freelance", "wb-system-controls", "wb-records-notice", "bhr-remedy-grievance"],
-      primarySourceIds: ["source-caa-whistleblower-amendment-2025", "source-whistleblower-guideline-2026", "source-meti-bhr-guideline-2022"],
+      primarySourceIds: ["source-caa-whistleblower-amendment-2025", "source-caa-whistleblower-guideline-2026", "source-whistleblower-guideline-2026", "source-meti-bhr-guideline-2022"],
       reformEventId: "whistleblower-protection-2025-amendment",
       reformStageAtPublication: "finalized_pending",
       reformStageSourceIds: ["source-caa-whistleblower-amendment-2025", "source-caa-whistleblower-guideline-2026"],
