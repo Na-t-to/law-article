@@ -106,7 +106,7 @@
     };
   });
 
-  window.REFORM_DATA = (window.REFORM_DATA || []).map((event) => {
+  window.REFORM_EVENT_DATA = (window.REFORM_EVENT_DATA || []).map((event) => {
     if (!event || event.id !== reformEventId) return event;
     return {
       ...event,
