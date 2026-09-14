@@ -18,35 +18,6 @@
 
   const articles = [
     {
-      id: "article-meti-early-business-rehabilitation-rules-qa-2026",
-      title: "早期事業再生法の本年12月11日からの施行に向け、Q&A等を公表しました",
-      publisher: "経済産業省",
-      author: "経済産業省",
-      publishedAt: "2026-06-30",
-      collectedAt: "2026-09-15",
-      url: "https://www.meti.go.jp/press/2026/06/20260630003/20260630003.html",
-      sourceType: "primary",
-      sourceLabel: "一次資料／早期事業再生法・施行規則・告示・Q&A",
-      status: "adopted",
-      summary: "2026年12月11日施行の早期事業再生法について、施行規則と資産評定基準の公布、法令解釈を示すQ&Aの公表をまとめた経済産業省の公式資料。施行規則は金融機関等・貸付債権等の範囲、指定確認調査機関の確認・調査、一時停止の要請、労働組合等への通知等を定め、Q&Aは利用対象となる債務者、対象債権者・対象債権をはじめ制度運用を具体化している。",
-      whyImportant: [
-        "2026年12月11日の施行日と、施行規則・告示が最終化されたことを一次資料で確認できる",
-        "金融機関等・貸付債権等、一時停止、労働組合等への通知、指定確認調査機関など、法律だけでは不足する制度運用を確認できる",
-        "Q&Aへの入口であり、対象債権者・担保・リース・保証・プレDIP等を案件ごとに調べる基礎資料になる"
-      ],
-      audience: ["企業法務", "事業再生担当", "財務・経営企画", "金融機関", "リース会社", "信用保証協会"],
-      audienceReason: "施行前に制度利用・債権者対応の要件を一次資料から確認し、社内手続や契約・与信管理を準備するため。",
-      categories: ["事業再生・金融", "契約"],
-      relatedTopics: ["early-business-rehabilitation-procedure"],
-      relatedIssues: ["early-rehab-eligibility-scope", "early-rehab-vote-court-approval", "early-rehab-target-claims-security-leases", "early-rehab-stay-confidentiality-labor", "early-rehab-predip-followon"],
-      primarySourceIds: ["source-early-business-rehabilitation-act-2025", "source-meti-early-business-rehabilitation-rules-qa-2026"],
-      reformEventId: "early-business-rehabilitation-act-2025",
-      reformStageAtPublication: "finalized_pending",
-      reformStageSourceIds: ["source-meti-early-business-rehabilitation-rules-qa-2026"],
-      legacyReformInference: false,
-      whatChanged: "新テーマ作成／早期事業再生法の2026年12月11日施行に向け、施行規則・資産評定基準・Q&Aで具体化された対象債権、一時停止、通知、指定確認調査機関等を整理した。"
-    },
-    {
       id: "article-not-early-business-rehabilitation-2026-09",
       title: "【2026年12月11日施行】早期事業再生手続―金融機関・リース債権者・信用保証協会等の対象債権者及び利用を検討する債務者が押さえておくべき制度の特徴と重要点―",
       publisher: "長島・大野・常松法律事務所",
@@ -67,14 +38,14 @@
       audience: ["企業法務", "事業再生担当", "財務・経営企画", "金融機関", "リース会社", "信用保証協会"],
       audienceReason: "施行直前の最終ルールを、債務者・金融債権者双方の実務フローへ落とし込むため。",
       categories: ["事業再生・金融", "契約"],
-      relatedTopics: ["early-business-rehabilitation-procedure"],
-      relatedIssues: ["early-rehab-eligibility-scope", "early-rehab-vote-court-approval", "early-rehab-target-claims-security-leases", "early-rehab-stay-confidentiality-labor", "early-rehab-predip-followon"],
-      primarySourceIds: ["source-early-business-rehabilitation-act-2025", "source-meti-early-business-rehabilitation-rules-qa-2026", "source-fsa-early-business-rehabilitation-financial-rules-2026"],
+      relatedTopics: ["early-business-recovery"],
+      relatedIssues: ["ebr-eligibility", "ebr-financial-claims", "ebr-voting-court", "ebr-process", "ebr-predip-followon"],
+      primarySourceIds: ["source-early-business-rehabilitation-act-2025", "source-meti-early-business-recovery-rules-2026", "source-fsa-early-business-rehabilitation-financial-rules-2026"],
       reformEventId: "early-business-rehabilitation-act-2025",
       reformStageAtPublication: "finalized_pending",
-      reformStageSourceIds: ["source-meti-early-business-rehabilitation-rules-qa-2026"],
+      reformStageSourceIds: ["source-meti-early-business-recovery-rules-2026"],
       legacyReformInference: false,
-      whatChanged: "新テーマ作成／最終施行規則・告示・Q&Aを踏まえ、非保全債権、多数決、担保・リース・保証・外国金融機関、プレDIPまで施行対応を具体化した。"
+      whatChanged: "既存テーマ補完／最終施行規則・告示・Q&Aを踏まえ、非保全債権、多数決、担保・リース・保証・外国金融機関、プレDIPまで施行対応を具体化した。"
     },
     {
       id: "article-amt-early-business-rehabilitation-report-2026-04",
@@ -96,14 +67,14 @@
       audience: ["企業法務", "事業再生担当", "金融機関", "リース会社", "ファイナンス担当"],
       audienceReason: "最終ルールの前提となった制度設計上の論点と、金融実務への影響を理解するため。",
       categories: ["事業再生・金融", "契約"],
-      relatedTopics: ["early-business-rehabilitation-procedure"],
-      relatedIssues: ["early-rehab-vote-court-approval", "early-rehab-target-claims-security-leases", "early-rehab-predip-followon"],
+      relatedTopics: ["early-business-recovery"],
+      relatedIssues: ["ebr-financial-claims", "ebr-voting-court", "ebr-predip-followon"],
       primarySourceIds: ["source-early-business-rehabilitation-act-2025", "source-meti-early-business-rehabilitation-working-group-report-2026"],
       reformEventId: "early-business-rehabilitation-act-2025",
       reformStageAtPublication: "finalized_pending",
       reformStageSourceIds: ["source-early-business-rehabilitation-act-2025"],
       legacyReformInference: false,
-      whatChanged: "新テーマ作成／制度形成過程から権利変更、議決権、対象債権、ファイナンス・リース、プレDIPファイナンスの論点を補完した。"
+      whatChanged: "既存テーマ補完／制度形成過程から権利変更、議決権、対象債権、ファイナンス・リース、プレDIPファイナンスの論点を補完した。"
     },
     {
       id: "article-amt-early-business-rehabilitation-finance-lease-2026-02",
@@ -125,14 +96,14 @@
       audience: ["企業法務", "事業再生担当", "リース会社", "金融機関", "財務担当"],
       audienceReason: "ファイナンス・リースが対象債権に含まれる場合の契約判定、資産評価、通知・議決権管理を施行前に具体化するため。",
       categories: ["事業再生・金融", "契約"],
-      relatedTopics: ["early-business-rehabilitation-procedure"],
-      relatedIssues: ["early-rehab-target-claims-security-leases", "early-rehab-vote-court-approval"],
+      relatedTopics: ["early-business-recovery"],
+      relatedIssues: ["ebr-financial-claims", "ebr-voting-court"],
       primarySourceIds: ["source-early-business-rehabilitation-act-2025", "source-meti-early-business-rehabilitation-working-group-report-2026"],
       reformEventId: "early-business-rehabilitation-act-2025",
       reformStageAtPublication: "finalized_pending",
       reformStageSourceIds: ["source-early-business-rehabilitation-act-2025"],
       legacyReformInference: false,
-      whatChanged: "新テーマ作成／ファイナンス・リースの対象債権該当性、資産評定、通知漏れ・誤分類が決議や認可へ与える影響を専門的に補完した。"
+      whatChanged: "既存テーマ補完／ファイナンス・リースの対象債権該当性、資産評定、通知漏れ・誤分類が決議や認可へ与える影響を専門的に補完した。"
     }
   ];
 
