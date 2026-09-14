@@ -43,8 +43,6 @@
       reformEventId: "customs-tariff-ad-circumvention-2026",
       reformStageAtPublication: "effective",
       reformStageSourceIds: ["source-customs-tariff-amendment-2026", "source-mof-customs-amendment-bill-2026"],
-      reformEffectiveDates: ["2026-04-01"],
-      reformEffectiveDateSourceIds: ["source-customs-tariff-amendment-2026", "source-mof-customs-amendment-bill-2026"],
       legacyReformInference: false,
       whatChanged: "新テーマ作成／2026年施行の不当廉売関税迂回防止制度について、申請実務と必要証拠への公式導線を追加した。"
     },
@@ -75,8 +73,6 @@
       reformEventId: "customs-tariff-ad-circumvention-2026",
       reformStageAtPublication: "effective",
       reformStageSourceIds: ["source-customs-tariff-amendment-2026"],
-      reformEffectiveDates: ["2026-04-01"],
-      reformEffectiveDateSourceIds: ["source-customs-tariff-amendment-2026"],
       legacyReformInference: false,
       whatChanged: "新テーマ作成／迂回防止調査の標準工程、三類型の課税要件、経済的正当性・除外申請まで最終運用を整理した。"
     },
@@ -107,8 +103,6 @@
       reformEventId: "customs-tariff-ad-circumvention-2026",
       reformStageAtPublication: "effective",
       reformStageSourceIds: ["source-customs-tariff-amendment-2026", "source-mof-customs-amendment-bill-2026"],
-      reformEffectiveDates: ["2026-04-01"],
-      reformEffectiveDateSourceIds: ["source-customs-tariff-amendment-2026", "source-mof-customs-amendment-bill-2026"],
       legacyReformInference: false,
       whatChanged: "新テーマ作成／第三国・軽微変更・輸入国迂回の三類型と、原措置を迅速に拡張する制度構造を実務解説で補完した。"
     }
