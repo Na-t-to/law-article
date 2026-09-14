@@ -56,3 +56,110 @@
   });
   window.ARTICLE_DATA = currentArticles;
 })();
+
+window.REFORM_EVENT_DATA = (window.REFORM_EVENT_DATA || []).concat([
+  {
+    "id": "early-business-rehabilitation-act-2025",
+    "title": "早期事業再生法・2026年施行",
+    "eventType": "new_law",
+    "lawId": "early-business-rehabilitation-act",
+    "lawLabel": "早期事業再生法",
+    "relatedTopics": ["early-business-rehabilitation-procedure"],
+    "effectiveDateStatus": "confirmed",
+    "effectiveDates": ["2026-12-11"],
+    "effectiveDateSourceIds": ["source-egov-early-business-rehabilitation-act-2025", "source-meti-early-business-rehabilitation-qa-2026"],
+    "matchSourceIds": ["source-egov-early-business-rehabilitation-act-2025", "source-meti-early-business-rehabilitation-qa-2026"],
+    "sourceIds": ["source-egov-early-business-rehabilitation-act-2025", "source-meti-early-business-rehabilitation-qa-2026"],
+    "articleIds": ["article-meti-early-business-rehabilitation-qa-2026", "article-not-early-business-rehabilitation-2026"]
+  }
+]);
+
+(() => {
+  const normalizeUrl = (value) => {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.protocol = "https:";
+      url.hash = "";
+      [...url.searchParams.keys()].forEach((key) => {
+        if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+      });
+      url.hostname = url.hostname.toLowerCase();
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      url.searchParams.sort();
+      return url.toString();
+    } catch {
+      return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
+    }
+  };
+
+  const articles = [
+    {
+      id: "article-meti-early-business-rehabilitation-qa-2026",
+      title: "早期事業再生法の本年12月11日からの施行に向け、Q&A等を公表しました",
+      publisher: "経済産業省",
+      author: "経済産業省",
+      publishedAt: "2026-06-30",
+      collectedAt: "2026-09-14",
+      url: "https://www.meti.go.jp/press/2026/06/20260630003/20260630003.html",
+      sourceType: "primary",
+      sourceLabel: "経済産業省／早期事業再生法・施行規則・告示・Q&A",
+      status: "adopted",
+      summary: "2026年12月11日の早期事業再生法施行に向け、制度詳細を定める施行規則・告示の公布とQ&Aの公表を案内する経済産業省の一次資料。対象となる金融機関等・貸付債権等の範囲、利用要件、確認調査、対象債権者会議、資産評定等について、法律本体から実際の手続運用へ降りる入口になる。",
+      whyImportant: [
+        "法律本体だけでは不足する対象債権者・対象債権や手続運用の詳細を、施行規則・告示・Q&Aまで一体で確認できる",
+        "2026年12月11日という主要手続の施行日を、制度詳細の確定と併せて一次資料で確認できる",
+        "施行前に債権者・債権の棚卸し、担保評価、一時停止、手続選択の準備を始める企業法務・財務担当者の起点になる"
+      ],
+      audience: ["企業法務", "財務・経理", "事業再生担当", "金融機関", "経営企画"],
+      audienceReason: "2026年12月11日の施行前に、対象債権・対象債権者、手続要件、必要資料、実務運用を一次資料から確認するため。",
+      categories: ["事業再生・金融", "契約", "会社法・ガバナンス"],
+      relatedTopics: ["early-business-rehabilitation-procedure"],
+      relatedIssues: ["early-business-rehabilitation-framework", "early-business-rehabilitation-vote-security", "early-business-rehabilitation-creditor-scope", "early-business-rehabilitation-standstill", "early-business-rehabilitation-procedure-selection"],
+      primarySourceIds: ["source-egov-early-business-rehabilitation-act-2025", "source-meti-early-business-rehabilitation-qa-2026"],
+      reformEventId: "early-business-rehabilitation-act-2025",
+      reformStageAtPublication: "finalized_pending",
+      reformStageSourceIds: ["source-egov-early-business-rehabilitation-act-2025", "source-meti-early-business-rehabilitation-qa-2026"],
+      whatChanged: "新規整理／早期事業再生法の2026年12月11日施行に向け、施行規則・告示・Q&Aが確定したため、制度の棚を新設した。"
+    },
+    {
+      id: "article-not-early-business-rehabilitation-2026",
+      title: "【2026年12月11日施行】早期事業再生手続―金融機関・リース債権者・信用保証協会等の対象債権者及び利用を検討する債務者が押さえておくべき制度の特徴と重要点―",
+      publisher: "長島・大野・常松法律事務所",
+      author: "鐘ヶ江洋祐、髙野紘輝",
+      publishedAt: "2026-09-11",
+      collectedAt: "2026-09-14",
+      url: "https://www.nagashima.com/publications/publication20260911-1/",
+      sourceType: "secondary",
+      sourceLabel: "法律事務所ニュースレター／事業再生・倒産・早期事業再生法",
+      status: "adopted",
+      summary: "2026年12月11日施行の早期事業再生手続について、法・施行規則・告示・Q&Aを横断し、金融機関だけでなくファイナンス・リース債権者、信用保証協会、外国金融機関、担保付債権の取扱いを具体化する実務解説。一時停止要請と支払停止・期限の利益・預金口座の取扱い、対象債権者の漏れ、手続中の資金供給、事業再生ADR等との使い分けまで整理している。",
+      whyImportant: [
+        "多数決で変更できる非保全債権と、対象債権ではあるが多数決で変更できない保全債権を分け、担保評価・個別合意まで実務に落としている",
+        "ファイナンス・リース、保証協会付き融資、外国金融機関、対象債権者の追加・漏れといった債権者リスト作成時の事故ポイントを具体的に拾っている",
+        "一時停止要請を支払停止・期限の利益・預金凍結等の契約・銀行実務へ接続し、施行前に財務・法務が確認すべき論点を明確にしている",
+        "反対債権者やリース債権の調整、事業再生ADRからの移行など、本手続を選択する場面を比較できる"
+      ],
+      audience: ["企業法務", "財務・経理", "事業再生担当", "金融機関", "リース会社", "経営企画"],
+      audienceReason: "新制度の条文を読むだけでは見えにくい対象債権者の境界、一時停止、担保、手続選択を、実際の再生案件の準備項目へ落とすため。",
+      categories: ["事業再生・金融", "契約", "会社法・ガバナンス"],
+      relatedTopics: ["early-business-rehabilitation-procedure"],
+      relatedIssues: ["early-business-rehabilitation-framework", "early-business-rehabilitation-vote-security", "early-business-rehabilitation-creditor-scope", "early-business-rehabilitation-standstill", "early-business-rehabilitation-procedure-selection"],
+      primarySourceIds: ["source-egov-early-business-rehabilitation-act-2025", "source-meti-early-business-rehabilitation-qa-2026"],
+      reformEventId: "early-business-rehabilitation-act-2025",
+      reformStageAtPublication: "finalized_pending",
+      reformStageSourceIds: ["source-egov-early-business-rehabilitation-act-2025", "source-meti-early-business-rehabilitation-qa-2026"],
+      whatChanged: "新規整理／早期事業再生法について、対象債権者・担保・一時停止・手続選択を実務単位で整理する二次資料を採用した。"
+    }
+  ];
+
+  let currentArticles = window.ARTICLE_DATA || [];
+  const existingIds = new Set(currentArticles.map((item) => item && item.id).filter(Boolean));
+  const existingUrls = new Set(currentArticles.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  articles.forEach((article) => {
+    if (existingIds.has(article.id) || existingUrls.has(normalizeUrl(article.url))) return;
+    currentArticles = currentArticles.concat([article]);
+    existingIds.add(article.id);
+    existingUrls.add(normalizeUrl(article.url));
+  });
+  window.ARTICLE_DATA = currentArticles;
+})();

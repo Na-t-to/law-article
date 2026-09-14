@@ -34,3 +34,30 @@ window.SOURCE_DATA = (window.SOURCE_DATA || []).concat([
     "topics": ["prepaid-payment-instruments-memberships"]
   }
 ]);
+
+window.SOURCE_DATA = (window.SOURCE_DATA || []).concat([
+  {
+    "id": "source-egov-early-business-rehabilitation-act-2025",
+    "title": "円滑な事業再生を図るための事業者の金融機関等に対する債務の調整の手続等に関する法律（令和7年法律第67号）",
+    "type": "law",
+    "typeLabel": "法令",
+    "authority": "e-Gov法令検索",
+    "publishedAt": "2025-06-13",
+    "url": "https://laws.e-gov.go.jp/law/507AC0000000067",
+    "importance": "最高",
+    "whyImportant": "早期事業再生手続の利用要件、対象債権・対象債権者、指定確認調査機関、対象債権者会議、多数決、裁判所の認可等を定める根拠法。主要な手続規定は2026年12月11日に施行される。",
+    "topics": ["early-business-rehabilitation-procedure"]
+  },
+  {
+    "id": "source-meti-early-business-rehabilitation-qa-2026",
+    "title": "早期事業再生法の本年12月11日からの施行に向け、Q&A等を公表しました",
+    "type": "guideline",
+    "typeLabel": "施行規則・告示・Q&A",
+    "authority": "経済産業省",
+    "publishedAt": "2026-06-30",
+    "url": "https://www.meti.go.jp/press/2026/06/20260630003/20260630003.html",
+    "importance": "最高",
+    "whyImportant": "2026年12月11日の施行に向けた施行規則・告示と、対象債務者・対象債権者・対象債権、手続運用等に関するQ&Aを確認できる現時点の中心的な行政資料。",
+    "topics": ["early-business-rehabilitation-procedure"]
+  }
+]);
