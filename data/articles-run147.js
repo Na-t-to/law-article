@@ -55,7 +55,7 @@
       collectedAt: "2026-09-15",
       url: "https://www.mof.go.jp/about_mof/councils/customs_foreign_exchange/sub-of_customs/proceedings_tokusyu/material/20260623/kanb20260623siryo7.pdf",
       sourceType: "primary",
-      sourceLabel: "一次資料／不当廉売関税・迂回防止制度ガイドライン改正",
+      sourceLabel: "一次資料／施行済み・不当廉売関税迂回防止ガイドライン改正",
       status: "adopted",
       summary: "迂回防止制度の施行に伴う不当廉売関税ガイドライン改正を整理した財務省資料。原則10か月の調査について重要事実開示を8か月後とする標準工程、輸入・損害の調査対象期間、第三国・軽微変更・輸入国迂回の具体的要件、原措置の正常価格の利用、供給者の実質同一性、経済的正当性による除外申請の考慮要素まで示している。",
       whyImportant: [
