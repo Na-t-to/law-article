@@ -143,6 +143,7 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({
     "articles-secondary-143.js?v=1",
     "articles-secondary-144.js?v=1",
     "articles-secondary-145.js?v=1",
+    "articles-secondary-146.js?v=1",
     "articles-run146.js?v=1",
     "articles-run147.js?v=1"
   ]
