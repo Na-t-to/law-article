@@ -85,7 +85,7 @@
       collectedAt: "2026-09-15",
       url: "https://www.amt-law.com/en/insights/trending-news/trending-news_20260529001_en_001/",
       sourceType: "secondary",
-      sourceLabel: "法律事務所・実務解説／2026年関税改正・AD迂回防止",
+      sourceLabel: "法律事務所・実務解説／施行済み・2026年関税改正・AD迂回防止",
       status: "adopted",
       summary: "2026年改正で導入された不当廉売関税の迂回防止制度を、第三国迂回・軽微変更迂回・輸入国迂回の三類型、原措置の迂回品への拡張要件、ダンピング・マージンを再計算しない迅速化、原則10か月の調査期間という構造から説明する実務解説。通常の輸入・加工設計が新制度の対象となり得る点を国際取引企業向けに整理している。",
       whyImportant: [
