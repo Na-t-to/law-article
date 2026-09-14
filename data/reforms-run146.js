@@ -5,21 +5,21 @@ window.REFORM_EVENT_DATA = (window.REFORM_EVENT_DATA || []).concat([
     eventType: "new_law",
     lawId: "early-business-rehabilitation-act",
     lawLabel: "早期事業再生法",
-    relatedTopics: ["early-business-rehabilitation-procedure"],
+    relatedTopics: ["early-business-recovery"],
     effectiveDateStatus: "confirmed",
     effectiveDates: ["2026-12-11"],
     effectiveDateSourceIds: [
       "source-early-business-rehabilitation-act-2025",
-      "source-meti-early-business-rehabilitation-rules-qa-2026",
+      "source-meti-early-business-recovery-rules-2026",
       "source-fsa-early-business-rehabilitation-financial-rules-2026"
     ],
     matchSourceIds: [
       "source-early-business-rehabilitation-act-2025",
-      "source-meti-early-business-rehabilitation-rules-qa-2026"
+      "source-meti-early-business-recovery-rules-2026"
     ],
     sourceIds: [
       "source-early-business-rehabilitation-act-2025",
-      "source-meti-early-business-rehabilitation-rules-qa-2026",
+      "source-meti-early-business-recovery-rules-2026",
       "source-meti-early-business-rehabilitation-working-group-report-2026",
       "source-fsa-early-business-rehabilitation-financial-rules-2026"
     ]
