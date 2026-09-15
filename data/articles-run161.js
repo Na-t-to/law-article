@@ -63,7 +63,12 @@
       categories: ["契約", "独占禁止法・取引適正化", "危機管理・コンプライアンス"],
       relatedTopics: ["fair-subcontract-transactions"],
       relatedIssues: ["toriteki-scope", "toriteki-price-consultation", "toriteki-enforcement"],
-      primarySourceIds: ["source-toriteki-law-2026", "source-toriteki-operation-2026"]
+      primarySourceIds: ["source-toriteki-law-2026", "source-toriteki-operation-2026"],
+      reformEventId: "fair-subcontract-transactions-2025-amendment",
+      reformStageAtPublication: "finalized_pending",
+      reformStageSourceIds: ["source-toriteki-law-2026", "source-toriteki-operation-2026"],
+      legacyReformInference: false,
+      whatChanged: "施行準備解説／成立・公布済みで2026年1月1日施行予定だった取適法について、当時の規則案・運用基準案を踏まえ、適用範囲、価格協議、支払条件を企業の取引フローへ落とし込む実務上の選択肢を整理した。"
     }
   ];
 
