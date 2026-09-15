@@ -1,14 +1,14 @@
 (() => {
-  const canonicalTopic = "insider-trading-information-management";
-  const legacyTopic = "insider-trading-information-control";
-  const migratedIds = new Set([
-    "source-fsa-sesc-insider-qa-2024",
-    "source-sesc-irom-insider-2026-09-11"
+  const topicAliases = new Map([
+    ["insider-trading-information-control", "insider-trading-information-management"],
+    ["securities-monitoring-internal-controls", "securities-monitoring-2026"]
   ]);
 
   window.SOURCE_DATA = (window.SOURCE_DATA || []).map((source) => {
-    if (!source || !migratedIds.has(source.id)) return source;
-    const topics = (source.topics || []).map((slug) => slug === legacyTopic ? canonicalTopic : slug);
-    return { ...source, topics: [...new Set(topics.concat([canonicalTopic]))] };
+    if (!source || !Array.isArray(source.topics)) return source;
+    const topics = source.topics.map((slug) => topicAliases.get(slug) || slug);
+    return topics.some((slug, index) => slug !== source.topics[index])
+      ? { ...source, topics: [...new Set(topics)] }
+      : source;
   });
 })();
