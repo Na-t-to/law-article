@@ -71,35 +71,6 @@
       reformStageSourceIds: ["source-jps-premium-adjustment-2026"],
       legacyReformInference: false,
       whatChanged: "新テーマ追加／2026年10月から始まる保険料調整制度を、対象事業所・対象被保険者・3年間の本人負担軽減と適用拡大の時系列に分けて整理した。"
-    },
-    {
-      id: "article-tmi-pension-reform-2025",
-      title: "【労働法ブログ】令和７年年金制度改正法の成立について",
-      publisher: "TMI総合法律事務所",
-      author: "TMI総合法律事務所",
-      publishedAt: "2025-06-20",
-      collectedAt: "2026-09-16",
-      url: "https://www.tmi.gr.jp/eyes/blog/2025/17174.html",
-      sourceType: "secondary",
-      sourceLabel: "実務解説／2025年年金制度改正・社会保険適用拡大",
-      status: "adopted",
-      summary: "2025年年金制度改正法について、短時間労働者の賃金要件・企業規模要件の撤廃スケジュール、2029年からの個人事業所への適用拡大、適用拡大で新たに加入する労働者の保険料負担軽減措置を実務目線で整理した解説。段階的な施行に合わせて企業が人事・給与運用を準備する際の全体像をつかみやすい。",
-      whyImportant: [
-        "企業規模要件を2027年・2029年・2032年・2035年の段階施行として整理しており、中長期の人員・社会保険コスト計画へ落とし込みやすい",
-        "個人事業所の適用拡大と経過措置、短時間労働者の保険料負担軽減措置まで一つの記事で把握できる",
-        "一次資料の条文・制度説明だけでは見通しづらい人事実務上の準備時期を俯瞰する補助線になる"
-      ],
-      audience: ["人事・労務", "給与・社会保険", "経営企画", "法務"],
-      audienceReason: "複数年にわたる適用拡大のスケジュールを踏まえ、対象者・コスト・給与事務・就業調整対策を計画するため。",
-      categories: ["労務"],
-      relatedTopics: ["social-insurance-expansion-2025"],
-      relatedIssues: ["social-insurance-short-time-coverage-expansion", "social-insurance-premium-adjustment-2026", "social-insurance-individual-business-expansion-2029"],
-      primarySourceIds: ["source-mhlw-pension-reform-law-2025", "source-mhlw-social-insurance-expansion-2025"],
-      reformEventId: "employee-social-insurance-expansion-2025-amendment",
-      reformStageAtPublication: "finalized_pending",
-      reformStageSourceIds: ["source-mhlw-pension-reform-law-2025"],
-      legacyReformInference: false,
-      whatChanged: "整理変更なし／2025年年金制度改正について、短時間労働者の適用拡大、個人事業所への拡大、保険料負担軽減を企業実務の時系列で読める解説を追加した。"
     }
   ];
 
