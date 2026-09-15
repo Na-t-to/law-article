@@ -151,3 +151,77 @@ window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([
     "whatChanged": "監督指導見直しについて、法定上限と行政指導を分離し、健康・福祉確保措置と特別条項の発動手続・実施記録へ落とす実務整理を補完した。"
   }
 ]);
+
+(() => {
+  const topicSlug = "overtime-36-agreement-supervision";
+  const sourceId = "source-mhlw-long-hours-supervision-fy2025-2026";
+  const articleId = "article-mhlw-long-hours-supervision-fy2025-2026";
+  const addUnique = (values, value) => {
+    const list = Array.isArray(values) ? [...values] : [];
+    if (value && !list.includes(value)) list.push(value);
+    return list;
+  };
+
+  if (!(window.SOURCE_DATA || []).some((source) => source && source.id === sourceId)) {
+    window.SOURCE_DATA = (window.SOURCE_DATA || []).concat([{
+      id: sourceId,
+      title: "長時間労働が疑われる事業場に対する令和7年度の監督指導結果",
+      type: "government_material",
+      typeLabel: "一次資料・労基署監督実績／長時間労働",
+      authority: "厚生労働省",
+      publishedAt: "2026-09-15",
+      url: "https://www.mhlw.go.jp/stf/newpage_76158.html",
+      importance: "最高",
+      whyImportant: "長時間労働が疑われる高リスク事業場に対する令和7年度の監督指導について、違法な時間外労働、賃金不払残業、健康障害防止措置、労働時間把握の不備を件数・割合と監督事例から確認でき、2026年9月以降の監督対応で優先して点検すべき実務領域を具体化できる一次資料。",
+      topics: [topicSlug]
+    }]);
+  }
+
+  const topic = (window.TOPIC_DATA || []).find((item) => item && item.slug === topicSlug);
+  if (topic) {
+    topic.lastUpdated = "2026-09-15";
+    topic.lastVerified = "2026-09-15";
+    topic.sourceIds = addUnique(topic.sourceIds, sourceId);
+    topic.currentSummary = topic.currentSummary || { facts: [], interpretations: [], implications: [], uncertain: [] };
+    topic.currentSummary.facts = addUnique(topic.currentSummary.facts, "令和7年度（2025年4月～2026年3月）は、長時間労働が疑われる29,150事業場へ監督指導が行われ、11,228事業場（38.5％）で違法な時間外労働、1,901事業場（6.5％）で賃金不払残業、5,919事業場（20.3％）で過重労働による健康障害防止措置の未実施が確認された。");
+    topic.currentSummary.facts = addUnique(topic.currentSummary.facts, "同監督指導では、12,811事業場（43.9％）に過重労働による健康障害防止措置が不十分として改善指導が行われ、4,045事業場（13.9％）には労働時間の把握が不適正として指導が行われた。");
+    topic.currentSummary.interpretations = addUnique(topic.currentSummary.interpretations, "監督結果は長時間労働が疑われる事業場を選別して実施した監督の集計であり、全事業場における違反率を示す統計ではない。一方、36協定の適法性だけでなく、賃金支払、健康障害防止措置、客観的な労働時間把握が実際の監督で横断的に確認されていることを示す。"
+    );
+    topic.currentSummary.implications = addUnique(topic.currentSummary.implications, "監督対応の社内点検では、36協定・特別条項と実績時間の突合に加え、未払残業の有無、80時間超労働者への面接指導等、客観的な労働時間把握と自己申告との差異まで同じ監査単位で確認する。"
+    );
+    topic.practicalImpacts = addUnique(topic.practicalImpacts, "賃金不払残業・客観的労働時間把握の監査");
+
+    ["overtime-supervision-2026", "overtime-special-clause-health-measures"].forEach((id) => {
+      const issue = (topic.issues || []).find((item) => item && item.id === id);
+      if (issue) issue.sourceIds = addUnique(issue.sourceIds, sourceId);
+    });
+  }
+
+  if (!(window.ARTICLE_DATA || []).some((article) => article && (article.id === articleId || article.url === "https://www.mhlw.go.jp/stf/newpage_76158.html"))) {
+    window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat([{
+      id: articleId,
+      title: "長時間労働が疑われる事業場に対する令和7年度の監督指導結果",
+      publisher: "厚生労働省",
+      author: "厚生労働省",
+      publishedAt: "2026-09-15",
+      collectedAt: "2026-09-15",
+      url: "https://www.mhlw.go.jp/stf/newpage_76158.html",
+      sourceType: "primary",
+      sourceLabel: "一次資料・労基署監督実績／長時間労働",
+      status: "adopted",
+      summary: "時間外・休日労働が月80時間を超えると考えられる事業場や過労死等の労災請求があった事業場等を対象とした令和7年度の労基署監督指導結果。29,150事業場のうち11,228事業場で違法な時間外労働、1,901事業場で賃金不払残業、5,919事業場で健康障害防止措置の未実施を確認し、労働時間把握の不適正についても4,045事業場を指導した。高リスク事業場を対象とする集計であり、全事業場の違反率ではない。",
+      whyImportant: [
+        "36協定違反だけでなく、賃金不払残業、健康障害防止措置、労働時間把握が監督で同時に確認されることを実績から把握できる",
+        "違法な時間外労働が確認された事業場のうち4,991事業場で月80時間超、2,842事業場で月100時間超の時間外・休日労働が認められ、長時間労働の監督リスクを具体的に把握できる",
+        "2026年9月の監督指導運用見直し後も、過重労働による健康障害防止や重大・悪質事案への対応が重要であることを、直前年度の実績と併せて確認できる"
+      ],
+      audience: ["人事・労務", "企業法務", "労働時間管理担当", "内部監査・コンプライアンス"],
+      audienceReason: "労基署監督で実際に指摘される領域を把握し、36協定、実労働時間、未払残業、健康確保、労働時間把握を横断した監査項目へ落とすため。",
+      categories: ["労務", "危機管理・コンプライアンス"],
+      relatedTopics: [topicSlug],
+      relatedIssues: ["overtime-supervision-2026", "overtime-special-clause-health-measures"],
+      primarySourceIds: [sourceId, "source-labour-standards-act"],
+      whatChanged: "監督実績補完／2026年9月の監督指導運用見直しを読む基礎として、直前年度の長時間労働監督で実際に多かった違反・指導領域を追加した。"
+    }]);
+  }
+})();
