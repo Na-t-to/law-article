@@ -15,6 +15,17 @@
       return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
     }
   };
+  const addUnique = (values, value) => {
+    const list = Array.isArray(values) ? [...values] : [];
+    if (value && !list.includes(value)) list.push(value);
+    return list;
+  };
+
+  const digitalEvent = (window.REFORM_EVENT_DATA || []).find((item) => item && item.id === "digital-commerce-tokusho-2026-review");
+  if (digitalEvent) {
+    digitalEvent.matchSourceIds = addUnique(digitalEvent.matchSourceIds, "source-caa-digital-tokusho-interim-final-2026");
+    digitalEvent.sourceIds = addUnique(digitalEvent.sourceIds, "source-caa-digital-tokusho-interim-final-2026");
+  }
 
   const additions = [
     {
