@@ -148,6 +148,7 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({
     "articles-run147.js?v=1",
     "articles-run148.js?v=1",
     "articles-run150.js?v=1",
-    "articles-run151.js?v=1"
+    "articles-run151.js?v=1",
+    "articles-run152.js?v=1"
   ]
 });
