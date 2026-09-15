@@ -1,9 +1,14 @@
 (() => {
+  const canonicalTopicSlug = "insider-trading-information-management";
+  const legacyTopicSlug = "insider-trading-information-control";
+
   const addUnique = (values, value) => {
     const list = Array.isArray(values) ? [...values] : [];
     if (value && !list.includes(value)) list.push(value);
     return list;
   };
+
+  const appendUnique = (base = [], extra = []) => [...new Set([...(base || []), ...(extra || [])])];
 
   const normalizeUrl = (value) => {
     try {
@@ -22,70 +27,55 @@
     }
   };
 
-  const insiderTopic = (window.TOPIC_DATA || []).find((item) => item && item.slug === "insider-trading-information-management");
-  if (insiderTopic) {
-    insiderTopic.lastUpdated = "2026-09-15";
-    insiderTopic.lastVerified = "2026-09-15";
-    insiderTopic.sourceIds = addUnique(insiderTopic.sourceIds, "source-sesc-irom-blackstone-insider-20260911");
-    insiderTopic.practicalImpacts = addUnique(insiderTopic.practicalImpacts, "公開買付者側の外部アドバイザー管理");
+  const topics = window.TOPIC_DATA || [];
+  const canonicalTopic = topics.find((item) => item && item.slug === canonicalTopicSlug);
+  const legacyTopic = topics.find((item) => item && item.slug === legacyTopicSlug);
 
-    const issueId = "insider-tob-offeror-contractors-current-law";
-    if (!(insiderTopic.issues || []).some((issue) => issue && issue.id === issueId)) {
-      insiderTopic.issues = (insiderTopic.issues || []).concat([{
-        id: issueId,
-        title: "公開買付者側の契約締結者は現行法でどこまで規制対象になるか",
-        status: "authoritative",
-        stage: "effective",
-        views: [],
-        conclusion: "公開買付者等と契約を締結している者が、その契約の締結・履行に関して公開買付け等事実を知った場合は、金融商品取引法167条の公開買付者等関係者として、公表前の対象有価証券の売買等が規制対象となり得る。",
-        exception: "公開買付者側の外部専門家・委託先・取引先であれば一律に規制対象になるわけではなく、法定の契約関係その他の立場と、どのような経路で公開買付け等事実を知ったかを個別に確認する必要がある。",
-        uncertain: "海外グループ内で契約主体と実際の情報受領者が複数階層にまたがる場合など、具体的な関係性・情報伝達経路の評価は事案ごとの確認が必要である。",
-        sourceIds: ["source-sesc-irom-blackstone-insider-20260911", "source-fsa-fiea-unfair-trading-explanation-2026"]
-      }]);
+  if (canonicalTopic) {
+    canonicalTopic.lastUpdated = "2026-09-15";
+    canonicalTopic.lastVerified = "2026-09-15";
+
+    if (legacyTopic) {
+      canonicalTopic.sourceIds = appendUnique(canonicalTopic.sourceIds, legacyTopic.sourceIds);
+      canonicalTopic.practicalImpacts = appendUnique(canonicalTopic.practicalImpacts, legacyTopic.practicalImpacts);
+
+      const existingIssueIds = new Set((canonicalTopic.issues || []).map((issue) => issue && issue.id).filter(Boolean));
+      const migratedIssues = (legacyTopic.issues || []).filter((issue) => issue && !existingIssueIds.has(issue.id));
+      canonicalTopic.issues = (canonicalTopic.issues || []).concat(migratedIssues);
+
+      canonicalTopic.currentSummary = canonicalTopic.currentSummary || {};
+      for (const key of ["facts", "interpretations", "implications", "uncertain"]) {
+        canonicalTopic.currentSummary[key] = appendUnique(
+          canonicalTopic.currentSummary[key],
+          legacyTopic.currentSummary && legacyTopic.currentSummary[key]
+        );
+      }
     }
 
-    insiderTopic.currentSummary = insiderTopic.currentSummary || {};
-    insiderTopic.currentSummary.facts = addUnique(
-      insiderTopic.currentSummary.facts,
-      "証券取引等監視委員会は2026年9月11日、ブラックストーン・インクの連結子会社とアドバイザリー契約を締結していた者が、その契約履行に関してアイロムグループへの公開買付け等事実を知り、公表前に6,600株を買い付けた事案について、金融商品取引法167条違反として615万円の課徴金納付命令を勧告した。"
+    canonicalTopic.currentSummary = canonicalTopic.currentSummary || {};
+    canonicalTopic.currentSummary.interpretations = addUnique(
+      canonicalTopic.currentSummary.interpretations,
+      "公開買付者側で契約履行により公開買付け等事実を知る者は現行法の金融商品取引法167条で規制対象となり得る一方、2026年改正で追加される対象会社側の契約・交渉関係者は施行前の拡張部分であり、両者を同じ制度段階として扱わない。"
     );
-    insiderTopic.currentSummary.interpretations = addUnique(
-      insiderTopic.currentSummary.interpretations,
-      "公開買付者側で契約履行により情報を知る者は現行法の167条で規制対象となり得る一方、2026年改正で追加される対象会社側の契約・交渉関係者は施行前の拡張部分であり、両者を同じ制度段階として扱わない。"
-    );
-    insiderTopic.currentSummary.implications = addUnique(
-      insiderTopic.currentSummary.implications,
+    canonicalTopic.currentSummary.implications = addUnique(
+      canonicalTopic.currentSummary.implications,
       "公開買付者側でFA、コンサルタント、外部専門家その他の委託先へTOB情報を共有する場合は、NDAだけでなく、情報受領者の特定、売買制限、アクセス権限・ログ、情報遮断を案件管理へ組み込む。"
     );
   }
 
+  if (legacyTopic) {
+    window.TOPIC_DATA = (window.TOPIC_DATA || []).filter((topic) => topic && topic.slug !== legacyTopicSlug);
+  }
+
+  window.ARTICLE_DATA = (window.ARTICLE_DATA || []).map((article) => {
+    if (!article) return article;
+    const relatedTopics = (article.relatedTopics || []).map((slug) => slug === legacyTopicSlug ? canonicalTopicSlug : slug);
+    return relatedTopics.some((slug, index) => slug !== (article.relatedTopics || [])[index])
+      ? { ...article, relatedTopics: [...new Set(relatedTopics)] }
+      : article;
+  });
+
   const additions = [
-    {
-      id: "article-sesc-irom-blackstone-insider-20260911",
-      title: "公開買付者との契約締結者によるアイロムグループ株式に係る内部者取引に対する課徴金納付命令の勧告について",
-      publisher: "証券取引等監視委員会",
-      author: "証券取引等監視委員会",
-      publishedAt: "2026-09-11",
-      collectedAt: "2026-09-15",
-      url: "https://www.fsa.go.jp/sesc/news/c_2026/2026/20260911-1.html",
-      sourceType: "primary",
-      sourceLabel: "一次資料・執行事例／TOBインサイダー取引",
-      status: "adopted",
-      summary: "ブラックストーン・インクの連結子会社とアドバイザリー契約を締結していた者が、その契約の履行に関してアイロムグループへの公開買付け等事実を知り、公表前に同社株式6,600株を1,224万2,800円で買い付けたとして、証券取引等監視委員会が金融商品取引法167条違反に基づく615万円の課徴金納付命令を勧告した事例。",
-      whyImportant: [
-        "公開買付者側の契約締結者が、契約履行を通じてTOB情報を知った場合に現行法167条の規制対象となり得ることを具体的な執行事例で確認できる",
-        "対象会社側アドバイザー等を新たに取り込む2026年改正と、買付者側で既に存在する現行法の規制範囲を区別して情報管理を設計する材料になる",
-        "外部アドバイザーへ公開買付け情報を共有する案件で、NDAだけでなく売買制限・アクセス管理・情報受領者の記録まで必要な理由を具体化できる"
-      ],
-      audience: ["企業法務", "M&A担当", "IR・開示担当", "コンプライアンス", "FA・外部専門家を起用する案件担当"],
-      audienceReason: "TOB案件で公開買付者側の外部アドバイザー・委託先まで含む情報アクセス管理と株式売買制限の範囲を点検するため。",
-      categories: ["金融商品取引・開示・IR", "M&A", "危機管理・コンプライアンス"],
-      relatedTopics: ["insider-trading-information-management"],
-      relatedIssues: ["insider-tob-offeror-contractors-current-law", "insider-tob-target-advisers"],
-      primarySourceIds: ["source-sesc-irom-blackstone-insider-20260911", "source-fsa-fiea-unfair-trading-explanation-2026"],
-      legacyReformInference: false,
-      whatChanged: "執行事例補完／公開買付者側の契約締結者が契約履行でTOB情報を知った場合に、現行法167条の規制対象となり得ることを具体例で追加した。"
-    },
     {
       id: "article-tmi-securities-monitoring-2026-part1",
       title: "令和8事務年度の金融商品取引業者等に対する当局の証券モニタリングにおける主な検証事項～監視委『令和8事務年度 証券モニタリング基本方針』の解説～（第1回）",
