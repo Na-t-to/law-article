@@ -46,7 +46,7 @@
       title: "中小受託取引適正化法（改正下請法）の成立及び規則案等の公表",
       publisher: "長島・大野・常松法律事務所",
       author: "伊藤伸明・小山遥暉・西島達也",
-      publishedAt: "2025-08-01",
+      publishedAt: "2025-08-05",
       collectedAt: "2026-09-15",
       url: "https://www.nagashima.com/publications/publication20250805-1/",
       sourceType: "secondary",
