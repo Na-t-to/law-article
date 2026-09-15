@@ -24,7 +24,7 @@
       effectiveDateStatus: "relative",
       effectiveDateNote: "2026年7月24日公布。主要部分は公布から6か月以内の政令指定日（一部別段）。2026年9月時点では基本方針案を審議中。",
       effectiveDateSourceIds: ["source-maff-important-varieties-act-2026"],
-      matchSourceIds: ["source-maff-important-varieties-act-2026", "source-maff-important-varieties-policy-draft-2026"],
+      matchSourceIds: ["source-maff-important-varieties-policy-draft-2026"],
       sourceIds: ["source-maff-important-varieties-act-2026", "source-maff-important-varieties-policy-draft-2026"]
     },
     {
