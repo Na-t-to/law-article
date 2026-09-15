@@ -7,14 +7,8 @@
     lawLabel: "障害者雇用促進法・障害者雇用率制度",
     relatedTopics: ["disability-employment-business-quality-review"],
     effectiveDateStatus: "unknown",
-    matchSourceIds: [
-      "source-mhlw-disability-employment-study-report-2026",
-      "source-mhlw-disability-employment-rare-disease-review-2026"
-    ],
-    sourceIds: [
-      "source-mhlw-disability-employment-study-report-2026",
-      "source-mhlw-disability-employment-rare-disease-review-2026"
-    ]
+    matchSourceIds: ["source-mhlw-disability-employment-rare-disease-review-2026"],
+    sourceIds: ["source-mhlw-disability-employment-rare-disease-review-2026"]
   };
 
   const existingIds = new Set((window.REFORM_EVENT_DATA || []).map((item) => item && item.id));
