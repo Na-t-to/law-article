@@ -1,104 +1,45 @@
-window.TOPIC_DATA = (window.TOPIC_DATA || []).concat([
-  {
-    slug: "securities-monitoring-2026",
-    title: "証券モニタリング・金融商品取引業者の内部管理",
-    categories: ["金融商品取引・開示・IR", "危機管理・コンプライアンス"],
-    summary: "証券取引等監視委員会の令和8事務年度（2026年7月〜2027年6月）証券モニタリング基本方針と直近の検査事例を基礎に、顧客本位・適合性、サイバー／AI・AML/CFT、業容変化・新商品審査、法人関係情報・引受審査、利益相反管理を整理する。",
-    lastUpdated: "2026-09-15",
-    lastVerified: "2026-09-15",
-    isNew: true,
-    overview: [
-      "証券取引等監視委員会は2026年7月31日、2026年7月から2027年6月までを対象とする『令和8事務年度 証券モニタリング基本方針』を公表し、金融商品取引業者等へのモニタリングを、業態横断的な検証事項と規模・業態別の検証事項に分けて示しました。",
-      "業態横断では、顧客の最善の利益と適合性、システムリスク、AML/CFT、個々の業者の特性・業容に応じた内部管理態勢が重点です。顧客説明では、顧客属性やデジタル・リテラシーに応じて『理解されるために必要な方法及び程度』で説明するという着眼点が明確になっています。",
-      "システムリスクでは、不正アクセス・不正取引への対策に加え、フロンティアAIによる脆弱性探索の高速化等を踏まえた短期的対応も検証対象になります。AML/CFTについても、2026年3月改正ガイドラインを踏まえた取引モニタリング、技術活用、外部委託先管理等が実務上の点検対象です。",
-      "規模・業態別では、大手証券会社グループの法人関係情報・引受審査、ネット系証券のサイバー・取引時確認、準大手・地域証券の業容変化と新商品審査、投資運用業者の親会社等との利益相反が具体的な重点として示されています。"
-    ],
-    currentSummary: {
-      facts: [
-        "令和8事務年度の証券モニタリング基本方針は2026年7月31日に公表され、対象期間は2026年7月から2027年6月までである。",
-        "業態横断的な重点は、顧客の最善の利益・適合性、システムリスク、AML/CFT、内部管理態勢の実効性である。",
-        "同日に公表された証券モニタリング概要・事例集は、2025年7月から2026年6月までの検査・モニタリングで把握された問題事例を整理し、各社の自主的な内部管理態勢強化への活用を目的としている。",
-        "2026年5月22日には金融庁・日本銀行が、フロンティアAIによる脅威変化を踏まえ、重要サービス・IT資産の特定、技術負債の解消、パッチ適用体制、代替策、外部連携等の短期的対応を金融機関等へ要請した。",
-        "2026年3月31日にはAML/CFTガイドラインが改正・即日適用され、取引モニタリング・フィルタリング後のリスク低減、新技術活用、外部委託先の態勢検証等が強化された。"
-      ],
-      interpretations: [
-        "証券モニタリング対応は、年度方針に列挙された項目を形式的にチェックするより、直近の検査事例で何が態勢不備として評価されたかを併読し、自社の業容・商品・顧客層に引き付けて内部統制を点検する方が実務上有効である。",
-        "新規参入や買収後の事業転換、新商品・新サービスの投入では、登録の有無だけでなく、変化後の業容に見合うシステム、コンプライアンス、商品審査、経営管理の態勢まで同時に構築できているかが問われる。",
-        "投資運用業者の利益相反は、規程の存在だけでなく、親会社等との取引の妥当性を事後的に検証できる証跡・牽制が機能しているかまで確認する必要がある。"
-      ],
-      implications: [
-        "顧客説明、対象顧客設定、短期乗換え勧誘、新商品審査、内部監査指摘の改善状況を、顧客属性・商品リスク・販売チャネルごとに証跡化する。",
-        "インターネット取引を扱う事業者は、フィッシング耐性のある認証、不正取引検知、顧客対応、取引時確認、売買管理を一体で点検する。",
-        "フロンティアAIによる攻撃能力の変化を経営課題として扱い、優先システム、脆弱性・パッチ管理、ベンダー保守、停止時の代替手段を短期対応計画へ落とす。",
-        "買収・主要株主変更・新サービス導入など業容が変わる場合は、変更前の内部管理態勢をそのまま流用せず、システム・コンプライアンス・商品審査・経営管理のキャパシティを再評価する。",
-        "投資運用業者やグループ内取引が多い事業者は、親会社等との取引条件、外部評価、意思決定、事後レビューの独立性と記録を点検する。"
-      ],
-      uncertain: [
-        "年度方針は監視委の重点を示すものであり、記載項目だけが検査対象になるわけではない。個別業者のリスク、情報提供、問題兆候等に応じて検証範囲は変わる。",
-        "フロンティアAI、サイバー攻撃、新技術利用に関する具体的な検証水準は、脅威動向や金融庁・監視委の追加要請、実際の検査事例により更新されるため継続確認が必要である。"
-      ]
-    },
-    issues: [
-      {
-        id: "securities-monitoring-customer-conduct-2026",
-        title: "顧客本位・適合性・説明態勢をどう点検するか",
-        status: "authoritative",
-        stage: "not_applicable",
-        views: [],
-        conclusion: "複雑・高リスク商品の対象顧客設定、顧客属性に照らして理解されるために必要な方法・程度による説明、合理性のない短期乗換え勧誘の防止、これらの社内ルールとモニタリングを一体で確認する。",
-        exception: "年度方針は一律の説明方法を定める法令ではなく、顧客属性、商品特性、販売チャネルに応じて必要な説明・管理水準を具体化する必要がある。",
-        uncertain: "デジタル・リテラシーを含む顧客属性に応じた説明の具体的な水準は、商品・チャネル・顧客層ごとに検討し、今後の監督・検査事例も確認する。",
-        sourceIds: ["source-sesc-securities-monitoring-policy-2026", "source-sesc-securities-monitoring-casebook-2026"]
-      },
-      {
-        id: "securities-monitoring-cyber-ai-aml-2026",
-        title: "サイバー・フロンティアAI・AML/CFTをどう内部管理へ落とすか",
-        status: "authoritative",
-        stage: "not_applicable",
-        views: [],
-        conclusion: "不正アクセス・不正取引へのセキュリティ対策、フロンティアAIによる脅威変化を踏まえたシステムリスク管理、改正AML/CFTガイドラインに基づく取引モニタリング・技術活用・外部委託先管理を重点的に確認する。",
-        exception: "各対策は全金融商品取引業者に同一の技術・運用を機械的に求めるものではなく、業態、システム、顧客接点、リスクに応じて実効性を評価する。",
-        uncertain: "AIを利用した攻撃・防御技術や不正取引手口の変化が速いため、具体的な技術水準と検知・対応プロセスは随時更新が必要である。",
-        sourceIds: ["source-sesc-securities-monitoring-policy-2026", "source-fsa-frontier-ai-financial-response-2026", "source-fsa-aml-guideline-2026"]
-      },
-      {
-        id: "securities-monitoring-business-model-products-2026",
-        title: "業容変化・買収・新商品導入時の内部管理をどう設計するか",
-        status: "interpreted",
-        stage: "not_applicable",
-        views: [],
-        conclusion: "主要株主・経営体制の変更、買収後の事業転換、新サービス・新商品の導入時には、変化後の業容に対応できるシステム、法令遵守、商品審査、経営管理、事後モニタリングを同時に再設計する。",
-        exception: "新商品・新サービスの導入や株主変更自体が問題なのではなく、業容拡大に対して内部管理態勢・システム・審査能力が追いついているかが評価の中心となる。",
-        uncertain: "必要な管理水準は業者の規模、顧客層、商品複雑性、システム構成等で異なるため、事例集と自社リスクを対応付けて検討する。",
-        sourceIds: ["source-sesc-securities-monitoring-policy-2026", "source-sesc-securities-monitoring-casebook-2026"]
-      },
-      {
-        id: "securities-monitoring-conflicts-underwriting-2026",
-        title: "法人関係情報・引受審査・親会社等との利益相反をどう管理するか",
-        status: "interpreted",
-        stage: "not_applicable",
-        views: [],
-        conclusion: "大手証券では法人関係情報管理と引受審査、投資運用業者では親会社等との取引を含む利益相反管理について、形式的な規程整備だけでなく、牽制・審査・意思決定・事後検証が実際に機能しているかを確認する。",
-        exception: "業態により重点は異なり、すべての金商業者へ同じ引受審査・利益相反プロセスを要求するものではない。",
-        uncertain: "親会社等との取引の妥当性や引受審査の十分性は個別案件のリスクと事実関係に左右されるため、監視委の今後の検査事例を継続確認する。",
-        sourceIds: ["source-sesc-securities-monitoring-policy-2026", "source-sesc-securities-monitoring-casebook-2026"]
-      }
-    ],
-    sourceIds: [
-      "source-sesc-securities-monitoring-policy-2026",
-      "source-sesc-securities-monitoring-casebook-2026",
-      "source-fsa-frontier-ai-financial-response-2026",
-      "source-fsa-aml-guideline-2026"
-    ],
-    practicalImpacts: [
-      "販売・勧誘ルール",
-      "顧客説明・適合性管理",
-      "サイバーセキュリティ・不正取引対策",
-      "AML/CFT・取引モニタリング",
-      "新商品・新サービス審査",
-      "買収・業容変更時の内部管理",
-      "法人関係情報・引受審査",
-      "利益相反管理・内部監査"
-    ]
+(() => {
+  const topic = (window.TOPIC_DATA || []).find((item) => item && item.slug === "securities-monitoring-2026");
+  if (!topic) return;
+
+  const addUnique = (values, value) => {
+    const list = Array.isArray(values) ? [...values] : [];
+    if (!list.includes(value)) list.push(value);
+    return list;
+  };
+
+  topic.lastUpdated = "2026-09-15";
+  topic.lastVerified = "2026-09-15";
+  topic.sourceIds = addUnique(topic.sourceIds, "source-fsa-frontier-ai-financial-response-2026");
+  topic.sourceIds = addUnique(topic.sourceIds, "source-fsa-aml-guideline-2026");
+  topic.practicalImpacts = addUnique(topic.practicalImpacts, "AML/CFT・取引モニタリング");
+
+  const systemIssue = (topic.issues || []).find((issue) => issue.id === "securities-monitoring-system-frontier-ai-2026");
+  if (systemIssue) {
+    systemIssue.sourceIds = addUnique(systemIssue.sourceIds, "source-fsa-frontier-ai-financial-response-2026");
   }
-]);
+
+  if (!(topic.issues || []).some((issue) => issue.id === "securities-monitoring-aml-cft-2026")) {
+    topic.issues = (topic.issues || []).concat([{
+      id: "securities-monitoring-aml-cft-2026",
+      title: "AML/CFTの2026年改正ガイドラインを証券モニタリングへどう反映するか",
+      status: "authoritative",
+      stage: "effective",
+      views: [],
+      conclusion: "2026年3月31日改正の金融庁AML/CFTガイドラインを踏まえ、取引モニタリング・フィルタリング後のリスク低減措置、新技術の活用、外部委託先の態勢検証等を、自社のリスク特性に応じて実装・検証する。",
+      exception: "金融庁AML/CFTガイドラインの適用対象・求められる態勢は業態とリスクに応じて異なり、犯罪収益移転防止法上の本人確認義務と同一の論点ではない。",
+      uncertain: "取引モニタリング技術や外部委託の具体的な検証水準は、今後の監督・検査事例や技術動向に応じて更新が必要である。",
+      sourceIds: ["source-sesc-securities-monitoring-policy-2026", "source-fsa-aml-guideline-2026"]
+    }]);
+  }
+
+  topic.currentSummary = topic.currentSummary || {};
+  topic.currentSummary.facts = addUnique(
+    topic.currentSummary.facts,
+    "金融庁は2026年3月31日にAML/CFTガイドラインを改正・即日適用し、取引モニタリング・フィルタリング後のリスク低減措置、新技術活用、外部委託先の態勢検証等を明確化した。"
+  );
+  topic.currentSummary.facts = addUnique(
+    topic.currentSummary.facts,
+    "金融庁・日本銀行は2026年5月22日、フロンティアAIによる脅威変化を踏まえ、重要サービス・IT資産の特定、技術負債への対応、パッチ適用体制、代替策等の短期的対応を金融機関等へ要請した。"
+  );
+})();
