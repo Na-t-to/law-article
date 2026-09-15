@@ -19,9 +19,15 @@
 
 (() => {
   const event = (window.REFORM_EVENT_DATA || []).find((item) => item && item.id === "fiea-unfair-trading-2026-amendment");
-  if (!event) return;
-  event.relatedTopics = Array.isArray(event.relatedTopics) ? event.relatedTopics : [];
-  if (!event.relatedTopics.includes("market-manipulation-trading-controls")) {
-    event.relatedTopics.push("market-manipulation-trading-controls");
+  if (event) {
+    event.relatedTopics = Array.isArray(event.relatedTopics) ? event.relatedTopics : [];
+    if (!event.relatedTopics.includes("market-manipulation-trading-controls")) {
+      event.relatedTopics.push("market-manipulation-trading-controls");
+    }
+  }
+
+  const topic = (window.TOPIC_DATA || []).find((item) => item && item.slug === "market-manipulation-trading-controls");
+  if (topic) {
+    topic.sourceIds = (topic.sourceIds || []).filter((id) => id !== "source-miura-closing-price-market-manipulation-2025");
   }
 })();

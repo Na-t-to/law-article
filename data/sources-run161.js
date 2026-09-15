@@ -23,6 +23,7 @@
       type: "guideline",
       typeLabel: "一次資料・日本取引所自主規制法人／相場操縦・売買審査",
       authority: "日本取引所グループ・日本取引所自主規制法人",
+      publishedAt: "不明",
       url: "https://www.jpx.co.jp/regulation/preventing/manipulation/",
       importance: "最高",
       whyImportant: "金融商品取引法159条の相場操縦規制と、日本取引所自主規制法人が売買審査で注視する対当売買、見せ玉、寄付き・終値への関与等の具体的な注文・売買形態を示す基礎資料。売買管理ルールとアラート設計の起点になる。",
