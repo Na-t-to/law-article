@@ -6,7 +6,7 @@
     title: "金融商品取引法・海外VF外国ファンド特例 2026年定義府令改正",
     eventType: "regulation_or_guideline",
     lawId: "financial-instruments-exchange-act",
-    lawLabel: "金融商品取引法",
+    lawLabel: "金融商品取引法・関係府令",
     relatedTopics: ["overseas-vf-foreign-fund-exemption-2026"],
     effectiveDateStatus: "confirmed",
     effectiveDates: ["2026-09-16"],
