@@ -115,8 +115,9 @@
   const originalGetLegalReformInfo = window.getLegalReformInfo;
   if (typeof originalGetLegalReformInfo === "function") {
     window.getLegalReformInfo = (article, topics = []) => {
-      const result = originalGetLegalReformInfo(article, topics);
       const event = getReformEventForArticle(article);
+      if (article?.legacyReformInference === false && !event) return { isReform: false, stage: null, stageLabel: "" };
+      const result = originalGetLegalReformInfo(article, topics);
       if (!event) return result;
       const stage = result.stage || eventBackedStage(article, topics);
       return { ...result, isReform: true, stage, stageLabel: result.stageLabel || reformStageLabel[stage] || "法改正情報", reformEventId: event.id };

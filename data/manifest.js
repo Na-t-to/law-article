@@ -1,5 +1,5 @@
 window.LAW_INDEX_DATA_FILES = Object.freeze({
-  schema: ["schema.js?v=8", "reform-policy.js?v=5"],
+  schema: ["schema.js?v=8", "reform-policy.js?v=6"],
   topics: [
     "topics.js?v=13",
     "topics-extra.js?v=4",
