@@ -75,6 +75,35 @@
       reformStageSourceIds: ["source-mhlw-labor-conditions-subcommittee-205-20260916"],
       legacyReformInference: false,
       whatChanged: "新テーマ追加／過半数代表制・法定休日・年次有給休暇について、2026年9月16日時点の具体的な検討論点を追加した。"
+    },
+    {
+      id: "article-miura-labor-standards-review-report-20250206",
+      title: "労働法UPDATE Vol.18：労働基準関係法制研究会③～報告書の公表～",
+      publisher: "三浦法律事務所",
+      author: "菅原 裕人・岩崎 啓太",
+      publishedAt: "2025-02-06",
+      collectedAt: "2026-09-17",
+      url: "https://note.com/miuraandpartners/n/n0ea763737c9a",
+      sourceType: "secondary",
+      sourceLabel: "実務解説・労働法／労働基準関係法制研究会報告書",
+      status: "adopted",
+      summary: "2025年1月の労働基準関係法制研究会報告書を踏まえ、過半数代表制の制度的な課題と今後の法改正論点を整理した三浦法律事務所の実務解説。労働基準法上の最低基準からの逸脱を認める重要な役割を個人の過半数代表者が担う一方、意見集約・協議を支える組織的基盤が乏しいという問題を示し、過半数代表制、13日超の連続勤務規制、勤務間インターバル、テレワーク、副業・兼業等の見直しを一つの改革ロードマップとして読める。",
+      whyImportant: [
+        "過半数代表者の選出手続だけでなく、強行法規からの逸脱を支える代表制としてなぜ制度的な裏付けが必要なのかを説明している",
+        "研究会報告書の論点を、過半数代表制、13日超の連続勤務、勤務間インターバル、テレワーク、副業・兼業など企業実務へ影響し得る改正候補として横断的に整理している",
+        "2025年の研究会報告と2026年9月の労働政策審議会で具体化した論点を比較するための解説として使える"
+      ],
+      audience: ["人事・労務", "企業法務", "労使協議担当", "就業規則・勤怠制度担当"],
+      audienceReason: "過半数代表制の制度趣旨と、研究会報告から今後の改正実務へつながる論点を一次資料と併読するため。",
+      categories: ["労務"],
+      relatedTopics: [topicSlug],
+      relatedIssues: ["labor-review-majority-representative-2026", "labor-review-statutory-holiday-consecutive-work-2026"],
+      primarySourceIds: ["source-mhlw-labor-standards-study-report-2025", "source-labour-standards-act"],
+      reformEventId: "labor-standards-act-review-2025-2026",
+      reformStageAtPublication: "proposal",
+      reformStageSourceIds: ["source-mhlw-labor-standards-study-report-2025"],
+      legacyReformInference: false,
+      whatChanged: "バックフィル／研究会報告書を、過半数代表制の制度的な問題と企業実務への影響まで読み解く法律事務所解説として追加した。"
     }
   ];
 
