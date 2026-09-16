@@ -49,7 +49,7 @@
     },
     {
       id: "article-mhlw-labor-conditions-subcommittee-205-20260916",
-      title: "第205回労働政策審議会労働条件分科会（資料）―過半数代表制・法定休日・年次有給休暇",
+      title: "第211回労働政策審議会労働条件分科会（資料）―過半数代表制・法定休日・年次有給休暇",
       publisher: "厚生労働省",
       author: "厚生労働省",
       publishedAt: "2026-09-16",
