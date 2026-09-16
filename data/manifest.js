@@ -1,9 +1,9 @@
 window.LAW_INDEX_DATA_FILES = Object.freeze({
   schema: ["schema.js?v=8", "reform-policy.js?v=5"],
-  topics: ["topics.js?v=13", "topics-extra.js?v=4", "topics-run143.js?v=1", "topics-run146.js?v=1", "topics-run147.js?v=1", "topics-run150.js?v=1", "topics-run151.js?v=1", "topics-run157.js?v=1", "topics-run162.js?v=1", "topics-run163.js?v=1", "topics-run164.js?v=1", "topics-run165.js?v=1", "topics-run166.js?v=1", "topics-run167.js?v=1", "topics-run168.js?v=1", "topics-run169.js?v=1", "topics-run170.js?v=1", "topics-run171.js?v=1", "topics-run172.js?v=1", "topics-run173.js?v=1", "topics-run174.js?v=1", "topics-run175.js?v=1"],
-  sources: ["sources.js?v=14", "sources-extra.js?v=6", "sources-run143.js?v=1", "sources-run146.js?v=1", "sources-run147.js?v=1", "sources-run148.js?v=1", "sources-run150.js?v=1", "sources-run151.js?v=1", "sources-run153.js?v=1", "sources-run154.js?v=1", "sources-run156.js?v=1", "sources-run157.js?v=1", "sources-run158.js?v=1", "sources-run161.js?v=1", "sources-run162.js?v=1", "sources-run163.js?v=1", "sources-run164.js?v=1", "sources-run165.js?v=1", "sources-run166.js?v=1", "sources-run167.js?v=1", "sources-run168.js?v=1", "sources-run170.js?v=1", "sources-run171.js?v=1", "sources-run172.js?v=1", "sources-run173.js?v=1", "sources-run174.js?v=1", "sources-run175.js?v=1"],
+  topics: ["topics.js?v=13", "topics-extra.js?v=4", "topics-run143.js?v=1", "topics-run146.js?v=1", "topics-run147.js?v=1", "topics-run150.js?v=1", "topics-run151.js?v=1", "topics-run157.js?v=1", "topics-run162.js?v=1", "topics-run163.js?v=1", "topics-run164.js?v=1", "topics-run165.js?v=1", "topics-run166.js?v=1", "topics-run167.js?v=1", "topics-run168.js?v=1", "topics-run169.js?v=1", "topics-run170.js?v=1", "topics-run171.js?v=1", "topics-run172.js?v=1", "topics-run173.js?v=1", "topics-run174.js?v=1", "topics-run175.js?v=1", "topics-run176.js?v=1"],
+  sources: ["sources.js?v=14", "sources-extra.js?v=6", "sources-run143.js?v=1", "sources-run146.js?v=1", "sources-run147.js?v=1", "sources-run148.js?v=1", "sources-run150.js?v=1", "sources-run151.js?v=1", "sources-run153.js?v=1", "sources-run154.js?v=1", "sources-run156.js?v=1", "sources-run157.js?v=1", "sources-run158.js?v=1", "sources-run161.js?v=1", "sources-run162.js?v=1", "sources-run163.js?v=1", "sources-run164.js?v=1", "sources-run165.js?v=1", "sources-run166.js?v=1", "sources-run167.js?v=1", "sources-run168.js?v=1", "sources-run170.js?v=1", "sources-run171.js?v=1", "sources-run172.js?v=1", "sources-run173.js?v=1", "sources-run174.js?v=1", "sources-run175.js?v=1", "sources-run176.js?v=1"],
   updates: ["updates.js?v=12"],
-  reforms: ["reforms.js?v=19", "reforms-run146.js?v=1", "reforms-run147.js?v=1", "reforms-run151.js?v=1", "reforms-run157.js?v=1", "reforms-run158.js?v=1", "reforms-run162.js?v=1", "reforms-run163.js?v=1", "reforms-run164.js?v=1", "reforms-run165.js?v=1", "reforms-run166.js?v=1", "reforms-run167.js?v=1", "reforms-run168.js?v=1", "reforms-run170.js?v=1", "reforms-run171.js?v=1", "reforms-run172.js?v=1", "reforms-run173.js?v=1", "reforms-run174.js?v=1"],
+  reforms: ["reforms.js?v=19", "reforms-run146.js?v=1", "reforms-run147.js?v=1", "reforms-run151.js?v=1", "reforms-run157.js?v=1", "reforms-run158.js?v=1", "reforms-run162.js?v=1", "reforms-run163.js?v=1", "reforms-run164.js?v=1", "reforms-run165.js?v=1", "reforms-run166.js?v=1", "reforms-run167.js?v=1", "reforms-run168.js?v=1", "reforms-run170.js?v=1", "reforms-run171.js?v=1", "reforms-run172.js?v=1", "reforms-run173.js?v=1", "reforms-run174.js?v=1", "reforms-run176.js?v=1"],
   articles: [
     "articles.js?v=15",
     "articles-extra.js?v=3",
@@ -35,7 +35,7 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({
     "articles-secondary-26.js?v=1",
     "articles-secondary-27.js?v=1",
     "articles-secondary-28.js?v=1",
-    "articles-secondary-29.js?v=1",
+    "articles-secondary-29.js?v=3",
     "articles-secondary-30.js?v=1",
     "articles-secondary-31.js?v=1",
     "articles-secondary-32.js?v=1",
@@ -172,6 +172,7 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({
     "articles-run172.js?v=1",
     "articles-run173.js?v=1",
     "articles-run174.js?v=1",
-    "articles-run175.js?v=1"
+    "articles-run175.js?v=1",
+    "articles-run176.js?v=1"
   ]
 });
