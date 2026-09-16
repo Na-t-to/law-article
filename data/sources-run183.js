@@ -16,6 +16,7 @@
     }
   };
 
+  const topicSlug = "cyber-countermeasures-critical-infrastructure";
   const additions = [
     {
       id: "source-cyber-capability-act-2025",
@@ -27,7 +28,7 @@
       url: "https://laws.e-gov.go.jp/law/507AC0000000042",
       importance: "最高",
       whyImportant: "官民連携、通信情報の利用、アクセス・無害化等を制度化し、特別社会基盤事業者に特定重要電子計算機の届出・特定侵害事象等の報告を求める新法の根拠条文。",
-      topics: ["cyber-capability-enhancement-critical-infrastructure-2026"]
+      topics: [topicSlug]
     },
     {
       id: "source-cyber-reporting-order-2026",
@@ -39,7 +40,7 @@
       url: "https://laws.e-gov.go.jp/law/508M60000F5A004",
       importance: "最高",
       whyImportant: "特別社会基盤事業者による特定重要電子計算機の届出事項・期限、変更届、特定侵害事象等の報告対象・様式等を具体化する主務省令。",
-      topics: ["cyber-capability-enhancement-critical-infrastructure-2026"]
+      topics: [topicSlug]
     },
     {
       id: "source-cyber-reporting-exclusion-notice-2026",
@@ -51,7 +52,7 @@
       url: "https://www.mof.go.jp/about_mof/act/kokuji_tsuutatsu/kokuji/KO-20260915-0001.pdf",
       importance: "最高",
       whyImportant: "命令2条1項ただし書の指定対象としてMicrosoft WindowsとWindows Serverを定め、2026年10月1日から施行することを明記した運用直前の告示。",
-      topics: ["cyber-capability-enhancement-critical-infrastructure-2026"]
+      topics: [topicSlug]
     },
     {
       id: "source-cyber-report-form-notice-2026",
@@ -63,7 +64,7 @@
       url: "https://www.mof.go.jp/about_mof/act/kokuji_tsuutatsu/kokuji/KO-20260915-0002.pdf",
       importance: "最高",
       whyImportant: "特定侵害事象等の報告様式をDDoS、ランサムウェア、その他の事象に分け、既存の関係省庁共通様式へ接続したうえで2026年10月1日施行を明記した告示。",
-      topics: ["cyber-capability-enhancement-critical-infrastructure-2026"]
+      topics: [topicSlug]
     },
     {
       id: "source-ipa-vulnerability-partnership-draft-2026",
@@ -75,7 +76,7 @@
       url: "https://www.ipa.go.jp/security/reports/vuln/kenkyukai-report2026.html",
       importance: "高",
       whyImportant: "サイバー対処能力強化法に基づく内閣府からIPA・JPCERT/CCへの要請等を早期警戒パートナーシップへ組み込む改訂案で、脆弱性情報が政府へ連携される実務フローを具体化する。",
-      topics: ["cyber-capability-enhancement-critical-infrastructure-2026"]
+      topics: [topicSlug]
     }
   ];
 
