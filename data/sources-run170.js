@@ -32,7 +32,7 @@
     },
     {
       id: "source-mhlw-labor-conditions-subcommittee-205-20260916",
-      title: "第205回労働政策審議会労働条件分科会（資料）",
+      title: "第211回労働政策審議会労働条件分科会（資料）",
       type: "government",
       typeLabel: "一次資料・厚生労働省／労働基準法制見直し・論点資料",
       authority: "厚生労働省",
