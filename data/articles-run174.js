@@ -1,0 +1,122 @@
+(() => {
+  const additions = [
+    {
+      id: "article-fsa-aml-account-info-sharing-2026",
+      title: "『犯罪による収益の移転防止に関する法律施行規則の一部を改正する命令』の公布等及びパブリックコメントの結果等について",
+      publisher: "金融庁",
+      author: "金融庁",
+      publishedAt: "2026-06-26",
+      collectedAt: "2026-09-16",
+      url: "https://www.fsa.go.jp/news/r7/sonota/20260626/20260626.html",
+      sourceType: "primary",
+      sourceLabel: "一次資料・施行規則／監督指針改正",
+      status: "adopted",
+      summary: "預貯金取扱事業者間で不正利用口座に係る情報を共有する枠組みを整備するため、犯罪収益移転防止法施行規則と金融機関向け監督指針を改正した最終資料。情報の適正取扱い・安全管理措置を前提に必要情報を提供し、受領情報を整理・分析して必要なAML措置へつなげる努力義務等を定め、2027年4月1日から施行・適用する。",
+      whyImportant: [
+        "2027年4月に本人確認方法の厳格化と並行して走る、金融機関の口座不正利用対策の新しい実装トラックを確認できる",
+        "情報を出す側だけでなく、受領情報を整理・分析して必要なリスク低減措置へつなげるところまで求めている",
+        "情報共有を安全管理・適正取扱いとセットで制度化しており、AML部門だけでなくデータ管理・システム設計にも影響する"
+      ],
+      audience: ["預貯金取扱金融機関", "AML・金融犯罪対策", "企業法務・コンプライアンス", "情報セキュリティ"],
+      audienceReason: "2027年4月までに、情報共有の判断・安全管理・受領情報の分析・リスク低減措置への接続を実務フローとして設計する必要があるため。",
+      categories: ["危機管理・コンプライアンス", "AI・デジタル"],
+      relatedTopics: ["aml-kyc-criminal-proceeds"],
+      relatedIssues: ["aml-account-information-sharing-2027"],
+      primarySourceIds: ["source-fsa-aml-account-info-sharing-2026"],
+      reformEventId: "aml-account-information-sharing-2027-rules",
+      reformStageAtPublication: "finalized_pending",
+      reformStageSourceIds: ["source-fsa-aml-account-info-sharing-2026"],
+      legacyReformInference: false,
+      whatChanged: "既存AMLテーマを更新／2027年4月1日からの不正利用口座情報の金融機関間共有・分析・リスク低減措置を新しい論点として追加した。"
+    },
+    {
+      id: "article-tmi-aml-identity-verification-2026",
+      title: "【犯収法ブログ】犯罪収益移転防止法施行規則の改正による本人確認方法の厳格化について",
+      publisher: "TMI総合法律事務所",
+      author: "大塚尚、菊田行紘、野間敬和、野口真吾、片尾すみれ、片桐龍也",
+      publishedAt: "2026-03-30",
+      collectedAt: "2026-09-16",
+      url: "https://www.tmi.gr.jp/eyes/blog/2026/18168.html",
+      sourceType: "secondary",
+      sourceLabel: "法律事務所・実務解説",
+      status: "adopted",
+      summary: "2027年4月1日に全面施行される犯収法施行規則6条の本人確認方法見直しを、対面・非対面の現行方式ごとに整理した実務解説。廃止・厳格化される方式とICチップ読取・公的個人認証へ寄せる政策方向を示し、eKYC利用企業だけでなく全ての特定事業者について、システム・社内規程・業務マニュアルの棚卸しを促している。",
+      whyImportant: [
+        "条文番号だけでは分かりにくい本人確認方法の変更を、対面・非対面の現行方式ごとに『残る／廃止／厳格化』で追える",
+        "オンライン本人確認だけの問題ではなく、対面取引を行う宅建・貴金属・士業等を含む全特定事業者へ影響することを明確にしている",
+        "ICチップ読取やJPKIへの移行を、本人確認ベンダー、システム改修、社内規程・マニュアル更新まで落として検討できる"
+      ],
+      audience: ["金融機関・Fintech", "宅建・貴金属等の特定事業者", "企業法務・コンプライアンス", "本人確認・eKYC担当"],
+      audienceReason: "現在利用している本人確認方式が2027年4月以降も利用できるかを棚卸しし、廃止方式からの移行をシステム・運用の両面で準備するため。",
+      categories: ["危機管理・コンプライアンス", "AI・デジタル"],
+      relatedTopics: ["aml-kyc-criminal-proceeds", "aml-identity-verification-2027"],
+      relatedIssues: ["aml-identity-verification-2027"],
+      primarySourceIds: ["source-npa-aml-overview-2026"],
+      reformEventId: "aml-identity-verification-2027-rules",
+      reformStageAtPublication: "finalized_pending",
+      reformStageSourceIds: ["source-npa-aml-overview-2026"],
+      legacyReformInference: false,
+      whatChanged: "整理変更なし／2027年4月の本人確認方法厳格化を、特定事業者の現行フロー・システム・社内規程への落とし込みから補完した。"
+    },
+    {
+      id: "article-fsa-bank-investment-subsidiary-2026",
+      title: "『銀行法施行規則等の一部を改正する内閣府令』等の公布及びパブリックコメントの結果等について",
+      publisher: "金融庁",
+      author: "金融庁",
+      publishedAt: "2026-06-12",
+      collectedAt: "2026-09-16",
+      url: "https://www.fsa.go.jp/news/r7/ginkou/20260612/20260612.html",
+      sourceType: "primary",
+      sourceLabel: "一次資料・内閣府令／監督指針改正",
+      status: "adopted",
+      summary: "銀行グループの業務範囲規制を見直し、投資専門会社について株式会社以外への資金供給、ベンチャー企業へのクロスオーバー投資、上場会社を含む事業承継支援、M&A仲介業務を可能とするほか、ローントレーディングの特定取引該当性等を明確化した最終改正。主要部分は2026年6月15日施行・適用、リース会社の収入依存度規制撤廃は2027年4月1日施行。",
+      whyImportant: [
+        "銀行グループが事業承継・成長企業へ出資する際の対象主体と投資手法が広がったことを一次資料から確認できる",
+        "投資専門会社によるM&A仲介業務の追加により、資金供給と承継・M&A支援を組み合わせる制度上の余地が広がった",
+        "主要部分とリース会社関係で施行日が分かれており、段階施行を誤って一括処理しないための基準資料になる"
+      ],
+      audience: ["銀行・銀行持株会社", "金融法務・コンプライアンス", "事業承継・M&A担当", "ファンド・投資担当"],
+      audienceReason: "投資専門子会社の投資方針、対象会社、投資手法、M&A支援、グループ内業務範囲を改正後のルールへ更新するため。",
+      categories: ["事業再生・金融", "M&A", "契約"],
+      relatedTopics: ["bank-investment-subsidiaries-business-succession-2026"],
+      relatedIssues: ["bank-investment-subsidiary-funding-scope", "bank-business-succession-listed-companies", "bank-investment-subsidiary-ma-intermediation", "bank-leasing-income-dependence-2027"],
+      primarySourceIds: ["source-fsa-bank-investment-subsidiary-2026"],
+      reformEventId: "banking-act-investment-subsidiary-2026",
+      reformStageAtPublication: "finalized_pending",
+      reformStageSourceIds: ["source-fsa-bank-investment-subsidiary-2026"],
+      legacyReformInference: false,
+      whatChanged: "新規テーマ作成／銀行グループの投資専門会社・事業承継支援に関する2026年の業務範囲拡充と段階施行を整理した。"
+    },
+    {
+      id: "article-tmi-bank-business-succession-2026",
+      title: "銀行子会社による事業承継支援（令和8年6月銀行法施行規則改正を踏まえて）",
+      publisher: "TMI総合法律事務所",
+      author: "溝端俊介",
+      publishedAt: "2026-08-04",
+      collectedAt: "2026-09-16",
+      url: "https://www.tmi.gr.jp/eyes/blog/2026/18659.html",
+      sourceType: "secondary",
+      sourceLabel: "法律事務所・実務解説",
+      status: "adopted",
+      summary: "2026年6月15日施行の銀行法施行規則改正を、銀行の子会社規制・議決権保有規制から事業承継会社、投資専門子会社の業務範囲まで条文・パブリックコメント回答と接続して解説。上場会社への事業承継支援、合同会社・匿名組合・信託受益権等による資金供給、国内主体限定、原則10年の保有期間といった境界を具体化する。",
+      whyImportant: [
+        "『上場会社にも投資できるようになった』という結論だけでなく、銀行本体と投資専門子会社の議決権規制の違いまで追える",
+        "株式会社以外への資金供給の拡張を、合同会社・匿名組合・信託受益権等の具体的な投資手法へ落としている",
+        "パブリックコメント回答を使い、資金供給先は国内主体に限られることや事業承継会社の要件・10年制限を確認できる"
+      ],
+      audience: ["銀行・銀行持株会社", "事業承継・M&A担当", "ファンド・投資担当", "金融法務"],
+      audienceReason: "事業承継案件の対象会社、出資主体、議決権比率、投資手法、保有期間を改正後の業務範囲規制に当てはめるため。",
+      categories: ["事業再生・金融", "M&A", "契約"],
+      relatedTopics: ["bank-investment-subsidiaries-business-succession-2026"],
+      relatedIssues: ["bank-investment-subsidiary-funding-scope", "bank-business-succession-listed-companies"],
+      primarySourceIds: ["source-fsa-bank-investment-subsidiary-2026"],
+      reformEventId: "banking-act-investment-subsidiary-2026",
+      reformStageAtPublication: "partially_effective",
+      reformStageSourceIds: ["source-fsa-bank-investment-subsidiary-2026"],
+      legacyReformInference: false,
+      whatChanged: "新規テーマ作成／一次資料の業務範囲拡充を、事業承継会社の要件・議決権規制・投資手法・保有期間という案件設計へ落とす実務解説を追加した。"
+    }
+  ];
+  const existing = new Set((window.ARTICLE_DATA || []).map((item) => item.id));
+  window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat(additions.filter((item) => !existing.has(item.id)));
+})();
