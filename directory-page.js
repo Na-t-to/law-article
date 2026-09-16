@@ -122,10 +122,10 @@
         const timing = group.eventTiming;
         if (!timing) return "unverified";
         if (["planned", "relative", "phased"].includes(timing.status)) return "pending";
-        if (timing.sortKey) return timing.sortKey >= todayKey ? "upcoming" : "completed";
+        if (timing.sortKey) return timing.sortKey > todayKey ? "upcoming" : "completed";
         return "unverified";
       }
-      if (group.effectiveDate?.sortKey) return group.effectiveDate.sortKey >= todayKey ? "upcoming" : "completed";
+      if (group.effectiveDate?.sortKey) return group.effectiveDate.sortKey > todayKey ? "upcoming" : "completed";
       return "unorganized";
     };
     const stateRank = Object.freeze({ upcoming: 0, pending: 1, completed: 2, unverified: 3, unorganized: 3 });
