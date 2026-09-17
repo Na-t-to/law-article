@@ -53,7 +53,8 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({
     "topics-run200.js?v=1",
     "topics-run201.js?v=2",
     "topics-run202.js?v=1",
-    "topics-run203.js?v=1"
+    "topics-run203.js?v=1",
+    "topics-run204.js?v=1"
   ],
   sources: [
     "sources.js?v=14",
@@ -355,6 +356,7 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({
     "articles-run200.js?v=1",
     "articles-run201.js?v=2",
     "articles-run202.js?v=1",
-    "articles-run203.js?v=1"
+    "articles-run203.js?v=1",
+    "articles-run204.js?v=1"
   ]
 });
