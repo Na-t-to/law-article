@@ -3,7 +3,7 @@
     {
       id: "plant-variety-protection-seed-act-2026-amendment",
       title: "種苗法・2026年改正",
-      eventType: "amendment",
+      eventType: "law_amendment",
       lawId: "plant-variety-protection-seed-act",
       lawLabel: "種苗法",
       relatedTopics: ["plant-variety-seed-law-2026"],
