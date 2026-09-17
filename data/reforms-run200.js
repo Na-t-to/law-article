@@ -18,3 +18,51 @@
     "article-kanpo-economic-security-effective-20260916"
   ]);
 })();
+
+(() => {
+  const additions = [
+    {
+      id: "consumer-contract-act-review-2026-interim",
+      title: "消費者契約法・2026年見直し（中間取りまとめ）",
+      eventType: "law_amendment",
+      lawId: "consumer-contract-act",
+      lawLabel: "消費者契約法",
+      relatedTopics: ["consumer-contract-act-review-2026"],
+      effectiveDateStatus: "unknown",
+      matchSourceIds: [
+        "source-caa-consumer-contract-interim-20260910",
+        "source-egov-consumer-contract-interim-comment-20260916"
+      ],
+      sourceIds: [
+        "source-caa-consumer-contract-interim-20260910",
+        "source-egov-consumer-contract-interim-comment-20260916"
+      ],
+      articleIds: ["article-caa-consumer-contract-interim-20260910"]
+    },
+    {
+      id: "specified-commercial-transactions-digital-review-2026-interim",
+      title: "特定商取引法等・デジタル取引規律見直し（2026年中間取りまとめ）",
+      eventType: "law_amendment",
+      lawId: "specified-commercial-transactions-act",
+      lawLabel: "特定商取引法（デジタル取引規律見直し）",
+      relatedTopics: ["digital-transactions-scta-review-2026"],
+      effectiveDateStatus: "unknown",
+      matchSourceIds: [
+        "source-caa-digital-scta-interim-20260910",
+        "source-egov-digital-scta-interim-comment-20260916"
+      ],
+      sourceIds: [
+        "source-caa-digital-scta-interim-20260910",
+        "source-egov-digital-scta-interim-comment-20260916"
+      ],
+      articleIds: [
+        "article-caa-digital-scta-interim-20260910",
+        "article-spring-dark-pattern-ui-20260909"
+      ]
+    }
+  ];
+
+  const existing = new Set((window.REFORM_EVENT_DATA || []).map((item) => item && item.id));
+  const fresh = additions.filter((item) => !existing.has(item.id));
+  if (fresh.length) window.REFORM_EVENT_DATA = (window.REFORM_EVENT_DATA || []).concat(fresh);
+})();
