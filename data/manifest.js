@@ -181,8 +181,7 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({
     "reforms-run207.js?v=1",
     "reforms-run208.js?v=1",
     "reforms-run210.js?v=1",
-    "reforms-run212.js?v=1",
-    "reforms-run213.js?v=1"
+    "reforms-run212.js?v=1"
   ],
   articles: [
     "articles.js?v=15",
