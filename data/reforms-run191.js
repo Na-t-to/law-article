@@ -10,6 +10,6 @@
   event.articleIds = event.articleIds || [];
   pushUnique(event.matchSourceIds, "source-ppc-privacy-rulemaking-basic-1-2026");
   pushUnique(event.sourceIds, "source-ppc-privacy-rulemaking-basic-1-2026");
-  pushUnique(event.articleIds, "article-ppc-privacy-rules-basic-thinking-20260916");
+  pushUnique(event.articleIds, "article-ppc-privacy-rulemaking-basic-1-2026");
   pushUnique(event.articleIds, "article-miyake-privacy-rules-20260917");
 })();
