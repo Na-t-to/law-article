@@ -18,8 +18,8 @@
 
   const reformEventId = "privacy-law-2026-amendment";
   const amendmentSource = "source-privacy-law-2026-amendment";
-  const rulesSource = "source-ppc-privacy-rules-basic-thinking-20260916";
-  const safeguardsSource = "source-ppc-safeguards-guideline-review-20260916";
+  const rulesSource = "source-ppc-privacy-rulemaking-basic-1-2026";
+  const safeguardsSource = "source-ppc-security-measures-guideline-review-2026";
 
   const additions = [
     {
