@@ -123,3 +123,42 @@
   const fresh = additions.filter((item) => !existingIds.has(item.id) && !existingUrls.has(normalizeUrl(item.url)));
   if (fresh.length) window.SOURCE_DATA = (window.SOURCE_DATA || []).concat(fresh);
 })();
+
+(() => {
+  const normalizeUrl = (value) => {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.protocol = "https:";
+      url.hash = "";
+      [...url.searchParams.keys()].forEach((key) => {
+        if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+      });
+      url.hostname = url.hostname.toLowerCase();
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      url.searchParams.sort();
+      return url.toString();
+    } catch {
+      return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
+    }
+  };
+
+  const additions = [
+    {
+      id: "source-caa-kinpodo-funeral-price-order-20260918",
+      title: "株式会社金宝堂に対する景品表示法に基づく措置命令について",
+      type: "government_material",
+      typeLabel: "一次資料・消費者庁／有利誤認・最低価格表示",
+      authority: "消費者庁",
+      publishedAt: "2026-09-18",
+      url: "https://www.caa.go.jp/notice/entry/047522/",
+      importance: "高",
+      whyImportant: "家族葬サービスの『10.45万円〜』等の最低価格表示について、実際には僅かな場合を除き30万8000円以上が必要だったとして有利誤認と判断された最新の執行事例。最低価格・『〜』表示を実際の取引条件と照合する広告審査に使える。",
+      topics: ["advertising-display-control"]
+    }
+  ];
+
+  const existingIds = new Set((window.SOURCE_DATA || []).map((item) => item && item.id));
+  const existingUrls = new Set((window.SOURCE_DATA || []).map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  const fresh = additions.filter((item) => !existingIds.has(item.id) && !existingUrls.has(normalizeUrl(item.url)));
+  if (fresh.length) window.SOURCE_DATA = (window.SOURCE_DATA || []).concat(fresh);
+})();
