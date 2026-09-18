@@ -267,3 +267,56 @@
   const fresh = additions.filter((item) => !existingIds.has(item.id) && !existingUrls.has(normalizeUrl(item.url)));
   if (fresh.length) window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat(fresh);
 })();
+
+(() => {
+  const normalizeUrl = (value) => {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.protocol = "https:";
+      url.hash = "";
+      [...url.searchParams.keys()].forEach((key) => {
+        if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+      });
+      url.hostname = url.hostname.toLowerCase();
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      url.searchParams.sort();
+      return url.toString();
+    } catch {
+      return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
+    }
+  };
+
+  const additions = [
+    {
+      id: "article-caa-kinpodo-funeral-price-order-20260918",
+      title: "株式会社金宝堂に対する景品表示法に基づく措置命令について",
+      publisher: "消費者庁",
+      author: "消費者庁",
+      publishedAt: "2026-09-18",
+      collectedAt: "2026-09-18",
+      url: "https://www.caa.go.jp/notice/entry/047522/",
+      sourceType: "primary",
+      sourceLabel: "一次資料・消費者庁／有利誤認・最低価格表示",
+      status: "adopted",
+      summary: "消費者庁が株式会社金宝堂の家族葬サービスをめぐるテレビCMについて、景品表示法5条2号の有利誤認として措置命令した事例。CMでは『お得なプランがこの価格から』『家族葬 10.45万円〜（税込）』等と表示し、最低料金10万4500円で提供されるかのように示していたが、実際には僅かな場合を除き30万8000円以上の費用が必要だった。最低価格・『〜』表示を、実際にその価格で取引できる条件と照合して広告審査する必要性を示す。",
+      whyImportant: [
+        "『○円〜』という出発価格だけでなく、通常の取引でその価格が実際に成立するかを広告審査で確認すべきことが分かる",
+        "葬儀等の追加費用が生じやすい役務で、広告上の最低価格と実際の必要費用の大きな乖離が有利誤認となった具体例である",
+        "価格訴求を法務審査する際、クリエイティブだけでなく料金表・必須費用・例外条件・広告価格で成立する実例まで確認する実務につながる"
+      ],
+      audience: ["企業法務", "広告・マーケティング", "消費者法・表示担当", "サービス企画・料金設計", "コンプライアンス"],
+      audienceReason: "最低価格や『〜』価格を使う広告で、実際の成約条件・必須費用・適用可能性を表示審査へ取り込むため。",
+      categories: ["消費者法・表示", "危機管理・コンプライアンス"],
+      relatedTopics: ["advertising-display-control"],
+      relatedIssues: ["display-minimum-price-claims"],
+      primarySourceIds: ["source-caa-kinpodo-funeral-price-order-20260918"],
+      legacyReformInference: false,
+      whatChanged: "新着執行事例／家族葬の『10.45万円〜』表示と実際の通常必要費用30.8万円以上の乖離を有利誤認とした2026年9月18日措置命令を追加した。"
+    }
+  ];
+
+  const existingIds = new Set((window.ARTICLE_DATA || []).map((item) => item && item.id));
+  const existingUrls = new Set((window.ARTICLE_DATA || []).map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  const fresh = additions.filter((item) => !existingIds.has(item.id) && !existingUrls.has(normalizeUrl(item.url)));
+  if (fresh.length) window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat(fresh);
+})();
