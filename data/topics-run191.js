@@ -1,8 +1,8 @@
 (() => {
   const verifiedAt = "2026-09-17";
-  const rulesSource = "source-ppc-privacy-rules-basic-thinking-20260916";
+  const rulesSource = "source-ppc-privacy-rulemaking-basic-1-2026";
   const rulesArticle = "article-ppc-privacy-rules-basic-thinking-20260916";
-  const safeguardsSource = "source-ppc-safeguards-guideline-review-20260916";
+  const safeguardsSource = "source-ppc-security-measures-guideline-review-2026";
   const safeguardsArticle = "article-ppc-safeguards-guideline-review-20260916";
 
   const pushUnique = (list, value) => {
