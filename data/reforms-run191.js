@@ -11,4 +11,5 @@
   pushUnique(event.matchSourceIds, "source-ppc-privacy-rules-basic-thinking-20260916");
   pushUnique(event.sourceIds, "source-ppc-privacy-rules-basic-thinking-20260916");
   pushUnique(event.articleIds, "article-ppc-privacy-rules-basic-thinking-20260916");
+  pushUnique(event.articleIds, "article-miyake-privacy-rules-20260917");
 })();
