@@ -39,7 +39,7 @@
       categories: ["個人情報", "AI・デジタル", "情報セキュリティ"],
       relatedTopics: ["personal-information-protection-2026-amendment"],
       relatedIssues: ["privacy-2026-consent-exceptions", "privacy-2026-children", "privacy-2026-biometric"],
-      primarySourceIds: ["source-ppc-privacy-rulemaking-basic-1-2026"],
+      primarySourceIds: ["source-privacy-law-2026-amendment", "source-ppc-privacy-rulemaking-basic-1-2026"],
       reformEventId: "privacy-law-2026-amendment",
       reformStageAtPublication: "finalized_pending",
       reformStageSourceIds: ["source-privacy-law-2026-amendment", "source-ppc-privacy-rulemaking-basic-1-2026"],
