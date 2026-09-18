@@ -105,6 +105,36 @@
       reformStageSourceIds: ["source-cao-space-act-enactment-2026", "source-cao-space-act-lawtext-2026"],
       legacyReformInference: false,
       whatChanged: "バックフィル／2026年宇宙活動法改正について、打上げ許可の審査事項、搭載物の適合認定、第三者損害の責任集中と、将来規制として残る事項を補強した。"
+    },
+    {
+      id: "article-miyake-privacy-rules-20260917",
+      title: "令和8年改正個人情報保護法　政令・規則の中身が動き出した～同意例外・子供・顔特徴データ・安全管理措置",
+      publisher: "三宅法律事務所",
+      author: "渡邉雅之",
+      publishedAt: "2026-09-17",
+      collectedAt: "2026-09-18",
+      url: "https://www.miyake.gr.jp/notice/%E3%80%90%E5%8B%95%E7%94%BB%E8%A7%A3%E8%AA%AC%E3%83%BB%E5%8B%95%E7%94%BB%E8%B3%87%E6%96%99%E3%80%91%E4%BB%A4%E5%92%8C8%E5%B9%B4%E6%94%B9%E6%AD%A3%E5%80%8B%E4%BA%BA%E6%83%85%E5%A0%B1%E4%BF%9D-2/",
+      sourceType: "secondary",
+      sourceLabel: "実務解説・三宅法律事務所／2026年改正個人情報保護法の政令・規則案と施行準備",
+      status: "adopted",
+      summary: "2026年9月16日の第369回個人情報保護委員会資料を、成立済みの改正法と未確定の政令・規則・ガイドラインに切り分けて解説する。新しい同意例外の枠、家族による予約や3Dセキュア等の検討例、16歳未満の子供の個人情報、顔特徴データの周知、利用停止等、安全管理措置の例示見直しまでを条文と資料の関係で整理する。特に、政令・規則は法律の枠を超えて例外を広げられないため柔軟な下位ルールを前提に設計しないこと、安全管理措置ガイドラインの見直しは改正法本体より早い日程で進むため別工程で準備することを実務上の注意点として示す。",
+      whyImportant: [
+        "9月16日の一次資料を、成立済みの改正法と案段階の下位ルールに分け、企業が今確定事項として扱える範囲を明確にしている",
+        "同意例外、子供、顔特徴データ、安全管理措置を、データフロー・同意UI・年齢対応・カメラ周知・セキュリティ管理という実装課題へ接続している",
+        "政令・規則で例外が広く救済されることを前提にしないという解釈上の境界を示し、施行準備の過剰な楽観を避けられる",
+        "安全管理措置ガイドライン見直しが改正法本体と別の早い工程で進む点を示し、プライバシー部門とセキュリティ部門の準備順序を組み立てやすい"
+      ],
+      audience: ["企業法務", "個人情報・プライバシー担当", "AI・データ担当", "プロダクト・UX担当", "情報セキュリティ担当"],
+      audienceReason: "2026年改正法の施行準備を、成立済み法律・案段階の下位ルール・安全管理措置ガイドラインの別工程に分け、同意UIや年齢対応、顔特徴データ、セキュリティ実装へ落とすため。",
+      categories: ["個人情報", "AI・デジタル", "情報セキュリティ"],
+      relatedTopics: ["personal-information-protection-2026-amendment", "privacy-enforcement-breach-response"],
+      relatedIssues: ["privacy-2026-consent-exceptions", "privacy-2026-children", "privacy-2026-biometric", "privacy-safeguards-guideline-modernization-2026"],
+      primarySourceIds: ["source-privacy-law-2026-amendment", "source-ppc-privacy-rules-basic-thinking-20260916", "source-ppc-safeguards-guideline-review-20260916"],
+      reformEventId: "privacy-law-2026-amendment",
+      reformStageAtPublication: "finalized_pending",
+      reformStageSourceIds: ["source-privacy-law-2026-amendment", "source-ppc-privacy-rules-basic-thinking-20260916"],
+      legacyReformInference: false,
+      whatChanged: "実務解説追加／9月16日に具体化が始まった政令・規則案を、成立済み法律との境界、同意UI・子供・顔特徴データ・安全管理措置の実装、施行準備の時間軸まで含めて整理した。"
     }
   ];
 
