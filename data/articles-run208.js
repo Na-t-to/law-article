@@ -49,32 +49,6 @@
       reformStageSourceIds: ["source-jftc-distribution-guideline-2026", "source-jftc-distribution-guideline-current-20260708"],
       legacyReformInference: false,
       whatChanged: "既存テーマ補完／ガイドラインの抽象基準を、返品・在庫・費用・協議・契約書と実運用の突合という企業実務へ落とし込む解説を追加した。"
-    },
-    {
-      id: "article-ai-ip-principle-code-filing-20260908",
-      title: "生成AI知財プリンシプル・コードの届出開始日及び届出様式",
-      publisher: "内閣官房 知的財産戦略本部",
-      author: "内閣府 知的財産戦略推進事務局",
-      publishedAt: "2026-09-08",
-      collectedAt: "2026-09-18",
-      url: "https://www.cas.go.jp/jp/seisakukaigi/titeki2/ai_principle_code/index.html",
-      sourceType: "primary",
-      sourceLabel: "一次資料・運用開始案内",
-      status: "adopted",
-      summary: "2026年8月25日に確定した生成AI知財プリンシプル・コードについて、内閣府への受入れ届出を2026年10月26日から開始すると確定し、届出様式を公表した公式案内。届出先等は開始日に案内するとされているため、コードの法的性質を変えるものではないが、受入れを検討する生成AI開発者・提供者にとって準備期限を具体化する運用更新である。",
-      whyImportant: [
-        "これまで未確定だった受入れ届出の開始日が2026年10月26日に確定した",
-        "公式様式が公表され、原則ごとのコンプライ・オア・エクスプレイン方針と対外説明を届出実務へ接続できる",
-        "届出先等は10月26日に案内予定であり、確定事項と今後の運用情報を分けて追える"
-      ],
-      audience: ["企業法務", "知財担当", "AIサービス提供事業者", "AIガバナンス担当"],
-      audienceReason: "プリンシプル・コードの受入れを検討する事業者が、抽象的な『今後開始』ではなく具体的な日程と公式様式を前提に社内承認・開示・届出準備を進めるため。",
-      categories: ["AI・デジタル", "知的財産", "危機管理・コンプライアンス"],
-      relatedTopics: ["generative-ai-ip-principle-code"],
-      relatedIssues: ["ai-ip-code-acceptance"],
-      primarySourceIds: ["source-ai-ip-principle-code-2026", "source-ai-ip-principle-code-filing-20260908"],
-      legacyReformInference: false,
-      whatChanged: "既存テーマ更新／受入れ届出の開始日が2026年10月26日に確定し、公式様式が公表されたため、未確定だった運用準備を具体化した。"
     }
   ];
 

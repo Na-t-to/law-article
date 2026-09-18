@@ -40,18 +40,6 @@
       importance: "高",
       whyImportant: "いわゆる指定価格制度について、メーカーがユーザー販売までの危険・費用を負担し流通業者が単なる取次ぎとして機能する場合の考え方と、荷造費・人件費・研修費・保険料等を含む費用確認・負担方法を具体化する公式Q&A。",
       topics: ["distribution-resale-price"]
-    },
-    {
-      id: "source-ai-ip-principle-code-filing-20260908",
-      title: "生成AI知財プリンシプル・コードの届出開始日及び届出様式",
-      type: "government_material",
-      typeLabel: "一次資料・内閣府／届出運用",
-      authority: "内閣府 知的財産戦略推進事務局",
-      publishedAt: "2026-09-08",
-      url: "https://www.cas.go.jp/jp/seisakukaigi/titeki2/ai_principle_code/index.html",
-      importance: "高",
-      whyImportant: "プリンシプル・コード1（4）に基づく受入れ届出を2026年10月26日から開始することと公式様式を示した運用資料。届出先等は開始日に案内するとされ、受入れ準備の具体的な日程管理に使える。",
-      topics: ["generative-ai-ip-principle-code"]
     }
   ];
 
