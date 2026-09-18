@@ -21,3 +21,51 @@
   const fresh = additions.filter((item) => !existing.has(item.id));
   if (fresh.length) window.REFORM_EVENT_DATA = (window.REFORM_EVENT_DATA || []).concat(fresh);
 })();
+
+(() => {
+  const additions = [
+    {
+      id: "specified-commercial-transactions-digital-review-2026-interim",
+      title: "特定商取引法・デジタル取引規律 2026年見直し",
+      eventType: "policy_review",
+      lawId: "specified-commercial-transactions-act-digital-review",
+      lawLabel: "特定商取引法・デジタル取引規律",
+      relatedTopics: ["digital-commerce-tokusho-review", "digital-transactions-scta-review-2026"],
+      effectiveDateStatus: "unknown",
+      effectiveDateNote: "2026年9月時点は中間取りまとめ・意見募集段階であり、法案提出・成立・施行日は確定していない。PIO-NET分析は制度検討の基礎資料として接続し、それ自体を新ルールとして扱わない。",
+      matchSourceIds: [
+        "source-caa-digital-scta-interim-20260910",
+        "source-egov-digital-scta-interim-comment-20260916"
+      ],
+      sourceIds: [
+        "source-caa-digital-scta-interim-20260910",
+        "source-egov-digital-scta-interim-comment-20260916",
+        "source-caa-pionet-door-to-door-analysis-20260917"
+      ],
+      articleIds: [
+        "article-caa-digital-scta-interim-20260910",
+        "article-spring-dark-pattern-ui-20260909",
+        "article-caa-pionet-door-to-door-analysis-20260917"
+      ]
+    }
+  ];
+
+  const existing = new Set((window.REFORM_EVENT_DATA || []).map((item) => item && item.id));
+  const fresh = additions.filter((item) => !existing.has(item.id));
+  if (fresh.length) window.REFORM_EVENT_DATA = (window.REFORM_EVENT_DATA || []).concat(fresh);
+
+  const appendUnique = (items, additions) => [...new Set([...(Array.isArray(items) ? items : []), ...additions])];
+  const consumerEvent = (window.REFORM_EVENT_DATA || []).find((item) => item?.id === "consumer-contract-law-review-2026");
+  if (consumerEvent) {
+    consumerEvent.relatedTopics = appendUnique(consumerEvent.relatedTopics, ["consumer-contract-act-review-2026"]);
+    consumerEvent.sourceIds = appendUnique(consumerEvent.sourceIds, [
+      "source-caa-consumer-contract-interim-20260910",
+      "source-egov-consumer-contract-interim-comment-20260916"
+    ]);
+    consumerEvent.matchSourceIds = appendUnique(consumerEvent.matchSourceIds, [
+      "source-caa-consumer-contract-interim-20260910",
+      "source-egov-consumer-contract-interim-comment-20260916"
+    ]);
+    consumerEvent.articleIds = appendUnique(consumerEvent.articleIds, ["article-caa-consumer-contract-interim-20260910"]);
+  }
+})();
