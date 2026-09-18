@@ -169,3 +169,52 @@
     addUnique(privacy.practicalImpacts, ["フォレンジック調査の平時準備・証拠保全"]);
   }
 })();
+
+(() => {
+  const addUnique = (target, values) => {
+    if (!Array.isArray(target)) return;
+    for (const value of values || []) if (value && !target.includes(value)) target.push(value);
+  };
+
+  const topic = (window.TOPIC_DATA || []).find((item) => item && item.slug === "advertising-display-control");
+  if (!topic) return;
+
+  topic.lastUpdated = "2026-09-18";
+  topic.lastVerified = "2026-09-18";
+  if (!Array.isArray(topic.sourceIds)) topic.sourceIds = [];
+  addUnique(topic.sourceIds, ["source-caa-kinpodo-funeral-price-order-20260918"]);
+
+  topic.currentSummary = topic.currentSummary || { facts: [], interpretations: [], implications: [], uncertain: [] };
+  for (const key of ["facts", "interpretations", "implications", "uncertain"]) {
+    if (!Array.isArray(topic.currentSummary[key])) topic.currentSummary[key] = [];
+  }
+  addUnique(topic.currentSummary.facts, [
+    "消費者庁は2026年9月18日、株式会社金宝堂の家族葬サービスのテレビCMで『家族葬 10.45万円〜（税込）』等と表示し、最低料金10万4500円で提供されるかのように示した一方、実際には僅かな場合を除き30万8000円以上が必要だったとして、景品表示法5条2号の有利誤認で措置命令した。"
+  ]);
+  addUnique(topic.currentSummary.interpretations, [
+    "最低価格・『○円〜』表示は文言だけを見るのではなく、その価格で実際に役務提供を受けられる条件・適用可能性と、表示全体から一般消費者が受ける認識を突合する必要がある。"
+  ]);
+  addUnique(topic.currentSummary.implications, [
+    "料金広告の承認時に、料金表、必須費用・必須オプション、例外条件、広告価格で成立する実例を確認し、通常必要となる費用との大きな乖離を隠す『〜』表示になっていないかを審査する。"
+  ]);
+
+  if (!Array.isArray(topic.issues)) topic.issues = [];
+  if (!topic.issues.some((item) => item && item.id === "display-minimum-price-claims")) {
+    topic.issues.push({
+      id: "display-minimum-price-claims",
+      title: "『○円〜』などの最低価格表示をどう審査するか",
+      status: "authoritative",
+      stage: "effective",
+      views: [],
+      conclusion: "最低価格・『○円〜』を表示する場合、一般消費者がその価格で役務提供を受けられる条件と実際の取引条件を確認する。2026年9月18日の金宝堂措置命令では、10万4500円から提供されるように表示していた一方、僅かな場合を除き30万8000円以上が必要であり、有利誤認と判断された。",
+      exception: "『○円〜』という表現自体が一律に禁止されるわけではなく、表示全体から受ける最低価格の認識と、その価格で実際に取引できる条件・適用可能性を個別に確認する。",
+      uncertain: "どの程度の適用例の少なさや追加費用が『実際のものよりも著しく有利』に当たるかは、表示内容と取引実態ごとの判断となる。",
+      sourceIds: ["source-caa-kinpodo-funeral-price-order-20260918"]
+    });
+  }
+
+  if (!Array.isArray(topic.referenceArticleIds)) topic.referenceArticleIds = [];
+  addUnique(topic.referenceArticleIds, ["article-caa-kinpodo-funeral-price-order-20260918"]);
+  if (Array.isArray(topic.practicalImpacts)) addUnique(topic.practicalImpacts, ["最低価格・『〜』表示と実取引条件の照合"]);
+  if (Array.isArray(topic.workflowTags)) addUnique(topic.workflowTags, ["最低価格・『〜』表示と実取引条件の照合"]);
+})();
