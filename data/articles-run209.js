@@ -125,6 +125,32 @@
       ],
       legacyReformInference: false,
       whatChanged: "新規テーマ／JC-STARの公式要件を、製品棚卸し・GAP分析・証跡・調達判断へ落とす代表的な実務解説を追加した。"
+    },
+    {
+      id: "article-tmi-dnfbp-aml-cft-20260917",
+      title: "【犯収法ブログ】事業会社（DNFBPs）のAML/CFT対策",
+      publisher: "TMI総合法律事務所",
+      author: "TMI総合法律事務所",
+      publishedAt: "2026-09-17",
+      collectedAt: "2026-09-18",
+      url: "https://www.tmi.gr.jp/eyes/blog/2026/18831.html",
+      sourceType: "secondary",
+      sourceLabel: "実務解説・TMI総合法律事務所／DNFBPsのAML・CFT",
+      status: "adopted",
+      summary: "金融機関以外の事業会社、とりわけ宅建業者、宝石・貴金属等取扱事業者、郵便物受取・電話受付代行・電話転送サービス等のDNFBPsについて、犯収法上の義務、各省庁ガイドライン、リスクベース・アプローチ、有効性検証を一体で整理する実務解説。2027年4月の本人確認方法厳格化、2026年改正による法人口座悪用対策も踏まえ、統括管理者、内部規程、リスク評価、教育、内部監査、取締役会での実質的議論、顧客管理・取引モニタリング、疑わしい取引の届出までセルフチェックに落としている。DNFBPsに該当しない事業会社については、犯収法上の特定事業者としての義務と、銀行等への確認協力・自社サービスや法人口座の悪用防止という一般的なコンプライアンス対応を区別している。",
+      whyImportant: [
+        "金融機関中心で語られがちなAML/CFTを、DNFBPsの事業会社に必要な統括管理・規程・リスク評価・教育・監査・取締役会議論まで具体化している",
+        "『リスクベースだから法定の取引時確認要件を緩和できる』わけではないという境界を示し、法定義務とリスクに応じた追加措置を切り分けやすい",
+        "DNFBPsに該当しない一般事業会社にも、犯収法上の特定事業者義務を拡張せず、法人口座やサービスの悪用・捜査協力・レピュテーションを別のリスク管理として整理できる"
+      ],
+      audience: ["企業法務", "コンプライアンス", "内部監査", "宅建・不動産事業", "宝石・貴金属等取扱事業", "本人確認・顧客管理担当"],
+      audienceReason: "自社が犯収法上の特定事業者・DNFBPに当たるかを起点に、2026年改正と2027年本人確認厳格化を規程・システム・監査・経営報告へ落とすため。",
+      categories: ["危機管理・コンプライアンス", "契約・取引"],
+      relatedTopics: ["aml-kyc-criminal-proceeds"],
+      relatedIssues: ["aml-2026-account-remittance", "aml-fictitious-account", "aml-identity-verification-2027"],
+      primarySourceIds: ["source-npa-aml-amendment-2026", "source-npa-aml-overview-2026"],
+      legacyReformInference: false,
+      whatChanged: "既存AMLテーマ／金融機関以外のDNFBPsについて、法定義務・リスクベース・有効性検証・ガバナンスを実務フローへ落とす代表的解説を追加した。"
     }
   ];
 
