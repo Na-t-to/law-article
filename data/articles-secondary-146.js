@@ -129,10 +129,10 @@
       categories: ["個人情報", "AI・デジタル", "情報セキュリティ"],
       relatedTopics: ["personal-information-protection-2026-amendment", "privacy-enforcement-breach-response"],
       relatedIssues: ["privacy-2026-consent-exceptions", "privacy-2026-children", "privacy-2026-biometric", "privacy-safeguards-guideline-modernization-2026"],
-      primarySourceIds: ["source-privacy-law-2026-amendment", "source-ppc-privacy-rules-basic-thinking-20260916", "source-ppc-safeguards-guideline-review-20260916"],
+      primarySourceIds: ["source-privacy-law-2026-amendment", "source-ppc-privacy-rulemaking-basic-1-2026", "source-ppc-security-measures-guideline-review-2026"],
       reformEventId: "privacy-law-2026-amendment",
       reformStageAtPublication: "finalized_pending",
-      reformStageSourceIds: ["source-privacy-law-2026-amendment", "source-ppc-privacy-rules-basic-thinking-20260916"],
+      reformStageSourceIds: ["source-privacy-law-2026-amendment", "source-ppc-privacy-rulemaking-basic-1-2026"],
       legacyReformInference: false,
       whatChanged: "実務解説追加／9月16日に具体化が始まった政令・規則案を、成立済み法律との境界、同意UI・子供・顔特徴データ・安全管理措置の実装、施行準備の時間軸まで含めて整理した。"
     }
