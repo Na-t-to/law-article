@@ -159,3 +159,111 @@
   const fresh = additions.filter((item) => !existingIds.has(item.id) && !existingUrls.has(normalizeUrl(item.url)));
   if (fresh.length) window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat(fresh);
 })();
+
+(() => {
+  const normalizeUrl = (value) => {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.protocol = "https:";
+      url.hash = "";
+      [...url.searchParams.keys()].forEach((key) => {
+        if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+      });
+      url.hostname = url.hostname.toLowerCase();
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      url.searchParams.sort();
+      return url.toString();
+    } catch {
+      return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
+    }
+  };
+
+  const additions = [
+    {
+      id: "article-fsa-cyber-common-reporting-guidelines-20260918",
+      title: "「主要行等向けの総合的な監督指針」等の一部改正（案）に対するパブリックコメントの結果等の公表について",
+      publisher: "金融庁",
+      author: "金融庁",
+      publishedAt: "2026-09-18",
+      collectedAt: "2026-09-18",
+      url: "https://www.fsa.go.jp/news/r8/sonota/20260918/20260918.html",
+      sourceType: "primary",
+      sourceLabel: "一次資料・金融庁／サイバーインシデント共通報告様式",
+      status: "adopted",
+      summary: "2026年9月15日の関係省庁申合せ改正で『その他サイバー攻撃等事案共通様式』が追加されたことを受け、金融庁が所管業者のコンピュータシステム障害・サイバーセキュリティ事案の報告を、従来様式からDDoS・ランサムウェア・その他サイバー攻撃等の関係省庁共通様式へ移行するため、監督指針・事務ガイドラインを最終改正した資料。主要行、地域金融機関、保険、金融商品取引業者、貸金、資金移動、暗号資産等を横断し、2026年10月1日から適用される。",
+      whyImportant: [
+        "金融庁所管業者のサイバーインシデント報告様式の移行が案段階を終え、2026年10月1日の適用日と対象監督指針が確定した",
+        "銀行・証券だけでなく保険、貸金、資金移動、暗号資産等を含む広い金融セクターで、CSIRTと当局報告のテンプレート更新に直結する",
+        "2026年9月15日に確定した関係省庁共通様式と、金融庁の各業態別監督指針を同じ報告実務として接続できる"
+      ],
+      audience: ["金融機関の法務・コンプライアンス", "情報セキュリティ・CSIRT", "当局報告担当", "内部監査", "危機管理"],
+      audienceReason: "2026年10月1日までに、従来の監督当局報告様式と新共通様式の項目対応、社内報告・承認・提出フローを最終化するため。",
+      categories: ["情報セキュリティ", "危機管理・コンプライアンス", "金融商品取引・開示・IR"],
+      relatedTopics: ["cyber-countermeasures-critical-infrastructure"],
+      relatedIssues: ["cyber-countermeasures-reporting"],
+      primarySourceIds: ["source-fsa-cyber-common-reporting-guidelines-20260918", "source-cyber-report-form-notice-2026"],
+      reformEventId: "fsa-supervisory-guidelines-cyber-reporting-2026",
+      reformStageAtPublication: "finalized_pending",
+      reformStageSourceIds: ["source-fsa-cyber-common-reporting-guidelines-20260918"],
+      legacyReformInference: false,
+      whatChanged: "法改正情報更新／金融庁監督指針等のサイバーインシデント報告様式改正が最終化され、2026年10月1日から関係省庁共通様式へ移行することが確定した。"
+    },
+    {
+      id: "article-ppc-forensics-keypoints-20260116",
+      title: "不正アクセス発生時のフォレンジック調査の有効活用に向けた着眼点",
+      publisher: "個人情報保護委員会",
+      author: "個人情報保護法サイバーセキュリティ連絡会",
+      publishedAt: "2026-01-16",
+      collectedAt: "2026-09-18",
+      url: "https://www.ppc.go.jp/files/pdf/260116_forensics_keypoints.pdf",
+      sourceType: "primary",
+      sourceLabel: "一次資料・個人情報保護法サイバーセキュリティ連絡会／フォレンジック",
+      status: "adopted",
+      summary: "不正アクセス発生時のフォレンジック調査を有効に使うため、平時の情報資産把握・ログ保管・対応フロー、事故時のエスカレーション・早期封じ込め・証拠保全、必要に応じた調査会社等への相談、調査報告の原因・侵害範囲・再発防止への活用を整理した一次資料。個人データの安全管理措置と事故対応を接続する一方、フォレンジック調査会社へ依頼すること自体が個人情報保護法やサイバー対処能力強化法上の一律の義務ではないことも明記する。",
+      whyImportant: [
+        "抽象的な安全管理措置を、情報資産台帳、ログ、対応フロー、封じ込め、証拠保全という事故対応の準備項目へ落とせる",
+        "復旧を急いで証拠や侵入経路の手掛かりを失うリスクを避け、漏えいの有無・影響範囲・再発防止を説明できる調査設計につながる",
+        "専門調査を有力な手段として示しつつ、外部フォレンジック会社への依頼自体を一律の法定義務としない境界が明確"
+      ],
+      audience: ["企業法務", "プライバシー・個人情報担当", "情報セキュリティ・CSIRT", "内部監査", "危機管理・BCP"],
+      audienceReason: "事故が起きてから調査方法を決めるのではなく、平時に証拠・ログ・担当・外部専門家への連絡手順を準備し、復旧と法的評価を両立するため。",
+      categories: ["個人情報", "情報セキュリティ", "危機管理・コンプライアンス"],
+      relatedTopics: ["privacy-enforcement-breach-response"],
+      relatedIssues: ["privacy-incident-forensics-readiness", "privacy-enforcement-safety-management", "privacy-enforcement-breach-reporting"],
+      primarySourceIds: ["source-ppc-forensics-keypoints-20260116"],
+      legacyReformInference: false,
+      whatChanged: "バックフィル／不正アクセス対応について、平時のログ・資産把握から封じ込め・証拠保全・フォレンジック調査活用までを一次資料で補強した。"
+    },
+    {
+      id: "article-miyake-ransomware-72h-20260918",
+      title: "【動画解説・動画資料】法務・経営のためのサイバーセキュリティ用語　～ランサムウェア事案の『72時間』で読み解く実務地図",
+      publisher: "弁護士法人三宅法律事務所",
+      author: "渡邉雅之",
+      publishedAt: "2026-09-18",
+      collectedAt: "2026-09-18",
+      url: "https://www.miyake.gr.jp/notice/%E3%80%90%E5%8B%95%E7%94%BB%E8%A7%A3%E8%AA%AC%E3%83%BB%E5%8B%95%E7%94%BB%E8%B3%87%E6%96%99%E3%80%91%E6%B3%95%E5%8B%99%E3%83%BB%E7%B5%8C%E5%96%B6%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E3%82%B5%E3%82%A4/",
+      sourceType: "secondary",
+      sourceLabel: "実務解説・三宅法律事務所／ランサムウェア事故対応・法務",
+      status: "adopted",
+      summary: "架空の中堅メーカーのランサムウェア事案を、侵入前から事故1か月後の取締役会までの時間軸で追い、EDR・SOC・CSIRT・ゼロトラスト等の技術用語を法務・監査・経営が『何を聞き返すか』へ変換する実務解説。トリアージ、封じ込め、フォレンジックと証拠保全、個人情報保護法26条等の報告・通知、適時開示・業法報告、公表文の確定事実と調査中事項の区別、取締役会での残余リスクまで一続きに整理する。2026年9月16日のPPC安全管理措置見直しは案段階であることを明示し、復旧を急ぐ現場と証拠を残す法務の衝突も扱う。",
+      whyImportant: [
+        "技術用語集ではなく、事故の時系列に沿って法務・監査・経営が確認すべき質問と判断ポイントへ変換している",
+        "復旧、証拠保全、漏えい判断、当局報告、公表、取締役会説明を一つのインシデント対応フローとして読める",
+        "PPCの2026年9月安全管理措置見直しを最終ルールと誤認せず、1月のフォレンジック一次資料と接続して実務準備へ落としている"
+      ],
+      audience: ["企業法務", "情報セキュリティ・CSIRT", "内部監査", "経営企画・取締役会事務局", "プライバシー担当"],
+      audienceReason: "サイバー事故の初動から報告・公表・取締役会説明まで、技術担当との共通言語と判断順序を整えるため。",
+      categories: ["情報セキュリティ", "危機管理・コンプライアンス", "個人情報", "会社法・ガバナンス"],
+      relatedTopics: ["privacy-enforcement-breach-response"],
+      relatedIssues: ["privacy-incident-forensics-readiness", "privacy-enforcement-breach-reporting", "privacy-enforcement-safety-management"],
+      primarySourceIds: ["source-ppc-forensics-keypoints-20260116", "source-ppc-security-measures-guideline-review-2026"],
+      legacyReformInference: false,
+      whatChanged: "新着実務解説／ランサムウェア事故の技術・法務・報告・公表・取締役会対応を72時間の時間軸で統合し、フォレンジック準備とPPC安全管理措置見直しへ接続した。"
+    }
+  ];
+
+  const existingIds = new Set((window.ARTICLE_DATA || []).map((item) => item && item.id));
+  const existingUrls = new Set((window.ARTICLE_DATA || []).map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  const fresh = additions.filter((item) => !existingIds.has(item.id) && !existingUrls.has(normalizeUrl(item.url)));
+  if (fresh.length) window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat(fresh);
+})();

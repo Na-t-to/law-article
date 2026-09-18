@@ -109,3 +109,63 @@
   const fresh = additions.filter((item) => !existing.has(item.slug));
   if (fresh.length) window.TOPIC_DATA = (window.TOPIC_DATA || []).concat(fresh);
 })();
+
+(() => {
+  const addUnique = (target, values) => {
+    if (!Array.isArray(target)) return;
+    for (const value of values || []) if (value && !target.includes(value)) target.push(value);
+  };
+
+  const cyber = (window.TOPIC_DATA || []).find((item) => item && item.slug === "cyber-countermeasures-critical-infrastructure");
+  if (cyber) {
+    cyber.lastUpdated = "2026-09-18";
+    cyber.lastVerified = "2026-09-18";
+    addUnique(cyber.sourceIds, ["source-fsa-cyber-common-reporting-guidelines-20260918"]);
+    addUnique(cyber.overview, [
+      "2026年9月18日、金融庁は監督指針・事務ガイドラインのサイバーインシデント報告様式改正を最終化した。9月15日の関係省庁申合せ改正で追加された『その他サイバー攻撃等事案共通様式』を含むDDoS・ランサムウェア・その他の共通様式へ、金融庁所管業者の従来報告様式を2026年10月1日から移行する。"
+    ]);
+    cyber.currentSummary = cyber.currentSummary || { facts: [], interpretations: [], implications: [], uncertain: [] };
+    addUnique(cyber.currentSummary.facts, [
+      "金融庁は2026年9月18日、主要行・地域金融機関・保険・金融商品取引業者・貸金・資金移動・暗号資産等に係る監督指針・事務ガイドラインの報告様式改正を最終化し、2026年10月1日から関係省庁共通様式へ移行することを確定した。"
+    ]);
+    addUnique(cyber.currentSummary.implications, [
+      "金融庁所管業者は、従来のシステム障害・サイバー事案報告様式と共通様式の項目対応を確認し、CSIRT・法務・監督当局連絡のテンプレートと入力責任を2026年10月1日までに更新する。"
+    ]);
+    const issue = (cyber.issues || []).find((item) => item && item.id === "cyber-countermeasures-reporting");
+    if (issue) addUnique(issue.sourceIds, ["source-fsa-cyber-common-reporting-guidelines-20260918"]);
+    if (Array.isArray(cyber.referenceArticleIds)) addUnique(cyber.referenceArticleIds, ["article-fsa-cyber-common-reporting-guidelines-20260918"]);
+    addUnique(cyber.practicalImpacts, ["金融庁監督下の金融機関等：サイバー報告様式を関係省庁共通様式へ移行"]);
+  }
+
+  const privacy = (window.TOPIC_DATA || []).find((item) => item && item.slug === "privacy-enforcement-breach-response");
+  if (privacy) {
+    privacy.lastUpdated = "2026-09-18";
+    privacy.lastVerified = "2026-09-18";
+    addUnique(privacy.sourceIds, ["source-ppc-forensics-keypoints-20260116"]);
+    addUnique(privacy.overview, [
+      "2026年1月16日の『不正アクセス発生時のフォレンジック調査の有効活用に向けた着眼点』は、平時の情報資産・ログ・対応フローの整備、初動の封じ込めと証拠保全、専門調査の選定・活用を一連の事故対応として整理している。フォレンジック会社への調査依頼そのものが法令上の一律義務であるとはしていない。"
+    ]);
+    privacy.currentSummary = privacy.currentSummary || { facts: [], interpretations: [], implications: [], uncertain: [] };
+    addUnique(privacy.currentSummary.facts, [
+      "個人情報保護法サイバーセキュリティ連絡会は2026年1月16日、不正アクセス時のフォレンジック活用について、情報資産の把握、適切なログ保管、対応フロー、早期の封じ込め、必要に応じた専門機関への相談、調査結果の原因・影響範囲・再発防止への利用を整理した。"
+    ]);
+    addUnique(privacy.currentSummary.interpretations, [
+      "フォレンジックは漏えいの有無・侵入経路・被害範囲を確認する有力な手段だが、外部調査会社への依頼自体が個人情報保護法上の一律の法定義務というわけではない。事故の性質と必要性に応じて用いる。"
+    ]);
+    addUnique(privacy.currentSummary.implications, [
+      "復旧を急ぐ場面でも証拠を失わないよう、平時から情報資産台帳、ログ取得・保管、エスカレーション、ネットワーク隔離、外部フォレンジック会社への連絡・発注手順をCSIRTと法務で確認する。"
+    ]);
+    const forensic = (privacy.issues || []).find((item) => item && item.id === "privacy-incident-forensics-readiness");
+    if (forensic) {
+      addUnique(forensic.sourceIds, ["source-ppc-forensics-keypoints-20260116"]);
+      forensic.conclusion = "不正アクセス時の原因・侵害範囲・情報持出しの有無を判断できるよう、平時から情報資産、ネットワーク構成、必要なログ、社内外の対応フローを整え、事故時は封じ込めと証拠保全を両立しつつ必要に応じて専門調査を利用する。";
+      forensic.exception = "フォレンジック会社への調査依頼自体が個人情報保護法やサイバー対処能力強化法により一律に義務付けられているわけではなく、事案ごとに調査の必要性・範囲を判断する。";
+    }
+    const breach = (privacy.issues || []).find((item) => item && item.id === "privacy-enforcement-breach-reporting");
+    if (breach) addUnique(breach.sourceIds, ["source-ppc-forensics-keypoints-20260116"]);
+    const safety = (privacy.issues || []).find((item) => item && item.id === "privacy-enforcement-safety-management");
+    if (safety) addUnique(safety.sourceIds, ["source-ppc-forensics-keypoints-20260116"]);
+    if (Array.isArray(privacy.referenceArticleIds)) addUnique(privacy.referenceArticleIds, ["article-ppc-forensics-keypoints-20260116", "article-miyake-ransomware-72h-20260918"]);
+    addUnique(privacy.practicalImpacts, ["フォレンジック調査の平時準備・証拠保全"]);
+  }
+})();

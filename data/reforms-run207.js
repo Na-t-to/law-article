@@ -69,3 +69,27 @@
     consumerEvent.articleIds = appendUnique(consumerEvent.articleIds, ["article-caa-consumer-contract-interim-20260910"]);
   }
 })();
+
+(() => {
+  const additions = [
+    {
+      id: "fsa-supervisory-guidelines-cyber-reporting-2026",
+      title: "金融庁監督指針等・サイバーインシデント共通報告様式対応（2026年10月）",
+      eventType: "regulation_or_guideline",
+      lawId: "fsa-supervisory-guidelines-cyber-incident-reporting",
+      lawLabel: "金融庁監督指針等（サイバーインシデント報告様式）",
+      relatedTopics: ["cyber-countermeasures-critical-infrastructure"],
+      effectiveDateStatus: "confirmed",
+      effectiveDate: "2026-10-01",
+      effectiveDateNote: "2026年9月18日に最終化された監督指針等の改正は2026年10月1日から適用。金融機関のコンピュータシステム障害・サイバーセキュリティ事案の報告様式を、関係省庁申合せに基づくDDoS・ランサムウェア・その他サイバー攻撃等の共通様式へ移行する。",
+      effectiveDateSourceIds: ["source-fsa-cyber-common-reporting-guidelines-20260918"],
+      matchSourceIds: ["source-fsa-cyber-common-reporting-guidelines-20260918"],
+      sourceIds: ["source-fsa-cyber-common-reporting-guidelines-20260918", "source-cyber-report-form-notice-2026"],
+      articleIds: ["article-fsa-cyber-common-reporting-guidelines-20260918"]
+    }
+  ];
+
+  const existing = new Set((window.REFORM_EVENT_DATA || []).map((item) => item && item.id));
+  const fresh = additions.filter((item) => !existing.has(item.id));
+  if (fresh.length) window.REFORM_EVENT_DATA = (window.REFORM_EVENT_DATA || []).concat(fresh);
+})();

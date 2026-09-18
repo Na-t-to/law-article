@@ -72,3 +72,54 @@
   const fresh = additions.filter((item) => !existingIds.has(item.id) && !existingUrls.has(normalizeUrl(item.url)));
   if (fresh.length) window.SOURCE_DATA = (window.SOURCE_DATA || []).concat(fresh);
 })();
+
+(() => {
+  const normalizeUrl = (value) => {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.protocol = "https:";
+      url.hash = "";
+      [...url.searchParams.keys()].forEach((key) => {
+        if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+      });
+      url.hostname = url.hostname.toLowerCase();
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      url.searchParams.sort();
+      return url.toString();
+    } catch {
+      return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
+    }
+  };
+
+  const additions = [
+    {
+      id: "source-fsa-cyber-common-reporting-guidelines-20260918",
+      title: "「主要行等向けの総合的な監督指針」等の一部改正（案）に対するパブリックコメントの結果等の公表について",
+      type: "guideline",
+      typeLabel: "一次資料・金融庁／サイバーインシデント共通報告様式",
+      authority: "金融庁",
+      publishedAt: "2026-09-18",
+      url: "https://www.fsa.go.jp/news/r8/sonota/20260918/20260918.html",
+      importance: "最高",
+      whyImportant: "2026年9月15日の関係省庁申合せ改正を受け、金融庁所管業者のコンピュータシステム障害・サイバーセキュリティ事案の報告をDDoS・ランサムウェア・その他サイバー攻撃等の共通様式へ移行する監督指針等の確定改正。2026年10月1日の適用日と対象となる監督指針・事務ガイドラインを確認できる。",
+      topics: ["cyber-countermeasures-critical-infrastructure"]
+    },
+    {
+      id: "source-ppc-forensics-keypoints-20260116",
+      title: "不正アクセス発生時のフォレンジック調査の有効活用に向けた着眼点",
+      type: "guideline",
+      typeLabel: "一次資料・個人情報保護法サイバーセキュリティ連絡会／フォレンジック",
+      authority: "個人情報保護法サイバーセキュリティ連絡会・個人情報保護委員会",
+      publishedAt: "2026-01-16",
+      url: "https://www.ppc.go.jp/files/pdf/260116_forensics_keypoints.pdf",
+      importance: "最高",
+      whyImportant: "不正アクセス対応について、平時の情報資産把握・ログ保管・対応フロー、初動の封じ込め・証拠保全、専門調査の利用と結果の活用を整理した実務資料。フォレンジック会社への調査依頼自体が個人情報保護法等で一律に義務付けられているわけではないことも明示する。",
+      topics: ["privacy-enforcement-breach-response"]
+    }
+  ];
+
+  const existingIds = new Set((window.SOURCE_DATA || []).map((item) => item && item.id));
+  const existingUrls = new Set((window.SOURCE_DATA || []).map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  const fresh = additions.filter((item) => !existingIds.has(item.id) && !existingUrls.has(normalizeUrl(item.url)));
+  if (fresh.length) window.SOURCE_DATA = (window.SOURCE_DATA || []).concat(fresh);
+})();
