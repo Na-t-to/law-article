@@ -128,7 +128,7 @@
       audienceReason: "2026年改正法の施行準備を、成立済み法律・案段階の下位ルール・安全管理措置ガイドラインの別工程に分け、同意UIや年齢対応、顔特徴データ、セキュリティ実装へ落とすため。",
       categories: ["個人情報", "AI・デジタル", "情報セキュリティ"],
       relatedTopics: ["personal-information-protection-2026-amendment", "privacy-enforcement-breach-response"],
-      relatedIssues: ["privacy-2026-consent-exceptions", "privacy-2026-children", "privacy-2026-biometric", "privacy-safeguards-guideline-modernization-2026"],
+      relatedIssues: ["privacy-2026-consent-exceptions", "privacy-2026-children", "privacy-2026-biometric", "privacy-enforcement-safety-management"],
       primarySourceIds: ["source-privacy-law-2026-amendment", "source-ppc-privacy-rulemaking-basic-1-2026", "source-ppc-security-measures-guideline-review-2026"],
       reformEventId: "privacy-law-2026-amendment",
       reformStageAtPublication: "finalized_pending",
