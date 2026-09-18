@@ -1,96 +1,38 @@
 (() => {
-  const additions = [
-    {
-      slug: "resale-price-maintenance-distribution-2026",
-      title: "再販売価格維持・指定価格制度／流通・EC販売制限",
-      categories: ["独占禁止法・下請・フリーランス", "契約・取引", "消費者法・表示", "危機管理・コンプライアンス"],
-      summary: "再販売価格維持の原則禁止、2026年7月の流通・取引慣行ガイドライン改正で明確化された『単なる取次ぎ』の例外、価格・ポイント・オンライン販売を巡る2026年の確約事例を、メーカー・卸・小売・ECの契約と運用から整理する。",
-      lastUpdated: "2026-09-18",
-      lastVerified: "2026-09-18",
-      isNew: true,
-      overview: [
-        "メーカー等が自社商品を購入した小売業者等に販売価格を指示し、これを守らせる再販売価格維持行為は、独占禁止法上、原則として違法となる。希望小売価格を参考として示すことと、価格を実質的に拘束することは区別する必要がある。",
-        "公正取引委員会は2026年7月8日、流通・取引慣行ガイドラインを改正し、売買形式であっても、メーカーがユーザーへの販売までに生じる危険と費用を自ら負担し、流通業者が単なる取次ぎとして機能している場合には、価格指示が通常問題とならないという考え方と具体例を追加した。いわゆる『指定価格制度』は法令上の制度名や包括的なセーフハーバーではない。",
-        "同年8月6日のルックスオティカジャパン確約事例では、推奨小売価格以上での販売、オンラインで実質的な購入価格を下げるポイント・クーポン等の制限、発売後一定期間のオンライン販売停止等について、再販売価格拘束違反の疑いが認められた。確約計画の認定は、違反そのものを認定したものではない。"
-      ],
-      currentSummary: {
-        facts: [
-          "公正取引委員会は2026年7月8日、再販売価格維持の例外に該当する場合と具体例を追加するため、流通・取引慣行ガイドラインを改正した。",
-          "公式Q&Aは、メーカーがユーザー販売までの危険・費用を負担し、小売業者が単なる取次ぎとして機能して実質的にメーカーが販売していると認められる場合には、価格指示が通常問題とならないと整理している。",
-          "費用には、在庫保管費・輸送費・広告宣伝費のほか、荷造費・見本費・人件費・研修費・保険料等も取引実態に応じて含まれ得る。費用の内容と負担方法を双方で確認・明確化することが重要とされる。",
-          "2026年8月6日のルックスオティカジャパン確約事例では、推奨小売価格以上での販売、ポイント・クーポン等による実質値引きの禁止、発売後一定期間のオンライン販売停止等が違反被疑行為として示された。"
-        ],
-        interpretations: [
-          "『指定価格制度』という名称や売買・代理店・委託販売といった契約名ではなく、ユーザー販売までの在庫・返品・契約不適合・滅失毀損・代金回収等の危険と、保管・配送・広告等の費用を実際に誰が負担しているかで設計を検証する必要がある。",
-          "ブランド価値維持を目的とする施策でも、価格そのものだけでなく、ポイント・クーポン等で実質購入価格を下げる行為やオンライン販売時期への介入が、価格拘束と組み合わさる場面では独禁法リスクを一体として点検する必要がある。",
-          "確約手続は違反の最終認定ではないため、個別事例を直ちに一般的な違法基準へ置き換えず、ガイドラインの一般ルールと事例上の疑義を分けて読む。"
-        ],
-        implications: [
-          "価格方針を設けるメーカーは、取引基本契約・覚書・返品規程・費用精算と実際の運用を照合し、ユーザー販売までの危険・費用の負担を証跡化する。",
-          "営業・マーケティング部門が販売店へ行う希望小売価格、値引き、ポイント、クーポン、EC販売開始時期等の要請を、独禁法レビューの対象として棚卸しする。",
-          "指定価格型の販売施策を導入・継続する場合、費用項目を一方的に想定するだけでなく、販売店が不足項目を申し出て協議できるフローと精算方法を用意する。"
-        ],
-        uncertain: [
-          "流通業者が『単なる取次ぎ』といえるかは個別具体的な取引実態による。メーカーが一部の危険・費用を負担しているだけで例外が当然に成立するわけではない。",
-          "ルックスオティカジャパン事例は確約計画の認定であり、記載された行為が独占禁止法違反であるとの最終認定ではない。"
-        ]
-      },
-      issues: [
-        {
-          id: "rpm-general-rule-2026",
-          title: "メーカーは販売店の価格・実質値引きをどこまで拘束できるか",
-          status: "authoritative",
-          stage: "effective",
-          views: [],
-          conclusion: "自社商品を購入する小売業者等に販売価格を指示して守らせる再販売価格維持行為は、独占禁止法上、原則として違法である。参考価格の提示と、出荷・取引条件その他の手段で価格を実質的に維持させる行為を区別する。",
-          exception: "流通業者が単なる取次ぎとして機能し、実質的にメーカーがユーザーへ販売していると認められる場合など、ガイドラインが示す例外に該当するときは通常問題とならない。",
-          uncertain: "個別の要請が販売店の価格決定の自由を実質的に拘束しているかは、文言だけでなく取引条件・監視・不利益措置等の実態により判断される。",
-          sourceIds: ["source-jftc-distribution-guideline-rpm-20260708", "source-jftc-distribution-guideline-current-20260708", "source-jftc-luxottica-commitment-20260806"]
-        },
-        {
-          id: "rpm-specified-price-exception-2026",
-          title: "いわゆる指定価格制度で『単なる取次ぎ』といえる条件は何か",
-          status: "authoritative",
-          stage: "effective",
-          views: [],
-          conclusion: "メーカーが小売業者においてユーザーへの販売に至るまでに生じる危険・費用を自ら負担し、小売業者が単なる取次ぎとして機能して実質的にメーカーがユーザーへ販売していると認められる場合、販売価格を指示しても通常、独占禁止法上問題とならない。",
-          exception: "『指定価格制度』という名称を用いることや一部の費用を負担することだけでは足りない。公取委は、ユーザー販売までに生じる費用を流通業者に一部でも負担させる場合には、メーカーがその費用を負担したとは認められないとの考え方を示している。",
-          uncertain: "どの危険・費用が生じるかは取引内容によって異なるため、対象項目と負担方法を販売店と確認し、実際の運用も含めて個別に評価する必要がある。",
-          sourceIds: ["source-jftc-distribution-guideline-rpm-20260708", "source-jftc-distribution-guideline-current-20260708", "source-jftc-rpm-faq-20260708"]
-        },
-        {
-          id: "rpm-online-sales-commitment-2026",
-          title: "ポイント・クーポンやオンライン販売制限をどう点検するか",
-          status: "interpreted",
-          stage: "effective",
-          views: [],
-          conclusion: "価格方針の実効性を確保するため、販売店に推奨小売価格以上での販売を求め、実質的な購入価格を下げるポイント・クーポン等を制限したり、オンライン販売の開始時期を制限したりする運用は、再販売価格維持その他の流通上の制限として独禁法上の検討対象になる。営業・EC施策を分断せずレビューする。",
-          exception: "2026年8月のルックスオティカジャパン事例は、これらの行為について違反の疑いを前提に確約計画が認定された事例であり、違反を最終認定したものではない。オンライン販売制限一般が直ちに違法となることを意味しない。",
-          uncertain: "オンライン販売制限の評価は、価格拘束との関係、目的・態様、競争への影響等を含む個別事情による。確約事例の事実関係を一般化しすぎない。",
-          sourceIds: ["source-jftc-luxottica-commitment-20260806", "source-jftc-distribution-guideline-current-20260708"]
-        }
-      ],
-      sourceIds: [
-        "source-jftc-distribution-guideline-rpm-20260708",
-        "source-jftc-distribution-guideline-current-20260708",
-        "source-jftc-rpm-faq-20260708",
-        "source-jftc-luxottica-commitment-20260806"
-      ],
-      referenceArticleIds: [
-        "article-jftc-distribution-guideline-rpm-20260708",
-        "article-jftc-luxottica-commitment-20260806",
-        "article-uchisaiwai-rpm-guideline-20260727"
-      ],
-      practicalImpacts: [
-        "取引基本契約・返品規程・費用負担合意と実運用の突合",
-        "希望小売価格・値引き・ポイント・クーポン指示の営業ルール見直し",
-        "指定価格型施策の危険・費用負担と協議・精算フローの証跡化",
-        "オンライン販売開始時期・ECチャネル制限の独禁法レビュー"
-      ]
-    }
-  ];
+  const topic = (window.TOPIC_DATA || []).find((item) => item && item.slug === "distribution-resale-price");
+  if (!topic) return;
 
-  const existing = new Set((window.TOPIC_DATA || []).map((item) => item && item.slug));
-  const fresh = additions.filter((item) => !existing.has(item.slug));
-  if (fresh.length) window.TOPIC_DATA = (window.TOPIC_DATA || []).concat(fresh);
+  const appendUnique = (base, values) => [...new Set([...(Array.isArray(base) ? base : []), ...values])];
+  const appendText = (base, value) => {
+    const items = Array.isArray(base) ? base : [];
+    if (!items.includes(value)) items.push(value);
+    return items;
+  };
+
+  topic.lastUpdated = "2026-09-18";
+  topic.lastVerified = "2026-09-18";
+  topic.sourceIds = appendUnique(topic.sourceIds, [
+    "source-jftc-distribution-guideline-current-20260708",
+    "source-jftc-rpm-faq-20260708"
+  ]);
+  topic.referenceArticleIds = appendUnique(topic.referenceArticleIds, ["article-uchisaiwai-rpm-guideline-20260727"]);
+
+  if (topic.currentSummary) {
+    topic.currentSummary.facts = appendText(
+      topic.currentSummary.facts,
+      "公取委のQ&Aは、ユーザー販売までの費用として保管・輸送・広告宣伝だけでなく、荷造費、見本費、人件費、研修費、保険料等も取引実態に応じて含まれ得るとし、費用の内容と負担方法をメーカーと販売店で確認・明確化することを示している。"
+    );
+    topic.currentSummary.implications = appendText(
+      topic.currentSummary.implications,
+      "指定価格型の販売施策では、費用項目と負担方法を一方的に決めるだけでなく、販売店が不足費用を申し出て協議できるフローと精算方法まで設計・記録する。"
+    );
+  }
+
+  const riskCostIssue = (topic.issues || []).find((issue) => issue && issue.id === "rpm-risk-cost-exception");
+  if (riskCostIssue) {
+    riskCostIssue.sourceIds = appendUnique(riskCostIssue.sourceIds, [
+      "source-jftc-distribution-guideline-current-20260708",
+      "source-jftc-rpm-faq-20260708"
+    ]);
+  }
 })();
