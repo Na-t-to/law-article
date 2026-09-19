@@ -55,4 +55,43 @@
     customerHarassment.referenceArticleIds = addUnique(customerHarassment.referenceArticleIds, "article-businesslawyers-nishino-customer-harassment-line-20260915");
     customerHarassment.practicalImpacts = addUnique(customerHarassment.practicalImpacts, "カスハラ対応の打切り・エスカレーション基準");
   }
+
+  const cyberCritical = (window.TOPIC_DATA || []).find((item) => item && item.slug === "cyber-countermeasures-critical-infrastructure");
+  if (cyberCritical) {
+    cyberCritical.lastUpdated = "2026-09-20";
+    cyberCritical.lastVerified = "2026-09-20";
+    cyberCritical.sourceIds = addUnique(cyberCritical.sourceIds, "source-fsa-cyber-reporting-common-forms-20260918");
+    cyberCritical.referenceArticleIds = addUnique(cyberCritical.referenceArticleIds, "article-fsa-cyber-reporting-common-forms-20260918");
+
+    if (!(cyberCritical.issues || []).some((issue) => issue && issue.id === "cyber-financial-common-reporting-forms")) {
+      cyberCritical.issues = (cyberCritical.issues || []).concat({
+        id: "cyber-financial-common-reporting-forms",
+        title: "金融分野のサイバー報告を共通様式へどう移行するか",
+        status: "authoritative",
+        stage: "enacted",
+        views: [],
+        conclusion: "金融庁所管の幅広い金融事業者は、2026年10月1日から、監督指針等に基づくシステム障害・サイバーセキュリティ事案の報告様式を、関係省庁申合せに基づくDDoS、ランサムウェア、その他サイバー攻撃等の3つの共通様式へ移行する。社内のインシデント報告票、当局報告手順、担当者・システムの入力項目を新様式へ対応させる必要がある。",
+        exception: "共通様式への移行は、サイバー対処能力強化法の届出・特定侵害事象等の報告義務や重要インフラ統一基準と同一の制度ではない。また、様式が共通化されても、報告トリガー、提出先、金融分野固有の補足事項まで全制度で同一になるわけではない。",
+        uncertain: "金融分野以外の各所管制度・安全基準等で同じ共通様式がどの範囲まで採用されるか、また複数当局への報告運用がどこまで実質的に一元化されるかは、各所管省庁の最新資料を継続確認する必要がある。",
+        sourceIds: ["source-fsa-cyber-reporting-common-forms-20260918"]
+      });
+    }
+
+    if (cyberCritical.currentSummary) {
+      cyberCritical.currentSummary.facts = addUnique(
+        cyberCritical.currentSummary.facts,
+        "金融庁は2026年9月18日、関係省庁申合せの9月15日改正で『その他サイバー攻撃等事案共通様式』が追加されたことを受け、主要行、地域金融機関、保険、金融商品取引、貸金、資金決済、暗号資産等の監督指針・事務ガイドラインの報告様式を共通様式へ移行し、2026年10月1日から適用すると公表した。"
+      );
+      cyberCritical.currentSummary.interpretations = addUnique(
+        cyberCritical.currentSummary.interpretations,
+        "金融分野では、サイバー対処能力強化法の直接義務とは別に、既存の金融監督上の障害・サイバー報告が関係省庁の共通様式へ移行する。複数の報告制度を一つの義務と誤認せず、トリガー・提出先・様式・補足項目を報告経路ごとに整理する必要がある。"
+      );
+      cyberCritical.currentSummary.implications = addUnique(
+        cyberCritical.currentSummary.implications,
+        "金融事業者は、DDoS・ランサムウェア・その他サイバー攻撃等の3様式と金融分野の補足事項を既存のインシデント対応手順へマッピングし、旧様式からの入力項目・連絡先・提出フローを2026年10月1日までに更新する。"
+      );
+    }
+
+    cyberCritical.practicalImpacts = addUnique(cyberCritical.practicalImpacts, "金融分野のサイバー被害報告共通様式");
+  }
 })();
