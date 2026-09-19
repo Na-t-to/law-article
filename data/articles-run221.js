@@ -76,3 +76,56 @@
   const fresh = additions.filter((item) => !existingIds.has(item.id) && !existingUrls.has(normalizeUrl(item.url)));
   if (fresh.length) window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat(fresh);
 })();
+
+(() => {
+  const normalizeUrl = (value) => {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.protocol = "https:";
+      url.hash = "";
+      [...url.searchParams.keys()].forEach((key) => {
+        if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+      });
+      url.hostname = url.hostname.toLowerCase();
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      url.searchParams.sort();
+      return url.toString();
+    } catch {
+      return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
+    }
+  };
+
+  const additions = [
+    {
+      id: "article-jftc-oki-hitachi-atm-merger-20260918",
+      title: "沖電気工業・日立製作所・日立チャネルソリューションズによるATM等事業統合の企業結合審査結果",
+      publisher: "公正取引委員会",
+      author: "公正取引委員会",
+      publishedAt: "2026-09-18",
+      collectedAt: "2026-09-19",
+      url: "https://www.jftc.go.jp/houdou/pressrelease/2026/sep/260918kiketsu_oh.html",
+      sourceType: "primary",
+      sourceLabel: "一次資料・企業結合審査結果",
+      status: "adopted",
+      summary: "沖電気工業のATM・営業店端末等事業と日立チャネルソリューションズの統合について、公取委が、水平・垂直・混合型の競争懸念を検討した上で、当事会社が申し出た問題解消措置を前提に第1次審査でクリアした事例。紙幣入出金部・通帳記帳部では統合後シェア100%、ATM完成品では約65%となり、上流投入物の供給拒絶やATM監視受託業者への仕様開示拒否による排除リスクも認定した。措置は販売競争情報へのアクセス制限、既存取引先への供給確約、監視事業者への情報開示・支援、監視受託者による継続監視・定期報告を含み、主要措置は実行日から5年間継続する。",
+      whyImportant: [
+        "統合後100%となる上流モジュールや約65%となるATM完成品を含む高集中案件で、水平型だけでなく投入物閉鎖・顧客閉鎖や商品拡大型の排除リスクまで具体的に評価した最新事例を確認できる",
+        "問題解消措置が事業譲渡だけではなく、供給確約、必要情報の開示・支援、競争機微情報へのアクセス制限、監視受託者による継続監視・定期報告を組み合わせ得ることが分かる",
+        "5年間の履行・監視という継続コストを伴うため、M&Aの事業計画、SPA上の規制対応義務、クロージング後のオペレーションへ問題解消措置を織り込む必要性が見える"
+      ],
+      audience: ["M&A法務", "競争法担当", "経営企画・M&A", "事業部門・サプライチェーン担当"],
+      audienceReason: "高集中・垂直統合を含む案件で、どの事実が排除懸念を生み、どのような行動的措置とモニタリングを当局が受け入れ得るかを、案件設計と契約条件へ落とすため。",
+      categories: ["M&A", "独占禁止法・競争法"],
+      relatedTopics: ["merger-control-antitrust"],
+      relatedIssues: ["mc-substantive-review", "mc-remedies", "mc-predeal-planning"],
+      primarySourceIds: ["source-jftc-oki-hitachi-atm-merger-2026"],
+      legacyReformInference: false,
+      whatChanged: "整理補強／高集中・垂直・混合型の競争懸念を、供給確約・情報開示・情報遮断・監視受託者による5年間の監視という問題解消措置で処理した最新企業結合事例を追加。"
+    }
+  ];
+
+  const existingIds = new Set((window.ARTICLE_DATA || []).map((item) => item && item.id));
+  const existingUrls = new Set((window.ARTICLE_DATA || []).map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  const fresh = additions.filter((item) => !existingIds.has(item.id) && !existingUrls.has(normalizeUrl(item.url)));
+  if (fresh.length) window.ARTICLE_DATA = (window.ARTICLE_DATA || []).concat(fresh);
+})();

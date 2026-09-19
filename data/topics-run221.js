@@ -103,3 +103,43 @@
   const fresh = additions.filter((item) => !existing.has(item.slug));
   if (fresh.length) window.TOPIC_DATA = (window.TOPIC_DATA || []).concat(fresh);
 })();
+
+(() => {
+  const appendUnique = (items, additions) => [...new Set([...(Array.isArray(items) ? items : []), ...additions])];
+  const appendTextUnique = (items, text) => {
+    const current = Array.isArray(items) ? items : [];
+    return current.includes(text) ? current : current.concat(text);
+  };
+
+  const topic = (window.TOPIC_DATA || []).find((item) => item?.slug === "merger-control-antitrust");
+  if (!topic) return;
+
+  const sourceId = "source-jftc-oki-hitachi-atm-merger-2026";
+  const articleId = "article-jftc-oki-hitachi-atm-merger-20260918";
+
+  topic.lastUpdated = "2026-09-19";
+  topic.lastVerified = "2026-09-19";
+  topic.currentSummary = topic.currentSummary || {};
+
+  topic.currentSummary.facts = appendTextUnique(
+    topic.currentSummary.facts,
+    "2026年9月18日の沖電気工業・日立製作所・日立チャネルソリューションズのATM等事業統合では、紙幣入出金部・通帳記帳部で統合後シェア100%、ATM完成品で約65%となり、水平型に加えて上流部品の供給拒絶等による投入物閉鎖、ATM監視に必要な仕様開示・協力の拒絶による排除という垂直・混合型の懸念も認められた。公取委は、供給確約、必要情報の開示・支援、競争機微情報へのアクセス制限、監視受託者による継続監視・定期報告等の措置を前提に、第1次審査で問題なしと判断した。"
+  );
+  topic.currentSummary.interpretations = appendTextUnique(
+    topic.currentSummary.interpretations,
+    "企業結合の問題解消措置は事業譲渡のような構造的措置に限られない。垂直・混合型の排除懸念では、既存取引先への供給確約、必要情報へのアクセス確保、競争機微情報の遮断、独立した監視受託者と定期報告を組み合わせ、クロージング後の行動を一定期間拘束する設計も実際に用いられる。"
+  );
+  topic.currentSummary.implications = appendTextUnique(
+    topic.currentSummary.implications,
+    "上流投入物や相互運用に必要な仕様を握る企業同士の統合では、競争者・顧客・サービス事業者の依存関係と代替供給能力を早期に確認し、供給義務、情報開示、ファイアウォール、監視・報告の期間と運用コストを、事業計画やSPAの規制対応義務へ織り込む。"
+  );
+
+  ["mc-substantive-review", "mc-remedies", "mc-predeal-planning"].forEach((issueId) => {
+    const issue = (topic.issues || []).find((item) => item?.id === issueId);
+    if (issue) issue.sourceIds = appendUnique(issue.sourceIds, [sourceId]);
+  });
+
+  topic.sourceIds = appendUnique(topic.sourceIds, [sourceId]);
+  topic.referenceArticleIds = appendUnique(topic.referenceArticleIds, [articleId]);
+  topic.practicalImpacts = appendUnique(topic.practicalImpacts, ["供給確約・情報遮断・監視受託者を含む行動的問題解消措置"]);
+})();
