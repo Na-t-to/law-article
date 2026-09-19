@@ -40,9 +40,6 @@
       relatedTopics: ["economic-security-clearance"],
       relatedIssues: ["security-clearance-qualifying-business", "security-clearance-first-year-operation"],
       primarySourceIds: ["source-cao-security-clearance-annual-report-20260626", "source-egov-important-economic-security-information-act-2024"],
-      reformEventId: "important-economic-security-information-act-2024",
-      reformStageAtPublication: "effective",
-      reformStageSourceIds: ["source-cao-security-clearance-annual-report-20260626"],
       legacyReformInference: false,
       whatChanged: "新テーマ追加／重要経済安保情報保護活用法の施行初年度について、情報指定・適性評価・適合事業者認定の実績を公式報告から整理した。"
     },
@@ -69,9 +66,6 @@
       relatedTopics: ["economic-security-clearance"],
       relatedIssues: ["security-clearance-qualifying-business", "security-clearance-employee-consent-hr"],
       primarySourceIds: ["source-egov-important-economic-security-information-act-2024", "source-cao-security-clearance-business-guideline-20250502"],
-      reformEventId: "important-economic-security-information-act-2024",
-      reformStageAtPublication: "effective",
-      reformStageSourceIds: ["source-cao-security-clearance-annual-report-20260626"],
       legacyReformInference: false,
       whatChanged: "新テーマ補強／適合事業者認定、情報保全体制、適性評価を法令・運用基準・ガイドライン横断で実務フローへ整理する解説を追加した。"
     },
