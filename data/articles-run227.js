@@ -141,10 +141,10 @@
     categories: ["消費者法・表示", "契約・取引", "AI・デジタル"],
     relatedTopics: ["consumer-law-digital-contract-review"],
     relatedIssues: ["consumer-review-subscription-cancellation", "consumer-review-contract-change-notice", "consumer-review-vulnerability-principle"],
-    primarySourceIds: ["source-caa-consumer-contract-interim-20260910"],
+    primarySourceIds: ["source-caa-consumer-contract-interim-draft-2026"],
     reformEventId: "consumer-contract-act-review-2026",
     reformStageAtPublication: "proposal",
-    reformStageSourceIds: ["source-caa-consumer-contract-interim-20260910"],
+    reformStageSourceIds: ["source-caa-consumer-contract-interim-draft-2026"],
     legacyReformInference: false,
     whatChanged: "実務解説補強／消費者契約法の中間取りまとめについて、規律の強度の違いと、解約導線・約款変更通知・解約料説明を法案化前から棚卸しする実務順序を追加した。"
   };
