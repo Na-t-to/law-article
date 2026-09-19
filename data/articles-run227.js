@@ -94,3 +94,76 @@
   const urls = new Set(existing.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
   window.ARTICLE_DATA = existing.concat(additions.filter((item) => !ids.has(item.id) && !urls.has(normalizeUrl(item.url))));
 })();
+
+(() => {
+  const normalizeUrl = (value) => {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.protocol = "https:";
+      url.hash = "";
+      [...url.searchParams.keys()].forEach((key) => {
+        if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+      });
+      url.hostname = url.hostname.toLowerCase();
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      url.searchParams.sort();
+      return url.toString();
+    } catch {
+      return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
+    }
+  };
+
+  const addUnique = (list, value) => {
+    const next = Array.isArray(list) ? list.slice() : [];
+    if (!next.includes(value)) next.push(value);
+    return next;
+  };
+
+  const article = {
+    id: "article-miyake-consumer-contract-update-20260919",
+    title: "消費者契約法アップデート　中間取りまとめとパブリックコメント～配慮規定・契約からの解放手段・サブスクの解約・解約料",
+    publisher: "三宅法律事務所",
+    author: "弁護士法人三宅法律事務所",
+    publishedAt: "2026-09-19",
+    collectedAt: "2026-09-20",
+    url: "https://www.miyake.gr.jp/notice/%E3%80%90%E5%8B%95%E7%94%BB%E8%A7%A3%E8%AA%AC%E3%83%BB%E5%8B%95%E7%94%BB%E8%B3%87%E6%96%99%E3%80%91%E6%B6%88%E8%B2%BB%E8%80%85%E5%A5%91%E7%B4%84%E6%B3%95%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC/",
+    sourceType: "secondary",
+    sourceLabel: "実務解説・三宅法律事務所／消費者契約法中間取りまとめ",
+    status: "adopted",
+    summary: "2026年9月10日の消費者契約法検討会中間取りまとめと9月16日開始のパブリックコメントを、配慮規定、契約拘束力からの解放、継続契約の解約・更新、定型約款の重要変更通知、解約料へ分解して解説する実務資料。提案されている規律を一律の『義務化』として扱わず、重要変更時の個別通知、解約妨害の禁止・差止、努力義務・配慮という規律の強度の違いを整理し、現行法下でも解約導線、約款変更通知、解約料説明を先行点検できることを示している。中間取りまとめは法案ではなく、今後の法制的検討で変更され得る。",
+    whyImportant: [
+      "中間取りまとめの各提案を、明確な義務、禁止・差止対象、努力義務・配慮へ分けており、社内で『すべて義務化される』と過剰反応するのを防げる",
+      "サブスクの解約妨害、合理的な離脱方法、自動更新、約款の重要変更通知、解約料を、プロダクト・規約・顧客対応の実装単位で点検できる",
+      "解約導線、約款変更の通知設計、解約料の説明は現行法上の努力義務等とも整合するため、法案化を待たずに棚卸しできるという準備順序が具体的である"
+    ],
+    audience: ["企業法務", "消費者法務", "サブスクリプション事業担当", "EC・デジタルサービス担当", "プロダクト・UX担当"],
+    audienceReason: "消費者契約法見直しを、提案段階であることを保ったまま、どこを今から点検し、どこを法制化後に確定すべきか切り分けるため。",
+    categories: ["消費者法・表示", "契約・取引", "AI・デジタル"],
+    relatedTopics: ["consumer-law-digital-contract-review"],
+    relatedIssues: ["consumer-review-subscription-cancellation", "consumer-review-contract-change-notice", "consumer-review-vulnerability-principle"],
+    primarySourceIds: ["source-caa-consumer-contract-interim-20260910"],
+    reformEventId: "consumer-contract-act-review-2026",
+    reformStageAtPublication: "proposal",
+    reformStageSourceIds: ["source-caa-consumer-contract-interim-20260910"],
+    legacyReformInference: false,
+    whatChanged: "実務解説補強／消費者契約法の中間取りまとめについて、規律の強度の違いと、解約導線・約款変更通知・解約料説明を法案化前から棚卸しする実務順序を追加した。"
+  };
+
+  const existing = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
+  const ids = new Set(existing.map((item) => item && item.id).filter(Boolean));
+  const urls = new Set(existing.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  if (!ids.has(article.id) && !urls.has(normalizeUrl(article.url))) {
+    window.ARTICLE_DATA = existing.concat([article]);
+  }
+
+  const topic = (window.TOPIC_DATA || []).find((item) => item && item.slug === "consumer-law-digital-contract-review");
+  if (topic) {
+    topic.lastUpdated = "2026-09-20";
+    topic.lastVerified = "2026-09-20";
+    topic.referenceArticleIds = addUnique(topic.referenceArticleIds, article.id);
+    topic.practicalImpacts = addUnique(topic.practicalImpacts, "規律の強度を分けた施行準備とパブリックコメント対応");
+  }
+
+  const reform = (window.REFORM_EVENT_DATA || []).find((item) => item && item.id === "consumer-contract-act-review-2026");
+  if (reform) reform.articleIds = addUnique(reform.articleIds, article.id);
+})();
