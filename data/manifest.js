@@ -135,7 +135,6 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({
     "sources-run214.js?v=1",
     "sources-run216.js?v=1",
     "sources-run217.js?v=1",
-    "sources-run218.js?v=1"
   ],
   updates: [
     "updates.js?v=12",
