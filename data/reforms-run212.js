@@ -36,21 +36,6 @@
       matchSourceIds: ["source-fsa-cyber-common-reporting-guidelines-20260918"],
       sourceIds: ["source-fsa-cyber-common-reporting-guidelines-20260918", "source-nco-cyber-common-reporting-20260915"],
       articleIds: ["article-fsa-cyber-common-reporting-guidelines-20260918"]
-    },
-    {
-      id: "medical-biological-research-ethics-guideline-2026",
-      title: "人を対象とする生命科学・医学系研究に関する倫理指針（2026年改正）",
-      eventType: "regulation_or_guideline",
-      lawId: "medical-biological-research-ethics-guideline",
-      lawLabel: "人を対象とする生命科学・医学系研究に関する倫理指針",
-      relatedTopics: ["medical-biological-research-ethics-2026"],
-      effectiveDateStatus: "confirmed",
-      effectiveDates: ["2026-12-01"],
-      effectiveDateNote: "2026年8月27日に改正指針を告示し、2026年12月1日から施行。",
-      effectiveDateSourceIds: ["source-mext-medical-research-ethics-guideline-20260827"],
-      matchSourceIds: ["source-mext-medical-research-ethics-guideline-20260827"],
-      sourceIds: ["source-mext-medical-research-ethics-guideline-20260827"],
-      articleIds: ["article-mext-medical-research-ethics-guideline-20260828", "article-tmi-medical-research-ethics-guideline-20260901"]
     }
   ];
 

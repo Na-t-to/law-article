@@ -28,18 +28,6 @@
       importance: "高",
       whyImportant: "サイバー攻撃ではなくセキュリティ監視装置の監視状態変化とソフトウェア更新を契機とする誤検知・自動遮断が、電子カルテ停止や救急受入停止へ連鎖した事案を、ログ・関係事業者ヒアリングに基づき検証し、更新管理、自動遮断、ログ保存、緊急時の判断権限、事業者との役割分担まで再発防止策を具体化した公式報告。",
       topics: ["cyber-supply-chain"]
-    },
-    {
-      id: "source-mext-medical-research-ethics-guideline-20260827",
-      title: "「人を対象とする生命科学・医学系研究に関する倫理指針」の一部改正について",
-      type: "guideline",
-      typeLabel: "一次資料・文部科学省／生命・医学系研究倫理指針令和8年改正",
-      authority: "文部科学省・厚生労働省・経済産業省",
-      publishedAt: "2026-08-28",
-      url: "https://www.mext.go.jp/b_menu/houdou/mext_01679.html",
-      importance: "最高",
-      whyImportant: "2026年8月27日告示・12月1日施行の生命・医学系研究倫理指針改正について、IC・オプトアウトの整理、仮名加工情報等の個人情報保護法への接続、多機関共同研究の一括倫理審査、既存試料・情報の提供・外国提供、経過措置を公式に示す基礎資料。",
-      topics: ["medical-biological-research-ethics-2026"]
     }
   ];
 
