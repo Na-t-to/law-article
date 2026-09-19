@@ -50,6 +50,66 @@
       reformStageAtPublication: "finalized_pending",
       reformStageSourceIds: ["source-moj-security-assignment-act-2025"],
       whatChanged: "テーマ補強／集合動産の処分権限と集合債権の取立権限を契約条項へ落とす論点を追加し、優先順位・実行・倒産対応まで横断する実務解説を採用"
+    },
+    {
+      id: "article-mext-medical-research-ethics-guideline-20260828",
+      title: "「人を対象とする生命科学・医学系研究に関する倫理指針」の一部改正について",
+      publisher: "文部科学省",
+      author: "文部科学省・厚生労働省・経済産業省",
+      publishedAt: "2026-08-28",
+      collectedAt: "2026-09-19",
+      url: "https://www.mext.go.jp/b_menu/houdou/mext_01679.html",
+      sourceType: "primary",
+      sourceLabel: "一次資料・生命・医学系研究倫理指針令和8年改正",
+      status: "adopted",
+      summary: "文部科学省・厚生労働省・経済産業省が2026年8月27日に告示した生命・医学系研究倫理指針の改正内容を示す公式資料。12月1日施行に向け、患者・市民参画、用語定義、IC・オプトアウト、仮名加工情報等と個人情報保護法の関係、既存試料・情報の利用・提供・外国提供、多機関共同研究の一括倫理審査、経過措置を整理している。",
+      whyImportant: [
+        "改正指針の施行日が2026年12月1日と確定し、研究機関・医療機関・企業が更新すべき手続の基準日を一次資料で確認できる",
+        "従来の「文書IC」「口頭IC」「適切な同意」をICへ統一し、研究リスクに応じてIC又はオプトアウトを選ぶ構造へ整理したことを公式に示している",
+        "仮名加工情報・匿名加工情報・個人関連情報を個人情報保護法の規定に則って扱う方向へ整理し、倫理指針独自の上乗せ規律と一般法の関係を見直している",
+        "多機関共同研究の一括倫理審査を侵襲・介入研究で必須、その他で原則とし、審査運用にも直接影響する"
+      ],
+      audience: ["企業法務", "医療・ヘルスケア事業担当", "研究開発・臨床研究担当", "個人情報保護担当", "倫理審査委員会事務局"],
+      audienceReason: "人を対象とする生命科学・医学系研究を実施・共同実施・データ提供する組織が、2026年12月1日までに研究・同意・倫理審査・データ提供手続を更新する基礎資料になるため。",
+      categories: ["個人情報", "危機管理・コンプライアンス"],
+      relatedTopics: ["medical-biological-research-ethics-2026"],
+      relatedIssues: ["medical-research-ethics-ic-optout", "medical-research-ethics-pipa-alignment", "medical-research-ethics-multisite-review", "medical-research-ethics-transition"],
+      primarySourceIds: ["source-mext-medical-research-ethics-guideline-20260827"],
+      reformEventId: "medical-biological-research-ethics-guideline-2026",
+      reformStageAtPublication: "finalized_pending",
+      reformStageSourceIds: ["source-mext-medical-research-ethics-guideline-20260827"],
+      legacyReformInference: false,
+      whatChanged: "新規テーマ／生命・医学系研究倫理指針の2026年改正を、IC・オプトアウト、個人情報保護法との役割分担、多機関共同研究の一括審査、12月1日施行準備の棚として追加"
+    },
+    {
+      id: "article-tmi-medical-research-ethics-guideline-20260901",
+      title: "「人を対象とする生命科学・医学系研究に関する倫理指針」令和8年改正の公表",
+      publisher: "TMI総合法律事務所",
+      author: "溝端俊介",
+      publishedAt: "2026-09-01",
+      collectedAt: "2026-09-19",
+      url: "https://www.tmi.gr.jp/eyes/blog/2026/18750.html",
+      sourceType: "secondary",
+      sourceLabel: "法律事務所・生命・医学系研究倫理指針改正の実務解説",
+      status: "adopted",
+      summary: "2026年改正のうち特に大きく変わるインフォームド・コンセント規律を、現行指針との比較から研究類型別に整理する実務解説。仮名加工情報・匿名加工情報・個人関連情報について個人情報保護法へ規律を寄せる点、ICとオプトアウトへの整理、既存試料・情報の二次利用・提供、提供のみを行う者、外国提供まで具体的に説明する。",
+      whyImportant: [
+        "公式資料の改正項目を列挙するだけでなく、現行指針の複雑な同意構造がなぜ問題となり、改正後に何を参照すればよいかを改正前後で比較している",
+        "新規試料、既存試料、新規情報、既存情報、提供のみを行う者、提供を受ける側、外国提供まで、実務で迷いやすい場面を研究類型ごとに分解している",
+        "「適切な手続を経て」の意味として、虚偽取得や本人が全く予期できない利用・提供を避けること、研究者の異動に伴う無断持出しへの注意まで、ガイダンス案を踏まえて運用へ落としている",
+        "個人情報保護法だけを見て研究データ利用の可否を判断せず、倫理指針上の研究手続と並行して確認する必要があることを具体化している"
+      ],
+      audience: ["企業法務", "医療・ヘルスケア事業担当", "研究開発・臨床研究担当", "個人情報保護担当", "倫理審査委員会事務局"],
+      audienceReason: "改正指針の条文構造を、研究計画・IC・オプトアウト・既存データ利用・提供実務へ具体的に置き換えて確認したい担当者に向くため。",
+      categories: ["個人情報", "危機管理・コンプライアンス"],
+      relatedTopics: ["medical-biological-research-ethics-2026"],
+      relatedIssues: ["medical-research-ethics-ic-optout", "medical-research-ethics-pipa-alignment", "medical-research-ethics-transition"],
+      primarySourceIds: ["source-mext-medical-research-ethics-guideline-20260827"],
+      reformEventId: "medical-biological-research-ethics-guideline-2026",
+      reformStageAtPublication: "finalized_pending",
+      reformStageSourceIds: ["source-mext-medical-research-ethics-guideline-20260827"],
+      legacyReformInference: false,
+      whatChanged: "参考解説追加／2026年改正のIC・オプトアウトと個人情報保護法への接続を研究類型別の運用へ落とす実務解説を追加"
     }
   ];
 
