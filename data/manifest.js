@@ -68,7 +68,8 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({
     "topics-run216.js?v=1",
     "topics-run217.js?v=1",
     "topics-run218.js?v=1",
-    "topics-run220.js?v=1"
+    "topics-run220.js?v=1",
+    "topics-run221.js?v=1"
   ],
   sources: [
     "sources.js?v=14",
@@ -137,7 +138,8 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({
     "sources-run216.js?v=1",
     "sources-run217.js?v=1",
     "sources-run219.js?v=1",
-    "sources-run220.js?v=1"
+    "sources-run220.js?v=1",
+    "sources-run221.js?v=1"
   ],
   updates: [
     "updates.js?v=12",
@@ -192,7 +194,7 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({
     "reforms-run208.js?v=1",
     "reforms-run210.js?v=1",
     "reforms-run212.js?v=1",
-    "reforms-run220.js?v=1"
+    "reforms-run220.js?v=1",
   ],
   articles: [
     "articles.js?v=15",
@@ -407,6 +409,7 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({
     "articles-run217.js?v=1",
     "articles-run218.js?v=1",
     "articles-run219.js?v=1",
-    "articles-run220.js?v=1"
+    "articles-run220.js?v=1",
+    "articles-run221.js?v=1"
   ]
 });
