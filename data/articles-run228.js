@@ -67,6 +67,32 @@
       primarySourceIds: ["source-ipa-ransomware-lessons-20260908"],
       legacyReformInference: false,
       whatChanged: "実務解説補強／IPAのランサムウェア教訓を、証拠保全、当局・取引先対応、対外説明、取締役会判断へ落とした実務解説を追加した。"
+    },
+    {
+      id: "article-mhm-human-rights-ma-dd-20231002",
+      title: "ビジネスと人権：「人権×M&A②：M&A DDにおける人権の観点」",
+      publisher: "森・濱田松本法律事務所",
+      author: "御代田有恒、足立悠馬",
+      publishedAt: "2023-10-02",
+      collectedAt: "2026-09-20",
+      url: "https://www.mhmjapan.com/content/files/00068214/CRM_SUS_COR_231002.pdf",
+      sourceType: "secondary",
+      sourceLabel: "実務解説・森・濱田松本／M&A DDと人権",
+      status: "adopted",
+      summary: "M&A DDと人権DDの目的の違いを踏まえつつ、買収対象会社の人権課題をM&Aの時間・守秘・競争上の制約の中でどう調査し、取引条件とPMIへつなぐかを整理する実務解説。対象会社の事業、製品、地域、サプライチェーンから調査範囲を絞り、開示資料・質問・インタビュー、必要に応じて第三者ヒアリングや現地調査を組み合わせ、発見事項をコベナンツ、前提条件、表明保証、案件中止、買収後の是正・人権DD統合へ反映する考え方を示す。",
+      whyImportant: [
+        "M&A DDが対象会社の事業リスクを把握するのに対し、人権DDはライツホルダーへの負の影響の特定・是正・救済を目的とするという差を明確にしている",
+        "限られたM&A期間でも、業種・製品・地域・サプライチェーンから重大な人権リスクを絞り、資料確認、質問、インタビュー、必要に応じた第三者・現地調査へ深度を変える手順が具体的",
+        "発見した人権課題を調査結果で止めず、コベナンツ、前提条件、表明保証、案件中止、PMI後の是正・人権DD統合まで取引設計へ接続している"
+      ],
+      audience: ["企業法務", "M&A担当", "サステナビリティ担当", "コンプライアンス担当", "経営企画"],
+      audienceReason: "M&Aの限られた情報・時間の中で人権課題をどこまで調べ、契約条件やPMIへどう引き継ぐかを設計するため。",
+      categories: ["M&A", "危機管理・コンプライアンス", "国際取引", "契約"],
+      relatedTopics: ["business-human-rights-dd"],
+      relatedIssues: ["bhr-ma-dd"],
+      primarySourceIds: ["source-meti-bhr-guideline-2022", "source-meti-bhr-practical-reference-2023"],
+      legacyReformInference: false,
+      whatChanged: "実務解説補強／M&A DDと人権DDの違いを踏まえ、調査範囲・手法と、発見事項を契約条件・案件判断・PMIへつなぐ実務を補強した。"
     }
   ];
   const existing = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
