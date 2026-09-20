@@ -1,0 +1,19 @@
+name: Repository snapshot 2026-09-20
+on:
+  push:
+    branches: [audit/structure-20260920-1253]
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package repository snapshot
+        run: |
+          zip -qr repo-snapshot.zip . -x '.git/*'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: repo-snapshot-20260920
+          path: repo-snapshot.zip
+          retention-days: 3
