@@ -46,3 +46,38 @@
   const urls = new Set(existing.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
   window.SOURCE_DATA = existing.concat(additions.filter((item) => !ids.has(item.id) && !urls.has(normalizeUrl(item.url))));
 })();
+
+(() => {
+  const normalizeUrl = (value) => {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.protocol = "https:";
+      url.hash = "";
+      [...url.searchParams.keys()].forEach((key) => {
+        if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+      });
+      url.hostname = url.hostname.toLowerCase();
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      url.searchParams.sort();
+      return url.toString();
+    } catch {
+      return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
+    }
+  };
+  const addition = {
+    id: "source-mof-fatf-io4-dnfbps-20260918",
+    title: "5次のトリセツ―FATF第5次対日相互審査で示す官民のチカラ― 第5回：IO4（DNFBPsの監督・予防措置）",
+    type: "report",
+    typeLabel: "一次資料・財務省／FATF第5次相互審査・DNFBPs",
+    authority: "財務省",
+    publishedAt: "2026-09-18",
+    url: "https://www.mof.go.jp/public_relations/finance/202609/202609i.html",
+    importance: "高",
+    whyImportant: "FATF第5次相互審査で独立評価されるDNFBPsについて、参入管理、リスク理解、予防措置、監督・モニタリング、是正措置までIO4の6つの評価軸と先行審査国の指摘を日本当局が整理した一次資料。",
+    topics: ["aml-kyc-criminal-proceeds"]
+  };
+  const existing = Array.isArray(window.SOURCE_DATA) ? window.SOURCE_DATA : [];
+  const ids = new Set(existing.map((item) => item && item.id).filter(Boolean));
+  const urls = new Set(existing.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  if (!ids.has(addition.id) && !urls.has(normalizeUrl(addition.url))) window.SOURCE_DATA = existing.concat(addition);
+})();

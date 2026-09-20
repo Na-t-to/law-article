@@ -56,3 +56,39 @@
   }
   topic.practicalImpacts = addUnique(topic.practicalImpacts, "ランサムウェア初動・証拠保全・復旧演習");
 })();
+
+(() => {
+  const addUnique = (list, value) => {
+    const next = Array.isArray(list) ? list.slice() : [];
+    if (!next.includes(value)) next.push(value);
+    return next;
+  };
+  const topic = (window.TOPIC_DATA || []).find((item) => item && item.slug === "aml-kyc-criminal-proceeds");
+  if (!topic) return;
+
+  topic.lastUpdated = "2026-09-20";
+  topic.lastVerified = "2026-09-20";
+  topic.sourceIds = addUnique(topic.sourceIds, "source-mof-fatf-io4-dnfbps-20260918");
+  topic.referenceArticleIds = addUnique(topic.referenceArticleIds, "article-mof-fatf-io4-dnfbps-20260918");
+
+  const issue = (topic.issues || []).find((item) => item && item.id === "aml-dnfbp-governance");
+  if (issue) {
+    issue.sourceIds = addUnique(issue.sourceIds, "source-mof-fatf-io4-dnfbps-20260918");
+  }
+
+  if (topic.currentSummary) {
+    topic.currentSummary.facts = addUnique(
+      topic.currentSummary.facts,
+      "財務省は2026年9月、FATF第5次相互審査のIO4について、DNFBPsの参入管理、監督当局と事業者のリスク理解、予防措置、モニタリング、是正措置を6つの主要課題として整理した。"
+    );
+    topic.currentSummary.interpretations = addUnique(
+      topic.currentSummary.interpretations,
+      "DNFBPsのAML/CFTでは、本人確認や規程の有無だけでなく、自社リスク評価、顧客管理、疑わしい取引届出、内部管理・監査が実際に機能しているかという有効性まで説明できることが重要になる。"
+    );
+    topic.currentSummary.implications = addUnique(
+      topic.currentSummary.implications,
+      "FATF第5次相互審査を見据え、実質的支配者確認、継続モニタリング、疑わしい取引の判断・届出、内部監査、経営関与を一体の運用として証跡化できるか点検する。"
+    );
+  }
+  topic.practicalImpacts = addUnique(topic.practicalImpacts, "FATF第5次相互審査を見据えたDNFBPの有効性検証");
+})();

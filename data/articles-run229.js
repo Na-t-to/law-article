@@ -110,3 +110,52 @@
   const urls = new Set(existing.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
   window.ARTICLE_DATA = existing.concat(additions.filter((item) => !ids.has(item.id) && !urls.has(normalizeUrl(item.url))));
 })();
+
+(() => {
+  const normalizeUrl = (value) => {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.protocol = "https:";
+      url.hash = "";
+      [...url.searchParams.keys()].forEach((key) => {
+        if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+      });
+      url.hostname = url.hostname.toLowerCase();
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      url.searchParams.sort();
+      return url.toString();
+    } catch {
+      return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
+    }
+  };
+  const addition = {
+    id: "article-mof-fatf-io4-dnfbps-20260918",
+    title: "5次のトリセツ―FATF第5次対日相互審査で示す官民のチカラ― 第5回：IO4（DNFBPsの監督・予防措置）",
+    publisher: "財務省",
+    author: "財務省 国際局 資金移転対策室",
+    publishedAt: "2026-09-18",
+    collectedAt: "2026-09-20",
+    url: "https://www.mof.go.jp/public_relations/finance/202609/202609i.html",
+    sourceType: "primary",
+    sourceLabel: "一次資料・財務省／FATF第5次相互審査・DNFBPs",
+    status: "adopted",
+    summary: "FATF第5次相互審査で独立した評価分野となったDNFBPsのIO4について、参入管理、監督当局と事業者のリスク理解、顧客管理・疑わしい取引届出等の予防措置、モニタリング、是正措置という6つの主要課題を整理し、先行する各国審査の指摘から有効性評価の着眼点を示す財務省の解説。",
+    whyImportant: [
+      "不動産、宝石・貴金属等のDNFBPsについて、本人確認の形式遵守だけでなく、自社リスク理解・継続モニタリング・疑わしい取引届出・内部管理まで有効性として評価される軸を把握できる",
+      "第5次相互審査ではDNFBPsが独立したIO4として評価され、金融機関中心だったAML/CFTの有効性評価が非金融事業者にも明確に及ぶことを一次資料で確認できる",
+      "先行審査国で、リスク評価不足、疑わしい取引届出の少なさ、リスクベース監督や是正措置の弱さが実際の評価論点になっており、日本企業の自己点検項目へ落とせる"
+    ],
+    audience: ["不動産・宝石等の特定事業者", "企業法務・コンプライアンス", "内部監査", "経営企画"],
+    audienceReason: "FATF第5次対日相互審査を見据え、DNFBPとしての法定義務だけでなく、リスク評価・顧客管理・届出・内部管理の有効性を自己点検するため。",
+    categories: ["危機管理・コンプライアンス", "金融規制"],
+    relatedTopics: ["aml-kyc-criminal-proceeds"],
+    relatedIssues: ["aml-dnfbp-governance"],
+    primarySourceIds: ["source-mof-fatf-io4-dnfbps-20260918"],
+    legacyReformInference: false,
+    whatChanged: "論点補強／FATF第5次相互審査で独立評価されるDNFBPsについて、形式整備ではなくリスクベース運用・監督・是正までの有効性評価軸を一次資料で補強した。"
+  };
+  const existing = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
+  const ids = new Set(existing.map((item) => item && item.id).filter(Boolean));
+  const urls = new Set(existing.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  if (!ids.has(addition.id) && !urls.has(normalizeUrl(addition.url))) window.ARTICLE_DATA = existing.concat(addition);
+})();
