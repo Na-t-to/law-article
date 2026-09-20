@@ -269,6 +269,7 @@
   }
   const topicBySlug=new Map(topics.map(t=>[t.slug,t]));
   for(const article of articles){
+    if (typeof article.audience === "string") article.audience = article.audience.split(/[、,，]/).map((value) => value.trim()).filter(Boolean);
     article.primarySourceIds=uniq((article.primarySourceIds||[]).filter(id=>validSourceIds.has(id)));
     if (Array.isArray(article.reformStageSourceIds)) article.reformStageSourceIds=uniq(article.reformStageSourceIds.filter(id=>validSourceIds.has(id)));
     if (Array.isArray(article.reformEffectiveDateSourceIds)) article.reformEffectiveDateSourceIds=uniq(article.reformEffectiveDateSourceIds.filter(id=>validSourceIds.has(id)));
