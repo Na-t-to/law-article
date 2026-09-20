@@ -73,4 +73,9 @@
   const ids = new Set(existing.map((item) => item && item.id).filter(Boolean));
   const urls = new Set(existing.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
   window.ARTICLE_DATA = existing.concat(additions.filter((item) => !ids.has(item.id) && !urls.has(normalizeUrl(item.url))));
+  const topic = (window.TOPIC_DATA || []).find((item) => item && item.slug === "cyber-countermeasures-critical-infrastructure");
+  if (topic) {
+    topic.lastUpdated = "2026-09-20";
+    topic.lastVerified = "2026-09-20";
+  }
 })();
