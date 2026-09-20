@@ -1,0 +1,139 @@
+name: Apply structure cleanup 2026-09-20
+on:
+  push:
+    branches: [audit/structure-20260920-1253]
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      EXPECTED_MAIN: 1253d2dfbef6ae6872285f5579317e6e0d276146
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Prepare cleanup against current main
+        shell: bash
+        run: |
+          cp .audit/articles-run231.js /tmp/articles-run231.js
+          git fetch origin main
+          ACTUAL=$(git rev-parse origin/main)
+          if [ "$ACTUAL" != "$EXPECTED_MAIN" ]; then
+            echo "main moved: expected $EXPECTED_MAIN, got $ACTUAL" >&2
+            exit 42
+          fi
+          git checkout -B structure-cleanup origin/main
+          cp /tmp/articles-run231.js data/articles-run231.js
+          rm -f data/sources-run218.js
+          cat >> data/manifest.js <<'EOF'
+
+window.LAW_INDEX_DATA_FILES = Object.freeze({
+  ...window.LAW_INDEX_DATA_FILES,
+  articles: Object.freeze([...window.LAW_INDEX_DATA_FILES.articles, "articles-run231.js?v=1"])
+});
+EOF
+          for f in index.html articles.html article.html topics.html reforms.html update.html; do
+            perl -0pi -e 's/manifest\.js\?v=\d+/manifest.js?v=63/g' "$f"
+          done
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const cleanup=fs.readFileSync('/tmp/articles-run231.js','utf8');
+          const block=cleanup.match(/const topicAliases = new Map\(\[([\s\S]*?)\]\);/)?.[1]||'';
+          const pairs=[...block.matchAll(/\["([^"]+)","([^"]+)"\]/g)].map(m=>[m[1],m[2]]);
+          fs.mkdirSync('topics',{recursive:true});
+          const esc=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
+          for(const [alias,canonical] of pairs){
+            if(!fs.existsSync(`topics/${canonical}.html`)) throw new Error(`canonical topic page missing: ${canonical}`);
+            const q=JSON.stringify(`${canonical}.html`);
+            fs.writeFileSync(`topics/${alias}.html`,`<!doctype html>\n<html lang="ja">\n<head>\n  <meta charset="UTF-8" />\n  <meta name="viewport" content="width=device-width, initial-scale=1.0" />\n  <meta http-equiv="refresh" content="0; url=${esc(canonical)}.html" />\n  <link rel="canonical" href="${esc(canonical)}.html" />\n  <title>${esc(alias)} — LAW / INDEX</title>\n</head>\n<body>\n  <p>このテーマは統合されました。<a href="${esc(canonical)}.html">現在のテーマへ移動</a></p>\n  <script>location.replace(${q} + location.search + location.hash);<\/script>\n</body>\n</html>\n`);
+          }
+          if(!fs.existsSync('topics/consumer-law-digital-contract-review.html')){
+            fs.writeFileSync('topics/consumer-law-digital-contract-review.html',`<!doctype html><html lang="ja"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="消費者法制見直し・デジタル取引／サブスクの現在の整理、論点、主要資料。" /><title>消費者法制見直し・デジタル取引／サブスク — LAW / INDEX</title><link rel="stylesheet" href="../styles.css?v=20" /></head><body data-topic="consumer-law-digital-contract-review"><div class="page-shell"><header class="site-header"><a class="brand" href="../index.html" aria-label="LAW / INDEX トップへ"><span class="brand-name">LAW <i>/</i> INDEX</span><span class="brand-subtitle">LEGAL RESEARCH ARCHIVE</span></a><nav class="main-nav" aria-label="メインナビゲーション"><a class="nav-link" href="../index.html">新着</a><a class="nav-link" href="../articles.html">記事一覧</a><a class="nav-link is-active" href="../topics.html">テーマ</a><a class="nav-link" href="../reforms.html">法改正</a></nav></header><main id="topicPage"></main><footer class="site-footer"><div><strong>LAW / INDEX</strong></div></footer></div><script src="../data/manifest.js?v=63"></script><script src="../data/load-all.js?v=3"></script><script src="../topic-page.js?v=12"></script></body></html>\n`);
+          } else {
+            let s=fs.readFileSync('topics/consumer-law-digital-contract-review.html','utf8').replace(/manifest\.js\?v=\d+/,'manifest.js?v=63');
+            fs.writeFileSync('topics/consumer-law-digital-contract-review.html',s);
+          }
+          NODE
+          git diff --check
+      - name: Validate cleaned data and static references
+        shell: bash
+        run: |
+          mkdir -p audit-output
+          node scripts/validate-data.mjs > audit-output/validator.json 2> audit-output/warnings.txt
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs'; import vm from 'node:vm'; import path from 'node:path';
+          const c={window:{},URL}; vm.createContext(c); vm.runInContext(fs.readFileSync('data/manifest.js','utf8'),c);
+          for(const f of Object.values(c.window.LAW_INDEX_DATA_FILES).flat()) vm.runInContext(fs.readFileSync('data/'+f.split('?')[0],'utf8'),c);
+          const T=c.window.TOPIC_DATA||[],S=c.window.SOURCE_DATA||[],A=c.window.ARTICLE_DATA||[],R=c.window.REFORM_EVENT_DATA||[]; const arr=x=>Array.isArray(x)?x:[];
+          const norm=s=>String(s||'').normalize('NFKC').toLowerCase().replace(/[\s\u3000\p{P}\p{S}]+/gu,'');
+          const nu=x=>{try{let u=new URL(x);u.protocol='https:';u.hash='';[...u.searchParams.keys()].forEach(k=>{/^utm_/i.test(k)||['fbclid','gclid','yclid','mc_cid','mc_eid'].includes(k.toLowerCase())?u.searchParams.delete(k):0});u.pathname=u.pathname.replace(/\/+$/,'')||'/';u.searchParams.sort();return u.toString().replace(/\/$/,'')}catch{return String(x||'')}};
+          const groups=(xs,k)=>{let m=new Map;xs.forEach(x=>{let q=k(x);if(!q)return;if(!m.has(q))m.set(q,[]);m.get(q).push(x)});return [...m].filter(([,v])=>v.length>1)};
+          const cats=[...new Set([...T.flatMap(x=>arr(x.categories)),...A.flatMap(x=>arr(x.categories))])].sort();
+          const evFor=a=>{if(a.reformEventId)return R.find(e=>e.id===a.reformEventId)||null;let p=arr(a.primarySourceIds),m=R.filter(e=>arr(e.articleIds).includes(a.id)||arr(e.matchSourceIds).some(x=>p.includes(x)));return m.length===1?m[0]:null};
+          const legal=A.filter(a=>evFor(a)||c.window.getLegalReformInfo(a,T).isReform), un=legal.filter(a=>!evFor(a));
+          const topicArticles=new Map(T.map(t=>[t.slug,new Set()]));A.forEach(a=>arr(a.relatedTopics).forEach(s=>topicArticles.get(s)?.add(a.id)));
+          const topicSources=new Map(T.map(t=>[t.slug,new Set()]));T.forEach(t=>arr(t.issues).forEach(i=>{arr(i.sourceIds).forEach(s=>topicSources.get(t.slug)?.add(s));arr(i.views).forEach(v=>arr(v.sourceIds).forEach(s=>topicSources.get(t.slug)?.add(s))) }));
+          const jac=(a,b)=>{let u=new Set([...a,...b]);if(!u.size)return 0;let n=0;for(let x of a)if(b.has(x))n++;return n/u.size};let pairs=[];
+          for(let i=0;i<T.length;i++)for(let j=i+1;j<T.length;j++){let a=T[i],b=T[j],aj=jac(topicArticles.get(a.slug)||new Set,topicArticles.get(b.slug)||new Set),sj=jac(topicSources.get(a.slug)||new Set,topicSources.get(b.slug)||new Set);if(aj>=.35||sj>=.35||norm(a.title).includes(norm(b.title))||norm(b.title).includes(norm(a.title)))pairs.push({a:a.slug,at:a.title,b:b.slug,bt:b.title,articleJaccard:+aj.toFixed(3),sourceJaccard:+sj.toFixed(3)});}pairs.sort((x,y)=>Math.max(y.articleJaccard,y.sourceJaccard)-Math.max(x.articleJaccard,x.sourceJaccard));
+          const html=[];function walk(d){for(const e of fs.readdirSync(d,{withFileTypes:true})){let p=path.join(d,e.name);if(e.isDirectory()&&!p.includes('/.git'))walk(p);else if(e.isFile()&&e.name.endsWith('.html'))html.push(p)}}walk('.');let broken=[],badnav=[],footer=[];
+          for(const f of html){let x=fs.readFileSync(f,'utf8');for(const m of x.matchAll(/href=["']([^"']+)["']/gi)){let h=m[1];if(!h||/^(https?:|mailto:|tel:|javascript:|#)/i.test(h))continue;let z=h.split(/[?#]/)[0];if(z&&!fs.existsSync(path.resolve(path.dirname(f),z)))broken.push({file:f,href:h})}let nav=x.match(/<nav[^>]*main-nav[^>]*>([\s\S]*?)<\/nav>/i)?.[1]||'';let labels=[...nav.matchAll(/<a[^>]*>([^<]+)<\/a>/gi)].map(m=>m[1].trim());if(labels.length&&labels.join('|')!=='新着|記事一覧|テーマ|法改正')badnav.push({file:f,labels});let ft=x.match(/<footer[^>]*site-footer[^>]*>([\s\S]*?)<\/footer>/i)?.[1]||'';if(/href=["']#top["']/.test(ft))footer.push(f);}
+          const result={counts:{topics:T.length,sources:S.length,articles:A.length,reforms:R.length,issues:T.flatMap(t=>arr(t.issues)).length},categories:cats,duplicates:{articleIds:groups(A,x=>x.id).length,articleUrls:groups(A,x=>nu(x.url)).length,articleTitlePublisher:groups(A,x=>norm(x.title)+'|'+norm(x.publisher)).length,sourceIds:groups(S,x=>x.id).length,sourceUrls:groups(S,x=>nu(x.url)).length},themePairs:pairs.slice(0,20),reforms:{legal:legal.length,linked:legal.length-un.length,unlinked:un.map(x=>({id:x.id,title:x.title})),events:R.length},lastVerifiedOlderThanUpdated:T.filter(t=>t.lastUpdated&&t.lastVerified&&t.lastVerified<t.lastUpdated).map(t=>({slug:t.slug,lastUpdated:t.lastUpdated,lastVerified:t.lastVerified})),html:{count:html.length,broken,badnav,footerTopLinks:footer}};
+          fs.writeFileSync('audit-output/structure.json',JSON.stringify(result,null,2));
+          if(result.duplicates.articleIds||result.duplicates.articleUrls||result.duplicates.sourceIds||result.duplicates.sourceUrls||broken.length||badnav.length||footer.length||result.lastVerifiedOlderThanUpdated.length) process.exit(3);
+          NODE
+      - name: Commit and push to main
+        shell: bash
+        run: |
+          git config user.name "LAW INDEX audit"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git reset -- audit-output
+          git commit -m "Clean duplicate knowledge and reform records"
+          NEW_SHA=$(git rev-parse HEAD)
+          echo "NEW_SHA=$NEW_SHA" >> "$GITHUB_ENV"
+          git push origin HEAD:main
+      - name: Wait for GitHub Pages and verify published files
+        shell: bash
+        run: |
+          mkdir -p audit-output/public
+          BASE='https://na-t-to.github.io/law-article/'
+          MATCHED=0
+          for i in $(seq 1 30); do
+            if curl -fsSL "$BASE/data/manifest.js?audit=$NEW_SHA-$i" -o /tmp/public-manifest.js && cmp -s data/manifest.js /tmp/public-manifest.js; then MATCHED=1; break; fi
+            sleep 10
+          done
+          if [ "$MATCHED" != 1 ]; then echo 'Published manifest did not match main within polling window' >&2; exit 4; fi
+          : > audit-output/public-checks.tsv
+          for f in index.html articles.html article.html topics.html reforms.html update.html data/manifest.js data/articles-run231.js topics/consumer-law-digital-contract-review.html topics/customer-harassment-2026.html; do
+            out="audit-output/public/${f//\//-}"
+            curl -fsSL "$BASE$f?audit=$NEW_SHA" -o "$out"
+            if cmp -s "$f" "$out"; then printf '%s\t200\tmatch\n' "$f" >> audit-output/public-checks.tsv; else printf '%s\t200\tMISMATCH\n' "$f" >> audit-output/public-checks.tsv; exit 5; fi
+          done
+      - name: Render desktop and mobile smoke checks
+        shell: bash
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm install --no-save playwright@1.55.0 >/dev/null 2>&1
+          npx playwright install --with-deps chromium >/dev/null 2>&1
+          node --input-type=module <<'NODE'
+          import { chromium } from 'playwright'; import fs from 'node:fs';
+          const browser=await chromium.launch({headless:true}); const checks=[];
+          for(const [label,viewport] of [['desktop',{width:1440,height:900}],['mobile',{width:390,height:844}]]){
+            const ctx=await browser.newContext({viewportSize:viewport});
+            for(const p of ['index.html','articles.html','topics.html','reforms.html','topics/customer-harassment.html','topics/patent-network-inventions-infringement-review-2026.html']){
+              const page=await ctx.newPage();const errors=[];page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});page.on('pageerror',e=>errors.push(e.message));
+              const r=await page.goto('https://na-t-to.github.io/law-article/'+p+'?audit='+process.env.NEW_SHA,{waitUntil:'networkidle',timeout:30000});
+              const state=await page.evaluate(()=>({title:document.title,nav:[...document.querySelectorAll('.main-nav a')].map(a=>a.textContent.trim()),overflow:document.documentElement.scrollWidth>document.documentElement.clientWidth+2,h1:document.querySelector('h1,h2')?.textContent?.trim()||'',missing:!!document.querySelector('.missing-topic')}));
+              await page.screenshot({path:`audit-output/${label}-${p.replaceAll('/','-')}.png`,fullPage:true});checks.push({label,path:p,status:r?.status(),errors,state});await page.close();
+            } await ctx.close();
+          } await browser.close(); fs.writeFileSync('audit-output/browser-checks.json',JSON.stringify(checks,null,2));
+          if(checks.some(x=>x.status!==200||x.errors.length||x.state.overflow||x.state.missing||x.state.nav.join('|')!=='新着|記事一覧|テーマ|法改正'))process.exit(6);
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: post-cleanup-audit-20260920
+          path: audit-output
+          retention-days: 7
