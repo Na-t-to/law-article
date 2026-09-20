@@ -21,22 +21,22 @@ jobs:
           import { chromium } from 'playwright'; import fs from 'node:fs';
           const B='https://na-t-to.github.io/law-article/'; const b=await chromium.launch({headless:true});const p=await b.newPage({viewport:{width:1280,height:800}});const out={};
           try {
-            await p.goto(B+'articles.html?audit=15ad3544',{waitUntil:'networkidle'});
+            await p.goto(B+'articles.html?audit=0a5fc37a',{waitUntil:'networkidle'});await p.locator('#articleLibrary .article-row').first().waitFor({state:'visible'});
             const initialCount=Number((await p.locator('#libraryCount strong').textContent())||0);
             const firstTitle=((await p.locator('#articleLibrary .article-row .article-main-cell strong').first().textContent())||'').trim();
-            await p.locator('#articleSearch').fill(firstTitle);await p.waitForTimeout(200);
+            await p.locator('#articleSearch').fill(firstTitle);await p.waitForFunction(()=>Number(document.querySelector('#libraryCount strong')?.textContent||0)<100);
             const searchedCount=Number((await p.locator('#libraryCount strong').textContent())||0);
             out.search={initialCount,searchedCount,query:firstTitle,rows:await p.locator('#articleLibrary .article-row').count()};
             if(!(initialCount>searchedCount&&searchedCount>0))throw new Error('article search did not narrow results: '+JSON.stringify(out.search));
 
-            await p.goto(B+'topics.html?audit=15ad3544',{waitUntil:'networkidle'});
-            const total=await p.locator('#topicList .topic-row').count();const btn=p.locator('#fieldFilters [data-field]').nth(1);const label=((await btn.textContent())||'').trim();const field=await btn.getAttribute('data-field');await btn.click();await p.waitForTimeout(200);const filtered=await p.locator('#topicList .topic-row').count();out.topicFilter={total,filtered,label,field};if(!(total>filtered&&filtered>0))throw new Error('topic field filter did not narrow results: '+JSON.stringify(out.topicFilter));
+            await p.goto(B+'topics.html?audit=0a5fc37a',{waitUntil:'networkidle'});await p.locator('#topicList .topic-row').first().waitFor({state:'visible'});
+            const total=await p.locator('#topicList .topic-row').count();const btn=p.locator('#fieldFilters [data-field]').nth(1);const label=((await btn.textContent())||'').trim();const field=await btn.getAttribute('data-field');await btn.click();await p.waitForTimeout(200);const filtered=await p.locator('#topicList .topic-row').count();out.topicFilter={total,filtered,label,field};if(!(total>=filtered&&filtered>0&&field!=='all'))throw new Error('topic field filter failed: '+JSON.stringify(out.topicFilter));
 
-            await p.goto(B+'article.html?id=article-tmi-aml-identity-2026&audit=15ad3544',{waitUntil:'networkidle'});const articleText=await p.locator('#articlePage').innerText();out.articleDetail={title:await p.title(),text:articleText.slice(0,300)};if(articleText.includes('見つかりません')||!articleText.trim())throw new Error('article detail missing');
+            await p.goto(B+'article.html?id=article-tmi-aml-identity-2026&audit=0a5fc37a',{waitUntil:'networkidle'});await p.locator('#articlePage').waitFor({state:'visible'});const articleText=await p.locator('#articlePage').innerText();out.articleDetail={title:await p.title(),text:articleText.slice(0,300)};if(articleText.includes('見つかりません')||!articleText.trim())throw new Error('article detail missing');
 
-            await p.goto(B+'topics/customer-harassment-2026.html?audit=15ad3544',{waitUntil:'networkidle'});out.redirect={url:p.url(),title:await p.title()};if(!p.url().includes('/topics/customer-harassment.html'))throw new Error('legacy topic redirect failed: '+p.url());
+            await p.goto(B+'topics/customer-harassment-2026.html?audit=0a5fc37a',{waitUntil:'networkidle'});out.redirect={url:p.url(),title:await p.title()};if(!p.url().includes('/topics/customer-harassment.html'))throw new Error('legacy topic redirect failed: '+p.url());
 
-            await p.goto(B+'reforms.html?audit=15ad3544',{waitUntil:'networkidle'});const reformText=await p.locator('#reformList').innerText();out.reforms={groups:await p.locator('.reform-law-index > *').count(),text:reformText.slice(0,300)};if(!reformText.trim())throw new Error('reform list empty');
+            await p.goto(B+'reforms.html?audit=0a5fc37a',{waitUntil:'networkidle'});await p.locator('#reformList').waitFor({state:'visible'});const reformText=await p.locator('#reformList').innerText();out.reforms={groups:await p.locator('.reform-law-index > *').count(),text:reformText.slice(0,300)};if(!reformText.trim())throw new Error('reform list empty');
           } finally { fs.writeFileSync('interaction-output/result.json',JSON.stringify(out,null,2)); await b.close(); }
           NODE
       - uses: actions/upload-artifact@v4
