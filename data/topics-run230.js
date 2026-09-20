@@ -76,7 +76,7 @@
       {
         id: "startup-finance-overseas-vf",
         title: "国内VCから海外VCへの出資で外国ファンド特例をどう使うか",
-        status: "authoritative",
+        status: "interpreted",
         stage: "effective",
         views: [],
         conclusion: "国内スタートアップの海外進出を促進する観点から、国内ベンチャーファンドが海外ベンチャーファンドへ出資する場合の外国ファンド特例の要件が緩和され、2026年9月16日から施行されている。",
