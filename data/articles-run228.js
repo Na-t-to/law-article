@@ -154,3 +154,52 @@
   const urls = new Set(existing.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
   if (!ids.has(addition.id) && !urls.has(normalizeUrl(addition.url))) window.ARTICLE_DATA = existing.concat(addition);
 })();
+
+(() => {
+  const normalizeUrl = (value) => {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.protocol = "https:";
+      url.hash = "";
+      [...url.searchParams.keys()].forEach((key) => {
+        if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+      });
+      url.hostname = url.hostname.toLowerCase();
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      url.searchParams.sort();
+      return url.toString();
+    } catch {
+      return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
+    }
+  };
+  const addition = {
+    id: "article-jftc-oki-hitachi-atm-merger-20260918",
+    title: "沖電気工業株式会社、株式会社日立製作所及び日立チャネルソリューションズ株式会社によるATM、営業店端末等の事業の統合に関する審査結果について",
+    publisher: "公正取引委員会",
+    author: "公正取引委員会",
+    publishedAt: "2026-09-18",
+    collectedAt: "2026-09-20",
+    url: "https://www.jftc.go.jp/houdou/pressrelease/2026/sep/260918kiketsu_oh.html",
+    sourceType: "primary",
+    sourceLabel: "一次資料・公取委／ATM・営業店端末事業統合の企業結合審査",
+    status: "adopted",
+    summary: "沖電気工業、日立製作所、日立チャネルソリューションズによるATM・営業店端末等の事業統合について、公正取引委員会が水平・垂直・混合型の競争影響を審査し、当事会社が申し出た問題解消措置を前提として独占禁止法上問題ないと判断した事例。紙幣入出金モジュール等では統合後シェア100％、ATM完成品では約65％となる市場があり、情報遮断、既存取引先への供給保証、監視事業者への情報提供、監視受託者によるモニタリング等を組み合わせて競争懸念に対応した。",
+    whyImportant: [
+      "高い市場シェアが生じる案件でも、市場ごとの競争懸念と問題解消措置を対応付けて審査する具体例として、企業結合ガイドラインの実務上の使われ方を確認できる",
+      "部品・モジュールからATM完成品、監視サービスまでの垂直関係について、供給拒絶や競争上機微な情報へのアクセスがどのように競争懸念として評価されるかが具体的",
+      "供給保証等の措置を5年間継続し、監視受託者によるモニタリングと公取委への報告、4年経過時の延長協議まで設けており、行動的問題解消措置の設計・履行管理の参考になる"
+    ],
+    audience: ["企業法務", "M&A担当", "経営企画", "独占禁止法・競争法担当"],
+    audienceReason: "企業結合案件で競争懸念が生じる場合に、供給保証、情報遮断、第三者モニタリング等の問題解消措置を案件条件・実行後運用へどう落とすかを検討するため。",
+    categories: ["M&A", "独占禁止法・競争法", "契約"],
+    relatedTopics: ["merger-control-antitrust"],
+    relatedIssues: ["mc-substantive-review", "mc-remedies"],
+    primarySourceIds: ["source-jftc-oki-hitachi-atm-merger-20260918"],
+    legacyReformInference: false,
+    whatChanged: "審査事例追加／ATM・営業店端末等の高シェア事業統合について、供給保証・情報遮断・第三者モニタリング等の問題解消措置を前提に問題なしとした最新の企業結合審査事例を追加した。"
+  };
+  const existing = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
+  const ids = new Set(existing.map((item) => item && item.id).filter(Boolean));
+  const urls = new Set(existing.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  if (!ids.has(addition.id) && !urls.has(normalizeUrl(addition.url))) window.ARTICLE_DATA = existing.concat(addition);
+})();
