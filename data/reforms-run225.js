@@ -67,3 +67,56 @@
     ]);
   }
 })();
+
+(() => {
+  const additions = [
+    {
+      id: "freelance-act-2024-enactment",
+      title: "フリーランス・事業者間取引適正化等法・2024年施行",
+      eventType: "new_law",
+      lawId: "freelance-act",
+      lawLabel: "フリーランス・事業者間取引適正化等法",
+      relatedTopics: ["freelance-law"],
+      effectiveDateStatus: "confirmed",
+      effectiveDate: "2024-11-01",
+      effectiveDateSourceIds: ["source-freelance-law"],
+      matchSourceIds: [],
+      sourceIds: ["source-freelance-law"],
+      articleIds: [
+        "article-freelance-law-official",
+        "article-not-freelance-work-environment-2024",
+        "article-not-freelance-transactions-2024"
+      ]
+    },
+    {
+      id: "ssbj-ghg-disclosure-2026-amendment",
+      title: "SSBJ基準・温室効果ガス排出開示（2026年改正）",
+      eventType: "regulation_or_guideline",
+      lawId: "ssbj-sustainability-disclosure-standards",
+      lawLabel: "SSBJサステナビリティ開示基準",
+      relatedTopics: ["ssbj-statutory-sustainability-disclosure"],
+      effectiveDateStatus: "unknown",
+      matchSourceIds: [],
+      sourceIds: ["source-ssbj-ghg-amendment-2026"],
+      articleIds: ["article-ssbj-ghg-amendment-2026"]
+    },
+    {
+      id: "unfair-competition-prevention-act-2023-amendment",
+      title: "不正競争防止法・2023年改正",
+      eventType: "law_amendment",
+      lawId: "unfair-competition-prevention-act",
+      lawLabel: "不正競争防止法",
+      relatedTopics: ["trade-secret-management"],
+      effectiveDateStatus: "confirmed",
+      effectiveDate: "2024-04-01",
+      effectiveDateSourceIds: ["source-ucpa-amendment-2023"],
+      matchSourceIds: [],
+      sourceIds: ["source-ucpa-amendment-2023"],
+      articleIds: ["article-meti-ucpa-amendment-2023"]
+    }
+  ];
+
+  const existing = Array.isArray(window.REFORM_EVENT_DATA) ? window.REFORM_EVENT_DATA : [];
+  const ids = new Set(existing.map((item) => item && item.id).filter(Boolean));
+  window.REFORM_EVENT_DATA = existing.concat(additions.filter((item) => !ids.has(item.id)));
+})();
