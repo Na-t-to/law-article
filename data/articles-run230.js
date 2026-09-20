@@ -110,8 +110,21 @@
   const urls = new Set(existing.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
   window.ARTICLE_DATA = existing.concat(additions.filter((item) => !ids.has(item.id) && !urls.has(normalizeUrl(item.url))));
 })();
-
 (() => {
+  const canonicalTopic = "social-insurance-expansion-2025";
+  const topicAliases = new Set([
+    canonicalTopic,
+    "social-insurance-short-time-workers-2026",
+    "social-insurance-expansion-part-time-workers",
+    "social-insurance-expansion-pension-reform-2025"
+  ]);
+  const canonicalReform = "employee-social-insurance-expansion-2025-amendment";
+  const reformAliases = new Set([
+    canonicalReform,
+    "pension-reform-2025-social-insurance-expansion",
+    "pension-reform-social-insurance-expansion-2025"
+  ]);
+
   const normalizeUrl = (value) => {
     try {
       const url = new URL(String(value || "").trim());
@@ -128,65 +141,152 @@
       return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
     }
   };
-  const additions = [
-    {
-      id: "article-mhlw-short-regular-self-employed-social-insurance-20260914",
-      title: "勤務時間が短い正規型の労働者として事業所に使用されている個人事業主等に係る被保険者資格の取扱い等について",
-      publisher: "厚生労働省",
-      author: "厚生労働省",
-      publishedAt: "2026-09-14",
-      collectedAt: "2026-09-20",
-      url: "https://www.mhlw.go.jp/stf/houdou/newpage_75927.html",
-      sourceType: "primary",
-      sourceLabel: "一次資料・厚生労働省／短時間正社員・個人事業主等の社会保険資格",
-      status: "adopted",
-      summary: "個人事業主・フリーランス等を勤務時間が短い正規型労働者として雇用し、健康保険・厚生年金保険へ加入させるケースについて、常用的使用関係を実態から判定する取扱いを明確化した厚生労働省通知。報酬が業務の対価として経常的な支払いと認められず、かつ、業務が経常的な労務提供と認められない場合は原則として被保険者資格を有しないとし、いずれか一方のみの場合は就労実態を踏まえ個別に判断する。",
-      whyImportant: [
-        "短時間正社員という契約上の呼称だけで社会保険資格を判断せず、報酬の対価性・実際の労務提供・常用的使用関係を確認する行政基準を示した",
-        "報酬を支払う一方で会費等を徴収するなど、形式的な雇用による不適切な社会保険加入が疑われる場面の点検軸になる",
-        "通常の短時間正社員を一律に除外するものではなく、二つの基準の該当状況と就労実態に応じて個別判断することを確認できる"
-      ],
-      audience: ["人事・労務", "給与・社会保険担当", "企業法務", "コンプライアンス"],
-      audienceReason: "個人事業主・フリーランス等を短時間正社員として雇用する制度や社会保険加入スキームについて、形式ではなく実態に基づく資格判定を点検するため。",
-      categories: ["労務"],
-      relatedTopics: ["social-insurance-expansion-part-time-workers"],
-      relatedIssues: ["social-insurance-short-regular-self-employed-qualification"],
-      primarySourceIds: ["source-mhlw-short-regular-self-employed-social-insurance-20260914"],
-      legacyReformInference: false,
-      whatChanged: "行政解釈補強／短時間正社員として雇用された個人事業主等について、報酬・労務提供・常用的使用関係から社会保険資格を判定する新たな取扱いを追加した。"
-    },
-    {
-      id: "article-tmi-labor-update-social-insurance-20260915",
-      title: "【労働法ブログ】労働法最新情報（2026年9月15日）",
-      publisher: "TMI総合法律事務所",
-      author: "TMI総合法律事務所 労働法プラクティスグループ",
-      publishedAt: "2026-09-15",
-      collectedAt: "2026-09-20",
-      url: "https://www.tmi.gr.jp/eyes/blog/2026/18816.html",
-      sourceType: "secondary",
-      sourceLabel: "実務解説・TMI／2026年9月の社会保険適用実務アップデート",
-      status: "adopted",
-      summary: "2026年9月の労働法最新情報をまとめる中で、短時間労働者の月額8.8万円という賃金要件の2026年10月1日撤廃、最低賃金法上の特定減額特例対象者の例外、勤務時間が短い正規型労働者として雇用された個人事業主等の被保険者資格、保険料調整制度を一続きの社会保険実務として整理する。施行直前に人事・給与担当が見落としやすい例外と新通知を横断できる。",
-      whyImportant: [
-        "賃金要件の撤廃日が政令で2026年10月1日に確定したことと、最低賃金減額特例対象者に残る例外を同時に確認できる",
-        "個人事業主等を短時間正社員として雇用するケースについて、厚生労働省の新通知が示す二つの資格判定基準を実務アップデートとして拾っている",
-        "保険料調整制度まで含め、10月施行時に対象者抽出・資格判定・本人負担軽減を別々に点検する必要があることが分かる"
-      ],
-      audience: ["人事・労務", "給与・社会保険担当", "企業法務", "経営企画"],
-      audienceReason: "2026年10月1日の賃金要件撤廃に向け、施行日確定、例外、資格判定の新通知、保険料調整制度をまとめて実務へ反映するため。",
-      categories: ["労務"],
-      relatedTopics: ["social-insurance-expansion-part-time-workers"],
-      relatedIssues: ["social-insurance-wage-threshold-abolition", "social-insurance-premium-adjustment", "social-insurance-short-regular-self-employed-qualification"],
-      primarySourceIds: ["source-mhlw-pension-wage-threshold-decrees-20260911", "source-mhlw-short-regular-self-employed-social-insurance-20260914", "source-jps-premium-adjustment-20260911"],
-      reformEventId: "pension-reform-social-insurance-expansion-2025",
-      reformStageAtPublication: "finalized_pending",
-      reformStageSourceIds: ["source-mhlw-pension-wage-threshold-decrees-20260911"],
-      legacyReformInference: false,
-      whatChanged: "施行準備補強／賃金要件撤廃日の確定、最低賃金減額特例の例外、短時間正社員として雇用する個人事業主等の資格判定を施行直前情報として追加した。"
+  const uniq = (values) => [...new Set((values || []).filter(Boolean))];
+  const normalizeTopics = (values) => uniq((values || []).map((value) => topicAliases.has(value) ? canonicalTopic : value));
+
+  const sourceAliases = new Map([
+    ["source-mhlw-social-insurance-short-regular-sole-proprietor-2026", "source-mhlw-short-hours-self-employed-insurance-2026"],
+    ["source-jps-social-insurance-premium-adjustment-2026", "source-jps-premium-adjustment-2026"],
+    ["source-nenkin-short-time-expansion-20260916", "source-jps-social-insurance-expansion-2026-09-16"],
+    ["source-nenkin-premium-adjustment-20260911", "source-jps-premium-adjustment-2026"],
+    ["source-mhlw-short-hours-insured-status-20260914", "source-mhlw-shorttime-regular-worker-insurance-20260914"],
+    ["source-mhlw-social-insurance-related-order-2026", "source-mhlw-social-insurance-wage-requirement-decree-2026"],
+    ["source-jps-insurance-premium-adjustment-2026", "source-jps-premium-adjustment-2026"],
+    ["source-jps-premium-adjustment-20260911", "source-jps-premium-adjustment-2026"],
+    ["source-mhlw-pension-wage-threshold-decrees-20260911", "source-mhlw-pension-effective-notice-20260915"],
+    ["source-mhlw-short-regular-self-employed-social-insurance-20260914", "source-mhlw-short-hours-self-employed-insurance-2026"]
+  ]);
+  const articleAliases = new Map([
+    ["article-nenkin-short-time-expansion-20260916", "article-jps-social-insurance-expansion-2026-09-16"],
+    ["article-nenkin-premium-adjustment-20260911", "article-jps-premium-adjustment-2026"],
+    ["article-jps-premium-adjustment-20260911", "article-jps-premium-adjustment-2026"],
+    ["article-jps-insurance-premium-adjustment-2026", "article-jps-premium-adjustment-2026"],
+    ["article-tmi-pension-reform-20250620", "article-tmi-pension-reform-2025"],
+    ["article-tmi-pension-reform-social-insurance-20250620", "article-tmi-pension-reform-2025"],
+    ["article-tmi-labor-update-social-insurance-20260915", "article-tmi-labor-update-social-insurance-2026-09-15"],
+    ["article-mhlw-short-hours-insured-status-20260914", "article-mhlw-shorttime-regular-worker-insurance-20260914"],
+    ["article-mhlw-short-regular-self-employed-social-insurance-20260914", "article-mhlw-short-hours-self-employed-insurance-2026"]
+  ]);
+  const issueAliases = new Map([
+    ["social-insurance-2026-wage-requirement", "social-insurance-short-time-coverage-expansion"],
+    ["social-insurance-2027-enterprise-size", "social-insurance-short-time-coverage-expansion"],
+    ["social-insurance-2026-premium-adjustment", "social-insurance-premium-adjustment-2026"],
+    ["social-insurance-2029-individual-establishments", "social-insurance-individual-business-expansion-2029"],
+    ["social-insurance-formal-qualification-substance-2026", "social-insurance-short-hours-qualification-2026"],
+    ["social-insurance-wage-threshold-abolition", "social-insurance-short-time-coverage-expansion"],
+    ["social-insurance-enterprise-size-expansion", "social-insurance-short-time-coverage-expansion"],
+    ["social-insurance-individual-business-expansion", "social-insurance-individual-business-expansion-2029"],
+    ["social-insurance-premium-adjustment", "social-insurance-premium-adjustment-2026"],
+    ["social-insurance-short-regular-self-employed-qualification", "social-insurance-short-hours-qualification-2026"],
+    ["social-insurance-wage-threshold", "social-insurance-short-time-coverage-expansion"],
+    ["social-insurance-company-size", "social-insurance-short-time-coverage-expansion"],
+    ["social-insurance-individual-business", "social-insurance-individual-business-expansion-2029"],
+    ["social-insurance-substance-freelancer-shorttime", "social-insurance-short-hours-qualification-2026"],
+    ["social-insurance-nominal-employment-qualification-2026", "social-insurance-short-hours-qualification-2026"]
+  ]);
+
+  const existingSources = Array.isArray(window.SOURCE_DATA) ? window.SOURCE_DATA : [];
+  const seenSocialSourceIds = new Set();
+  const seenSocialSourceUrls = new Set();
+  window.SOURCE_DATA = existingSources.filter((source) => {
+    if (!source) return false;
+    const wasSocial = (source.topics || []).some((value) => topicAliases.has(value));
+    if (wasSocial) source.topics = normalizeTopics(source.topics);
+    if (!wasSocial) return true;
+    const normalized = normalizeUrl(source.url);
+    if (seenSocialSourceIds.has(source.id) || (normalized && seenSocialSourceUrls.has(normalized))) return false;
+    if (source.id) seenSocialSourceIds.add(source.id);
+    if (normalized) seenSocialSourceUrls.add(normalized);
+    return true;
+  });
+
+  const validSourceIds = new Set((window.SOURCE_DATA || []).map((item) => item && item.id).filter(Boolean));
+  const mapSourceIds = (values) => uniq((values || []).map((value) => sourceAliases.get(value) || value).filter((value) => validSourceIds.has(value)));
+
+  const existingArticles = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
+  for (const article of existingArticles) {
+    if (!article) continue;
+    const isSocial = (article.relatedTopics || []).some((value) => topicAliases.has(value)) || reformAliases.has(article.reformEventId);
+    if (!isSocial) continue;
+    article.relatedTopics = normalizeTopics(article.relatedTopics);
+    article.relatedIssues = uniq((article.relatedIssues || []).map((value) => issueAliases.get(value) || value));
+    if (Array.isArray(article.primarySourceIds)) article.primarySourceIds = mapSourceIds(article.primarySourceIds);
+    if (Array.isArray(article.reformStageSourceIds)) article.reformStageSourceIds = mapSourceIds(article.reformStageSourceIds);
+    if (Array.isArray(article.reformEffectiveDateSourceIds)) article.reformEffectiveDateSourceIds = mapSourceIds(article.reformEffectiveDateSourceIds);
+    if (reformAliases.has(article.reformEventId)) article.reformEventId = canonicalReform;
+  }
+  window.ARTICLE_DATA = existingArticles;
+
+  const validArticleIds = new Set((window.ARTICLE_DATA || []).map((item) => item && item.id).filter(Boolean));
+  const mapArticleIds = (values) => uniq((values || []).map((value) => articleAliases.get(value) || value).filter((value) => validArticleIds.has(value)));
+
+  const allTopics = Array.isArray(window.TOPIC_DATA) ? window.TOPIC_DATA : [];
+  const canonical = allTopics.find((item) => item && item.slug === canonicalTopic);
+  const aliases = allTopics.filter((item) => item && topicAliases.has(item.slug));
+  if (canonical) {
+    canonical.lastUpdated = "2026-09-20";
+    canonical.lastVerified = "2026-09-20";
+    canonical.sourceIds = mapSourceIds(aliases.flatMap((item) => item.sourceIds || []));
+    const linkedArticles = (window.ARTICLE_DATA || [])
+      .filter((item) => item && (item.relatedTopics || []).includes(canonicalTopic))
+      .map((item) => item.id);
+    canonical.referenceArticleIds = mapArticleIds([
+      ...aliases.flatMap((item) => item.referenceArticleIds || []),
+      ...linkedArticles
+    ]);
+    canonical.practicalImpacts = uniq(aliases.flatMap((item) => item.practicalImpacts || []));
+
+    canonical.issues = (canonical.issues || []).filter((issue) => issue && issue.id !== "social-insurance-nominal-employment-qualification-2026");
+    for (const issue of canonical.issues) {
+      issue.sourceIds = mapSourceIds(issue.sourceIds);
     }
-  ];
-  const existing = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
-  const ids = new Set(existing.map((item) => item && item.id).filter(Boolean));
-  const urls = new Set(existing.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
-  window.ARTICLE_DATA = existing.concat(additions.filter((item) => !ids.has(item.id) && !urls.has(normalizeUrl(item.url))));
+    const qualification = canonical.issues.find((issue) => issue && issue.id === "social-insurance-short-hours-qualification-2026");
+    if (qualification) {
+      qualification.conclusion = "契約名義ではなく常用的使用関係の実態を確認し、報酬が経常的な業務対価といえないことと、業務が経常的な労務提供といえないことの双方に該当する場合は、原則として健康保険・厚生年金保険の被保険者資格を有しないものとして取り扱う。";
+      qualification.exception = "二つの要素の一方だけに該当する場合や、会費等が報酬以下である場合でも直ちに資格の有無が決まるわけではなく、労働時間、業務内容、報酬と会費等の関係その他の就労実態を総合判断する。通常の短時間勤務者を一律に資格なしとするものではない。";
+      qualification.uncertain = "個別案件でどの程度の勤務時間・業務内容・費用負担が常用的使用関係を否定するかは、一律の数値基準ではなく事実関係に応じて判断される。";
+      qualification.sourceIds = mapSourceIds([
+        ...(qualification.sourceIds || []),
+        "source-mhlw-short-hours-self-employed-insurance-2026",
+        "source-mhlw-shorttime-regular-worker-insurance-20260914",
+        "source-mhlw-officer-self-employed-insurance-2026"
+      ]);
+    }
+    const employerIssue = aliases
+      .flatMap((item) => item.issues || [])
+      .find((issue) => issue && issue.id === "social-insurance-employer-preparation");
+    if (employerIssue && !canonical.issues.some((issue) => issue && issue.id === employerIssue.id)) {
+      const cloned = { ...employerIssue, sourceIds: mapSourceIds(employerIssue.sourceIds) };
+      canonical.issues.push(cloned);
+    }
+  }
+  window.TOPIC_DATA = allTopics.filter((item) => item && (item.slug === canonicalTopic || !topicAliases.has(item.slug)));
+
+
+  const allEvents = Array.isArray(window.REFORM_EVENT_DATA) ? window.REFORM_EVENT_DATA : [];
+  const socialEvents = allEvents.filter((item) => item && reformAliases.has(item.id));
+  const firstEventIndex = allEvents.findIndex((item) => item && reformAliases.has(item.id));
+  const baseEvent = socialEvents.find((item) => item && item.id === canonicalReform) || socialEvents[0];
+  if (baseEvent) {
+    const normalizedEvent = {
+      ...baseEvent,
+      id: canonicalReform,
+      title: "年金制度改正法・社会保険適用拡大（2025年改正）",
+      eventType: "law_amendment",
+      lawId: "pension-system-reform-act-2025",
+      lawLabel: "年金制度改正法（令和7年法律第74号）",
+      relatedTopics: [canonicalTopic],
+      effectiveDateStatus: "phased",
+      effectiveDates: ["2026-10-01", "2027-10-01", "2029-10-01", "2032-10-01", "2035-10-01"],
+      effectiveDateNote: "短時間労働者の月額8.8万円の賃金要件撤廃と保険料調整制度は2026年10月1日。企業規模要件は2027年10月に36人以上、2029年10月に21人以上、2032年10月に11人以上へ段階的に縮小し、2035年10月1日に撤廃。常時5人以上を使用する個人事業所の業種要件は2029年10月1日に撤廃（既存の従来非適用業種事業所には経過措置）。",
+      sourceIds: mapSourceIds(socialEvents.flatMap((item) => item.sourceIds || [])),
+      matchSourceIds: mapSourceIds(socialEvents.flatMap((item) => item.matchSourceIds || [])),
+      effectiveDateSourceIds: mapSourceIds(socialEvents.flatMap((item) => item.effectiveDateSourceIds || [])),
+      articleIds: mapArticleIds(socialEvents.flatMap((item) => item.articleIds || []))
+    };
+    const rest = allEvents.filter((item) => !(item && reformAliases.has(item.id)));
+    rest.splice(firstEventIndex < 0 ? rest.length : firstEventIndex, 0, normalizedEvent);
+    window.REFORM_EVENT_DATA = rest;
+  }
+
 })();
