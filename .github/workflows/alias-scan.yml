@@ -19,7 +19,7 @@ jobs:
           set -e
           python3 - <<'PY'
           import json,re,glob,os
-          err=open('alias-output/validator-stderr.txt',encoding='utf-8').read().splitlines()
+          err=open('alias-output/validator-stderr.txt',encoding='utf-8',errors='replace').read().splitlines()
           ids=[]
           for line in err:
             if '存在しません' in line:
@@ -27,10 +27,10 @@ jobs:
           ids=sorted(set(ids))
           files=glob.glob('data/*.js')
           hits={}
+          texts={f:open(f,encoding='utf-8',errors='replace').read() for f in files}
           for target in ids:
             h=[]
-            for f in files:
-              text=open(f,encoding='utf-8').read()
+            for f,text in texts.items():
               pos=0
               while True:
                 pos=text.find(target,pos)
@@ -43,13 +43,11 @@ jobs:
             hits[target]=h[:12]
           open('alias-output/missing-id-hits.json','w',encoding='utf-8').write(json.dumps(hits,ensure_ascii=False,indent=2))
 
-          # All literal id/url/title triples found in object-like neighborhoods, useful for alias-by-url repair.
           defs=[]
           id_re=re.compile(r'\bid\s*:\s*["\']([^"\']+)["\']|["\']id["\']\s*:\s*["\']([^"\']+)["\']')
           url_re=re.compile(r'\burl\s*:\s*["\']([^"\']+)["\']|["\']url["\']\s*:\s*["\']([^"\']+)["\']')
           title_re=re.compile(r'\btitle\s*:\s*["\']([^"\']+)["\']|["\']title["\']\s*:\s*["\']([^"\']+)["\']')
-          for f in files:
-            text=open(f,encoding='utf-8').read()
+          for f,text in texts.items():
             for m in id_re.finditer(text):
               ident=m.group(1) or m.group(2)
               start=max(0,text.rfind('{',max(0,m.start()-200)))
@@ -63,6 +61,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: alias-scan-20260920
+          name: alias-scan-20260920-v2
           path: alias-output
           retention-days: 7
