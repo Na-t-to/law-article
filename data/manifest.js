@@ -4,3 +4,10 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({
   sources: Object.freeze([...window.LAW_INDEX_DATA_FILES.sources, "sources-run227.js?v=1"]),
   articles: Object.freeze([...window.LAW_INDEX_DATA_FILES.articles, "articles-run227.js?v=1"])
 });
+window.LAW_INDEX_DATA_FILES = Object.freeze({
+  ...window.LAW_INDEX_DATA_FILES,
+  topics: Object.freeze([...window.LAW_INDEX_DATA_FILES.topics, "topics-run228.js?v=1"]),
+  sources: Object.freeze([...window.LAW_INDEX_DATA_FILES.sources, "sources-run228.js?v=1"]),
+  reforms: Object.freeze([...window.LAW_INDEX_DATA_FILES.reforms, "reforms-run228.js?v=1"]),
+  articles: Object.freeze([...window.LAW_INDEX_DATA_FILES.articles, "articles-run228.js?v=1"])
+});
