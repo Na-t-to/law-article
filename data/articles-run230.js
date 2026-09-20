@@ -96,11 +96,11 @@
       audienceReason: "改訂コードをCG報告書の書換えだけで終わらせず、取締役会議題、年間工程、実効性評価、社内運用の見直しへ落とすため。",
       categories: ["会社法・ガバナンス", "金融商品取引・開示・IR", "危機管理・コンプライアンス"],
       relatedTopics: ["corporate-governance-code-2026"],
-      relatedIssues: ["cg-code-principles-interpretation-guidance", "cg-code-growth-investment-resource-allocation", "cg-code-board-function-independent-directors", "cg-code-annual-report-before-agm"],
-      primarySourceIds: ["source-fsa-corporate-governance-code-2026", "source-jpx-corporate-governance-code-2026", "source-jpx-corporate-governance-code-current"],
-      reformEventId: "corporate-governance-code-2026-revision",
+      relatedIssues: ["cg-code-principles-explain", "cg-code-growth-investment", "cg-code-board-function", "cg-code-pre-agm-disclosure", "cg-code-reporting-transition"],
+      primarySourceIds: ["source-fsa-cg-code-2026", "source-jpx-cg-code-2026", "source-fsa-board-function-casebook-2026"],
+      reformEventId: "corporate-governance-code-2026",
       reformStageAtPublication: "effective",
-      reformStageSourceIds: ["source-jpx-corporate-governance-code-2026"],
+      reformStageSourceIds: ["source-jpx-cg-code-2026"],
       legacyReformInference: false,
       whatChanged: "実務解説補強／2026年改訂CGコードを、パブコメ回答、取締役会の議題・年間工程、実効性評価設問まで含む実装レベルで補強した。"
     }
