@@ -1,0 +1,68 @@
+name: Reference alias scan
+on:
+  push:
+    branches: [audit/weekly-20260920-1253d2d]
+permissions:
+  contents: read
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scan missing references and duplicate definitions
+        shell: bash
+        run: |
+          mkdir -p alias-output
+          set +e
+          node scripts/validate-data.mjs > alias-output/validator-stdout.txt 2> alias-output/validator-stderr.txt
+          set -e
+          python3 - <<'PY'
+          import json,re,glob,os
+          err=open('alias-output/validator-stderr.txt',encoding='utf-8').read().splitlines()
+          ids=[]
+          for line in err:
+            if '存在しません' in line:
+              ids += re.findall(r'"([^"]+)"',line)
+          ids=sorted(set(ids))
+          files=glob.glob('data/*.js')
+          hits={}
+          for target in ids:
+            h=[]
+            for f in files:
+              text=open(f,encoding='utf-8').read()
+              pos=0
+              while True:
+                pos=text.find(target,pos)
+                if pos<0: break
+                start=max(0,text.rfind('\n',0,max(0,pos-1200)))
+                end=text.find('\n',min(len(text),pos+1800))
+                if end<0:end=len(text)
+                h.append({'file':f,'snippet':text[start:end]})
+                pos+=len(target)
+            hits[target]=h[:12]
+          open('alias-output/missing-id-hits.json','w',encoding='utf-8').write(json.dumps(hits,ensure_ascii=False,indent=2))
+
+          # All literal id/url/title triples found in object-like neighborhoods, useful for alias-by-url repair.
+          defs=[]
+          id_re=re.compile(r'\bid\s*:\s*["\']([^"\']+)["\']|["\']id["\']\s*:\s*["\']([^"\']+)["\']')
+          url_re=re.compile(r'\burl\s*:\s*["\']([^"\']+)["\']|["\']url["\']\s*:\s*["\']([^"\']+)["\']')
+          title_re=re.compile(r'\btitle\s*:\s*["\']([^"\']+)["\']|["\']title["\']\s*:\s*["\']([^"\']+)["\']')
+          for f in files:
+            text=open(f,encoding='utf-8').read()
+            for m in id_re.finditer(text):
+              ident=m.group(1) or m.group(2)
+              start=max(0,text.rfind('{',max(0,m.start()-200)))
+              end=text.find('}',m.end())
+              if end<0 or end-m.start()>5000: end=min(len(text),m.end()+4000)
+              chunk=text[start:end+1]
+              um=url_re.search(chunk); tm=title_re.search(chunk)
+              defs.append({'id':ident,'file':f,'url':(um.group(1) or um.group(2)) if um else None,'title':(tm.group(1) or tm.group(2)) if tm else None})
+          open('alias-output/literal-definitions.json','w',encoding='utf-8').write(json.dumps(defs,ensure_ascii=False,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alias-scan-20260920
+          path: alias-output
+          retention-days: 7
