@@ -1,0 +1,54 @@
+name: Apply audience normalization 2026-09-20
+on:
+  push:
+    branches: [audit/validate-cleanup-20260920]
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 2
+      - name: Guard expected main
+        shell: bash
+        run: |
+          test "$(git rev-parse HEAD)" = "15ad35442187472dc5ef7f6d7c0fa9694e6809fb"
+      - name: Normalize legacy audience and validate
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('data/articles-run231.js')
+          s=p.read_text()
+          needle='  for(const article of articles){\n    article.primarySourceIds=uniq((article.primarySourceIds||[]).filter(id=>validSourceIds.has(id)));'
+          repl='  for(const article of articles){\n    if (typeof article.audience === "string") article.audience = article.audience.split(/[、,，]/).map((value) => value.trim()).filter(Boolean);\n    article.primarySourceIds=uniq((article.primarySourceIds||[]).filter(id=>validSourceIds.has(id)));'
+          if needle not in s: raise SystemExit('cleanup insertion point changed')
+          p.write_text(s.replace(needle,repl,1))
+          m=Path('data/manifest.js'); t=m.read_text();
+          if '"articles-run231.js?v=1"' not in t: raise SystemExit('run231 cache reference changed')
+          m.write_text(t.replace('"articles-run231.js?v=1"','"articles-run231.js?v=2"'))
+          for name in ['articles.html','article.html']:
+              q=Path(name); h=q.read_text()
+              if 'data/manifest.js?v=63' not in h: raise SystemExit(f'{name} manifest cache changed')
+              q.write_text(h.replace('data/manifest.js?v=63','data/manifest.js?v=64'))
+          PY
+          node scripts/validate-data.mjs
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';import vm from 'node:vm';
+          const c={window:{},URL};vm.createContext(c);vm.runInContext(fs.readFileSync('data/manifest.js','utf8'),c);
+          for(const f of Object.values(c.window.LAW_INDEX_DATA_FILES).flat())vm.runInContext(fs.readFileSync('data/'+f.split('?')[0],'utf8'),c);
+          const bad=(c.window.ARTICLE_DATA||[]).filter(a=>a.status==='adopted'&&!Array.isArray(a.audience));
+          if(bad.length){console.error(bad.map(x=>x.id));process.exit(4)}
+          NODE
+      - name: Commit to main
+        shell: bash
+        run: |
+          git config user.name "Na-t-to"
+          git config user.email "bsk_bakasa@yahoo.co.jp"
+          git add data/articles-run231.js data/manifest.js articles.html article.html
+          git commit -m "Normalize article audience metadata"
+          git push origin HEAD:main
