@@ -105,3 +105,52 @@
     topic.lastVerified = "2026-09-20";
   }
 })();
+
+(() => {
+  const normalizeUrl = (value) => {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.protocol = "https:";
+      url.hash = "";
+      [...url.searchParams.keys()].forEach((key) => {
+        if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+      });
+      url.hostname = url.hostname.toLowerCase();
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      url.searchParams.sort();
+      return url.toString();
+    } catch {
+      return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
+    }
+  };
+  const addition = {
+    id: "article-jftc-toridoll-deduction-20260909",
+    title: "株式会社トリドールホールディングスに対する勧告について",
+    publisher: "公正取引委員会",
+    author: "公正取引委員会",
+    publishedAt: "2026-09-09",
+    collectedAt: "2026-09-20",
+    url: "https://www.jftc.go.jp/houdou/pressrelease/2026/sep/260909_toridollholdings.html",
+    sourceType: "primary",
+    sourceLabel: "一次資料・公取委／取適法・旧下請法の代金減額勧告",
+    status: "adopted",
+    summary: "トリドールホールディングスが、卸売業者を介して食品製造を委託した受注者37名について、2024年8月から2026年7月まで、委託代金から「システム利用料」の名目で例外なく一律1.1％を減額したとして、公正取引委員会が旧下請法および現行の取適法に基づき勧告した事例。2025年12月までの減額額だけで1億4741万1330円に達し、2026年1月以降の取引については減額分に加えて取適法上の遅延利息の支払も求められた。",
+    whyImportant: [
+      "『システム利用料』という社内・取引上の費目名で処理していても、委託代金から一律に差し引く運用が代金減額として執行対象になった具体例を確認できる",
+      "2025年12月までの委託には改正前の下請法、2026年1月以降の委託には現行取適法を適用する経過関係が同一事案で明示されている",
+      "減額分の返還に加え、現行取適法が適用される取引では遅延利息まで勧告対象となっており、支払明細やERP上の控除項目を自主点検する材料になる"
+    ],
+    audience: ["企業法務", "購買・調達", "経理・支払担当", "コンプライアンス"],
+    audienceReason: "委託代金からシステム利用料・手数料等を控除する支払運用がないかを、最新の勧告事例に照らして点検するため。",
+    categories: ["契約", "危機管理・コンプライアンス"],
+    relatedTopics: ["fair-subcontract-transactions"],
+    relatedIssues: ["toriteki-enforcement"],
+    primarySourceIds: ["source-toriteki-law-2026"],
+    legacyReformInference: false,
+    whatChanged: "執行事例追加／『システム利用料』名目で委託代金を一律1.1％減額した事案について、旧下請法・現行取適法をまたぐ最新の勧告事例を追加した。"
+  };
+  const existing = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
+  const ids = new Set(existing.map((item) => item && item.id).filter(Boolean));
+  const urls = new Set(existing.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  if (!ids.has(addition.id) && !urls.has(normalizeUrl(addition.url))) window.ARTICLE_DATA = existing.concat(addition);
+})();
