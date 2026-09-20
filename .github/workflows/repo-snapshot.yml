@@ -1,0 +1,23 @@
+name: Audit repository snapshot
+on:
+  push:
+    branches: [audit/weekly-20260920-1253d2d]
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: repo-snapshot-20260920
+          path: |
+            data
+            scripts
+            topics
+            *.html
+            *.js
+            *.css
+            README.md
+          retention-days: 3
