@@ -1,0 +1,46 @@
+name: Validate structure cleanup 2026-09-20
+on:
+  push:
+    branches: [audit/validate-cleanup-20260920]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate data and references
+        shell: bash
+        run: |
+          mkdir -p validation-output
+          node scripts/validate-data.mjs > validation-output/validator.stdout.txt 2> validation-output/validator.stderr.txt
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import vm from 'node:vm';
+          import path from 'node:path';
+          const c={window:{},URL}; vm.createContext(c);
+          vm.runInContext(fs.readFileSync('data/manifest.js','utf8'),c,{filename:'data/manifest.js'});
+          const manifest=c.window.LAW_INDEX_DATA_FILES;
+          for(const f of Object.values(manifest).flat()) vm.runInContext(fs.readFileSync('data/'+f.split('?')[0],'utf8'),c,{filename:f});
+          const T=c.window.TOPIC_DATA||[],S=c.window.SOURCE_DATA||[],A=c.window.ARTICLE_DATA||[],R=c.window.REFORM_EVENT_DATA||[];
+          const arr=x=>Array.isArray(x)?x:[];
+          const norm=s=>String(s||'').normalize('NFKC').toLowerCase().replace(/[\s\u3000\p{P}\p{S}]+/gu,'');
+          const nu=x=>{try{let u=new URL(x);u.protocol='https:';u.hash='';[...u.searchParams.keys()].forEach(k=>{/^utm_/i.test(k)||['fbclid','gclid','yclid','mc_cid','mc_eid'].includes(k.toLowerCase())?u.searchParams.delete(k):0});u.pathname=u.pathname.replace(/\/+$/,'')||'/';u.searchParams.sort();return u.toString().replace(/\/$/,'')}catch{return String(x||'')}};
+          const groups=(xs,k)=>{let m=new Map;xs.forEach(x=>{let q=k(x);if(!q)return;if(!m.has(q))m.set(q,[]);m.get(q).push(x)});return [...m].filter(([,v])=>v.length>1)};
+          const evFor=a=>{if(a.reformEventId)return R.find(e=>e.id===a.reformEventId)||null;let p=arr(a.primarySourceIds),m=R.filter(e=>arr(e.articleIds).includes(a.id)||arr(e.matchSourceIds).some(x=>p.includes(x)));return m.length===1?m[0]:null};
+          const legal=A.filter(a=>evFor(a)||(c.window.getLegalReformInfo?.(a,T)?.isReform));
+          const unlinked=legal.filter(a=>!evFor(a));
+          const html=[]; function walk(d){for(const e of fs.readdirSync(d,{withFileTypes:true})){let p=path.join(d,e.name);if(e.isDirectory()&&!p.includes('/.git'))walk(p);else if(e.isFile()&&e.name.endsWith('.html'))html.push(p)}} walk('.');
+          const broken=[],badnav=[],footer=[];
+          for(const f of html){const x=fs.readFileSync(f,'utf8');for(const m of x.matchAll(/href=["']([^"']+)["']/gi)){const h=m[1];if(!h||/^(https?:|mailto:|tel:|javascript:|#)/i.test(h))continue;const z=h.split(/[?#]/)[0];if(z&&!fs.existsSync(path.resolve(path.dirname(f),z)))broken.push({file:f,href:h});}const nav=x.match(/<nav[^>]*main-nav[^>]*>([\s\S]*?)<\/nav>/i)?.[1]||'';const labels=[...nav.matchAll(/<a[^>]*>([^<]+)<\/a>/gi)].map(m=>m[1].trim());if(labels.length&&labels.join('|')!=='新着|記事一覧|テーマ|法改正')badnav.push({file:f,labels});const ft=x.match(/<footer[^>]*site-footer[^>]*>([\s\S]*?)<\/footer>/i)?.[1]||'';if(/href=["']#top["']/.test(ft))footer.push(f);}
+          const result={sha:process.env.GITHUB_SHA,counts:{topics:T.length,sources:S.length,articles:A.length,reforms:R.length,issues:T.flatMap(t=>arr(t.issues)).length},categories:[...new Set([...T.flatMap(x=>arr(x.categories)),...A.flatMap(x=>arr(x.categories))])].sort(),duplicates:{articleIds:groups(A,x=>x.id).length,articleUrls:groups(A,x=>nu(x.url)).length,articleTitlePublisherDate:groups(A,x=>norm(x.title)+'|'+norm(x.publisher)+'|'+(x.publishedAt||'')).length,sourceIds:groups(S,x=>x.id).length,sourceUrls:groups(S,x=>nu(x.url)).length},reforms:{legal:legal.length,linked:legal.length-unlinked.length,unlinked:unlinked.map(x=>({id:x.id,title:x.title})),events:R.length},lastVerifiedOlderThanUpdated:T.filter(t=>t.lastUpdated&&t.lastVerified&&t.lastVerified<t.lastUpdated).map(t=>({slug:t.slug,lastUpdated:t.lastUpdated,lastVerified:t.lastVerified})),html:{count:html.length,broken,badnav,footerTopLinks:footer}};
+          fs.writeFileSync('validation-output/structure.json',JSON.stringify(result,null,2));
+          if(result.duplicates.articleIds||result.duplicates.articleUrls||result.duplicates.articleTitlePublisherDate||result.duplicates.sourceIds||result.duplicates.sourceUrls||broken.length||badnav.length||footer.length||result.lastVerifiedOlderThanUpdated.length) process.exit(3);
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: validate-cleanup-20260920
+          path: validation-output
+          retention-days: 3
