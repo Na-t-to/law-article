@@ -16,7 +16,7 @@ jobs:
           mkdir -p public-output/files
           BASE='https://na-t-to.github.io/law-article/'
           : > public-output/checks.tsv
-          for f in index.html articles.html article.html topics.html reforms.html update.html data/manifest.js data/articles-run231.js topics/consumer-law-digital-contract-review.html topics/customer-harassment-2026.html; do
+          for f in index.html articles.html article.html topics.html reforms.html update.html articles-page.js directory-page.js data/load-all.js data/manifest.js data/articles-run231.js topics/consumer-law-digital-contract-review.html topics/customer-harassment-2026.html; do
             out="public-output/files/${f//\//-}"
             curl -fsSL "$BASE$f?audit=15ad35442187472dc5ef7f6d7c0fa9694e6809fb" -o "$out"
             if cmp -s "$f" "$out"; then printf '%s\t200\tmatch\n' "$f" >> public-output/checks.tsv; else printf '%s\t200\tMISMATCH\n' "$f" >> public-output/checks.tsv; exit 5; fi
