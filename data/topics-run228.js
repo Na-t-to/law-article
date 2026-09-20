@@ -1,110 +1,58 @@
 (() => {
-  const topic = {
-    slug: "cybersecurity-incident-response-critical-infrastructure",
-    title: "サイバーセキュリティ・重要インフラ／インシデント対応",
-    categories: ["個人情報・AI・情報セキュリティ", "危機管理・コンプライアンス"],
-    summary: "重要インフラの2026年統一基準・安全基準等策定ガイドライン、金融分野のサイバー攻撃報告様式、ランサムウェア対応を、経営関与・サプライチェーン・復旧・当局報告・対外説明まで横断して読むためのテーマ。",
-    firstPublished: "2026-09-20",
-    lastUpdated: "2026-09-20",
-    lastVerified: "2026-09-20",
-    isNew: true,
-    overview: [
-      "2025年改正サイバーセキュリティ基本法を受け、重要インフラでは分野横断の統一基準と安全基準等策定ガイドラインが整備され、2026年10月1日から施行予定となった。",
-      "制度対応は情報システム部門だけの技術課題ではなく、経営層・CISOの関与、サプライチェーン・委託先管理、IT／OT、検知・対応・復旧、演習・監査まで組織全体のリスク管理として扱う必要がある。",
-      "インシデント発生時は、技術的な封じ込め・復旧と並行して、法令・監督上の報告、本人・取引先への通知、証拠保全、公表、取締役会報告等を短時間で並行処理できる体制が必要となる。"
-    ],
-    currentSummary: {
-      facts: [
-        "国家サイバー統括室は2026年7月31日に重要インフラ統一基準を決定し、9月11日に安全基準等策定ガイドラインを策定した。いずれも2026年10月1日施行予定である。",
-        "重要インフラ統一基準は、従来は分野・事業者ごとにばらつきがあった対策について、重要インフラ事業者等に関する国の施策の分野横断的な統一基準を設けるものである。",
-        "金融庁は2026年9月18日、DDoS・ランサムウェアに加え『その他サイバー攻撃等事案共通様式』を用いるよう監督指針等を改正し、2026年10月1日から適用すると公表した。",
-        "IPAは2026年9月8日、国内の被害組織へのヒアリング等を基礎に、ランサムウェア事案の経営判断、初動、復旧、バックアップ、ログ、対外説明等の教訓をまとめた。"
-      ],
-      interpretations: [
-        "サイバーセキュリティは『完全防御』だけで評価せず、重要サービスを継続する任務保証、検知、封じ込め、復旧を含むレジリエンスとして設計する必要がある。",
-        "委託先・クラウド・サプライチェーンの管理では、選定時審査だけでなく、インシデント通知、ログ・調査協力、脆弱性対応、再委託、復旧支援等を契約と運用の双方に落とす必要がある。",
-        "インシデント時の法務・コンプライアンス対応は、当局報告、公表、本人・取引先通知、証拠保全、身代金対応等を技術対応と並行させるため、平時から責任者とエスカレーション経路を決めておく必要がある。"
-      ],
-      implications: [
-        "経営層・CISO・法務・情シス・広報・事業部門の役割、リスク受容権限、重大事案の取締役会報告基準を明文化する。",
-        "委託契約・クラウド契約について、サイバーインシデント通知期限、ログ保存・提供、フォレンジック協力、復旧、脆弱性対応、再委託先管理を棚卸しする。",
-        "金融機関等は2026年10月1日からの共通様式への移行を踏まえ、報告トリガー、社内収集項目、当局提出フローを更新する。",
-        "ランサムウェア対応では、復旧優先順位、バックアップの実効性、証拠保全、外部専門家・警察・当局との連絡、対外説明の判断を演習で検証する。"
-      ],
-      uncertain: [
-        "重要インフラ統一基準・ガイドラインが各所管省庁の具体的な安全基準、監督、評価へどの程度・どの速度で反映されるかは分野ごとに継続確認が必要である。",
-        "個別インシデントの報告・通知・公表義務は、業法、個人情報保護法、上場規則、契約等の適用関係により異なるため、一般的な『72時間』等を一律の国内法期限として扱わない。"
-      ]
-    },
-    issues: [
-      {
-        id: "cyber-critical-infra-governance",
-        title: "重要インフラのサイバー対策を経営・CISO・取締役会へどう組み込むか",
-        status: "authoritative",
-        stage: "enacted",
-        views: [],
-        conclusion: "重要インフラのサイバーセキュリティを経営上の重要リスクとして扱い、経営層、CISO、戦略マネジメント層、システム担当者の役割・権限・報告経路を明確化する。",
-        exception: "統一基準・ガイドラインは全企業へ一律の同一統制を直接要求するものではなく、重要インフラ分野・所管制度・事業特性に応じた具体化が必要となる。",
-        uncertain: "各分野の安全基準・監督運用への反映内容は所管省庁等の更新を継続確認する。",
-        sourceIds: ["source-nco-critical-infra-framework-20260911"]
-      },
-      {
-        id: "cyber-supply-chain-resilience",
-        title: "委託先・クラウド・サプライチェーンと復旧力をどう管理するか",
-        status: "authoritative",
-        stage: "enacted",
-        views: [],
-        conclusion: "委託先・クラウド・サプライチェーン、IT／OTを含む依存関係を把握し、予防だけでなく検知・対応・復旧、監査・演習まで含めたレジリエンスを継続的に検証する。",
-        exception: "具体的な統制の強度はサービスの重要性、委託範囲、脅威、代替可能性等に応じてリスクベースで設計する。",
-        uncertain: "AI利用、PQC、クラウド等の技術変化に応じ、基準や実務上の推奨策は更新され得る。",
-        sourceIds: ["source-nco-critical-infra-framework-20260911"]
-      },
-      {
-        id: "cyber-incident-reporting-financial",
-        title: "金融分野のサイバー攻撃報告を共通様式へどう移行するか",
-        status: "authoritative",
-        stage: "enacted",
-        views: [],
-        conclusion: "金融庁所管の対象事業者は、2026年10月1日から、DDoS・ランサムウェア・その他サイバー攻撃等の共通様式へ移行する監督指針等に合わせ、報告フローと収集項目を更新する。",
-        exception: "対象となる監督指針・事業者類型や個別事案の報告要否は、各業態の監督指針等と補足事項を確認する。",
-        uncertain: "共通様式導入後の実際の報告運用や追加的な業界別要請は今後の監督実務を確認する。",
-        sourceIds: ["source-fsa-cyber-common-reporting-20260918"]
-      },
-      {
-        id: "cyber-ransomware-preparation-response",
-        title: "ランサムウェア発生前後の初動・復旧・法務判断をどう準備するか",
-        status: "interpreted",
-        stage: "effective",
-        views: [],
-        conclusion: "侵入・権限取得・横展開・データ持出しが先行し得ることを前提に、初動指揮、ログ・証拠保全、復旧優先順位、バックアップ、外部専門家・警察・当局連携、通知・公表を平時から演習する。",
-        exception: "身代金対応、本人通知、公表、当局報告等の法的評価は事案・適用法令・契約関係ごとに異なり、自動的な一律対応としない。",
-        uncertain: "攻撃手法や脅威動向は急速に変化するため、プレイブック、連絡網、技術統制を定期的に更新する必要がある。",
-        sourceIds: ["source-ipa-ransomware-lessons-20260908"]
-      }
-    ],
-    sourceIds: [
-      "source-nco-critical-infra-framework-20260911",
-      "source-fsa-cyber-common-reporting-20260918",
-      "source-ipa-ransomware-lessons-20260908"
-    ],
-    referenceArticleIds: [
-      "article-nco-critical-infra-framework-20260911",
-      "article-fsa-cyber-common-reporting-20260918",
-      "article-ipa-ransomware-lessons-20260908",
-      "article-miyake-critical-infra-guideline-20260913",
-      "article-miyake-ransomware-lessons-20260910"
-    ],
-    practicalImpacts: [
-      "CISO・取締役会・リスク受容権限の設計",
-      "クラウド・委託先・サプライチェーン契約",
-      "インシデント報告・通知・公表フロー",
-      "ランサムウェア初動・証拠保全・復旧演習",
-      "金融分野の2026年10月1日共通様式移行"
-    ]
+  const addUnique = (list, value) => {
+    const next = Array.isArray(list) ? list.slice() : [];
+    if (!next.includes(value)) next.push(value);
+    return next;
   };
+  const removeValues = (list, values) => (Array.isArray(list) ? list : []).filter((value) => !values.includes(value));
+  const topic = (window.TOPIC_DATA || []).find((item) => item && item.slug === "cyber-countermeasures-critical-infrastructure");
+  if (!topic) return;
 
-  const existing = Array.isArray(window.TOPIC_DATA) ? window.TOPIC_DATA : [];
-  if (!existing.some((item) => item && item.slug === topic.slug)) {
-    window.TOPIC_DATA = existing.concat(topic);
+  topic.lastUpdated = "2026-09-20";
+  topic.lastVerified = "2026-09-20";
+  topic.sourceIds = removeValues(topic.sourceIds, ["source-nco-critical-infrastructure-safety-guideline-20260911"]);
+  topic.sourceIds = addUnique(topic.sourceIds, "source-ipa-ransomware-lessons-20260908");
+  topic.referenceArticleIds = removeValues(topic.referenceArticleIds, [
+    "article-nco-critical-infrastructure-safety-guideline-20260911",
+    "article-miyake-critical-infrastructure-guideline-20260913"
+  ]);
+  topic.referenceArticleIds = addUnique(topic.referenceArticleIds, "article-nco-critical-infrastructure-safety-guideline-2026");
+  topic.referenceArticleIds = addUnique(topic.referenceArticleIds, "article-miyake-critical-infrastructure-safety-guideline-2026");
+  topic.referenceArticleIds = addUnique(topic.referenceArticleIds, "article-ipa-ransomware-lessons-20260908");
+  topic.referenceArticleIds = addUnique(topic.referenceArticleIds, "article-miyake-ransomware-lessons-20260910");
+
+  const unifiedIssue = (topic.issues || []).find((issue) => issue && issue.id === "cyber-critical-infrastructure-unified-standard");
+  if (unifiedIssue) {
+    unifiedIssue.sourceIds = removeValues(unifiedIssue.sourceIds, ["source-nco-critical-infrastructure-safety-guideline-20260911"]);
   }
+
+  if (!(topic.issues || []).some((issue) => issue && issue.id === "cyber-ransomware-preparation-response")) {
+    topic.issues = (topic.issues || []).concat({
+      id: "cyber-ransomware-preparation-response",
+      title: "ランサムウェア発生前後の初動・復旧・法務判断をどう準備するか",
+      status: "interpreted",
+      stage: "effective",
+      views: [],
+      conclusion: "侵入・権限取得・横展開・データ持出しが暗号化より先行し得ることを前提に、初動指揮、ログ・証拠保全、復旧優先順位、バックアップ、外部専門家・警察・当局連携、通知・公表を平時から演習する。",
+      exception: "身代金対応、本人通知、公表、当局報告等の法的評価は事案・適用法令・契約関係ごとに異なり、自動的な一律対応としない。",
+      uncertain: "攻撃手法や脅威動向は急速に変化するため、プレイブック、連絡網、技術統制を定期的に更新する必要がある。",
+      sourceIds: ["source-ipa-ransomware-lessons-20260908"]
+    });
+  }
+
+  if (topic.currentSummary) {
+    topic.currentSummary.facts = addUnique(
+      topic.currentSummary.facts,
+      "IPAは2026年9月8日、国内の被害組織へのヒアリング等を基礎に、ランサムウェアの経営判断、初動、復旧、バックアップ、ログ、対外説明等の教訓をまとめた。"
+    );
+    topic.currentSummary.interpretations = addUnique(
+      topic.currentSummary.interpretations,
+      "ランサムウェア対応は暗号化発見後の復旧だけでなく、侵害調査、証拠保全、業務継続、当局・警察対応、本人・取引先通知、対外説明を技術対応と並行して進める危機管理として設計する必要がある。"
+    );
+    topic.currentSummary.implications = addUnique(
+      topic.currentSummary.implications,
+      "ランサムウェアのプレイブックでは、法務・情シス・広報・経営・外部専門家の役割、復旧優先順位、ログ・証拠保全、報告・通知・公表の判断経路を演習で検証する。"
+    );
+  }
+  topic.practicalImpacts = addUnique(topic.practicalImpacts, "ランサムウェア初動・証拠保全・復旧演習");
 })();
