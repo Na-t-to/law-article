@@ -1,0 +1,37 @@
+name: Final validate 2026-09-20
+on:
+  push:
+    branches: [audit/final-validate-20260920]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate final main snapshot
+        shell: bash
+        run: |
+          mkdir -p final-validation
+          node scripts/validate-data.mjs > final-validation/validator.stdout.txt 2> final-validation/validator.stderr.txt
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';import vm from 'node:vm';
+          const c={window:{},URL};vm.createContext(c);vm.runInContext(fs.readFileSync('data/manifest.js','utf8'),c);
+          for(const f of Object.values(c.window.LAW_INDEX_DATA_FILES).flat())vm.runInContext(fs.readFileSync('data/'+f.split('?')[0],'utf8'),c);
+          const T=c.window.TOPIC_DATA||[],S=c.window.SOURCE_DATA||[],A=c.window.ARTICLE_DATA||[],R=c.window.REFORM_EVENT_DATA||[];const arr=x=>Array.isArray(x)?x:[];
+          const groups=(xs,k)=>{const m=new Map;for(const x of xs){const q=k(x);if(!q)continue;(m.get(q)||m.set(q,[]).get(q)).push(x)}return [...m].filter(([,v])=>v.length>1)};
+          const nu=x=>{try{const u=new URL(x);u.protocol='https:';u.hash='';[...u.searchParams.keys()].forEach(k=>{if(/^utm_/i.test(k)||['fbclid','gclid','yclid','mc_cid','mc_eid'].includes(k.toLowerCase()))u.searchParams.delete(k)});u.pathname=u.pathname.replace(/\/+$/,'')||'/';u.searchParams.sort();return u.toString().replace(/\/$/,'')}catch{return String(x||'')}};
+          const norm=x=>String(x||'').normalize('NFKC').toLowerCase().replace(/[\s\u3000\p{P}\p{S}]+/gu,'');
+          const ev=a=>{if(a.reformEventId)return R.find(e=>e.id===a.reformEventId)||null;const p=arr(a.primarySourceIds);const m=R.filter(e=>arr(e.articleIds).includes(a.id)||arr(e.matchSourceIds).some(id=>p.includes(id)));return m.length===1?m[0]:null};
+          const legal=A.filter(a=>ev(a)||(c.window.getLegalReformInfo?.(a,T)?.isReform));const unlinked=legal.filter(a=>!ev(a));
+          const result={baseMain:'0a5fc37a39ca0936300c90a11d838babefbaa763',counts:{topics:T.length,sources:S.length,articles:A.length,adopted:A.filter(a=>a.status==='adopted').length,reforms:R.length,issues:T.flatMap(t=>arr(t.issues)).length},categories:[...new Set([...T.flatMap(t=>arr(t.categories)),...A.flatMap(a=>arr(a.categories))])].sort(),duplicates:{articleIds:groups(A,a=>a.id).length,articleUrls:groups(A,a=>nu(a.url)).length,articleTitlePublisherDate:groups(A,a=>norm(a.title)+'|'+norm(a.publisher)+'|'+(a.publishedAt||'')).length,sourceIds:groups(S,s=>s.id).length,sourceUrls:groups(S,s=>nu(s.url)).length},reforms:{legal:legal.length,linked:legal.length-unlinked.length,unlinked:unlinked.map(a=>({id:a.id,title:a.title})),events:R.length},nonArrayAudience:A.filter(a=>a.status==='adopted'&&!Array.isArray(a.audience)).map(a=>a.id),lastVerifiedOlderThanUpdated:T.filter(t=>t.lastUpdated&&t.lastVerified&&t.lastVerified<t.lastUpdated).map(t=>t.slug)};
+          fs.writeFileSync('final-validation/structure.json',JSON.stringify(result,null,2));
+          if(Object.values(result.duplicates).some(Boolean)||result.nonArrayAudience.length||result.lastVerifiedOlderThanUpdated.length)process.exit(5);
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: final-validation-20260920
+          path: final-validation
+          retention-days: 3
