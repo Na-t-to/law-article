@@ -1,9 +1,18 @@
 (() => {
   const legacyGetLegalReformInfo = window.getLegalReformInfo;
   if (typeof legacyGetLegalReformInfo === "function") {
-    window.getLegalReformInfo = (article, topics = []) => article?.legacyReformInference === false
-      ? { isReform: false, stage: null, stageLabel: "" }
-      : legacyGetLegalReformInfo(article, topics);
+    window.getLegalReformInfo = (article, topics = []) => {
+      const events = Array.isArray(window.REFORM_EVENT_DATA) ? window.REFORM_EVENT_DATA : [];
+      const primarySourceIds = Array.isArray(article?.primarySourceIds) ? article.primarySourceIds : [];
+      const hasExplicitEvent = !!article?.reformEventId || events.some((event) =>
+        (Array.isArray(event?.articleIds) && event.articleIds.includes(article?.id)) ||
+        (Array.isArray(event?.matchSourceIds) && event.matchSourceIds.some((id) => primarySourceIds.includes(id)))
+      );
+      if (article?.legacyReformInference === false && !hasExplicitEvent) {
+        return { isReform: false, stage: null, stageLabel: "" };
+      }
+      return legacyGetLegalReformInfo(article, topics);
+    };
   }
   const unique = (values) => [...new Set((values || []).filter(Boolean))];
   const replaceIds = (values, replacements) => unique((values || []).map((value) => replacements[value] || value));
