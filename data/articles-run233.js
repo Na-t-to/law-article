@@ -22,3 +22,26 @@
     overseasVf.articleIds = removeArticle(overseasVf.articleIds, omnibusArticleId);
   }
 })();
+
+(() => {
+  const articleId = "article-not-cyber-supply-chain-contracts-2025";
+  const article = (window.ARTICLE_DATA || []).find((item) => item && item.id === articleId);
+  if (!article) return;
+
+  const uniq = (values = []) => [...new Set((values || []).filter(Boolean))];
+  article.relatedTopics = uniq([...(article.relatedTopics || []), "supply-chain-security-scs-2026"]);
+  article.relatedIssues = uniq([
+    ...(article.relatedIssues || []),
+    "scs-procurement-contract-implementation",
+    "scs-competition-transaction-law"
+  ]);
+  article.primarySourceIds = uniq([
+    ...(article.primarySourceIds || []),
+    "source-jftc-cyber-partnership-20251226"
+  ]);
+  article.legacyReformInference = false;
+  article.whatChanged = "分類更新／既採用のサプライチェーン・サイバー契約解説をSCS評価制度テーマにも接続し、契約・監査と取引適正化の論点を2026年の現行制度資料と横断して追えるよう整理した。";
+
+  const scsTopic = (window.TOPIC_DATA || []).find((item) => item && item.slug === "supply-chain-security-scs-2026");
+  if (scsTopic) scsTopic.referenceArticleIds = uniq([...(scsTopic.referenceArticleIds || []), articleId]);
+})();
