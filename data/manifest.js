@@ -9,3 +9,4 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({...window.LAW_INDEX_DATA_FILES,arti
 window.LAW_INDEX_DATA_FILES = Object.freeze({...window.LAW_INDEX_DATA_FILES,articles:Object.freeze([...window.LAW_INDEX_DATA_FILES.articles,"articles-run233.js?v=1"])});
 window.LAW_INDEX_DATA_FILES = Object.freeze({...window.LAW_INDEX_DATA_FILES,articles:Object.freeze([...window.LAW_INDEX_DATA_FILES.articles,"articles-run234.js?v=1"])});
 window.LAW_INDEX_DATA_FILES = Object.freeze({...window.LAW_INDEX_DATA_FILES,articles:Object.freeze([...window.LAW_INDEX_DATA_FILES.articles,"articles-run235.js?v=1"])});
+window.LAW_INDEX_DATA_FILES = Object.freeze({...window.LAW_INDEX_DATA_FILES,topics:Object.freeze([...window.LAW_INDEX_DATA_FILES.topics,"topics-run236.js?v=1"]),sources:Object.freeze([...window.LAW_INDEX_DATA_FILES.sources,"sources-run236.js?v=1"]),articles:Object.freeze([...window.LAW_INDEX_DATA_FILES.articles,"articles-run236.js?v=1"])});
