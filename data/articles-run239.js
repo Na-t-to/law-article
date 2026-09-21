@@ -141,3 +141,71 @@
     ]);
   }
 })();
+
+(() => {
+  const normalizeUrl = (value) => {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.protocol = "https:";
+      url.hash = "";
+      [...url.searchParams.keys()].forEach((key) => {
+        if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+      });
+      url.hostname = url.hostname.toLowerCase();
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      url.searchParams.sort();
+      return url.toString();
+    } catch {
+      return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
+    }
+  };
+  const uniq = (values = []) => [...new Set((values || []).filter(Boolean))];
+  const ARTICLE_ID = "article-businesslawyers-specific-biometric-data-20260909";
+  const TOPIC_ID = "personal-information-protection-2026-amendment";
+
+  const article = {
+    id: ARTICLE_ID,
+    title: "特定生体個人情報とは？定義や具体例、企業に求められる対応など",
+    publisher: "BUSINESS LAWYERS",
+    author: "渡邉 雅之",
+    publishedAt: "2026-09-09",
+    collectedAt: "2026-09-22",
+    url: "https://www.businesslawyers.jp/practices/1495",
+    sourceType: "secondary",
+    sourceLabel: "実務Q&A／2026年個人情報保護法・特定生体個人情報",
+    status: "adopted",
+    summary: "2026年改正個人情報保護法で新設される特定生体個人情報について、顔特徴データを中心に、要配慮個人情報とは別建ての規律であること、周知義務・オプトアウト第三者提供の禁止・違法性を要しない利用停止等請求という三本柱を整理する。さらに、顔認証・防犯カメラ連携システムの棚卸し、掲示・プライバシーポリシーの点検、利用停止等請求フロー、委託・共同利用と第三者提供の切り分け、本人照合のため取得する顔データの利用制限・ログ管理まで実装へ落とす。記事は2026年8月26日時点の下位法令検討を前提としており、その後の政令・規則・ガイドラインの検討状況は現行一次資料を併読する。",
+    whyImportant: [
+      "『顔データ＝要配慮個人情報』と整理せず、特定生体個人情報に固有の周知・オプトアウト提供禁止・利用停止等請求の規律を分けて確認できる",
+      "顔認証や防犯カメラ連携の棚卸しから、施設掲示・プライバシーポリシー、利用停止等請求の受付・本人照合・削除まで、法改正を業務・システム要件へ落とし込める",
+      "本人の利用停止等請求に応じるための本人照合で新たな顔データを取得し得るという実務上の難所について、取得・保存・削除ログと目的外利用の遮断まで含む統制を検討できる"
+    ],
+    audience: ["企業法務", "個人情報・プライバシー担当", "情報セキュリティ", "プロダクト・データ担当", "店舗・施設運営担当"],
+    audienceReason: "顔認証・防犯カメラ連携その他の生体識別機能について、改正法施行前に対象システムを棚卸しし、周知、第三者提供、利用停止等請求の運用を具体的に設計するため。",
+    categories: ["個人情報", "AI・デジタル", "情報セキュリティ"],
+    relatedTopics: [TOPIC_ID],
+    relatedIssues: ["privacy-2026-biometric"],
+    primarySourceIds: [
+      "source-privacy-law-2026-amendment",
+      "source-privacy-law-2026-rulemap",
+      "source-ppc-privacy-rulemaking-basic-1-2026"
+    ],
+    reformEventId: "privacy-law-2026-amendment",
+    reformStageAtPublication: "finalized_pending",
+    reformStageSourceIds: ["source-privacy-law-2026-amendment"],
+    legacyReformInference: false,
+    whatChanged: "実務解説補強／特定生体個人情報を、顔認証・防犯カメラ連携の棚卸し、周知、第三者提供、利用停止等請求、本人照合時のデータ統制まで落とす実務Q&Aを追加した。"
+  };
+
+  const existing = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
+  const ids = new Set(existing.map((item) => item && item.id).filter(Boolean));
+  const urls = new Set(existing.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  if (!ids.has(article.id) && !urls.has(normalizeUrl(article.url))) {
+    window.ARTICLE_DATA = existing.concat(article);
+  }
+
+  const topic = (window.TOPIC_DATA || []).find((item) => item && item.slug === TOPIC_ID);
+  if (topic && (window.ARTICLE_DATA || []).some((item) => item && item.id === ARTICLE_ID)) {
+    topic.referenceArticleIds = uniq([...(topic.referenceArticleIds || []), ARTICLE_ID]);
+  }
+})();
