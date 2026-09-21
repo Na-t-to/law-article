@@ -52,7 +52,7 @@
   const canonical = (window.TOPIC_DATA || []).find((topic) => topic && topic.slug === CANONICAL_TOPIC);
   const duplicate = (window.TOPIC_DATA || []).find((topic) => topic && topic.slug === OLD_TOPIC);
   if (canonical) {
-    canonical.categories = uniq([...(canonical.categories || []), "個人情報", "情報セキュリティ"]);
+    canonical.categories = uniq([...(canonical.categories || []), "\u500b\u4eba\u60c5\u5831", "\u60c5\u5831\u30bb\u30ad\u30e5\u30ea\u30c6\u30a3"]);
     canonical.lastUpdated = "2026-09-21";
     canonical.lastVerified = "2026-09-21";
     canonical.sourceIds = mapSourceList(uniq([
@@ -80,13 +80,13 @@
     if (!issues.some((issue) => issue.id === "economic-security-recruitment-prescreening")) {
       issues.splice(Math.min(3, issues.length), 0, {
         id: "economic-security-recruitment-prescreening",
-        title: "採用時に適性評価を予測するための情報収集はどこまでできるか",
+        title: "\u63a1\u7528\u6642\u306b\u9069\u6027\u8a55\u4fa1\u3092\u4e88\u6e2c\u3059\u308b\u305f\u3081\u306e\u60c5\u5831\u53ce\u96c6\u306f\u3069\u3053\u307e\u3067\u3067\u304d\u308b\u304b",
         status: "interpreted",
         stage: "effective",
         views: [],
-        conclusion: "行政機関の適性評価を企業が独自に代替・先取りする発想は避ける。求職者の病歴・犯罪歴等には個人情報保護法上の制約があり、求職者情報の収集には職業安定法上の必要性・合理性も求められるため、適性評価を予測する目的だけで機微情報を広く収集しない。",
-        exception: "重要経済安保情報を叐c��扱う条件で採用される求職者は正式な適性評価の対象となり得るため、企業独自のスクリーニングと制度上の適性評価を区別する。",
-        uncertain: "採用前に適性評価をいつ開始し、結果を待つ期間や不取得時の扱いを雇用プロセスへどう組み込むかは、職務限定の合意、評価期間、代替業務等により個別判断となる。",
+        conclusion: "\u884c\u653f\u6a5f\u95a2\u306e\u9069\u6027\u8a55\u4fa1\u3092\u4f01\u696d\u304c\u72ec\u81ea\u306b\u4ee3\u66ff\u30fb\u5148\u53d6\u308a\u3059\u308b\u767a\u60f3\u306f\u907f\u3051\u308b\u3002\u6c42\u8077\u8005\u306e\u75c5\u6b74\u30fb\u72af\u7f6a\u6b74\u7b49\u306b\u306f\u500b\u4eba\u60c5\u5831\u4fdd\u8b77\u6cd5\u4e0a\u306e\u5236\u7d04\u304c\u3042\u308a\u3001\u6c42\u8077\u8005\u60c5\u5831\u306e\u53ce\u96c6\u306b\u306f\u8077\u696d\u5b89\u5b9a\u6cd5\u4e0a\u306e\u5fc5\u8981\u6027\u30fb\u5408\u7406\u6027\u3082\u6c42\u3081\u3089\u308c\u308b\u305f\u3081\u3001\u9069\u6027\u8a55\u4fa1\u3092\u4e88\u6e2c\u3059\u308b\u76ee\u7684\u3060\u3051\u3067\u6a5f\u5fae\u60c5\u5831\u3092\u5e83\u304f\u53ce\u96c6\u3057\u306a\u3044\u3002",
+        exception: "\u91cd\u8981\u7d4c\u6e08\u5b89\u4fdd\u60c5\u5831\u3092\u53d6\u308a\u6271\u3046\u6761\u4ef6\u3067\u63a1\u7528\u3055\u308c\u308b\u6c42\u8077\u8005\u306f\u6b63\u5f0f\u306a\u9069\u6027\u8a55\u4fa1\u306e\u5bfe\u8c61\u306h\u306a\u308a\u5f97\u308b\u305f\u3081\u3001\u4f01\u696d\u72ec\u81ea\u306e\u30b9\u30af\u30ea\u30fc\u30cb\u30f3\u30b0\u306h\u5236\u5ea6\u4e0a\u306e\u9069\u6027\u8a55\u4fa1\u3092\u533a\u5225\u3059\u308b\u3002",
+        uncertain: "\u63a1\u7528\u524d\u306b\u9069\u6027\u8a55\u4fa1\u3092\u3044\u3064\u958b\u59cb\u3057\u3001\u7d50\u679c\u3092\u5f85\u3064\u671f\u9593\u3084\u4e0f\u53d6\u5f97\u6642\u306e\u6271\u3044\u3092\u96c7\u7528\u30d7\u30ef\u30bb\u30b9\u3078\u3069\u3046\u7d44\u307f\u8fbc\u3080\u304b\u306f\u3001\u8077\u52d9\u9650\u5b9a\u306e\u5408\u610f\u3001\u8a55\u4fa1\u671f\u9593\u3001\u4ee3\u66ff\u696d\u52d9\u7b49\u306b\u3088\u308a\u500b\u5225\u5224\u65ad\u3068\u306a\u308b\u3002",
         sourceIds: [CANONICAL_LAW_SOURCE, "source-cao-security-clearance-business-guideline-20250502"]
       });
     }
