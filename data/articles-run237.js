@@ -206,3 +206,19 @@
     topic.lastVerified = "2026-09-21";
   }
 })();
+
+(() => {
+  const ARTICLE_ID = "article-unitis-tmi-jcstar-20251208";
+  const article = (window.ARTICLE_DATA || []).find((item) => item && item.id === ARTICLE_ID);
+  if (!article) return;
+  article.title = "JC-STAR制度の概要とセキュリティ業務への影響（対象製品、レベル、時期等）【2026年9月更新】";
+  article.collectedAt = "2026-09-21";
+  article.summary = "2026年9月更新版。JC-STARをIoT製品ベンダーと調達・利用企業の双方から解説し、対象製品の洗い出し・製品類型判定、要件とのGAP分析、対応計画、申請・証跡整備を実装フローとして整理する。更新後は、★1適合製品が1,500型番超となった運用状況、★2以上がなお順次整備段階であること、英国PSTIとの2026年1月1日からの相互承認、シンガポールCLSとの同年6月1日からの相互承認、用語整理、取得前の『適合予定』等の誤認表示への注意まで反映している。";
+  article.whyImportant = [
+    "一次資料の制度説明を、対象製品の棚卸し、GAP分析、対応計画、申請・証跡というベンダーの実装フローへ落としている",
+    "2026年9月更新で、★1の普及状況と英国PSTI・シンガポールCLSとの相互承認を反映し、制度が調達・輸出実務へ接続する現在地を追える",
+    "IPAの受理番号・仮登録番号発行前に『適合予定』『取得見込』等と表示するリスクまで扱い、法務・広報・セキュリティをまたぐ表示管理へ落とし込める"
+  ];
+  article.relatedIssues = [...new Set([...(article.relatedIssues || []), "jcstar-label-claims"])];
+  article.whatChanged = "実質更新／2026年9月改訂を反映し、★1の普及状況、英国・シンガポール制度との相互承認、用語整理、取得前の誤認表示リスクを追加した。";
+})();
