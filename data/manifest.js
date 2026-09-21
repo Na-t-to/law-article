@@ -13,3 +13,5 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({...window.LAW_INDEX_DATA_FILES,topi
 
 window.LAW_INDEX_DATA_FILES = Object.freeze({...window.LAW_INDEX_DATA_FILES,articles:Object.freeze([...window.LAW_INDEX_DATA_FILES.articles,"articles-run237.js?v=1"])});
 window.LAW_INDEX_DATA_FILES = Object.freeze({...window.LAW_INDEX_DATA_FILES,articles:Object.freeze([...window.LAW_INDEX_DATA_FILES.articles,"articles-run238.js?v=1"])});
+
+window.LAW_INDEX_DATA_FILES = Object.freeze({...window.LAW_INDEX_DATA_FILES,articles:Object.freeze([...window.LAW_INDEX_DATA_FILES.articles,"articles-run239.js?v=1"])});
