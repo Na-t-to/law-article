@@ -17,58 +17,11 @@
     }
   };
 
-  const FILING_SOURCE_ID = "source-ai-ip-principle-code-filing-20260908";
-  const FILING_ARTICLE_ID = "article-ai-ip-principle-code-filing-20260908";
+  const FILING_SOURCE_ID = "source-ai-ip-principle-code-filing-2026";
   const VOICE_ARTICLE_ID = "article-uslf-ai-voice-training-contracts-20260904";
   const CODE_TOPIC = "generative-ai-ip-principle-code";
   const BROAD_AI_IP_TOPIC = "generative-ai-ip-rights";
   const LIKENESS_TOPIC = "generative-ai-likeness-publicity";
-
-  const sourceAddition = {
-    id: FILING_SOURCE_ID,
-    title: "生成AI知財プリンシプル・コードの届出開始日・届出様式",
-    type: "guideline",
-    typeLabel: "運用案内・届出",
-    authority: "内閣府 知的財産戦略推進事務局",
-    publishedAt: "2026-09-08",
-    url: "https://www.cas.go.jp/jp/seisakukaigi/titeki2/ai_principle_code/index.html",
-    importance: "最高",
-    whyImportant: "生成AI知財プリンシプル・コードの受入れ届出について、2026年10月26日の受付開始、届出様式の公表、届出先等は開始日に案内することを示す現行の公式運用ページ。",
-    topics: [CODE_TOPIC, BROAD_AI_IP_TOPIC]
-  };
-  const existingSources = Array.isArray(window.SOURCE_DATA) ? window.SOURCE_DATA : [];
-  const sourceIds = new Set(existingSources.map((item) => item && item.id).filter(Boolean));
-  const sourceUrls = new Set(existingSources.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
-  if (!sourceIds.has(sourceAddition.id) && !sourceUrls.has(normalizeUrl(sourceAddition.url))) {
-    window.SOURCE_DATA = existingSources.concat(sourceAddition);
-  }
-
-  const filingArticle = {
-    id: FILING_ARTICLE_ID,
-    title: "生成AI知財プリンシプル・コードの届出開始日・届出様式を公表",
-    publisher: "内閣府 知的財産戦略推進事務局",
-    author: "内閣府 知的財産戦略推進事務局",
-    publishedAt: "2026-09-08",
-    collectedAt: "2026-09-22",
-    url: "https://www.cas.go.jp/jp/seisakukaigi/titeki2/ai_principle_code/index.html",
-    sourceType: "primary",
-    sourceLabel: "一次資料・運用更新／生成AI知財プリンシプル・コード",
-    status: "adopted",
-    summary: "生成AI知財プリンシプル・コードの受入れ届出について、内閣府知的財産戦略推進事務局が2026年9月8日に届出様式を公表し、受付を同年10月26日から開始すると明示した運用更新。届出先等は受付開始日に案内するとしている。",
-    whyImportant: [
-      "『届出開始時期は別途案内』だった状態から、2026年10月26日開始という具体的な準備期限へ移ったことを一次資料で確認できる",
-      "届出様式が公開されたため、受入れを予定する事業者は原則ごとの実施・説明方針、公開内容、社内承認、届出情報を実際の様式に合わせて仕上げられる",
-      "届出先等は開始日に公表予定であり、確定済みの開始日・様式と、なお開始日確認が必要な提出方法を分けて管理できる"
-    ],
-    audience: ["AIサービス提供事業者", "企業法務", "知的財産担当", "AIガバナンス担当"],
-    audienceReason: "プリンシプル・コードの受入れを検討する事業者が、未定だった受付時期を具体的な準備日程へ落とし、様式に沿った社内確認を進めるため。",
-    categories: ["AI・デジタル", "知的財産", "危機管理・コンプライアンス"],
-    relatedTopics: [CODE_TOPIC, BROAD_AI_IP_TOPIC],
-    relatedIssues: ["ai-ip-code-acceptance", "ai-ip-code-disclosure", "ai-ip-transparency"],
-    primarySourceIds: [FILING_SOURCE_ID, "source-ai-ip-principle-code-2026"],
-    legacyReformInference: false,
-    whatChanged: "実質更新／受入れ届出の開始日が2026年10月26日に確定し、届出様式が公開されたため、開始時期待ちから具体的な届出準備へ整理を更新した。"
-  };
 
   const voiceArticle = {
     id: VOICE_ARTICLE_ID,
@@ -100,73 +53,22 @@
   const existingArticles = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
   const articleIds = new Set(existingArticles.map((item) => item && item.id).filter(Boolean));
   const articleUrls = new Set(existingArticles.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
-  const additions = [filingArticle, voiceArticle].filter((item) => !articleIds.has(item.id) && !articleUrls.has(normalizeUrl(item.url)));
-  if (additions.length) window.ARTICLE_DATA = existingArticles.concat(additions);
-
-  const codeTopic = (window.TOPIC_DATA || []).find((topic) => topic && topic.slug === CODE_TOPIC);
-  if (codeTopic) {
-    codeTopic.lastUpdated = "2026-09-22";
-    codeTopic.lastVerified = "2026-09-22";
-    codeTopic.sourceIds = uniq([...(codeTopic.sourceIds || []), FILING_SOURCE_ID]);
-    codeTopic.referenceArticleIds = uniq([...(codeTopic.referenceArticleIds || []), FILING_ARTICLE_ID]);
-    if (Array.isArray(codeTopic.overview)) {
-      codeTopic.overview = codeTopic.overview.map((text) =>
-        String(text).includes("受入れ届出の開始時期は公式ページで別途案内")
-          ? "原則は、モデル・学習・知財保護措置等の概要開示、権利侵害を主張する者からの照会対応、生成物と類似するコンテンツに関する利用者からの照会対応を柱とする。2026年9月8日に届出様式と同年10月26日の受付開始が公表され、届出先等は受付開始日に案内される。"
-          : text
-      );
-    }
-    if (codeTopic.currentSummary) {
-      if (Array.isArray(codeTopic.currentSummary.facts)) {
-        codeTopic.currentSummary.facts = codeTopic.currentSummary.facts.map((text) =>
-          String(text).includes("コード受入れに関する内閣府への届出開始時期")
-            ? "2026年9月8日、内閣府知的財産戦略推進事務局はコード受入れの届出様式を公表し、受付を2026年10月26日から開始すると明示した。届出先等は受付開始日に公表するとしている。"
-            : text
-        );
-      }
-      if (Array.isArray(codeTopic.currentSummary.implications)) {
-        codeTopic.currentSummary.implications = codeTopic.currentSummary.implications.map((text) =>
-          String(text).includes("受入れ届出の開始時期と公式様式")
-            ? "受入れを予定する場合、公開情報とエクスプレインの根拠、社内承認、届出様式への記載内容を10月26日の受付開始に向けて仕上げ、当日は公表される届出先・提出方法を確認する。"
-            : text
-        );
-      }
-      if (Array.isArray(codeTopic.currentSummary.uncertain)) {
-        codeTopic.currentSummary.uncertain = codeTopic.currentSummary.uncertain.map((text) =>
-          String(text).includes("受入れ届出の開始時期は2026年9月3日時点")
-            ? "届出先・提出方法は2026年10月26日の受付開始日に案内するとされているため、開始日当日の公式情報を確認する必要がある。"
-            : text
-        );
-      }
-    }
-    const acceptanceIssue = (codeTopic.issues || []).find((issue) => issue.id === "ai-ip-code-acceptance");
-    if (acceptanceIssue) {
-      acceptanceIssue.status = "pending";
-      acceptanceIssue.stage = "effective";
-      acceptanceIssue.conclusion = "原則ごとに実施・説明の方針と対外説明の根拠を整え、公開済みの届出様式に沿って2026年10月26日の受付開始へ準備する。届出先等は開始日に公式案内を確認する。";
-      acceptanceIssue.sourceIds = uniq([...(acceptanceIssue.sourceIds || []), FILING_SOURCE_ID]);
-    }
+  if (!articleIds.has(voiceArticle.id) && !articleUrls.has(normalizeUrl(voiceArticle.url))) {
+    window.ARTICLE_DATA = existingArticles.concat(voiceArticle);
   }
 
   const broadTopic = (window.TOPIC_DATA || []).find((topic) => topic && topic.slug === BROAD_AI_IP_TOPIC);
-  if (broadTopic) {
-    broadTopic.referenceArticleIds = uniq([...(broadTopic.referenceArticleIds || []), FILING_ARTICLE_ID, VOICE_ARTICLE_ID]);
+  if (broadTopic && (window.ARTICLE_DATA || []).some((article) => article && article.id === VOICE_ARTICLE_ID)) {
+    broadTopic.referenceArticleIds = uniq([...(broadTopic.referenceArticleIds || []), VOICE_ARTICLE_ID]);
   }
   const likenessTopic = (window.TOPIC_DATA || []).find((topic) => topic && topic.slug === LIKENESS_TOPIC);
-  if (likenessTopic) {
+  if (likenessTopic && (window.ARTICLE_DATA || []).some((article) => article && article.id === VOICE_ARTICLE_ID)) {
     likenessTopic.referenceArticleIds = uniq([...(likenessTopic.referenceArticleIds || []), VOICE_ARTICLE_ID]);
   }
 
-  const codeSource = (window.SOURCE_DATA || []).find((source) => source && source.id === "source-ai-ip-principle-code-2026");
-  if (codeSource) {
-    codeSource.whyImportant = "生成AI開発者・提供者に対し、透明性・知財保護に関する概要開示、権利者・利用者からの照会対応をコンプライ・オア・エクスプレイン方式で求める最終版の公式コード。2026年9月8日に届出様式と同年10月26日の受付開始が公表され、具体的な実装・届出準備の基準点になっている。";
-  }
-
-  const codeArticle = (window.ARTICLE_DATA || []).find((article) => article && article.id === "article-ai-ip-principle-code-2026");
-  if (codeArticle) {
-    codeArticle.summary = "生成AI開発者・提供者に対し、モデル・学習・知財保護措置等の概要開示、権利侵害を主張する者からの照会、生成AI利用者からの類似コンテンツに関する照会への対応を、コンプライ・オア・エクスプレイン方式で求める最終版のプリンシプル・コード。2026年8月25日に公式公表され、同年9月8日には届出様式と10月26日の受付開始が公表された。";
-    codeArticle.primarySourceIds = uniq([...(codeArticle.primarySourceIds || []), FILING_SOURCE_ID]);
-    codeArticle.whatChanged = "実質更新／最終コード公表後、2026年9月8日に受入れ届出様式と10月26日の受付開始が公表された運用状況を追記した。";
+  const codeTopic = (window.TOPIC_DATA || []).find((topic) => topic && topic.slug === CODE_TOPIC);
+  if (codeTopic && (window.SOURCE_DATA || []).some((source) => source && source.id === FILING_SOURCE_ID)) {
+    codeTopic.lastVerified = "2026-09-22";
   }
 
   const updateAddition = {
