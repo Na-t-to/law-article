@@ -141,3 +141,93 @@
     }
   }
 })();
+
+(() => {
+  const TOPIC = "ip-knowhow-data-transactions";
+  const ISSUE = "iptx-warranty-liability";
+  const CASE_SOURCE = "source-ip-high-court-ip-warranty-20231108";
+  const ARTICLE_ID = "article-amt-ip-warranty-indemnity-20240326";
+  const normalizeUrl = (value) => {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.protocol = "https:";
+      url.hash = "";
+      [...url.searchParams.keys()].forEach((key) => {
+        if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+      });
+      url.hostname = url.hostname.toLowerCase();
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      url.searchParams.sort();
+      return url.toString();
+    } catch {
+      return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
+    }
+  };
+  const addUnique = (list, value) => {
+    const next = Array.isArray(list) ? list.slice() : [];
+    if (!next.includes(value)) next.push(value);
+    return next;
+  };
+
+  const source = {
+    id: CASE_SOURCE,
+    title: "知財高裁令和5年11月8日判決（令和5年（ネ）第10064号 損害賠償等請求控訴事件）",
+    type: "case",
+    typeLabel: "知財高裁判決・非侵害保証／補償条項",
+    authority: "知的財産高等裁判所",
+    publishedAt: "2023-11-08",
+    url: "https://www.courts.go.jp/assets/hanrei/hanrei-pdf-92496.pdf",
+    importance: "高",
+    whyImportant: "売買契約の第三者知的財産権に関する非侵害保証・補償条項について、侵害事実確定後の損失補償だけでなく、侵害警告段階でも製造元が技術・権利関係等の必要情報を提供して買主に協力する義務を認める一方、訴訟提起や無効審判請求まで当然に義務付けられるものではないとした知財高裁判決。",
+    topics: [TOPIC]
+  };
+  const sources = Array.isArray(window.SOURCE_DATA) ? window.SOURCE_DATA : [];
+  const sourceIds = new Set(sources.map((item) => item && item.id).filter(Boolean));
+  const sourceUrls = new Set(sources.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  if (!sourceIds.has(source.id) && !sourceUrls.has(normalizeUrl(source.url))) {
+    window.SOURCE_DATA = sources.concat(source);
+  }
+
+  const article = {
+    id: ARTICLE_ID,
+    title: "売買契約における特許権等の非侵害保証及び補償条項に照らした売主の責任について判断を示した知財高裁判決",
+    publisher: "アンダーソン・毛利・友常法律事務所外国法共同事業",
+    author: "大石 裕太",
+    publishedAt: "2024-03-26",
+    collectedAt: "2026-09-22",
+    url: "https://amt-law.com/insights/newsletters/publication_0028078_ja_001/",
+    sourceType: "secondary",
+    sourceLabel: "法律事務所ニューズレター／知財非侵害保証・補償条項",
+    status: "adopted",
+    summary: "知財高裁令和5年11月8日判決を基に、売買契約の非侵害保証・補償条項が、侵害事実の確定後に生じる損失補償義務だけでなく、条項文言と製造元の情報優位性によっては、第三者から侵害警告を受けた段階で技術的知見・権利関係その他の必要情報を提供し、買主が交渉上不当に不利にならないよう協力する義務まで含み得ることを整理する。他方、売主に訴訟提起や無効審判請求まで当然に求めるものではなく、買主側の経営判断で取引を断念した場合の損害との因果関係にも注意が必要とする。",
+    whyImportant: [
+      "『第三者権利を侵害しないことを保証する』『抵触した場合は売主の負担と責任で処理解決する』という典型的な文言から、侵害警告時の情報提供・協力義務まで具体的に認定した裁判例を契約ドラフトへ反映できる",
+      "買主側が警告段階から防御・補償を求めるなら、『侵害した場合』だけでなく『侵害の主張・クレーム・紛争が生じた場合』をトリガーにし、通知、情報提供、防御方針、和解権限、費用負担を明示する必要性が分かる",
+      "補償条項違反と損害賠償の範囲は別問題であり、買主自身の経営判断による取引中止では相当因果関係や過失相殺が問題になり得るという、責任分担の実務上の限界を確認できる"
+    ],
+    audience: ["企業法務", "知的財産担当", "調達・購買担当", "営業・事業部門", "契約書ひな形管理担当"],
+    audienceReason: "製品・部品・システム等の売買や調達契約で第三者知財権の非侵害保証・補償条項を設計し、侵害警告を受けた後の通知・情報提供・防御・和解・費用負担をどこまで相手方へ求めるかを具体化するため。",
+    categories: ["知的財産", "契約"],
+    relatedTopics: [TOPIC],
+    relatedIssues: [ISSUE],
+    primarySourceIds: [CASE_SOURCE, "source-ip-knowhow-data-guideline-2026"],
+    legacyReformInference: false,
+    whatChanged: "整理変更なし／知財非侵害保証・補償条項について、侵害警告段階の情報提供・協力義務と、訴訟・無効審判まで当然には求められない限界を示す知財高裁判決の実務解説をバックフィルした。"
+  };
+  const articles = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
+  const articleIds = new Set(articles.map((item) => item && item.id).filter(Boolean));
+  const articleUrls = new Set(articles.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  if (!articleIds.has(article.id) && !articleUrls.has(normalizeUrl(article.url))) {
+    window.ARTICLE_DATA = articles.concat(article);
+  }
+
+  const topic = (window.TOPIC_DATA || []).find((item) => item && item.slug === TOPIC);
+  const articleExists = (window.ARTICLE_DATA || []).some((item) => item && item.id === ARTICLE_ID);
+  const sourceExists = (window.SOURCE_DATA || []).some((item) => item && item.id === CASE_SOURCE);
+  if (topic && articleExists) {
+    topic.referenceArticleIds = addUnique(topic.referenceArticleIds, ARTICLE_ID);
+    if (sourceExists) topic.sourceIds = addUnique(topic.sourceIds, CASE_SOURCE);
+    const issue = (topic.issues || []).find((item) => item && item.id === ISSUE);
+    if (issue && sourceExists) issue.sourceIds = addUnique(issue.sourceIds, CASE_SOURCE);
+  }
+})();
