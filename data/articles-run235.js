@@ -118,3 +118,75 @@
     window.ARTICLE_DATA = existing.concat(addition);
   }
 })();
+
+(() => {
+  const normalizeUrl = (value) => {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.protocol = "https:";
+      url.hash = "";
+      [...url.searchParams.keys()].forEach((key) => {
+        if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+      });
+      url.hostname = url.hostname.toLowerCase();
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      url.searchParams.sort();
+      return url.toString();
+    } catch {
+      return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
+    }
+  };
+  const addUnique = (list, value) => {
+    const next = Array.isArray(list) ? list.slice() : [];
+    if (!next.includes(value)) next.push(value);
+    return next;
+  };
+
+  const article = {
+    id: "article-businesslawyers-miura-whistleblower-regulation-20260916",
+    title: "改正公益通報者保護法を踏まえた内部通報規程のポイント",
+    publisher: "BUSINESS LAWYERS",
+    author: "坂尾 佑平（三浦法律事務所）",
+    publishedAt: "2026-09-16",
+    collectedAt: "2026-09-23",
+    url: "https://www.businesslawyers.jp/practices/1496",
+    sourceType: "secondary",
+    sourceLabel: "実務解説・三浦法律事務所／公益通報者保護法・内部通報規程",
+    status: "adopted",
+    summary: "2025年改正公益通報者保護法と2026年3月31日改正の法定指針・指針解説を踏まえ、内部通報規程をどう改訂するかを条項レベルで整理する。特定受託業務従事者等を窓口利用者へ加える際の定義、通報妨害・通報者探索の禁止と正当理由がある場合の例外、内部窓口以外への公益通報に関して調査・是正が必要となる場合の独立性・対応業務・利益相反排除を、内部規程例に即して示し、改正点だけでなく制度全体の機能不全も併せて見直すべきとする。",
+    whyImportant: [
+      "改正法と法定指針の差分を抽象的に説明するだけでなく、フリーランス等の窓口利用者追加、通報妨害・通報者探索の禁止を内部規程の定義・禁止条項へどう落とすかを具体化している",
+      "通報妨害・通報者探索には正当な理由が認められ得る場面があることも示しており、禁止を一律・機械的に書くのではなく、調査上必要な照会との境界を規程・教育へ反映できる",
+      "内部通報窓口を経由しない公益通報でも調査・是正が必要な場合には、幹部からの独立性、適切な対応業務、利益相反排除を確保する必要があるという運用上の見落としを拾える",
+      "法改正対応を条文差分の追記で終わらせず、既存の内部通報制度で機能していない仕組みがないかを規程全体から棚卸しする視点が得られる"
+    ],
+    audience: ["企業法務", "コンプライアンス", "内部通報窓口", "人事・労務", "内部監査"],
+    audienceReason: "2026年12月1日の改正法施行前に、内部通報規程、窓口利用者の範囲、通報妨害・探索防止、独立性・利益相反管理、外部通報を認識した場合の調査是正フローを具体的に改訂するため。",
+    categories: ["危機管理・コンプライアンス", "労務"],
+    relatedTopics: ["whistleblower-internal-reporting"],
+    relatedIssues: ["wb-retaliation-employment", "wb-system-controls"],
+    primarySourceIds: ["source-caa-whistleblower-amendment-2025", "source-whistleblower-guideline-2026"],
+    reformEventId: "whistleblower-protection-2025-amendment",
+    reformStageAtPublication: "finalized_pending",
+    reformStageSourceIds: ["source-caa-whistleblower-amendment-2025", "source-whistleblower-guideline-2026"],
+    legacyReformInference: false,
+    whatChanged: "実務解説補強／改正公益通報者保護法と改正法定指針を、内部通報規程の利用者範囲、通報妨害・探索防止、外部通報事案の独立性・利益相反管理へ条項レベルで落とす解説を追加した。"
+  };
+
+  const existing = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
+  const ids = new Set(existing.map((item) => item && item.id).filter(Boolean));
+  const urls = new Set(existing.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  if (!ids.has(article.id) && !urls.has(normalizeUrl(article.url))) {
+    window.ARTICLE_DATA = existing.concat(article);
+  }
+
+  const articleExists = (window.ARTICLE_DATA || []).some((item) => item && item.id === article.id);
+  const topic = (window.TOPIC_DATA || []).find((item) => item && item.slug === "whistleblower-internal-reporting");
+  if (topic && articleExists) {
+    topic.referenceArticleIds = addUnique(topic.referenceArticleIds, article.id);
+  }
+  const reform = (window.REFORM_EVENT_DATA || []).find((item) => item && item.id === article.reformEventId);
+  if (reform && articleExists) {
+    reform.articleIds = addUnique(reform.articleIds, article.id);
+  }
+})();
