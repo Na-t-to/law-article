@@ -105,3 +105,68 @@
     window.UPDATE_DATA = existingUpdates.concat(updateAddition);
   }
 })();
+
+(() => {
+  const ARTICLE_ID = "article-amt-electronic-signature-dx-20230815";
+  const TOPIC = "electronic-contract";
+  const normalizeUrl = (value) => {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.protocol = "https:";
+      url.hash = "";
+      [...url.searchParams.keys()].forEach((key) => {
+        if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+      });
+      url.hostname = url.hostname.toLowerCase();
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      url.searchParams.sort();
+      return url.toString();
+    } catch {
+      return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
+    }
+  };
+  const addUnique = (list, value) => {
+    const next = Array.isArray(list) ? list.slice() : [];
+    if (!next.includes(value)) next.push(value);
+    return next;
+  };
+
+  const article = {
+    id: ARTICLE_ID,
+    title: "電子署名を活用したDX の最新事情及び今後の展望",
+    publisher: "アンダーソン・毛利・友常法律事務所外国法共同事業",
+    author: "宮川 賢司、武部 太河、重松 圭太、沓水 一輝",
+    publishedAt: "2023-08-15",
+    collectedAt: "2026-09-22",
+    url: "https://amt-law.com/insights/newsletters/publication_0026988_ja_001/",
+    sourceType: "secondary",
+    sourceLabel: "法律事務所ニューズレター／電子署名・契約DX",
+    status: "adopted",
+    summary: "電子契約の法的整理を前提に、実装段階で残るリスクを具体化する。グループメールアドレスでの締結、異なる電子署名サービス間の運用、PDF上の印影・サイン表示と証拠評価、タイムスタンプ・長期署名、紙と電子の混在、サイバー攻撃、公正証書が必要な契約類型を挙げ、取締役会議事録や商業登記で求められる電子署名の要件が場面ごとに異なることも整理する。2023年時点の制度見通しそのものではなく、現在も残る本人確認・証拠保存・権限管理の実務論点をバックフィル対象とする。",
+    whyImportant: [
+      "電子署名法3条の推定だけで終わらず、誰がどのアカウント・権限で締結したか、後から何を証拠として再現できるかという運用設計へ落としている",
+      "グループメール、複数ベンダー、紙と電子の混在、タイムスタンプ・長期署名など、電子契約を導入した後に現場で詰まりやすい論点を横断的に確認できる",
+      "取締役会議事録や商業登記など、単なる契約締結より厳格な電子署名・本人確認が必要になり得る場面を分けており、現在のデジタル庁・法務省資料と合わせて運用を更新しやすい"
+    ],
+    audience: ["企業法務", "契約管理担当", "コーポレートガバナンス担当", "情報システム・セキュリティ担当"],
+    audienceReason: "電子契約サービスの選定・運用を、形式的な電子署名の有無ではなく、本人確認、権限、操作ログ、保存、他の法定手続との接続まで含めて設計・見直しするため。",
+    categories: ["契約", "情報セキュリティ", "会社法・ガバナンス"],
+    relatedTopics: [TOPIC],
+    relatedIssues: ["econtract-identity", "econtract-log"],
+    primarySourceIds: ["source-electronic-signature", "source-electronic-signature-qa-2024", "source-digital-sign-modernization-2025", "source-commercial-registry-remote-sign-2025"],
+    legacyReformInference: false,
+    whatChanged: "バックフィル／電子契約の証拠力を、本人確認・権限・複数サービス・長期保存・紙との混在・商業登記等の実装論点へ落とした実務解説を追加した。"
+  };
+
+  const existing = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
+  const ids = new Set(existing.map((item) => item && item.id).filter(Boolean));
+  const urls = new Set(existing.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  if (!ids.has(article.id) && !urls.has(normalizeUrl(article.url))) {
+    window.ARTICLE_DATA = existing.concat(article);
+  }
+
+  const topic = (window.TOPIC_DATA || []).find((item) => item && item.slug === TOPIC);
+  if (topic && (window.ARTICLE_DATA || []).some((item) => item && item.id === ARTICLE_ID)) {
+    topic.referenceArticleIds = addUnique(topic.referenceArticleIds, ARTICLE_ID);
+  }
+})();
