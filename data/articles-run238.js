@@ -170,3 +170,31 @@
     topic.referenceArticleIds = addUnique(topic.referenceArticleIds, ARTICLE_ID);
   }
 })();
+
+(() => {
+  const SOURCE_ID = "source-commercial-registry-remote-sign-2025";
+  const TOPIC = "electronic-contract";
+  const source = (window.SOURCE_DATA || []).find((item) => item && item.id === SOURCE_ID);
+  if (source) {
+    source.title = "商業登記電子証明書のリモート署名方式の運用開始について";
+    source.typeLabel = "商業登記・リモート署名／運用開始";
+    source.authority = "デジタル庁・法務省";
+    source.publishedAt = "2026-07-17";
+    source.url = "https://www.digital.go.jp/news/aa53adcd-9b8a-4a1e-bc94-0f7cd5858324";
+    source.importance = "高";
+    source.whyImportant = "2026年7月21日からGビズIDと連携した商業登記電子証明書のリモート署名方式が実運用に入り、署名鍵をクラウド上で管理する方式、既存のファイル形式証明書との併存、利用開始手順等を確認できる現行の公式案内。";
+  }
+
+  const topic = (window.TOPIC_DATA || []).find((item) => item && item.slug === TOPIC);
+  if (topic) {
+    topic.lastUpdated = "2026-09-22";
+    topic.lastVerified = "2026-09-22";
+    const oldFact = "商業登記電子証明書について、GビズIDと連携し署名鍵をクラウド上で管理するリモート署名方式が案内されており、法人代表者等の電子署名でも鍵管理・認可方法が更新されている。";
+    const newFact = "商業登記電子証明書のリモート署名方式は2026年7月21日に運用開始され、GビズIDと連携して署名鍵をクラウド上で管理し、オンラインで電子署名を付与できるようになった。既存のファイル形式電子証明書も一定範囲で併存する。";
+    if (topic.currentSummary && Array.isArray(topic.currentSummary.facts)) {
+      const index = topic.currentSummary.facts.indexOf(oldFact);
+      if (index >= 0) topic.currentSummary.facts[index] = newFact;
+      else if (!topic.currentSummary.facts.includes(newFact)) topic.currentSummary.facts.push(newFact);
+    }
+  }
+})();
