@@ -207,3 +207,74 @@
     reform.articleIds = addUnique(reform.articleIds, article.id);
   }
 })();
+
+(() => {
+  const normalizeUrl = (value) => {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.protocol = "https:";
+      url.hash = "";
+      [...url.searchParams.keys()].forEach((key) => {
+        if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+      });
+      url.hostname = url.hostname.toLowerCase();
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      url.searchParams.sort();
+      return url.toString();
+    } catch {
+      return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
+    }
+  };
+  const addUnique = (list, value) => {
+    const next = Array.isArray(list) ? list.slice() : [];
+    if (!next.includes(value)) next.push(value);
+    return next;
+  };
+
+  const article = {
+    id: "article-amt-companies-act-round6-employee-share-grants-20260206",
+    title: "【コーポレート】会社法改正の最新動向―法制審議会会社法制部会第6回 議事詳細―",
+    publisher: "アンダーソン・毛利・友常法律事務所外国法共同事業",
+    author: "坂本 佳隆、佐賀 洋之、角田 怜央",
+    publishedAt: "2026-02-06",
+    collectedAt: "2026-09-22",
+    url: "https://www.amt-law.com/insights/newsletters/newsletter_20260206001_ja_001/",
+    sourceType: "secondary",
+    sourceLabel: "実務解説・AMT／会社法制見直し・従業員株式報酬",
+    status: "adopted",
+    summary: "法制審議会会社法制（株式・株主総会等関係）部会第6回の二読議論を、使用人等への株式無償交付、株式交付制度、現物出資制度の三つに分けて詳細に整理する実務解説。使用人等への株式無償交付については、取締役会決議を基本として有利発行規制に服する案と、株主総会決議を要件として有利発行規制を外す案を比較し、労基法上の賃金該当性、子会社役職員への付与、希釈化、既存の金銭報酬債権の現物出資やストックオプション実務への波及まで検討している。",
+    whyImportant: [
+      "従業員への株式無償交付を単に『可能にするか』ではなく、取締役会決議と有利発行規制を組み合わせる案、株主総会決議と有利発行規制の適用除外を組み合わせる案の差まで追える",
+      "賃金該当性が未整理のまま制度化すると労基法24条の通貨払原則と衝突し得ることを示し、現金賃金を減らさず付加的に付与する等の現行実務上の整理と会社法改正を接続している",
+      "新制度の設計次第では、金銭報酬債権の現物出資やストックオプションといった既存スキームの有利発行・希釈化評価まで影響し得るため、制度導入時だけでなく既存プランの見直しにも使える"
+    ],
+    audience: ["企業法務", "人事・労務", "報酬制度担当", "上場会社のコーポレート担当", "株主総会・取締役会事務局"],
+    audienceReason: "従業員向け株式報酬の会社法上の交付手続と労基法上の賃金規制を、株主総会決議・有利発行・希釈化・既存報酬スキームへの影響まで含めて検討するため。",
+    categories: ["会社法・ガバナンス", "労務"],
+    relatedTopics: ["employee-stock-compensation-wage-status", "companies-act-review-shareholders"],
+    relatedIssues: ["employee-stock-direct-share-grant", "employee-stock-compensation-wage-status", "companies-act-employee-equity-compensation-wage"],
+    primarySourceIds: ["source-companies-act-current", "source-labour-standards-act", "source-moj-company-law-interim-2026", "source-meti-equity-incentive-plan-20230331"],
+    reformEventId: "companies-act-employee-share-grants-review-2026",
+    reformStageAtPublication: "proposal",
+    reformStageSourceIds: ["source-moj-company-law-interim-2026"],
+    legacyReformInference: false,
+    whatChanged: "参考解説追加／使用人等への株式無償交付について、賃金該当性だけでなく、株主総会・取締役会決議、有利発行、希釈化、既存の現物出資・ストックオプション実務への波及まで補強した。"
+  };
+
+  const existing = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
+  const ids = new Set(existing.map((item) => item && item.id).filter(Boolean));
+  const urls = new Set(existing.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  if (!ids.has(article.id) && !urls.has(normalizeUrl(article.url))) {
+    window.ARTICLE_DATA = existing.concat(article);
+  }
+
+  const articleExists = (window.ARTICLE_DATA || []).some((item) => item && item.id === article.id);
+  for (const slug of article.relatedTopics || []) {
+    const topic = (window.TOPIC_DATA || []).find((item) => item && item.slug === slug);
+    if (topic && articleExists) topic.referenceArticleIds = addUnique(topic.referenceArticleIds, article.id);
+  }
+  const reform = (window.REFORM_EVENT_DATA || []).find((item) => item && item.id === article.reformEventId);
+  if (reform && articleExists) {
+    reform.articleIds = addUnique(reform.articleIds, article.id);
+  }
+})();
