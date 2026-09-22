@@ -231,3 +231,139 @@
     if (issue && sourceExists) issue.sourceIds = addUnique(issue.sourceIds, CASE_SOURCE);
   }
 })();
+
+(() => {
+  const TOPIC = "aml-kyc-criminal-proceeds";
+  const ISSUE = "aml-financial-crime-effectiveness-2026";
+  const SOURCE_ID = "source-fsa-financial-administration-policy-2026";
+  const ARTICLE_ID = "article-miyake-fsa-financial-administration-policy-20260922";
+  const normalizeUrl = (value) => {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.protocol = "https:";
+      url.hash = "";
+      [...url.searchParams.keys()].forEach((key) => {
+        if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+      });
+      url.hostname = url.hostname.toLowerCase();
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      url.searchParams.sort();
+      return url.toString();
+    } catch {
+      return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
+    }
+  };
+  const addUnique = (list, value) => {
+    const next = Array.isArray(list) ? list.slice() : [];
+    if (!next.includes(value)) next.push(value);
+    return next;
+  };
+
+  const source = {
+    id: SOURCE_ID,
+    title: "2026事務年度金融行政方針",
+    type: "administrative",
+    typeLabel: "金融行政方針・監督／モニタリング方針",
+    authority: "金融庁",
+    publishedAt: "2026-09-15",
+    url: "https://www.fsa.go.jp/news/r8/202609/260915.html",
+    importance: "高",
+    whyImportant: "2026事務年度の監督・モニタリング重点を示す一次資料。金融犯罪対策について、不正利用口座の情報共有・早期検知と凍結、暗号資産を用いた詐欺対策、インターネット取引の認証・不正検知・取引モニタリング・顧客連絡・被害後対応、FATF第5次対日相互審査を踏まえたAML態勢高度化を一体の重点として示している。",
+    topics: [TOPIC]
+  };
+  const existingSources = Array.isArray(window.SOURCE_DATA) ? window.SOURCE_DATA : [];
+  const sourceIds = new Set(existingSources.map((item) => item && item.id).filter(Boolean));
+  const sourceUrls = new Set(existingSources.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  if (!sourceIds.has(source.id) && !sourceUrls.has(normalizeUrl(source.url))) {
+    window.SOURCE_DATA = existingSources.concat(source);
+  }
+
+  const article = {
+    id: ARTICLE_ID,
+    title: "【動画解説・動画資料】2026事務年度 金融行政方針　金融庁は今年、何を見るのか～預金取扱金融機関を中心に（金融犯罪対策・FATF第5次審査・ALM・サイバー・AI）",
+    publisher: "弁護士法人三宅法律事務所",
+    author: "渡邉 雅之",
+    publishedAt: "2026-09-22",
+    collectedAt: "2026-09-23",
+    url: "https://www.miyake.gr.jp/notice/%E3%80%90%E5%8B%95%E7%94%BB%E8%A7%A3%E8%AA%AC%E3%83%BB%E5%8B%95%E7%94%BB%E8%B3%87%E6%96%99%E3%80%912026%E4%BA%8B%E5%8B%99%E5%B9%B4%E5%BA%A6-%E9%87%91%E8%9E%8D%E8%A1%8C%E6%94%BF%E6%96%B9%E9%87%9D/",
+    sourceType: "secondary",
+    sourceLabel: "法律事務所・実務解説／金融行政・AML・金融犯罪対策",
+    status: "adopted",
+    summary: "金融庁の2026事務年度金融行政方針を、預金取扱金融機関の監督・モニタリング実務へ落とし込む解説。AML、特殊詐欺、口座不正利用、暗号資産、不正アクセスが個別対策ではなく一つの金融犯罪対策として統合されつつあることを軸に、不正利用口座の金融機関間共有・早期検知・凍結、インターネット取引の認証・不正検知・取引モニタリング・顧客連絡・被害後対応、FATF第5次対日相互審査を見据えた有効性検証を整理する。さらにALM・流動性、内部監査、サードパーティ、サイバー、AIガバナンスも根拠条文と結び付け、当局の情報提供・要請と報告徴求・立入検査・業務改善命令を区別して読む実務視点を示す。",
+    whyImportant: [
+      "AML、特殊詐欺、口座不正利用、暗号資産、不正アクセスを別々の規程で管理するのではなく、アクセス環境から検知、顧客確認、凍結・制限、届出、再評価まで一連の金融犯罪対策として説明できるかという監督上の着眼点へ落としている",
+      "FATF第5次審査を『規程があるか』ではなく有効性を説明する局面と捉え、リスク評価書・モニタリングシナリオ・実績データ・経営陣や営業店の想定問答まで準備対象として具体化している",
+      "金融行政方針は法令そのものではないと明示しつつ、銀行法上の報告徴求・立入検査・業務改善命令等との関係を整理しており、当局発信の法的位置付けを過大評価せず監督対応へ使える"
+    ],
+    audience: ["金融機関法務・コンプライアンス", "AML/CFT・金融犯罪対策担当", "内部監査・リスク管理", "サイバーセキュリティ担当", "経営企画"],
+    audienceReason: "2026事務年度の当局モニタリング重点を、法令改正と混同せず、AML・不正口座・オンライン不正・サイバー・AI・内部監査の横断的な点検計画へ落とすため。",
+    categories: ["危機管理・コンプライアンス", "金融規制", "AI・デジタル"],
+    relatedTopics: [TOPIC],
+    relatedIssues: [ISSUE],
+    primarySourceIds: [SOURCE_ID],
+    legacyReformInference: false,
+    whatChanged: "テーマ補強／2026事務年度金融行政方針を基に、金融機関のAML・特殊詐欺・口座不正利用・暗号資産・不正アクセスを横断的な金融犯罪対策と有効性検証として管理する監督実務を追加した。"
+  };
+  const existingArticles = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
+  const articleIds = new Set(existingArticles.map((item) => item && item.id).filter(Boolean));
+  const articleUrls = new Set(existingArticles.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  if (!articleIds.has(article.id) && !articleUrls.has(normalizeUrl(article.url))) {
+    window.ARTICLE_DATA = existingArticles.concat(article);
+  }
+
+  const topic = (window.TOPIC_DATA || []).find((item) => item && item.slug === TOPIC);
+  const articleExists = (window.ARTICLE_DATA || []).some((item) => item && item.id === ARTICLE_ID);
+  const sourceExists = (window.SOURCE_DATA || []).some((item) => item && item.id === SOURCE_ID);
+  if (topic && articleExists && sourceExists) {
+    topic.lastUpdated = "2026-09-23";
+    topic.lastVerified = "2026-09-23";
+    topic.referenceArticleIds = addUnique(topic.referenceArticleIds, ARTICLE_ID);
+    topic.sourceIds = addUnique(topic.sourceIds, SOURCE_ID);
+    topic.issues = Array.isArray(topic.issues) ? topic.issues : [];
+    if (!topic.issues.some((item) => item && item.id === ISSUE)) {
+      topic.issues.push({
+        id: ISSUE,
+        title: "金融犯罪対策を横断的な有効性管理へどう統合するか",
+        status: "authoritative",
+        stage: "effective",
+        views: [],
+        conclusion: "2026事務年度金融行政方針は、特殊詐欺、口座不正利用、暗号資産、不正アクセス等への対応を金融犯罪対策として横断的に進め、不正利用口座の情報共有・早期検知と凍結、インターネット取引の認証・不正検知・モニタリング・顧客連絡・被害後対応、FATF第5次対日相互審査を踏まえたAML態勢の高度化を監督上の重点としている。",
+        exception: "金融行政方針は監督・モニタリングの重点を示す政策文書であり、それ自体が新たな法定義務を創設するものではない。個別の義務・権限は銀行法、犯罪収益移転防止法、各監督指針等の根拠を別途確認する。",
+        uncertain: "FATF第5次対日相互審査の具体日程や、金融機関ごとのモニタリング・検査で求められる実績データ、シナリオ、有効性検証の深度は、今後の当局発信・対話を継続確認する。",
+        sourceIds: [SOURCE_ID]
+      });
+    }
+  }
+
+  const update = {
+    id: "update-aml-fsa-policy-20260915",
+    source: SOURCE_ID,
+    headline: "金融庁が2026事務年度の金融犯罪対策を横断モニタリングの重点として明示",
+    publishedAt: "2026-09-15",
+    type: "summary-update",
+    typeLabel: "監督方針更新",
+    summary: "金融庁の2026事務年度金融行政方針が、特殊詐欺・口座不正利用・暗号資産・不正アクセス等を横断する金融犯罪対策と、FATF第5次対日相互審査を踏まえたAML態勢の高度化を監督上の重点として示した。",
+    whatChanged: "本人確認や疑わしい取引届出等の個別義務だけでなく、検知・凍結・情報共有・顧客連絡・被害後対応・再評価までを一連の有効性管理として説明する監督視点をテーマへ追加した。",
+    affectedTopics: [TOPIC],
+    affectedIssues: [{
+      topic: TOPIC,
+      issue: ISSUE,
+      before: "AML・本人確認・不正口座対策を制度・義務単位で整理",
+      after: "金融犯罪対策を横断し、検知から凍結・届出・再評価までの有効性を監督対応として点検"
+    }],
+    before: "AML、特殊詐欺、口座不正利用、暗号資産、不正アクセス等は、それぞれの制度・対策を中心に追っていた。",
+    after: "2026事務年度の監督方針では、これらを横断的な金融犯罪対策として捉え、金融機関間情報共有、早期検知・凍結、オンライン不正対策、FATF審査を見据えた有効性向上を一体で確認する視点が明示された。",
+    keyPoints: [
+      "不正利用口座の金融機関間情報共有と早期検知・迅速な凍結",
+      "オンライン取引の認証・不正検知・取引モニタリング・顧客連絡・被害後対応",
+      "FATF第5次対日相互審査を踏まえ、規程整備だけでなくAML態勢の有効性を説明する"
+    ],
+    importance: "重要",
+    tags: ["金融規制", "AML/CFT", "危機管理・コンプライアンス"],
+    confidence: "fact"
+  };
+  const updates = Array.isArray(window.UPDATE_DATA) ? window.UPDATE_DATA : [];
+  if (!updates.some((item) => item && item.id === update.id)) {
+    window.UPDATE_DATA = updates.concat(update);
+  }
+})();
