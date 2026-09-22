@@ -136,3 +136,74 @@
     reform.articleIds = addUnique(reform.articleIds, article.id);
   }
 })();
+
+(() => {
+  const normalizeUrl = (value) => {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.protocol = "https:";
+      url.hash = "";
+      [...url.searchParams.keys()].forEach((key) => {
+        if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+      });
+      url.hostname = url.hostname.toLowerCase();
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      url.searchParams.sort();
+      return url.toString();
+    } catch {
+      return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
+    }
+  };
+  const addUnique = (list, value) => {
+    const next = Array.isArray(list) ? list.slice() : [];
+    if (!next.includes(value)) next.push(value);
+    return next;
+  };
+
+  const article = {
+    id: "article-businesslawyers-mhm-customer-harassment-20260318",
+    title: "2026年10月カスハラ対策が義務化！企業が講ずべき措置を解説 令和7年労働施策総合推進法改正の概要と企業への影響",
+    publisher: "BUSINESS LAWYERS",
+    author: "嶋村 直登、井村 俊介（森・濱田松本法律事務所外国法共同事業）",
+    publishedAt: "2026-03-18",
+    collectedAt: "2026-09-22",
+    url: "https://www.businesslawyers.jp/articles/1457",
+    sourceType: "secondary",
+    sourceLabel: "実務解説・森・濱田松本／カスタマーハラスメント防止措置",
+    status: "adopted",
+    summary: "2026年10月1日施行のカスタマーハラスメント防止措置義務について、改正労働施策総合推進法と2026年2月26日公表の防止指針を基礎に、対象となる顧客等・言動の範囲、雇用管理上の措置、他社への協力、望ましい取組まで実務へ落とす解説。BtoBの取引先担当者やSNS上の言動も対象となり得ること、正当な申入れとの区別、トップ方針、管理者への即時報告、単独対応の回避、録音・録画、対応打切り、警察・本社・法務・弁護士へのエスカレーション、相談窓口・研修・プライバシー保護・不利益取扱い禁止等を具体化している。",
+    whyImportant: [
+      "法定義務の項目を列挙するだけでなく、現場が管理者へ即時報告する、労働者を一人で対応させない、録音・録画する、一定時間後に退店要請・通話終了を行う、犯罪に該当し得る言動は警察へ通報するなど、初動フローへ直接落とせる対応例がまとまっている",
+      "BtoCの消費者だけでなくBtoBの取引先担当者、対面だけでなくSNS等のインターネット上の言動も対象となり得る一方、社会通念上許容される正当な申入れはカスハラに当たらないという境界を具体例から確認できる",
+      "自社従業員等が他社労働者へカスハラを行った場合の協力努力義務や、フリーランス等の非雇用者への望ましい取組まで扱っており、接客部門だけでなく調達・営業・取引先管理を含む全社ルールとして設計する視点が得られる"
+    ],
+    audience: ["企業法務", "人事・労務", "コンプライアンス", "店舗・カスタマーサポート責任者", "営業・取引先管理担当"],
+    audienceReason: "2026年10月1日の施行前に、方針・規程・マニュアル・相談窓口・管理者判断・記録・警察や法務へのエスカレーションを、指針の要求事項と対応付けて点検するため。",
+    categories: ["労務", "危機管理・コンプライアンス"],
+    relatedTopics: ["customer-harassment"],
+    relatedIssues: ["ch-definition", "ch-response"],
+    primarySourceIds: ["source-customer-harassment-guideline-2026", "source-customer-harassment-practical-2026"],
+    reformEventId: "customer-harassment-obligation-2026",
+    reformStageAtPublication: "finalized_pending",
+    reformStageSourceIds: ["source-customer-harassment-guideline-2026"],
+    legacyReformInference: false,
+    whatChanged: "実務解説補強／2026年10月1日のカスハラ防止措置義務を、定義・正当な申入れとの境界、現場初動、記録、相談、エスカレーション、取引先への協力まで具体的な運用へ落とす解説を追加した。"
+  };
+
+  const existing = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
+  const ids = new Set(existing.map((item) => item && item.id).filter(Boolean));
+  const urls = new Set(existing.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  if (!ids.has(article.id) && !urls.has(normalizeUrl(article.url))) {
+    window.ARTICLE_DATA = existing.concat(article);
+  }
+
+  const articleExists = (window.ARTICLE_DATA || []).some((item) => item && item.id === article.id);
+  const topic = (window.TOPIC_DATA || []).find((item) => item && item.slug === "customer-harassment");
+  if (topic && articleExists) {
+    topic.referenceArticleIds = addUnique(topic.referenceArticleIds, article.id);
+  }
+  const reform = (window.REFORM_EVENT_DATA || []).find((item) => item && item.id === article.reformEventId);
+  if (reform && articleExists) {
+    reform.articleIds = addUnique(reform.articleIds, article.id);
+  }
+})();
