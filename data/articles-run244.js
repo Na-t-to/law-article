@@ -106,3 +106,68 @@
   }
   topic.referenceArticleIds = existing;
 })();
+
+(() => {
+  const normalizeUrl = (value) => {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.protocol = "https:";
+      url.hash = "";
+      [...url.searchParams.keys()].forEach((key) => {
+        if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+      });
+      url.hostname = url.hostname.toLowerCase();
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      url.searchParams.sort();
+      return url.toString();
+    } catch {
+      return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
+    }
+  };
+  const addUnique = (list, value) => {
+    const next = Array.isArray(list) ? list.slice() : [];
+    if (value && !next.includes(value)) next.push(value);
+    return next;
+  };
+  const TOPIC = "consumer-law-digital-contract-review";
+  const ARTICLE = "article-businesslawyers-mhm-consumer-terms-injunction-20260916";
+  const PRIMARY_SOURCES = ["source-consumer-contract-act-current", "source-civil-code-current"];
+  const article = {
+    id: ARTICLE,
+    title: "利用規約が無効に？差止請求事例を踏まえた見直しポイント",
+    publisher: "BUSINESS LAWYERS／森・濱田松本法律事務所外国法共同事業",
+    author: "嶋村 直登",
+    publishedAt: "2026-09-16",
+    collectedAt: "2026-09-24",
+    url: "https://www.businesslawyers.jp/articles/1370",
+    sourceType: "secondary",
+    sourceLabel: "法律事務所・実務解説／BtoC利用規約・不当条項",
+    status: "adopted",
+    summary: "消費者契約法8条から10条の不当条項規制と適格消費者団体の差止請求について、近時の公表事例を利用規約レビューへ落とす実務解説。免責・自己責任条項、サービス停止時の責任、専属的合意管轄、一方的な規約変更、消費者側の損害賠償範囲、ID・パスワードの不正利用時の責任を取り上げ、条項が広すぎることで事業者に責任がある場面まで免責・転嫁してしまうリスクと、民法上の定型約款変更手続を踏まえた見直し方を整理している。",
+    whyImportant: [
+      "差止請求の公表事例を条項類型ごとに並べ、抽象的な消費者契約法8条・10条を実際の利用規約レビュー観点へ変換できる",
+      "『一切責任を負わない』『任意に規約を変更できる』『ID・パスワード利用はすべて本人責任』といった実務で見かける表現が、どこまで広いと問題になり得るかを具体例で確認できる",
+      "規約変更について、利用者の個別同意又は民法548条の4の定型約款変更手続との関係まで扱っており、BtoCサービスの法務・プロダクト運用へ落とし込みやすい"
+    ],
+    audience: ["企業法務", "消費者法務", "BtoC・EC事業担当", "デジタルサービス担当", "プロダクト・CS担当"],
+    audienceReason: "BtoC利用規約の免責、変更、責任分配、管轄等を、差止請求の実例から事前点検するため。",
+    categories: ["消費者法・表示", "契約・取引", "AI・デジタル"],
+    relatedTopics: [TOPIC],
+    relatedIssues: ["consumer-review-contract-change-notice"],
+    primarySourceIds: PRIMARY_SOURCES,
+    legacyReformInference: false,
+    whatChanged: "実務解説補強／差止請求の公表事例から、免責・一方的な規約変更・専属管轄・損害賠償・認証責任の利用規約レビュー軸を追加した。"
+  };
+
+  const existing = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
+  const ids = new Set(existing.map((item) => item && item.id).filter(Boolean));
+  const urls = new Set(existing.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  if (!ids.has(article.id) && !urls.has(normalizeUrl(article.url))) {
+    window.ARTICLE_DATA = existing.concat([article]);
+  }
+
+  const topic = (window.TOPIC_DATA || []).find((item) => item && item.slug === TOPIC);
+  if (topic && (window.ARTICLE_DATA || []).some((item) => item && item.id === ARTICLE)) {
+    topic.referenceArticleIds = addUnique(topic.referenceArticleIds, ARTICLE);
+  }
+})();
