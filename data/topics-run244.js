@@ -60,7 +60,7 @@
         conclusion: "包括承継か個別承継か、契約・資産・負債・従業員・許認可の移転、債権者保護手続、実行期間等を比較し、対象事業を必要な範囲で確実に移せるストラクチャーを選ぶ。",
         exception: "会社分割でも契約上のチェンジオブコントロール、許認可、海外資産等について個別対応が必要な場合があり、包括承継だけで全ての移転問題が解消するわけではない。",
         uncertain: "税務・会計・規制・海外法上の効果は案件ごとに追加確認が必要である。",
-        sourceIds: ["source-companies-act-current", "source-labor-contract-succession-act", "source-mhlw-business-transfer-labor-guideline-2026"]
+        sourceIds: ["source-companies-act-current", "source-labor-contract-succession-act", "source-mhlw-business-transfer-guideline-20260120"]
       },
       {
         id: "carveout-ma-standalone-sellers-dd",
@@ -89,7 +89,7 @@
       "source-meti-business-reorganization-guideline-2020",
       "source-companies-act-current",
       "source-labor-contract-succession-act",
-      "source-mhlw-business-transfer-labor-guideline-2026"
+      "source-mhlw-business-transfer-guideline-20260120"
     ],
     referenceArticleIds: [
       "article-amt-carveout-ma-practical-20250804",
