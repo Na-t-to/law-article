@@ -20,8 +20,17 @@
 
   normalizeShellUi();
 
-  const manifest = window.LAW_INDEX_DATA_FILES;
+  let manifest = window.LAW_INDEX_DATA_FILES;
   if (!manifest) throw new Error("LAW / INDEX data manifest is missing.");
+  if (!(manifest.topics || []).some((file) => file.split("?")[0] === "topics-run244.js")) {
+    manifest = Object.freeze({
+      ...manifest,
+      topics: Object.freeze([...(manifest.topics || []), "topics-run244.js?v=1"]),
+      sources: Object.freeze([...(manifest.sources || []), "sources-run244.js?v=1"]),
+      articles: Object.freeze([...(manifest.articles || []), "articles-run244.js?v=1"])
+    });
+    window.LAW_INDEX_DATA_FILES = manifest;
+  }
   const baseUrl = new URL(".", document.currentScript.src);
   let articleBatchIndex = 0;
   for (const group of ["schema", "topics", "sources", "updates", "reforms", "articles"]) {
