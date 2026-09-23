@@ -171,3 +171,112 @@
     topic.referenceArticleIds = addUnique(topic.referenceArticleIds, ARTICLE);
   }
 })();
+
+(() => {
+  const normalizeUrl = (value) => {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.protocol = "https:";
+      url.hash = "";
+      [...url.searchParams.keys()].forEach((key) => {
+        if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+      });
+      url.hostname = url.hostname.toLowerCase();
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      url.searchParams.sort();
+      return url.toString();
+    } catch {
+      return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
+    }
+  };
+  const addUnique = (list, value) => {
+    const next = Array.isArray(list) ? list.slice() : [];
+    if (value && !next.includes(value)) next.push(value);
+    return next;
+  };
+
+  const TOPIC = "consumer-contract-law-review-2026";
+  const SOURCE = "source-caa-consumer-contract-act-2022-amendment";
+  const REFORM = "consumer-contract-act-2022-amendment";
+  const ARTICLE = "article-businesslawyers-miura-consumer-contract-2022-amendment-20230525";
+
+  const source = {
+    id: SOURCE,
+    title: "消費者契約法及び消費者の財産的被害の集団的な回復のための民事の裁判手続の特例に関する法律の一部を改正する法律（令和4年法律第59号）（消費者契約法関係）等について",
+    type: "law",
+    typeLabel: "改正法・施行情報",
+    authority: "消費者庁",
+    publishedAt: "2022-06-01",
+    url: "https://www.caa.go.jp/policies/policy/consumer_system/consumer_contract_act/amendment/2022",
+    importance: "最高",
+    whyImportant: "令和4年法律第59号の成立・公布と、消費者契約法関係の2023年6月1日施行、適格消費者団体の事務等の2023年10月1日施行を確認できる公式資料。",
+    topics: [TOPIC]
+  };
+  const existingSources = Array.isArray(window.SOURCE_DATA) ? window.SOURCE_DATA : [];
+  const sourceIds = new Set(existingSources.map((item) => item && item.id).filter(Boolean));
+  const sourceUrls = new Set(existingSources.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  if (!sourceIds.has(source.id) && !sourceUrls.has(normalizeUrl(source.url))) {
+    window.SOURCE_DATA = existingSources.concat([source]);
+  }
+
+  const reform = {
+    id: REFORM,
+    title: "消費者契約法・2022年改正（令和4年法律第59号）",
+    eventType: "law_amendment",
+    lawId: "consumer-contract-act",
+    lawLabel: "消費者契約法",
+    relatedTopics: [TOPIC],
+    effectiveDateStatus: "phased",
+    effectiveDates: ["2023-06-01", "2023-10-01"],
+    effectiveDateNote: "令和4年法律第59号の消費者契約法関係は原則2023年6月1日施行。適格消費者団体の事務に関する改正規定等は2023年10月1日施行。",
+    effectiveDateSourceIds: [SOURCE],
+    matchSourceIds: [SOURCE],
+    sourceIds: [SOURCE],
+    articleIds: [ARTICLE]
+  };
+  const existingReforms = Array.isArray(window.REFORM_EVENT_DATA) ? window.REFORM_EVENT_DATA : [];
+  if (!existingReforms.some((item) => item && item.id === reform.id)) {
+    window.REFORM_EVENT_DATA = existingReforms.concat([reform]);
+  }
+
+  const article = {
+    id: ARTICLE,
+    title: "令和4年消費者契約法改正の影響度と実務対応 不当勧誘の契約取消権、サルベージ条項の無効、解約料の説明等の努力義務",
+    publisher: "BUSINESS LAWYERS／三浦法律事務所",
+    author: "松田 知丈／遠藤 政佑",
+    publishedAt: "2023-05-25",
+    collectedAt: "2026-09-24",
+    url: "https://www.businesslawyers.jp/articles/1189",
+    sourceType: "secondary",
+    sourceLabel: "法律事務所・実務解説／消費者契約法・2022年改正",
+    status: "adopted",
+    summary: "2023年6月1日の施行直前に、令和4年法律第59号による消費者契約法改正を企業実務へ落とした解説。不当勧誘による取消権の追加、免責範囲を曖昧にしたサルベージ条項の無効、解約料の算定根拠に関する説明等の努力義務、適格消費者団体による差止請求の実効性強化を整理し、利用規約・契約書・勧誘マニュアル・説明資料の修正ポイントまで示している。",
+    whyImportant: [
+      "2026年の制度見直しを読む前提として、現行法の基礎になっている2022年改正で何が既に施行済みなのかを実務対応とセットで確認できる",
+      "『法律上許される限り』など免責範囲を曖昧にするサルベージ条項について、運用で限定するだけでは足りず契約条項自体を直す必要があることを具体化している",
+      "解約料の説明等の努力義務を、算定根拠資料や顧客向け説明の準備という運用へ落とし、現在の2026年見直しで議論されている解約料規律との連続性を追える"
+    ],
+    audience: ["企業法務", "消費者法務", "BtoC・EC事業担当", "営業・CS担当", "プロダクト担当"],
+    audienceReason: "現行の消費者契約法を前提に、利用規約、免責条項、解約料、勧誘・説明プロセスを点検し、2026年見直しとの基準差を把握するため。",
+    categories: ["消費者法・表示", "契約・取引"],
+    relatedTopics: [TOPIC],
+    relatedIssues: ["consumer-contract-cancellation-fees", "consumer-contract-ec-standard-terms"],
+    primarySourceIds: [SOURCE, "source-consumer-contract-act-current"],
+    reformEventId: REFORM,
+    reformStageAtPublication: "finalized_pending",
+    reformStageSourceIds: [SOURCE],
+    whatChanged: "バックフィル／2023年6月施行の2022年消費者契約法改正について、サルベージ条項、解約料の説明等、不当勧誘の取消しを企業の規約・マニュアル修正へ落とす実務解説を追加した。"
+  };
+
+  const existingArticles = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
+  const articleIds = new Set(existingArticles.map((item) => item && item.id).filter(Boolean));
+  const articleUrls = new Set(existingArticles.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  if (!articleIds.has(article.id) && !articleUrls.has(normalizeUrl(article.url))) {
+    window.ARTICLE_DATA = existingArticles.concat([article]);
+  }
+
+  const topic = (window.TOPIC_DATA || []).find((item) => item && item.slug === TOPIC);
+  if (topic && (window.ARTICLE_DATA || []).some((item) => item && item.id === ARTICLE)) {
+    topic.referenceArticleIds = addUnique(topic.referenceArticleIds, ARTICLE);
+  }
+})();
