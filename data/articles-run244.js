@@ -47,7 +47,7 @@
         "source-meti-business-reorganization-guideline-2020",
         "source-companies-act-current",
         "source-labor-contract-succession-act",
-        "source-mhlw-business-transfer-labor-guideline-2026"
+        "source-mhlw-business-transfer-guideline-20260120"
       ],
       legacyReformInference: false,
       whatChanged: "新テーマ作成／カーブアウトM&Aの検討開始からストラクチャー、Seller's DD、スタンドアローンイシュー、TSA・Day 1移行までを一続きで追える実務解説を追加した。"
@@ -84,7 +84,7 @@
         "source-meti-business-reorganization-guideline-2020",
         "source-companies-act-current",
         "source-labor-contract-succession-act",
-        "source-mhlw-business-transfer-labor-guideline-2026"
+        "source-mhlw-business-transfer-guideline-20260120"
       ],
       legacyReformInference: false,
       whatChanged: "バックフィル／売主起点の入札・Seller's DD・カーブアウトの分離実務、TSA・残存持分までを横断する実務解説を追加した。"
