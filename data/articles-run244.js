@@ -280,3 +280,128 @@
     topic.referenceArticleIds = addUnique(topic.referenceArticleIds, ARTICLE);
   }
 })();
+
+(() => {
+  const normalizeUrl = (value) => {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.protocol = "https:";
+      url.hash = "";
+      [...url.searchParams.keys()].forEach((key) => {
+        if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+      });
+      url.hostname = url.hostname.toLowerCase();
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      url.searchParams.sort();
+      return url.toString();
+    } catch {
+      return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
+    }
+  };
+  const addUnique = (list, value) => {
+    const next = Array.isArray(list) ? list.slice() : [];
+    if (value && !next.includes(value)) next.push(value);
+    return next;
+  };
+  const TOPIC = "aml-kyc-criminal-proceeds";
+  const ISSUE = "aml-dnfbp-risk-based-effectiveness";
+  const ARTICLE = "article-tmi-dnfbp-aml-cft-20260917";
+  const proposedSources = [
+    {
+      id: "source-npa-jafic-annual-report-2025",
+      title: "犯罪収益移転防止に関する年次報告書（令和7年）",
+      type: "administrative",
+      typeLabel: "年次報告書・AML/CFT実施状況",
+      authority: "警察庁 JAFIC",
+      publishedAt: "2026-03-12",
+      url: "https://www.npa.go.jp/news/release/2026/20260312001.html",
+      importance: "高",
+      whyImportant: "2025年の犯罪収益移転防止法の施行状況をまとめ、DNFBPsによるAML/CFT対策を特集する一次資料。疑わしい取引の届出実績や、金融機関以外の特定事業者の取組状況・有効性上の課題を確認できる。",
+      topics: [TOPIC]
+    },
+    {
+      id: "source-mof-aml-action-plan-2024-2026",
+      title: "マネロン・テロ資金供与・拡散金融対策に関する行動計画（2024-2026年度）",
+      type: "administrative",
+      typeLabel: "政府行動計画・AML/CFT/CPF",
+      authority: "マネロン・テロ資金供与・拡散金融対策政策会議／財務省",
+      publishedAt: "2024-04-17",
+      url: "https://www.mof.go.jp/policy/international_policy/councils/aml_cft_policy/20240417.html",
+      importance: "高",
+      whyImportant: "FATF第5次対日相互審査を見据えた2024～2026年度の政府行動計画。DNFBPsについて、リスク理解とリスクベース・アプローチの促進、リスクベースの検査監督、疑わしい取引届出の強化を政策課題として位置付ける。",
+      topics: [TOPIC]
+    }
+  ];
+  const resolveSourceId = (candidate) => {
+    const sources = Array.isArray(window.SOURCE_DATA) ? window.SOURCE_DATA : [];
+    const byId = sources.find((item) => item && item.id === candidate.id);
+    if (byId) return byId.id;
+    const canonical = normalizeUrl(candidate.url);
+    const byUrl = sources.find((item) => item && normalizeUrl(item.url) === canonical);
+    if (byUrl) return byUrl.id;
+    window.SOURCE_DATA = sources.concat([candidate]);
+    return candidate.id;
+  };
+  const annualReportSource = resolveSourceId(proposedSources[0]);
+  const actionPlanSource = resolveSourceId(proposedSources[1]);
+  const primarySourceIds = [
+    annualReportSource,
+    actionPlanSource,
+    "source-npa-aml-overview-2026",
+    "source-npa-aml-amendment-2026"
+  ].filter((id, index, list) => id && list.indexOf(id) === index && (window.SOURCE_DATA || []).some((source) => source && source.id === id));
+
+  const article = {
+    id: ARTICLE,
+    title: "【犯収法ブログ】事業会社（DNFBPs）のAML/CFT対策",
+    publisher: "TMI総合法律事務所",
+    publishedAt: "2026-09-17",
+    collectedAt: "2026-09-24",
+    url: "https://www.tmi.gr.jp/eyes/blog/2026/18831.html",
+    sourceType: "secondary",
+    sourceLabel: "法律事務所・実務解説／DNFBPs・AML/CFT",
+    status: "adopted",
+    summary: "宅地建物取引業者、宝石・貴金属等取扱事業者、郵便物受取・電話受付／転送サービス等のDNFBPsについて、犯罪収益移転防止法上の義務と所管官庁ガイドラインを、自社のリスク評価、顧客管理、疑わしい取引の検知・届出、教育、内部監査、取締役会での議論まで落とし込む実務解説。リスクベース・アプローチは法定の取引時確認要件を任意に緩和する考え方ではないこと、有効性の観点から結果を検証する必要があること、2027年4月の本人確認厳格化や2026年改正による法人口座悪用対策も含めて点検すべきことを整理している。",
+    whyImportant: [
+      "金融機関中心になりがちなAML/CFTを、DNFBPsの統括管理者、内部規程、リスク評価書、研修、内部監査、顧客管理、実質的支配者確認、取引モニタリング、疑わしい取引届出という事業会社の運用単位へ変換している",
+      "リスクベース・アプローチを理由に法定の取引時確認要件を緩和できるわけではないと明示し、ルール遵守とリスクに応じた追加的管理を切り分けている",
+      "警察庁の年次報告書と政府行動計画を踏まえ、疑わしい取引届出の少なさを含む有効性の課題と、FATF第5次対日相互審査に向けたDNFBPsの監督強化を実務対応へつないでいる"
+    ],
+    audience: ["企業法務", "コンプライアンス", "不動産・宝石貴金属等の特定事業者", "AML/CFT担当", "内部監査・リスク管理"],
+    audienceReason: "自社が犯収法上のDNFBPs・特定事業者に当たる場合に、取引時確認だけでなくリスク評価、継続的顧客管理、疑わしい取引届出、教育・監査まで一体のAML/CFT態勢として点検するため。",
+    categories: ["危機管理・コンプライアンス", "契約・取引"],
+    relatedTopics: [TOPIC],
+    relatedIssues: [ISSUE, "aml-identity-verification-2027", "aml-2026-account-remittance"],
+    primarySourceIds,
+    legacyReformInference: false,
+    whatChanged: "テーマ補強／金融機関中心だったAML整理を、DNFBPsのリスク評価・顧客管理・疑わしい取引届出・内部統制・有効性検証へ広げる実務解説を追加した。"
+  };
+  const existingArticles = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
+  const articleIds = new Set(existingArticles.map((item) => item && item.id).filter(Boolean));
+  const articleUrls = new Set(existingArticles.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  if (!articleIds.has(article.id) && !articleUrls.has(normalizeUrl(article.url))) {
+    window.ARTICLE_DATA = existingArticles.concat([article]);
+  }
+
+  const topic = (window.TOPIC_DATA || []).find((item) => item && item.slug === TOPIC);
+  const articleExists = (window.ARTICLE_DATA || []).some((item) => item && item.id === ARTICLE);
+  if (!topic || !articleExists) return;
+  topic.lastUpdated = "2026-09-24";
+  topic.lastVerified = "2026-09-24";
+  topic.referenceArticleIds = addUnique(topic.referenceArticleIds, ARTICLE);
+  for (const sourceId of [annualReportSource, actionPlanSource]) topic.sourceIds = addUnique(topic.sourceIds, sourceId);
+  topic.issues = Array.isArray(topic.issues) ? topic.issues : [];
+  if (!topic.issues.some((item) => item && item.id === ISSUE)) {
+    topic.issues.push({
+      id: ISSUE,
+      title: "DNFBPsのAML/CFT態勢をリスクベースでどう実装するか",
+      status: "interpreted",
+      stage: "effective",
+      views: [],
+      conclusion: "宅地建物取引業者、宝石・貴金属等取扱事業者、郵便物受取・電話受付／転送サービス等のDNFBPsは、犯罪収益移転防止法上の特定事業者としての義務を前提に、リスク評価、顧客管理、疑わしい取引の検知・届出、教育、内部監査、統括管理を自社のリスクに応じて運用し、その有効性を説明できる態勢を整える必要がある。政府の2024-2026年度行動計画も、DNFBPsのリスク理解とリスクベース・アプローチ、リスクベースの検査監督、疑わしい取引届出の強化を重点に置いている。",
+      exception: "DNFBPsに該当しない一般事業会社に、犯罪収益移転防止法上の特定事業者としての義務が当然に及ぶわけではない。対象業種でも、特定業務・特定取引の範囲や所管官庁のガイドラインを個別に確認する必要がある。また、リスクベース・アプローチは法定の取引時確認要件を任意に緩和する根拠ではない。",
+      uncertain: "FATF第5次対日相互審査に向けた監督の深度、業種別ガイドライン、疑わしい取引届出の運用は今後も更新され得るため、JAFIC・財務省・所管省庁の発信を継続確認する。",
+      sourceIds: [annualReportSource, actionPlanSource, "source-npa-aml-overview-2026"].filter((id) => (window.SOURCE_DATA || []).some((source) => source && source.id === id))
+    });
+  }
+})();
