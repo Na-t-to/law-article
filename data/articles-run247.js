@@ -440,7 +440,7 @@
   const TOPIC = "aml-kyc-criminal-proceeds";
   const ISSUE = "aml-dnfbp-effectiveness";
   const ARTICLE = "article-tmi-dnfbp-aml-cft-20260917";
-  const SOURCE_ANNUAL = "source-npa-aml-annual-report-2025";
+  const SOURCE_ANNUAL = "source-npa-jafic-annual-report-2025-dnfbp";
   const SOURCE_ACTION = "source-mof-aml-cft-action-plan-2024-2026";
 
   const normalizeUrl = (value) => {
@@ -470,9 +470,9 @@
       typeLabel: "一次資料・警察庁JAFIC／DNFBPs・疑わしい取引届出",
       authority: "警察庁（JAFIC）",
       publishedAt: "2026-03-12",
-      url: "https://www.npa.go.jp/sosikihanzai/jafic/nenzihokoku/data/jafic_2025.pdf",
+      url: "https://www.npa.go.jp/news/release/2026/20260312001.html",
       importance: "高",
-      whyImportant: "令和7年中の疑わしい取引の年間通知件数1,019,405件に対し、DNFBPsからの通知は439件（約0.04％）にとどまり、金融機関側の届出内容との対照からDNFBPsの取引には多数の疑わしい取引情報が潜在している可能性を警察庁が指摘した。",
+      whyImportant: "令和7年中の疑わしい取引の年間通知件数1,019,405件に対し、DNFBPsからの通知は439件（約0.04％）にとどまり、金融機関側の届出内容との対照からDNFBPsの取引には多数の疑わしい取引情報が潜在している可能性を警察庁が指摘した年次報告書の公式公表ページ。",
       topics: [TOPIC]
     },
     {
