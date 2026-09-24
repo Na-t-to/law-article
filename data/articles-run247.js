@@ -440,7 +440,7 @@
   const TOPIC = "aml-kyc-criminal-proceeds";
   const ISSUE = "aml-dnfbp-effectiveness";
   const ARTICLE = "article-tmi-dnfbp-aml-cft-20260917";
-  const SOURCE_ANNUAL = "source-npa-jafic-annual-report-2025-dnfbp";
+  const SOURCE_ANNUAL = "source-npa-aml-annual-report-2025";
   const SOURCE_ACTION = "source-mof-aml-cft-action-plan-2024-2026";
 
   const normalizeUrl = (value) => {
