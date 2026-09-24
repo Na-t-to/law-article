@@ -103,7 +103,10 @@
       categories: ["危機管理・コンプライアンス", "金融商品取引・開示・IR", "会社法・ガバナンス"],
       relatedTopics: ["j-sox-internal-control-reporting"],
       relatedIssues: ["jsox-fraud-override-it"],
-      primarySourceIds: ["source-fsa-jsox-standards-20230407"],
+      primarySourceIds: [
+        "source-fsa-jsox-standards-20230407",
+        "source-fsa-jsox-ordinance-guideline-20230630"
+      ],
       reformEventId: "jsox-2023-internal-control-revision",
       reformStageAtPublication: "effective",
       reformStageSourceIds: ["source-fsa-jsox-ordinance-guideline-20230630"],
