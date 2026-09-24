@@ -119,8 +119,9 @@
       if (article?.legacyReformInference === false && !event) return { isReform: false, stage: null, stageLabel: "" };
       const result = originalGetLegalReformInfo(article, topics);
       if (!event) return result;
-      const stage = result.stage || eventBackedStage(article, topics);
-      return { ...result, isReform: true, stage, stageLabel: result.stageLabel || reformStageLabel[stage] || "法改正情報", reformEventId: event.id };
+      const explicitStage = eventBackedStage(article, topics);
+      const stage = explicitStage || result.stage;
+      return { ...result, isReform: true, stage, stageLabel: reformStageLabel[stage] || result.stageLabel || "法改正情報", reformEventId: event.id };
     };
   }
 
