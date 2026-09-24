@@ -64,6 +64,7 @@
       lastUpdated: "2026-09-24",
       lastVerified: "2026-09-24",
       sourceIds: addUnique(topic.sourceIds, SOURCE),
+      issues,
       currentSummary: {
         ...currentSummary,
         facts: addUnique(currentSummary.facts, "保険仲立人と保険代理店の協業は2026年6月1日から可能となり、仲立人は両者の役割の違いと業務分担を顧客へ説明して同意を得る必要がある。再保険契約の媒介手数料等は2025年8月28日改正監督指針で一般の企業保険向け請求方法ルールの対象外とされ、商慣習・法令・公序良俗に沿う扱いが示されている。"),
