@@ -244,3 +244,117 @@
     window.ARTICLE_DATA = existingArticles.concat(article);
   }
 })();
+
+(() => {
+  if (window.__LAW_INDEX_RUN247_CAA_COMMITMENT_APPLIED__) return;
+  window.__LAW_INDEX_RUN247_CAA_COMMITMENT_APPLIED__ = true;
+
+  const TOPIC = "advertising-display-control";
+  const ISSUE = "display-commitment-procedure";
+  const SOURCE = "source-caa-display-commitment-guideline-20240418";
+  const ARTICLE = "article-businesslawyers-mhm-display-commitment-20260520";
+
+  const normalizeUrl = (value) => {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.protocol = "https:";
+      url.hash = "";
+      [...url.searchParams.keys()].forEach((key) => {
+        if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+      });
+      url.hostname = url.hostname.toLowerCase();
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      url.searchParams.sort();
+      return url.toString();
+    } catch {
+      return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
+    }
+  };
+  const addUnique = (items, value) => Array.from(new Set([...(Array.isArray(items) ? items : []), value].filter(Boolean)));
+
+  const source = {
+    id: SOURCE,
+    title: "確約手続に関する運用基準",
+    type: "guideline",
+    typeLabel: "一次資料・消費者庁／景品表示法の確約手続",
+    authority: "消費者庁",
+    publishedAt: "2024-04-18",
+    url: "https://www.caa.go.jp/policies/policy/representation/fair_labeling/guideline/assets/representation_cms216_240418_04.pdf",
+    importance: "高",
+    whyImportant: "改正景品表示法の確約手続について、手続開始前の相談、通知後60日以内の認定申請、対象外事由、確約措置の十分性・実施確実性、典型的措置、申請資料の取扱いまで消費者庁が定めた公式運用基準。",
+    topics: [TOPIC]
+  };
+  const existingSources = Array.isArray(window.SOURCE_DATA) ? window.SOURCE_DATA : [];
+  const sourceIds = new Set(existingSources.map((item) => item && item.id).filter(Boolean));
+  const sourceUrls = new Set(existingSources.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  if (!sourceIds.has(source.id) && !sourceUrls.has(normalizeUrl(source.url))) {
+    window.SOURCE_DATA = existingSources.concat(source);
+  }
+
+  window.TOPIC_DATA = (Array.isArray(window.TOPIC_DATA) ? window.TOPIC_DATA : []).map((topic) => {
+    if (!topic || topic.slug !== TOPIC) return topic;
+    const currentSummary = topic.currentSummary || { facts: [], interpretations: [], implications: [], uncertain: [] };
+    let issues = Array.isArray(topic.issues) ? [...topic.issues] : [];
+    if (!issues.some((issue) => issue && issue.id === ISSUE)) {
+      issues = issues.concat({
+        id: ISSUE,
+        title: "景表法の確約手続を調査対応へどう組み込むか",
+        status: "interpreted",
+        stage: "effective",
+        views: [],
+        conclusion: "景品表示法違反の疑いで消費者庁の調査を受けた場合、確約手続通知前から対象可否や利用希望について相談できる。通知を受けて申請する場合は60日以内に、違反被疑行為等を是正するために十分で、かつ確実に実施できる確約計画を提出する必要がある。認定されれば、対象となる違反被疑行為について措置命令・課徴金納付命令等の法的措置に係る規定は適用されない。",
+        exception: "確約手続は事業者が希望すれば当然に利用できる制度ではなく、消費者庁が個別事案ごとに付すことが適当か判断する。過去10年以内に確定した法的措置を受けた場合や、根拠がないことを認識しながら表示するなど悪質かつ重大な違反被疑行為は運用基準上の対象外となる。",
+        uncertain: "返金、契約・取引条件変更等を含め、どの確約措置の組合せが十分性・実施確実性を満たすかは事案ごとに異なる。公表事例と消費者庁との事前相談の運用を継続確認する必要がある。",
+        sourceIds: [SOURCE]
+      });
+    }
+    return {
+      ...topic,
+      lastUpdated: "2026-09-24",
+      lastVerified: "2026-09-24",
+      sourceIds: addUnique(topic.sourceIds, SOURCE),
+      referenceArticleIds: addUnique(topic.referenceArticleIds, ARTICLE),
+      practicalImpacts: addUnique(topic.practicalImpacts, "消費者庁調査・確約手続／返金・再発防止措置の設計"),
+      issues,
+      currentSummary: {
+        ...currentSummary,
+        facts: addUnique(currentSummary.facts, "景品表示法の確約手続では、消費者庁の調査を受ける事業者は正式な確約手続通知前から相談でき、通知後に認定申請する場合は60日以内に確約計画を提出する。計画は措置内容の十分性と措置実施の確実性の双方を満たす必要がある。"),
+        interpretations: addUnique(currentSummary.interpretations, "確約手続は単なる処分回避の申請ではなく、調査初期から是正策・返金等の被害回復・再発防止・履行報告をどう組み合わせるかを当局との協議も踏まえて設計する調査対応の選択肢として扱う必要がある。"),
+        implications: addUnique(currentSummary.implications, "消費者庁の調査開始時に、確約手続の利用可能性、提出資料の範囲、返金等の影響是正措置、再発防止策を早期に検討する。申請が却下・取消し・取下げとなった場合、提出資料は返却されず、その後の法的措置の事実認定の証拠として使用され得る点も踏まえて資料提出を管理する。")
+      }
+    };
+  });
+
+  const article = {
+    id: ARTICLE,
+    title: "景表法の確約手続の概要とその動向〜最新の公表事例を踏まえて〜",
+    publisher: "BUSINESS LAWYERS／森・濱田松本法律事務所外国法共同事業",
+    author: "嶋村 直登",
+    publishedAt: "2026-05-20",
+    collectedAt: "2026-09-24",
+    url: "https://www.businesslawyers.jp/articles/1409",
+    sourceType: "secondary",
+    sourceLabel: "法律事務所・実務解説／景品表示法・確約手続",
+    status: "adopted",
+    summary: "景品表示法の確約手続について、制度上の対象・対象外事由、調査開始から通知・60日以内の申請までの流れ、確約措置の十分性・実施確実性、典型的な是正措置を、2026年5月時点の公表事例と実際の当局対応経験を踏まえて整理する。特に、正式通知前の消費者庁との協議、返金・契約変更等を含む措置設計、申請資料が却下・取消し・取下げ後の調査で証拠として使われ得る点まで、企業の調査対応へ落とし込んでいる。",
+    whyImportant: [
+      "運用基準の条文的な説明だけでなく、正式な確約手続通知の前に消費者庁との協議が進む実務を示し、調査初期からの意思決定フローへ落とし込める",
+      "確約計画の認定に必要な『措置内容の十分性』『措置実施の確実性』を、行為停止、消費者周知、再発防止、履行報告、返金、契約・取引条件変更という具体的な措置単位で検討できる",
+      "申請資料が却下・取消し・取下げ後の法的措置で証拠として利用され得る点を踏まえ、何をどこまで提出するかという調査対応上のリスクまで整理している"
+    ],
+    audience: ["企業法務", "広告・マーケティング審査担当", "コンプライアンス", "危機管理・当局対応担当", "消費者法務"],
+    audienceReason: "景品表示法調査を受けた際に、通常の争点対応だけでなく確約手続を選択肢として評価し、是正・返金・再発防止策と提出資料を早期に設計するため。",
+    categories: ["消費者法・表示", "危機管理・コンプライアンス"],
+    relatedTopics: [TOPIC],
+    relatedIssues: [ISSUE],
+    primarySourceIds: [SOURCE],
+    legacyReformInference: false,
+    whatChanged: "実務対応補強／景品表示法の広告表示管理に、消費者庁の調査開始後の確約手続選択、正式通知前の相談、60日申請期限、確約措置・提出資料の設計という当局対応の論点を追加した。"
+  };
+  const existingArticles = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
+  const articleIds = new Set(existingArticles.map((item) => item && item.id).filter(Boolean));
+  const articleUrls = new Set(existingArticles.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  if (!articleIds.has(article.id) && !articleUrls.has(normalizeUrl(article.url))) {
+    window.ARTICLE_DATA = existingArticles.concat(article);
+  }
+})();
