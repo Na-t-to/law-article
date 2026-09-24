@@ -109,3 +109,138 @@
     window.ARTICLE_DATA = articles.concat(article);
   }
 })();
+
+(() => {
+  if (window.__LAW_INDEX_RUN247_DESIGN_CUSTOMS_APPLIED__) return;
+  window.__LAW_INDEX_RUN247_DESIGN_CUSTOMS_APPLIED__ = true;
+
+  const TOPIC = "applied-art-mass-products-copyright";
+  const STRATEGY_ISSUE = "applied-art-product-design-rights-strategy";
+  const CUSTOMS_ISSUE = "applied-art-design-customs-enforcement";
+  const ARTICLE = "article-tmi-design-rights-customs-enforcement-20260507";
+  const SOURCE_STATS = "source-mof-customs-ip-enforcement-2025";
+  const SOURCE_QA = "source-customs-ip-injunction-qa";
+
+  const normalizeUrl = (value) => {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.protocol = "https:";
+      url.hash = "";
+      [...url.searchParams.keys()].forEach((key) => {
+        if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+      });
+      url.hostname = url.hostname.toLowerCase();
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      url.searchParams.sort();
+      return url.toString();
+    } catch {
+      return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
+    }
+  };
+  const addUnique = (items, value) => Array.from(new Set([...(Array.isArray(items) ? items : []), value].filter(Boolean)));
+  const addMany = (items, values) => Array.from(new Set([...(Array.isArray(items) ? items : []), ...(Array.isArray(values) ? values : [])].filter(Boolean)));
+
+  const sourceAdditions = [
+    {
+      id: SOURCE_STATS,
+      title: "令和7年の税関における知的財産侵害物品の差止状況（詳細）",
+      type: "report",
+      typeLabel: "一次資料・財務省／知的財産侵害物品の水際取締り",
+      authority: "財務省",
+      publishedAt: "2026-03-06",
+      url: "https://www.mof.go.jp/policy/customs_tariff/trade/safe_society/chiteki/cy2025/20260306a.html",
+      importance: "高",
+      whyImportant: "2025年の全国税関の知的財産侵害物品差止実績。輸入差止点数763,504点のうち意匠権侵害物品は46,112点（6.0％）で、イヤホン、携帯用魔法瓶、電気毛布、充電器等の意匠権侵害物品が実際に水際で差し止められていることを確認できる。",
+      topics: [TOPIC]
+    },
+    {
+      id: SOURCE_QA,
+      title: "Q&A（差止申立関係）",
+      type: "guideline",
+      typeLabel: "一次資料・税関／知的財産の輸出入差止申立制度",
+      authority: "税関",
+      publishedAt: null,
+      url: "https://www.customs.go.jp/mizugiwa/chiteki/pages/qa_001.htm",
+      importance: "高",
+      whyImportant: "意匠権を含む知的財産権について輸出入差止申立てが可能であること、申立書・資料の提出や審査の基本手続を税関が整理した一次資料。商品デザインの権利化を模倣品の水際対応へ接続する際の制度入口を確認できる。",
+      topics: [TOPIC]
+    }
+  ];
+  const existingSources = Array.isArray(window.SOURCE_DATA) ? window.SOURCE_DATA : [];
+  const sourceIds = new Set(existingSources.map((item) => item && item.id).filter(Boolean));
+  const sourceUrls = new Set(existingSources.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  window.SOURCE_DATA = existingSources.concat(sourceAdditions.filter((item) => !sourceIds.has(item.id) && !sourceUrls.has(normalizeUrl(item.url))));
+
+  window.TOPIC_DATA = (Array.isArray(window.TOPIC_DATA) ? window.TOPIC_DATA : []).map((topic) => {
+    if (!topic || topic.slug !== TOPIC) return topic;
+    const currentSummary = topic.currentSummary || { facts: [], interpretations: [], implications: [], uncertain: [] };
+    let issues = (Array.isArray(topic.issues) ? topic.issues : []).map((issue) => {
+      if (!issue || issue.id !== STRATEGY_ISSUE) return issue;
+      return {
+        ...issue,
+        sourceIds: addMany(issue.sourceIds, [SOURCE_STATS, SOURCE_QA])
+      };
+    });
+    if (!issues.some((issue) => issue && issue.id === CUSTOMS_ISSUE)) {
+      issues = issues.concat({
+        id: CUSTOMS_ISSUE,
+        title: "意匠権を模倣品の税関水際取締りにどう使うか",
+        status: "interpreted",
+        stage: "effective",
+        views: [],
+        conclusion: "模倣品リスクが高い商品では、発売前の意匠出願を国内での差止・損害賠償だけでなく、税関への輸出入差止申立てまで見据えた権利ポートフォリオとして設計する。税関の差止申立ては意匠権も対象であり、実際の差止実績でも意匠権侵害物品が継続的に含まれている。",
+        exception: "差止申立ては権利の存在だけで自動的に受理されるものではなく、権利内容、侵害事実、侵害物品を識別するための資料等を準備して税関の審査を受ける。商品ごとに商標権・著作権・特許権・不正競争防止法等との併用可否も異なる。",
+        uncertain: "部分意匠や出願転換を含む個別の権利取得・侵害判断は登録意匠の内容、出願経過、輸入物品の具体的形状等に左右されるため、TMI解説の戦略例を全商品へ一般化せず案件ごとに検討する。",
+        sourceIds: [SOURCE_STATS, SOURCE_QA]
+      });
+    }
+    return {
+      ...topic,
+      lastUpdated: "2026-09-24",
+      lastVerified: "2026-09-24",
+      sourceIds: addMany(topic.sourceIds, [SOURCE_STATS, SOURCE_QA]),
+      referenceArticleIds: addUnique(topic.referenceArticleIds, ARTICLE),
+      practicalImpacts: addUnique(topic.practicalImpacts, "模倣品の税関水際取締り・輸出入差止申立て"),
+      issues,
+      currentSummary: {
+        ...currentSummary,
+        facts: addUnique(currentSummary.facts, "財務省の2025年実績では、全国税関の輸入差止点数763,504点のうち意匠権侵害物品は46,112点（6.0％）で、イヤホン、携帯用魔法瓶、電気毛布、充電器などの意匠権侵害物品が実際に水際で差し止められている。"),
+        interpretations: addUnique(currentSummary.interpretations, "量産商品の意匠権は、著作権との保護調整だけでなく、模倣品が輸入される局面で税関差止申立ての根拠として使えるため、商品デザインの権利化を執行手段まで含むポートフォリオとして考える必要がある。"),
+        implications: addUnique(currentSummary.implications, "模倣リスクが高い商品では、公開前の意匠出願時に、将来の税関差止申立てで侵害物品を識別・説明できる資料や部分意匠の活用可能性まで含めて権利化・証拠管理を設計する。")
+      }
+    };
+  });
+
+  const article = {
+    id: ARTICLE,
+    title: "Effectiveness of Design Rights in Japanese Customs Enforcement",
+    publisher: "TMI総合法律事務所",
+    author: "茜ヶ久保公二",
+    publishedAt: "2026-05-07",
+    collectedAt: "2026-09-24",
+    url: "https://www.tmi.gr.jp/eyes/blog/2026/18306.html",
+    sourceType: "secondary",
+    sourceLabel: "法律事務所・実務解説／意匠権・税関水際取締り",
+    status: "adopted",
+    summary: "日本の税関における意匠権の水際執行を、税関による侵害認定、意匠権の実際の差止利用、部分意匠、特許出願から意匠出願への転換という観点から整理する実務解説。単に『意匠登録しておく』という説明にとどまらず、模倣品が現れたときに税関差止へつなげる権利設計や、製品全体と部分のどこを保護対象にするかまで踏み込んでいる。",
+    whyImportant: [
+      "商品デザインの意匠出願を、登録後の侵害訴訟だけでなく税関の輸出入差止申立てという執行手段まで含めて設計する視点を得られる",
+      "部分意匠が水際取締りで実際に活用され得ることを示し、模倣されやすい特徴部分をどの単位で権利化するかという商品開発・知財実務へ落とし込める",
+      "財務省の最新差止実績と税関の公式Q&Aを併読することで、意匠権が現実の水際取締りで使われていることと制度上の申立入口を一次資料で確認できる"
+    ],
+    audience: ["企業法務", "知財・ブランド担当", "商品企画・デザイン担当", "模倣品対策担当", "輸出入・通関担当"],
+    audienceReason: "商品デザインをどの権利で保護するかだけでなく、模倣品流入時に税関でどう執行するかまで含めた知財ポートフォリオを設計するため。",
+    categories: ["知的財産", "国際取引", "危機管理・コンプライアンス"],
+    relatedTopics: [TOPIC],
+    relatedIssues: [STRATEGY_ISSUE, CUSTOMS_ISSUE],
+    primarySourceIds: [SOURCE_STATS, SOURCE_QA],
+    legacyReformInference: false,
+    whatChanged: "実務執行補強／商品デザインの権利化を、意匠権による税関水際取締り・輸出入差止申立てまで含む権利ポートフォリオとして整理する論点を追加した。"
+  };
+  const existingArticles = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
+  const articleIds = new Set(existingArticles.map((item) => item && item.id).filter(Boolean));
+  const articleUrls = new Set(existingArticles.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  if (!articleIds.has(article.id) && !articleUrls.has(normalizeUrl(article.url))) {
+    window.ARTICLE_DATA = existingArticles.concat(article);
+  }
+})();
