@@ -358,3 +358,205 @@
     window.ARTICLE_DATA = existingArticles.concat(article);
   }
 })();
+
+(() => {
+  if (window.__LAW_INDEX_RUN247_NA_AD_REFORM_APPLIED__) return;
+  window.__LAW_INDEX_RUN247_NA_AD_REFORM_APPLIED__ = true;
+
+  const TOPIC = "advertising-display-control";
+  const ARTICLE = "article-nishimura-premium-unsubstantiated-review-20260821";
+  const REFORM = "premium-representations-review-2026";
+  const SOURCE = "source-cao-regulatory-reform-plan-2026-advertising";
+
+  const normalizeUrl = (value) => {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.protocol = "https:";
+      url.hash = "";
+      [...url.searchParams.keys()].forEach((key) => {
+        if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+      });
+      url.hostname = url.hostname.toLowerCase();
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      url.searchParams.sort();
+      return url.toString();
+    } catch {
+      return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
+    }
+  };
+  const addUnique = (items, value) => Array.from(new Set([...(Array.isArray(items) ? items : []), value].filter(Boolean)));
+
+  window.TOPIC_DATA = (Array.isArray(window.TOPIC_DATA) ? window.TOPIC_DATA : []).map((topic) => {
+    if (!topic || topic.slug !== TOPIC) return topic;
+    return {
+      ...topic,
+      lastUpdated: "2026-09-24",
+      lastVerified: "2026-09-24",
+      referenceArticleIds: addUnique(topic.referenceArticleIds, ARTICLE)
+    };
+  });
+
+  const article = {
+    id: ARTICLE,
+    title: "規制改革実施計画と景品表示法の改正",
+    publisher: "西村あさひ法律事務所・外国法共同事業",
+    author: "森田 多恵子 / 岡田 彩 / 伊藤 沙条羅",
+    publishedAt: "2026-08-21",
+    collectedAt: "2026-09-24",
+    url: "https://www.nishimura.com/ja/knowledge/newsletters/consumer_law_260821",
+    sourceType: "secondary",
+    sourceLabel: "法律事務所・実務解説／景品表示法・規制改革実施計画",
+    status: "adopted",
+    summary: "2026年7月21日に閣議決定された規制改革実施計画のうち、景品表示法に関係する総付景品規制の上限額引上げと不実証広告規制の運用見直しを取り上げる実務解説。現行の総付景品上限が直ちに変更されたわけではないことと、2026年度に検討を開始し2027年度に結論を得る政策工程を分けて読み、不実証広告規制では合理的根拠資料の提出要求や措置命令時の当局説明の在り方が見直し対象であることを整理する。",
+    whyImportant: [
+      "規制改革実施計画を『既にルールが変わった』と誤読せず、現行規制と将来の見直し工程を分けて広告・販促審査へ反映できる",
+      "総付景品の上限額と不実証広告規制という性質の異なる二つの見直しを、企業のキャンペーン設計と表示根拠管理の双方から確認できる",
+      "不実証広告規制では、当局が一般消費者の印象・認識や提出資料を合理的根拠と認めない理由をどう説明するかという手続運用も見直し対象であり、調査対応の証拠設計に直結する"
+    ],
+    audience: ["企業法務", "広告・マーケティング審査担当", "販促・キャンペーン企画", "コンプライアンス", "消費者法務"],
+    audienceReason: "総付景品キャンペーンと効果・性能表示の審査で、現行ルールを維持しつつ2027年度までの制度見直しを追うため。",
+    categories: ["消費者法・表示", "危機管理・コンプライアンス"],
+    relatedTopics: [TOPIC],
+    relatedIssues: ["display-premium-cap-review", "display-undemonstrated-ad-review"],
+    primarySourceIds: [SOURCE],
+    reformEventId: REFORM,
+    reformStageAtPublication: "proposal",
+    reformStageSourceIds: [SOURCE],
+    legacyReformInference: false,
+    whatChanged: "バックフィル／2026年規制改革実施計画による総付景品上限と不実証広告規制の見直しを、現行ルールと将来工程を分けて読む実務解説を追加した。"
+  };
+  const existingArticles = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
+  const articleIds = new Set(existingArticles.map((item) => item && item.id).filter(Boolean));
+  const articleUrls = new Set(existingArticles.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  if (!articleIds.has(article.id) && !articleUrls.has(normalizeUrl(article.url))) {
+    window.ARTICLE_DATA = existingArticles.concat(article);
+  }
+})();
+
+(() => {
+  if (window.__LAW_INDEX_RUN247_DNFBP_AML_APPLIED__) return;
+  window.__LAW_INDEX_RUN247_DNFBP_AML_APPLIED__ = true;
+
+  const TOPIC = "aml-kyc-criminal-proceeds";
+  const ISSUE = "aml-dnfbp-effectiveness";
+  const ARTICLE = "article-tmi-dnfbp-aml-cft-20260917";
+  const SOURCE_ANNUAL = "source-npa-jafic-annual-report-2025-dnfbp";
+  const SOURCE_ACTION = "source-mof-aml-cft-action-plan-2024-2026";
+
+  const normalizeUrl = (value) => {
+    try {
+      const url = new URL(String(value || "").trim());
+      url.protocol = "https:";
+      url.hash = "";
+      [...url.searchParams.keys()].forEach((key) => {
+        if (/^utm_/i.test(key) || ["fbclid", "gclid", "yclid"].includes(key)) url.searchParams.delete(key);
+      });
+      url.hostname = url.hostname.toLowerCase();
+      url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+      url.searchParams.sort();
+      return url.toString();
+    } catch {
+      return String(value || "").trim().replace(/#.*$/, "").replace(/\/$/, "");
+    }
+  };
+  const addUnique = (items, value) => Array.from(new Set([...(Array.isArray(items) ? items : []), value].filter(Boolean)));
+  const addMany = (items, values) => Array.from(new Set([...(Array.isArray(items) ? items : []), ...(Array.isArray(values) ? values : [])].filter(Boolean)));
+
+  const sourceAdditions = [
+    {
+      id: SOURCE_ANNUAL,
+      title: "犯罪収益移転防止に関する年次報告書（令和7年）",
+      type: "report",
+      typeLabel: "一次資料・警察庁JAFIC／DNFBPs・疑わしい取引届出",
+      authority: "警察庁（JAFIC）",
+      publishedAt: "2026-03-12",
+      url: "https://www.npa.go.jp/sosikihanzai/jafic/nenzihokoku/data/jafic_2025.pdf",
+      importance: "高",
+      whyImportant: "令和7年中の疑わしい取引の年間通知件数1,019,405件に対し、DNFBPsからの通知は439件（約0.04％）にとどまり、金融機関側の届出内容との対照からDNFBPsの取引には多数の疑わしい取引情報が潜在している可能性を警察庁が指摘した。",
+      topics: [TOPIC]
+    },
+    {
+      id: SOURCE_ACTION,
+      title: "マネロン・テロ資金供与・拡散金融対策に関する行動計画（2024-2026年度）",
+      type: "report",
+      typeLabel: "一次資料・政府行動計画／DNFBPsのAML/CFT",
+      authority: "マネロン・テロ資金供与・拡散金融対策政策会議",
+      publishedAt: "2024-04-17",
+      url: "https://www.mof.go.jp/policy/international_policy/councils/aml_cft_policy/20240417.html",
+      importance: "高",
+      whyImportant: "DNFBPsについて、リスク理解とリスクベース・アプローチ、取引時確認・継続的顧客管理の実効性、リスクベース監督、疑わしい取引届出の質・件数向上を2026年度末までの政府行動として明示している。",
+      topics: [TOPIC]
+    }
+  ];
+  const existingSources = Array.isArray(window.SOURCE_DATA) ? window.SOURCE_DATA : [];
+  const sourceIds = new Set(existingSources.map((item) => item && item.id).filter(Boolean));
+  const sourceUrls = new Set(existingSources.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  window.SOURCE_DATA = existingSources.concat(sourceAdditions.filter((item) => !sourceIds.has(item.id) && !sourceUrls.has(normalizeUrl(item.url))));
+
+  window.TOPIC_DATA = (Array.isArray(window.TOPIC_DATA) ? window.TOPIC_DATA : []).map((topic) => {
+    if (!topic || topic.slug !== TOPIC) return topic;
+    const currentSummary = topic.currentSummary || { facts: [], interpretations: [], implications: [], uncertain: [] };
+    let issues = Array.isArray(topic.issues) ? [...topic.issues] : [];
+    if (!issues.some((issue) => issue && issue.id === ISSUE)) {
+      issues = issues.concat({
+        id: ISSUE,
+        title: "DNFBPsのAML/CFTを『実効性』までどう高めるか",
+        status: "interpreted",
+        stage: "effective",
+        views: [],
+        conclusion: "犯罪収益移転防止法上の特定事業者に当たるDNFBPsは、取引時確認・記録・疑わしい取引の届出等の法定義務を前提に、自社のリスク評価、継続的顧客管理、取引モニタリング、教育・内部監査をリスクベースで実効化する。2024-2026年度政府行動計画は、DNFBPsのリスク理解、リスクベース監督、疑わしい取引届出の質・件数向上を重点項目としている。",
+        exception: "リスクベース・アプローチは法定要件を任意に緩和する根拠ではない。低リスク取引でも、犯罪収益移転防止法上要求される取引時確認等を省略できるとは限らない。また、DNFBPsに該当しない一般企業は同法上の特定事業者としての義務を当然には負わない。",
+        uncertain: "FATF第5次対日相互審査を見据え、業種別ガイドライン、監督・アウトリーチ、疑わしい取引参考事例等は今後も更新され得る。自社業種を所管する監督官庁の最新資料を継続確認する。",
+        sourceIds: [SOURCE_ANNUAL, SOURCE_ACTION]
+      });
+    }
+    return {
+      ...topic,
+      lastUpdated: "2026-09-24",
+      lastVerified: "2026-09-24",
+      sourceIds: addMany(topic.sourceIds, [SOURCE_ANNUAL, SOURCE_ACTION]),
+      referenceArticleIds: addUnique(topic.referenceArticleIds, ARTICLE),
+      practicalImpacts: addUnique(topic.practicalImpacts, "DNFBPsのリスク評価・継続的顧客管理・疑わしい取引届出"),
+      issues,
+      currentSummary: {
+        ...currentSummary,
+        facts: addUnique(currentSummary.facts, "警察庁JAFICの令和7年年次報告書では、疑わしい取引の年間通知1,019,405件のうちDNFBPsからの通知は439件（約0.04％）で、金融機関側の届出との対照からDNFBPsの取引に多数の疑わしい取引情報が潜在する可能性が指摘されている。"),
+        interpretations: addUnique(currentSummary.interpretations, "DNFBPsのAML/CFTは、本人確認手続を整えるだけでなく、自社リスクの評価、継続的顧客管理、モニタリング、疑わしい取引届出、教育・内部監査までを通じて『結果が出ているか』を検証する運用へ広げる必要がある。"),
+        implications: addUnique(currentSummary.implications, "DNFBPsに該当する事業者は、自社の疑わしい取引届出件数・判断プロセスをリスク評価と照合し、届出が少ないこと自体を低リスクの証拠とせず、参考事例・モニタリング・エスカレーションが実際に機能しているか点検する。")
+      }
+    };
+  });
+
+  const article = {
+    id: ARTICLE,
+    title: "【犯収法ブログ】事業会社（DNFBPs）のAML/CFT対策",
+    publisher: "TMI総合法律事務所",
+    author: "TMI総合法律事務所",
+    publishedAt: "2026-09-17",
+    collectedAt: "2026-09-24",
+    url: "https://www.tmi.gr.jp/eyes/blog/2026/18831.html",
+    sourceType: "secondary",
+    sourceLabel: "法律事務所・実務解説／犯罪収益移転防止法・DNFBPs",
+    status: "adopted",
+    summary: "不動産、宝石・貴金属、郵便物受取・電話受付／転送サービス等のDNFBPsについて、犯罪収益移転防止法上の義務、業種別ガイドライン、リスクベース・アプローチ、有効性検証を一体で整理する実務解説。リスクベースだから法定の取引時確認を緩和できるわけではない点を明確にし、JAFIC年次報告書の疑わしい取引届出実績を用いて、形式的な体制整備から届出・モニタリングの実効性検証へ踏み込んでいる。",
+    whyImportant: [
+      "DNFBPsのAML/CFTを本人確認だけの問題にせず、リスク評価、継続的顧客管理、取引モニタリング、疑わしい取引届出、教育・内部監査まで一つの統制サイクルとして読める",
+      "『リスクベース』を理由に犯罪収益移転防止法の取引時確認要件を任意に緩和できるわけではないという、実務で混同しやすい境界を明示している",
+      "令和7年の疑わしい取引通知1,019,405件に対しDNFBPsは439件という一次資料の数値と、政府行動計画の届出強化方針をつなぎ、対策の有効性をどう点検するかへ落としている"
+    ],
+    audience: ["企業法務", "コンプライアンス・AML担当", "不動産事業者", "宝石・貴金属取扱事業者", "郵便物受取・電話受付／転送サービス事業者"],
+    audienceReason: "DNFBPsに該当する事業者が、法定義務の形式的遵守にとどまらず、FATF第5次対日相互審査を見据えた実効性あるAML/CFT運用を点検するため。",
+    categories: ["危機管理・コンプライアンス", "契約"],
+    relatedTopics: [TOPIC],
+    relatedIssues: [ISSUE],
+    primarySourceIds: [SOURCE_ANNUAL, SOURCE_ACTION],
+    legacyReformInference: false,
+    whatChanged: "テーマ補強／犯罪収益移転防止法の本人確認・改正対応に加え、DNFBPsのリスク評価、継続的顧客管理、疑わしい取引届出と有効性検証を独立論点として追加した。"
+  };
+  const existingArticles = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
+  const articleIds = new Set(existingArticles.map((item) => item && item.id).filter(Boolean));
+  const articleUrls = new Set(existingArticles.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
+  if (!articleIds.has(article.id) && !articleUrls.has(normalizeUrl(article.url))) {
+    window.ARTICLE_DATA = existingArticles.concat(article);
+  }
+})();
