@@ -220,8 +220,8 @@
 
   const reform = (Array.isArray(window.REFORM_EVENT_DATA) ? window.REFORM_EVENT_DATA : []).find((event) => event && event.id === REFORM);
   if (reform) {
-    reform.matchSourceIds = addMany(reform.matchSourceIds, [RULE_SOURCE, SECURITY_SOURCE]);
-    reform.sourceIds = addMany(reform.sourceIds, [RULE_SOURCE, SECURITY_SOURCE]);
+    reform.matchSourceIds = addUnique(reform.matchSourceIds, RULE_SOURCE);
+    reform.sourceIds = addUnique(reform.sourceIds, RULE_SOURCE);
     reform.articleIds = addUnique(reform.articleIds, ARTICLE);
   }
 
