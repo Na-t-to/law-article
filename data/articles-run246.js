@@ -119,3 +119,43 @@
   const urls = new Set(existing.map((item) => normalizeUrl(item && item.url)).filter(Boolean));
   window.ARTICLE_DATA = existing.concat(additions.filter((item) => !ids.has(item.id) && !urls.has(normalizeUrl(item.url))));
 })();
+
+(() => {
+  const ARTICLE = "article-tmi-digital-municipal-bonds-2026";
+  const BAD_ARTICLE = "article-tmi-digital-local-bonds-20260424";
+  const TOPIC = "digital-local-bonds-2026";
+  const REFORM = "local-finance-act-digital-local-bonds-2026";
+  const SOURCE_BILL = "source-shugiin-digital-local-bonds-bill-2026";
+  const SOURCE_HISTORY = "source-sangiin-digital-local-bonds-enactment-2026";
+  const SOURCE_EGOV = "source-egov-local-finance-act-digital-bonds-2026";
+
+  const topic = (window.TOPIC_DATA || []).find((item) => item && item.slug === TOPIC);
+  if (topic) {
+    topic.referenceArticleIds = Array.from(new Set((topic.referenceArticleIds || []).map((id) => id === BAD_ARTICLE ? ARTICLE : id).filter(Boolean)));
+  }
+
+  const event = (window.REFORM_EVENT_DATA || []).find((item) => item && item.id === REFORM);
+  if (event) event.articleIds = [ARTICLE];
+
+  const article = (window.ARTICLE_DATA || []).find((item) => item && item.id === ARTICLE);
+  if (!article) return;
+
+  article.summary = "デジタル地方債を主題に、従来の証券発行地方債・登録地方債・振替地方債の違い、2026年地方財政法改正案による地方債原簿と会社法の社債規定の準用、2027年4月施行を見据えた法的構造を整理する実務解説。民間の社債STを先行例として、地域金融機関をハブとする販売・決済、住民・関係人口への直接金融、非金銭的特典や資金使途の可視化まで社会実装の論点へ落としている。";
+  article.whyImportant = [
+    "証券発行地方債・登録地方債・振替地方債の違いから、なぜ地方債原簿と会社法準用がデジタル証券方式の制度基盤になるのかを一続きで理解できる",
+    "法改正の説明にとどまらず、地方銀行、ST基盤、デジタル決済、投資家接点を組み合わせた実装イメージまで提示している",
+    "地域住民向けの小口発行や非金銭的特典について、自治体の公平性・説明責任との整合が必要という公法上の制約も示しており、商品企画だけで走るリスクを避けられる"
+  ];
+  article.audience = ["金融機関・証券会社", "Fintech・ST事業者", "自治体法務・財政担当", "企業法務・金融法務", "地域金融・事業開発担当"];
+  article.audienceReason = "2027年4月の制度施行を前に、地方債の権利管理、発行・販売・決済の役割分担、地域向け商品設計を法務・システムの両面から準備するため。";
+  article.sourceLabel = "法律事務所・実務解説／デジタル地方債・社債ST";
+  article.categories = Array.from(new Set([...(article.categories || []), "AI・デジタル"]));
+  article.relatedTopics = Array.from(new Set([...(article.relatedTopics || []), TOPIC]));
+  article.relatedIssues = Array.from(new Set([...(article.relatedIssues || []), "digital-local-bonds-legal-basis-2027", "digital-local-bond-register-rights-management", "digital-local-bonds-public-accountability"]));
+  article.primarySourceIds = [SOURCE_BILL, SOURCE_HISTORY, SOURCE_EGOV];
+  article.reformEventId = REFORM;
+  article.reformStageAtPublication = "proposal";
+  article.reformStageSourceIds = [SOURCE_BILL, SOURCE_HISTORY];
+  article.legacyReformInference = false;
+  article.whatChanged = "既存ARTICLE実質更新／デジタル地方債を中心テーマとして再整理し、2026年地方財政法改正の地方債原簿・会社法準用・2027年4月施行と実装論へ一次資料を接続した。";
+})();
