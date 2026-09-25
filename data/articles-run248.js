@@ -3,7 +3,7 @@
   window.__LAW_INDEX_RUN248__ = true;
   const SPECIFIC = "digital-commerce-tokusho-review";
   const BROAD = "consumer-law-digital-contract-review";
-  const FINAL = "source-caa-digital-transactions-interim-20260910";
+  const FINAL = "source-caa-digital-tokusho-interim-2026";
   const COMMENT = "source-caa-digital-tokusho-public-comment-20260916";
   const ARTICLE = "article-maku-tokusho-digital-dark-pattern-20260910";
   const REFORM = "specified-commercial-transactions-digital-review-2026";
@@ -66,7 +66,7 @@
         },
         issues,
         sourceIds: uniq([FINAL, COMMENT, ...(topic.sourceIds || [])]),
-        referenceArticleIds: uniq(["article-caa-digital-transactions-interim-20260910", ARTICLE, ...(topic.referenceArticleIds || [])]),
+        referenceArticleIds: uniq(["article-caa-digital-tokusho-interim-2026", ARTICLE, ...(topic.referenceArticleIds || [])]),
         practicalImpacts: uniq([...(topic.practicalImpacts || []), "返品・解約導線", "契約後の電子的な確認手段"])
       };
     }
@@ -77,7 +77,7 @@
     ...event,
     relatedTopics: uniq([SPECIFIC, BROAD, ...(event.relatedTopics || [])]),
     sourceIds: uniq([FINAL, COMMENT, ...(event.sourceIds || [])]),
-    articleIds: uniq(["article-caa-digital-transactions-interim-20260910", ARTICLE, ...(event.articleIds || [])])
+    articleIds: uniq(["article-caa-digital-tokusho-interim-2026", ARTICLE, ...(event.articleIds || [])])
   } : event);
 
   const article = {
