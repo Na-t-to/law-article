@@ -26,6 +26,12 @@
 - `topics/*.html` — テーマごとの入口ページ
 - `update.html` — 更新イベントを文脈に応じて表示する共通詳細ページ
 
+## manifest 更新とキャッシュ
+
+- `data/manifest.js` を変更した回は、公開画面が古い manifest をキャッシュし続けないよう、manifest を読み込む主要HTMLの `manifest.js?v=...` も更新する。
+- 少なくとも `index.html`、`articles.html`、`article.html`、`topics.html`、`reforms.html` と、当該回で表示確認する関連テーマ詳細ページの cache-buster を揃える。
+- manifest へのデータファイル追加だけで公開完了とみなさず、公開後に実際のページが新しい ARTICLE / TOPIC / SOURCE / REFORM を読み込んでいることを確認する。
+
 ## 法令・改正イベント・記事
 
 法改正ページでは、**法令・制度そのもの、個々の改正イベント、その改正を扱う記事を別のものとして管理します。**
