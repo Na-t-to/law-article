@@ -10,7 +10,8 @@ on:
 
 permissions:
   contents: write
-  pages: write
+  pages: read
+  actions: read
 
 concurrency:
   group: law-index-ingest
@@ -21,9 +22,10 @@ jobs:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
-      - name: Check out main
+      - name: Check out latest main
         uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
 
       - name: Set up Node
@@ -58,19 +60,18 @@ jobs:
           echo "changed=true" >> "$GITHUB_OUTPUT"
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
-      - name: Request GitHub Pages rebuild
+      - name: Wait for automatic GitHub Pages build
         if: steps.commit.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
-          gh api --method POST "repos/${{ github.repository }}/pages/builds" >/dev/null
           target="${{ steps.commit.outputs.sha }}"
-          for attempt in $(seq 1 36); do
-            latest="$(gh api "repos/${{ github.repository }}/pages/builds/latest")"
-            status="$(printf '%s' "$latest" | jq -r '.status // empty')"
-            commit="$(printf '%s' "$latest" | jq -r '.commit // empty')"
+          for attempt in $(seq 1 42); do
+            latest="$(gh api "repos/${{ github.repository }}/pages/builds/latest" 2>/dev/null || true)"
+            status="$(printf '%s' "$latest" | jq -r '.status // empty' 2>/dev/null || true)"
+            commit="$(printf '%s' "$latest" | jq -r '.commit // empty' 2>/dev/null || true)"
             echo "Pages build: status=$status commit=$commit target=$target"
             if [ "$commit" = "$target" ] && [ "$status" = "built" ]; then
               exit 0
@@ -93,9 +94,15 @@ jobs:
           index="$(curl -fsSL "$base/index.html?v=$stamp")"
           printf '%s' "$index" | grep -q 'data/bootstrap.js?v=1'
           manifest="$(curl -fsSL "$base/data/manifest.js?v=$stamp")"
+
           while IFS= read -r file; do
             [ -n "$file" ] || continue
             name="$(basename "$file")"
             printf '%s' "$manifest" | grep -Fq "$name"
             curl -fsSL "$base/$file?v=$stamp" >/dev/null
           done < <(git diff --name-only HEAD^ HEAD | grep -E '^data/(topics|sources|updates|reforms|articles)-.+\.js$' || true)
+
+          while IFS= read -r file; do
+            [ -n "$file" ] || continue
+            curl -fsSL "$base/$file?v=$stamp" >/dev/null
+          done < <(git diff --name-only HEAD^ HEAD | grep -E '^topics/.+\.html$' || true)
