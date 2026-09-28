@@ -34,12 +34,37 @@ jobs:
           node-version: "20"
 
       - name: Promote staged data and validate
+        id: promote
+        continue-on-error: true
         run: node scripts/promote-incoming.mjs
 
+      - name: Reject invalid staged batch
+        if: steps.promote.outcome == 'failure'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git reset --hard HEAD
+          rm -rf incoming
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Reject invalid LAW INDEX staged data"
+            if ! git push origin HEAD:main; then
+              git fetch origin main
+              git rebase origin/main
+              git push origin HEAD:main
+            fi
+          fi
+          echo "Staged LAW INDEX data failed validation and was not published." >&2
+          exit 1
+
       - name: Check patch
+        if: steps.promote.outcome == 'success'
         run: git diff --check
 
       - name: Commit promoted data
+        if: steps.promote.outcome == 'success'
         id: commit
         shell: bash
         run: |
