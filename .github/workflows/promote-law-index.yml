@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - "incoming/**"
+      - "incoming/.ready"
   workflow_dispatch:
 
 permissions:
