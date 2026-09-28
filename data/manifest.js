@@ -28,3 +28,5 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({...window.LAW_INDEX_DATA_FILES,arti
 window.LAW_INDEX_DATA_FILES = Object.freeze({...window.LAW_INDEX_DATA_FILES,articles:Object.freeze([...window.LAW_INDEX_DATA_FILES.articles,"articles-run249.js?v=1"])});
 
 window.LAW_INDEX_DATA_FILES = Object.freeze({...window.LAW_INDEX_DATA_FILES,articles:Object.freeze([...window.LAW_INDEX_DATA_FILES.articles,"articles-run250.js?v=1"])});
+
+window.LAW_INDEX_DATA_FILES = Object.freeze({...window.LAW_INDEX_DATA_FILES,sources:Object.freeze([...window.LAW_INDEX_DATA_FILES.sources,"sources-run252.js?v=1"]),topics:Object.freeze([...window.LAW_INDEX_DATA_FILES.topics,"topics-run252.js?v=1"])});
