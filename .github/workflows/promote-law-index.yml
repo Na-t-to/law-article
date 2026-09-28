@@ -14,7 +14,7 @@ permissions:
   actions: read
 
 concurrency:
-  group: law-index-ingest
+  group: law-index-ingest-v2
   cancel-in-progress: false
 
 jobs:
