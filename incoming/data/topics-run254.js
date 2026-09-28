@@ -1,0 +1,47 @@
+(() => {
+  if (window.__LAW_INDEX_RUN254_TOPIC_APPLIED__) return;
+  window.__LAW_INDEX_RUN254_TOPIC_APPLIED__ = true;
+  const addition = {
+    slug:"waste-outsourcing-resource-circulation",
+    title:"産業廃棄物処理委託・排出事業者責任／資源循環",
+    categories:["契約・取引","危機管理・コンプライアンス"],
+    summary:"排出事業者の廃棄物処理委託を、廃棄物該当性、委託契約・許可、マニフェスト、委託先管理と、2026年の資源循環制度から整理する。",
+    lastUpdated:"2026-09-28",
+    lastVerified:"2026-09-28",
+    isNew:true,
+    overview:[
+      "産業廃棄物の処理を外部委託しても、排出事業者には適正処理を確保するための法的・実務的な管理が残る。",
+      "実務では、廃棄物・有価物の判定、排出主体、許可範囲、契約内容、マニフェスト、委託先の処理状況と料金を一続きで確認する。",
+      "2026年は資源有効利用促進法の改正施行や再資源化事業等高度化法の認定運用が進み、再資源化ルートや再生材調達も重要になっている。"
+    ],
+    currentSummary:{
+      facts:[
+        "廃棄物処理法は、事業活動に伴う廃棄物について事業者の適正処理責任を定め、委託後も最終処分まで適正な処理が行われるための措置を求めている。",
+        "環境省は2026年4月、廃棄物処理業のコスト上昇と価格転嫁を踏まえ、取引適正化ガイドラインを公表した。",
+        "資源有効利用促進法は2026年4月1日に改正施行され、同月には再資源化事業等高度化法の最初の事業認定も行われた。"
+      ],
+      interpretations:[
+        "排出事業者の管理は、契約締結時の形式確認だけでなく、排出物の判定から委託先選定、処理完了確認、異常時対応までを一つの統制として設計する必要がある。"
+      ],
+      implications:[
+        "排出物ごとに廃棄物・有価物の判断根拠を残し、委託内容と許可範囲・契約記載を定期的に照合する。",
+        "マニフェストの返送・記載不備を追跡し、委託先の処理状況と価格協議の記録を管理する。",
+        "再資源化ルートと再生材調達を棚卸しし、資源循環制度の対象要件と自社の製品・取引を照合する。"
+      ],
+      uncertain:[
+        "廃棄物該当性、適正な料金、必要な委託先監督の程度は、物の性状、取引実態、処理方法等の具体的事情によって変わる。"
+      ]
+    },
+    issues:[
+      {id:"waste-generator-classification-responsibility",title:"何が廃棄物で、誰が排出事業者か",status:"authoritative",stage:"effective",views:[],conclusion:"廃棄物該当性は物の性状や取引実態等を総合して確認し、事業活動との関係から排出事業者を特定する。外部委託だけで排出事業者責任が消えるとは扱わない。",exception:"建設工事やテナント等、排出主体の特定に個別整理が必要な類型がある。",uncertain:"有価物・廃棄物の境界は事実関係に左右される。",sourceIds:["source-egov-waste-management-act-2026"]},
+      {id:"waste-outsourcing-contract-manifest",title:"委託契約・許可・マニフェストをどう管理するか",status:"authoritative",stage:"effective",views:[],conclusion:"委託内容と許可範囲を整合させ、書面契約とマニフェストの交付・登録に加えて処理完了まで確認する。",exception:"廃棄物の種類や処理方法等により具体的な管理事項・期限は異なる。",uncertain:"契約条項や確認頻度は個別の処理フローに応じて設計する。",sourceIds:["source-egov-waste-management-act-2026"]},
+      {id:"waste-vendor-pricing-monitoring",title:"委託先の価格・処理状況をどう監督するか",status:"interpreted",stage:"not_applicable",views:[],conclusion:"価格だけで委託先を選定せず、許可・処理能力・処理実態を確認し、必要に応じて価格協議と監督の記録を残す。",exception:"確認方法や頻度は廃棄物の性状、委託量、委託先のリスク等に応じて設計する。",uncertain:"適正な料金水準や監督の程度は具体的事情により異なる。",sourceIds:["source-egov-waste-management-act-2026","source-env-waste-fair-transaction-guideline-20260413"]},
+      {id:"resource-circulation-2026-manufacturer-recycling",title:"2026年の資源循環制度を実務へどうつなぐか",status:"authoritative",stage:"effective",views:[],conclusion:"改正資源有効利用促進法、循環経済行動計画、再資源化事業等高度化法の運用を踏まえ、自社に関係する再生資源利用・回収再資源化等の制度と処理ルートを確認する。",exception:"具体的な義務は対象製品・業種・事業規模等によって異なる。",uncertain:"認定・報告制度等の運用は今後も継続確認する。",sourceIds:["source-egov-resource-effective-use-act-20260401","source-env-advanced-recycling-certifications-20260430","source-env-circular-economy-action-plan-20260421"]}
+    ],
+    sourceIds:["source-egov-waste-management-act-2026","source-env-waste-fair-transaction-guideline-20260413","source-egov-resource-effective-use-act-20260401","source-env-advanced-recycling-certifications-20260430","source-env-circular-economy-action-plan-20260421"],
+    referenceArticleIds:["article-morihamada-waste-outsourcing-resource-circulation-20260902"],
+    practicalImpacts:["廃棄物・有価物判定","処理委託契約・許可証管理","マニフェスト管理","委託先監督・価格協議","再資源化ルート・再生材調達"]
+  };
+  const existing=Array.isArray(window.TOPIC_DATA)?window.TOPIC_DATA:[];
+  if(!existing.some((item)=>item&&item.slug===addition.slug)) window.TOPIC_DATA=existing.concat(addition);
+})();
