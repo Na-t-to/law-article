@@ -44,6 +44,9 @@ jobs:
         run: |
           set -euo pipefail
           git reset --hard HEAD
+          # Promotion can create new data/topic files before validation. A hard reset
+          # does not remove untracked files, so clean them before staging the reject.
+          git clean -fd -- data topics
           rm -rf incoming
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
