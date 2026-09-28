@@ -27,7 +27,7 @@ const listFiles = (dir, predicate = () => true) => {
 
 const stagedData = listFiles(incomingData, (name) => name.endsWith('.js'));
 const stagedTopicPages = listFiles(incomingTopics, (name) => name.endsWith('.html'));
-const triggerFile = path.join(incomingRoot, '.trigger');
+const triggerFile = path.join(incomingRoot, '.ready');
 
 if (!fs.existsSync(bootstrapPath)) {
   throw new Error('data/bootstrap.js is required before promotion.');
