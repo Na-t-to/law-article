@@ -26,11 +26,20 @@
 - `topics/*.html` — テーマごとの入口ページ
 - `update.html` — 更新イベントを文脈に応じて表示する共通詳細ページ
 
-## manifest 更新とキャッシュ
+## 自動更新の公開経路
 
-- `data/manifest.js` を変更した回は、公開画面が古い manifest をキャッシュし続けないよう、manifest を読み込む主要HTMLの `manifest.js?v=...` も更新する。
-- 少なくとも `index.html`、`articles.html`、`article.html`、`topics.html`、`reforms.html` と、当該回で表示確認する関連テーマ詳細ページの cache-buster を揃える。
-- manifest へのデータファイル追加だけで公開完了とみなさず、公開後に実際のページが新しい ARTICLE / TOPIC / SOURCE / REFORM を読み込んでいることを確認する。
+通常の自動更新では、収集側が `data/manifest.js` や既存の公開データを直接書き換えません。
+
+1. 新規・修正用のdelta JSを `incoming/data/` に置く。ファイル名は現行の分類に合わせて `articles-*.js`、`topics-*.js`、`sources-*.js`、`updates-*.js`、`reforms-*.js` とする。
+2. 新規テーマページや旧URLのredirect等が必要なら `incoming/topics/` にHTMLを置く。
+3. 必要なファイルをすべて置いた後、最後に `incoming/.ready` を新規作成する。
+4. GitHub Actions の `Promote LAW INDEX staged data` が最新mainをcheckoutし、stagedデータを一時的に `data/` / `topics/` へ昇格させ、manifestへ登録した状態で `node scripts/validate-data.mjs` を実行する。
+5. validatorが成功した場合だけActionが変更をcommit/pushする。失敗時は公開manifestを変更しない。
+6. bot commit後のGitHub Pages自動ビルドを待ち、公開トップ、manifest、昇格したデータ・テーマページが取得できることまで確認する。
+
+公開HTMLは `data/bootstrap.js` を読み込み、bootstrapが毎回cache-buster付きでmanifestとloaderを取得します。そのため、通常更新でページごとの `manifest.js?v=...` を手作業で揃える必要はありません。
+
+stagingは複数ファイルを置いてから `.ready` を最後に作ることが重要です。個々のstagedファイル追加ごとに公開処理を開始しません。既存データの修正・canonical統合・cleanupも、原則として既存ファイルを直接編集せず、新しいdeltaをstagingして適用します。
 
 ## 法令・改正イベント・記事
 
