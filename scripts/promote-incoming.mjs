@@ -2,8 +2,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 import { spawnSync } from 'node:child_process';
+import os from 'node:os';
+import crypto from 'node:crypto';
+import { readBatch, DATA_FILENAME } from './staged-batch.mjs';
 
-const root = process.cwd();
+function promoteCandidate(root) {
 const incomingRoot = path.join(root, 'incoming');
 const incomingData = path.join(incomingRoot, 'data');
 const incomingTopics = path.join(incomingRoot, 'topics');
@@ -13,7 +16,7 @@ const manifestPath = path.join(dataDir, 'manifest.js');
 const bootstrapPath = path.join(dataDir, 'bootstrap.js');
 
 const categoryFor = (file) => {
-  const match = /^(topics|sources|updates|reforms|articles)-.+\.js$/.exec(file);
+  const match = DATA_FILENAME.exec(file);
   return match?.[1] || null;
 };
 
@@ -111,8 +114,80 @@ for (const dir of [incomingData, incomingTopics, incomingRoot]) {
   if (fs.existsSync(dir) && fs.readdirSync(dir).length === 0) fs.rmdirSync(dir);
 }
 
-console.log(JSON.stringify({
+return {
   promotedData: stagedData.map((file) => path.basename(file)),
   promotedTopicPages: stagedTopicPages.map((file) => path.basename(file)),
   migratedPages
-}));
+};
+}
+
+
+// Validation runs against a disposable candidate tree, never the public tree.
+// Only a successful complete candidate becomes the next Git commit's contents.
+const root = process.cwd();
+const batch = readBatch(root);
+const markerBytes = fs.readFileSync(path.join(root, 'incoming', '.ready'));
+const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'law-index-promotion-'));
+const writeAtomic = (file, bytes) => {
+  fs.mkdirSync(path.dirname(file), {recursive: true});
+  const temporary = `${file}.${crypto.randomUUID()}.tmp`;
+  try {
+    fs.writeFileSync(temporary, bytes);
+    fs.renameSync(temporary, file);
+  } finally {
+    fs.rmSync(temporary, {force: true});
+  }
+};
+try {
+  for (const folder of ['data', 'topics', 'scripts', 'incoming']) {
+    const from = path.join(root, folder);
+    if (fs.existsSync(from)) fs.cpSync(from, path.join(scratch, folder), {recursive: true});
+  }
+  for (const file of listRootHtml(root)) fs.copyFileSync(path.join(root, file), path.join(scratch, file));
+  const result = promoteCandidate(scratch);
+  if (JSON.stringify(readBatch(root)) !== JSON.stringify(batch) || !fs.readFileSync(path.join(root, 'incoming', '.ready')).equals(markerBytes)) {
+    throw new Error('Staged batch changed during validation. Nothing was published; retry the complete batch.');
+  }
+  if (process.argv.includes('--check')) {
+    console.log(JSON.stringify({...result, checkOnly: true}));
+  } else {
+    const changed = [];
+    for (const relative of [...walkFiles(scratch, 'data'), ...walkFiles(scratch, 'topics'), ...listRootHtml(scratch)]) {
+      const target = path.join(root, relative);
+      const bytes = fs.readFileSync(path.join(scratch, relative));
+      const before = fs.existsSync(target) ? fs.readFileSync(target) : null;
+      if (before === null || !before.equals(bytes)) changed.push({target, before, bytes});
+    }
+    const inputs = [...batch.map(({path: relative}) => path.join(root, 'incoming', relative)), path.join(root, 'incoming', '.ready')]
+      .map((target) => ({target, bytes: fs.readFileSync(target)}));
+    try {
+      for (const {target, bytes} of changed) writeAtomic(target, bytes);
+      for (const {target} of inputs) fs.rmSync(target);
+    } catch (error) {
+      // Restore every touched file, including staged input, if application fails.
+      for (const {target, before} of changed) {
+        if (before === null) fs.rmSync(target, {force: true});
+        else writeAtomic(target, before);
+      }
+      for (const {target, bytes} of inputs) writeAtomic(target, bytes);
+      throw error;
+    }
+    console.log(JSON.stringify(result));
+  }
+} finally {
+  fs.rmSync(scratch, {recursive: true, force: true});
+}
+
+function listRootHtml(directory) {
+  return fs.readdirSync(directory, {withFileTypes: true}).filter((entry) => entry.isFile() && entry.name.endsWith('.html')).map((entry) => entry.name);
+}
+function walkFiles(directory, relative) {
+  const absolute = path.join(directory, relative);
+  if (!fs.existsSync(absolute)) return [];
+  return fs.readdirSync(absolute, {withFileTypes: true}).flatMap((entry) => {
+    const file = path.join(relative, entry.name);
+    if (entry.isDirectory()) return walkFiles(directory, file);
+    if (!entry.isFile()) throw new Error(`Unsupported non-file in publication tree: ${file}`);
+    return [file];
+  });
+}

@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import vm from "node:vm";
+import { DATA_FILENAME } from "./staged-batch.mjs";
 
 const context = { window: {}, URL };
 vm.createContext(context);
@@ -7,11 +8,16 @@ vm.runInContext(fs.readFileSync("data/manifest.js", "utf8"), context, { filename
 
 const manifest = context.window.LAW_INDEX_DATA_FILES || {};
 const listedFiles = Object.values(manifest).flat().map((file) => file.split("?")[0]);
-const actualFiles = fs.readdirSync("data").filter((file) => /^(schema|reform-policy|reforms(?:-run\d+)?|topics(?:-extra|-run\d+)?|sources(?:-extra|-run\d+)?|updates(?:-run\d+)?|articles(?:-secondary(?:-\d+)?|-extra|-run\d+)?)\.js$/.test(file));
+const actualFiles = fs.readdirSync("data").filter((file) => /^(schema|reform-policy|reforms|topics|sources|updates|articles)\.js$/.test(file) || DATA_FILENAME.test(file));
 const manifestErrors = [
   ...actualFiles.filter((file) => !listedFiles.includes(file)).map((file) => `data/${file}: manifest.js に登録されていません。`),
   ...listedFiles.filter((file) => !actualFiles.includes(file)).map((file) => `data/${file}: manifest.js にありますがファイルが存在しません。`)
 ];
+
+if (manifestErrors.length) {
+  console.error(manifestErrors.join("\n"));
+  process.exit(1);
+}
 
 for (const file of listedFiles) {
   vm.runInContext(fs.readFileSync(`data/${file}`, "utf8"), context, { filename: `data/${file}` });

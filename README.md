@@ -32,12 +32,14 @@
 
 1. 新規・修正用のdelta JSを `incoming/data/` に置く。ファイル名は現行の分類に合わせて `articles-*.js`、`topics-*.js`、`sources-*.js`、`updates-*.js`、`reforms-*.js` とする。
 2. 新規テーマページや旧URLのredirect等が必要なら `incoming/topics/` にHTMLを置く。
-3. 必要なファイルをすべて置いた後、最後に `incoming/.ready` を新規作成する。
-4. GitHub Actions の `Promote LAW INDEX staged data` が最新mainをcheckoutし、stagedデータを一時的に `data/` / `topics/` へ昇格させ、manifestへ登録した状態で `node scripts/validate-data.mjs` を実行する。
-5. validatorが成功した場合だけActionが変更をcommit/pushする。失敗時は公開manifestを変更しない。
+3. 必要なファイルをすべて置いた後、`node scripts/prepare-incoming.mjs` で全ファイルのSHA-256付き `incoming/.ready` を作成する。バッチ全体とmarkerを同じcommitで反映する。
+4. GitHub Actions の `Promote LAW INDEX staged data` が最新mainをcheckoutし、元の公開・stagedデータを変更しない隔離コピーで昇格候補を作り、manifestへ登録した状態で `node scripts/validate-data.mjs` を実行する。
+5. validatorが成功した場合だけActionが変更をcommit/pushする。失敗時は公開manifest・stagedデータを保持する。push時にmainが進んでいた場合は未検証のrebaseをせず停止し、最新mainで再実行する。
 6. bot commit後のGitHub Pages自動ビルドを待ち、公開トップ、manifest、昇格したデータ・テーマページが取得できることまで確認する。
 
 公開HTMLは `data/bootstrap.js` を読み込み、bootstrapが毎回cache-buster付きでmanifestとloaderを取得します。そのため、通常更新でページごとの `manifest.js?v=...` を手作業で揃える必要はありません。
+
+日次収集・一次資料照合・バッチ作成・公開確認の手順は [UPDATER.md](UPDATER.md) を参照してください。公開前には `node --test scripts/test-promotion.mjs` と `node scripts/promote-incoming.mjs --check` を実行できます。
 
 stagingは複数ファイルを置いてから `.ready` を最後に作ることが重要です。個々のstagedファイル追加ごとに公開処理を開始しません。既存データの修正・canonical統合・cleanupも、原則として既存ファイルを直接編集せず、新しいdeltaをstagingして適用します。
 

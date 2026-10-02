@@ -33,34 +33,17 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Test promotion safety
+        run: node --test scripts/test-promotion.mjs
+
       - name: Promote staged data and validate
         id: promote
-        continue-on-error: true
         run: node scripts/promote-incoming.mjs
 
-      - name: Reject invalid staged batch
-        if: steps.promote.outcome == 'failure'
-        shell: bash
+      - name: Preserve rejected batch and report failure
+        if: failure()
         run: |
-          set -euo pipefail
-          git reset --hard HEAD
-          # Promotion can create new data/topic files before validation. A hard reset
-          # does not remove untracked files, so clean them before staging the reject.
-          git clean -fd -- data topics
-          rm -rf incoming
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          if ! git diff --cached --quiet; then
-            git commit -m "Reject invalid LAW INDEX staged data"
-            if ! git push origin HEAD:main; then
-              git fetch origin main
-              git rebase origin/main
-              git push origin HEAD:main
-            fi
-          fi
-          echo "Staged LAW INDEX data failed validation and was not published." >&2
-          exit 1
+          echo "::error::Promotion failed. Public data and the incoming batch are preserved. Inspect the validation log, repair the same batch, and retry."
 
       - name: Check patch
         if: steps.promote.outcome == 'success'
@@ -78,12 +61,12 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
+          git add -- data topics incoming
+          git add -- *.html
           git commit -m "Promote LAW INDEX staged data"
           if ! git push origin HEAD:main; then
-            git fetch origin main
-            git rebase origin/main
-            git push origin HEAD:main
+            echo "::error::main changed while validating. Nothing was force-pushed. Re-run this workflow to validate against latest main."
+            exit 1
           fi
           echo "changed=true" >> "$GITHUB_OUTPUT"
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
@@ -103,6 +86,14 @@ jobs:
             echo "Pages build: status=$status commit=$commit target=$target"
             if [ "$commit" = "$target" ] && [ "$status" = "built" ]; then
               exit 0
+            fi
+            if [ "$status" = "built" ] && [ -n "$commit" ] && [ "$commit" != "$target" ]; then
+              # A newer successful build may include this publication. Do not wait
+              # forever for an intermediate Pages build that was superseded.
+              if git fetch --no-tags origin "$commit" && git merge-base --is-ancestor "$target" "$commit"; then
+                echo "Publication is included in newer successful Pages build $commit."
+                exit 0
+              fi
             fi
             if [ "$commit" = "$target" ] && [ "$status" = "errored" ]; then
               exit 1
@@ -127,7 +118,10 @@ jobs:
             [ -n "$file" ] || continue
             name="$(basename "$file")"
             printf '%s' "$manifest" | grep -Fq "$name"
-            curl -fsSL "$base/$file?v=$stamp" >/dev/null
+            downloaded="$(mktemp)"
+            curl -fsSL "$base/$file?v=$stamp" -o "$downloaded"
+            cmp "$file" "$downloaded"
+            rm -f "$downloaded"
           done < <(git diff --name-only HEAD^ HEAD | grep -E '^data/(topics|sources|updates|reforms|articles)-.+\.js$' || true)
 
           while IFS= read -r file; do
