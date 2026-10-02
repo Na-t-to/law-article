@@ -46,6 +46,7 @@
   const secondaryFields = fieldValues.filter((field) => !primaryFields.includes(field));
   const topicsForArticle = (article) => article.relatedTopics.map((slug) => topics.find((topic) => topic.slug === slug)).filter(Boolean);
   const topicNames = (article) => topicsForArticle(article).map((topic) => topic.title);
+  const issueNames = (article) => topicsForArticle(article).flatMap((topic) => topic.issues || []).filter((issue) => article.relatedIssues.includes(issue.id)).map((issue) => issue.title);
   const isLegalReform = (article) => window.getLegalReformInfo?.(article, topics)?.isReform || false;
   const reformLaw = (article) => {
     if (window.getLegalReformLaw) return window.getLegalReformLaw(article, topics);
@@ -97,7 +98,7 @@
     const needle = $("#articleSearch").value.trim().toLocaleLowerCase();
     const visible = articles.filter((article) => !reformsOnly || isLegalReform(article)).filter((article) => !reformsOnly ? selectedField === "all" || article.categories.includes(selectedField) : selectedLaw === "all" || reformLaw(article).id === selectedLaw).filter((article) => {
       if (!needle) return true;
-      return [article.title, article.publisher, article.summary, changeSummary(article), article.categories.join(" "), article.audience.join(" "), topicNames(article).join(" "), reformLaw(article).label].join(" ").toLocaleLowerCase().includes(needle);
+      return [article.title, article.publisher, article.summary, changeSummary(article), article.categories.join(" "), article.audience.join(" "), topicNames(article).join(" "), issueNames(article).join(" "), reformLaw(article).label].join(" ").toLocaleLowerCase().includes(needle);
     }).sort(compareCollectionOrder);
     $("#libraryCount").innerHTML = `<strong>${String(visible.length).padStart(2, "0")}</strong><span>件</span>`;
     $("#articleLibrary").classList.toggle("is-grouped", reformsOnly);
@@ -120,7 +121,7 @@
     const moreButton = event.target.closest("[data-filter-more]");
     if (!reformButton && !field && !lawButton && !moreButton) return;
 
-    if (reformButton) { reformsOnly = !reformsOnly; selectedField = "all"; selectedLaw = "all"; filtersExpanded = false; articleVisibleCount = articlePageSize; }
+    if (reformButton) { window.location.assign("reforms.html"); return; }
     if (field) {
       selectedField = field.dataset.articleField;
       articleVisibleCount = articlePageSize;

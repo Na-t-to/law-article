@@ -36,3 +36,5 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({...window.LAW_INDEX_DATA_FILES,arti
 window.LAW_INDEX_DATA_FILES = Object.freeze({...window.LAW_INDEX_DATA_FILES,articles:Object.freeze([...window.LAW_INDEX_DATA_FILES.articles,"articles-run254.js?v=1"]),sources:Object.freeze([...window.LAW_INDEX_DATA_FILES.sources,"sources-run254.js?v=1"]),topics:Object.freeze([...window.LAW_INDEX_DATA_FILES.topics,"topics-run254.js?v=1"])});
 
 window.LAW_INDEX_DATA_FILES = Object.freeze({...window.LAW_INDEX_DATA_FILES,articles:Object.freeze([...window.LAW_INDEX_DATA_FILES.articles,"articles-jftc-20261002.js?v=1"]),sources:Object.freeze([...window.LAW_INDEX_DATA_FILES.sources,"sources-jftc-20261002.js?v=1"]),updates:Object.freeze([...window.LAW_INDEX_DATA_FILES.updates,"updates-jftc-20261002.js?v=1"])});
+
+window.LAW_INDEX_DATA_FILES = Object.freeze({...window.LAW_INDEX_DATA_FILES,articles:Object.freeze([...window.LAW_INDEX_DATA_FILES.articles,"articles-audit-20261002.js?v=1"]),sources:Object.freeze([...window.LAW_INDEX_DATA_FILES.sources,"sources-audit-20261002.js?v=1"])});

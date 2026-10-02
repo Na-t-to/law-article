@@ -1,3 +1,4 @@
+import { collectReferenceErrors } from "./validate-references.mjs";
 import fs from "node:fs";
 import vm from "node:vm";
 import { DATA_FILENAME } from "./staged-batch.mjs";
@@ -148,7 +149,7 @@ for (const article of articles) {
   }
 }
 
-const errors = [...manifestErrors, ...context.window.validateKnowledgeData(topics, sources, articles), ...reformEventErrors, ...reformStageErrors, ...reformEffectiveDateErrors];
+const errors = [...manifestErrors, ...collectReferenceErrors(context.window), ...context.window.validateKnowledgeData(topics, sources, articles), ...reformEventErrors, ...reformStageErrors, ...reformEffectiveDateErrors];
 const uniqueArticles = context.window.uniqueKnowledgeArticles(articles);
 const issues = topics.flatMap((topic) => topic.issues || []);
 const legalReforms = uniqueArticles.filter((article) => resolvedEventForArticle(article) || context.window.getLegalReformInfo(article, topics).isReform);

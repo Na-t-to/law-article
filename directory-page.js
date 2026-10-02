@@ -82,7 +82,8 @@
   }
 
   if (page === "reforms") {
-    const selectedLaw = new URLSearchParams(window.location.search).get("law");
+    const requestedLaw = new URLSearchParams(window.location.search).get("law");
+    const selectedLaw = window.REFORM_EVENT_ALIASES?.[requestedLaw] || requestedLaw;
     const reformInfo = (article) => {
       const inferred = window.getLegalReformInfo?.(article, topics) || { isReform: false };
       return { isReform: inferred.isReform };
@@ -131,7 +132,7 @@
     const stateRank = Object.freeze({ upcoming: 0, pending: 1, completed: 2, unverified: 3, unorganized: 3 });
     const stateLabel = Object.freeze({ upcoming: "施行前・適用前", pending: "予定・段階施行", completed: "施行済み・適用済み", unverified: "施行時期未確認", unorganized: "改正イベント未整理" });
 
-    const groups = [...reforms.reduce((map, item) => {
+    const grouped = reforms.reduce((map, item) => {
       const groupId = item.event ? `event-${item.event.id}` : `legacy-${item.law.id}`;
       if (!map.has(groupId)) {
         map.set(groupId, {
@@ -153,7 +154,19 @@
         if (candidate && (!group.effectiveDate || candidate.sortKey > group.effectiveDate.sortKey)) group.effectiveDate = candidate;
       }
       return map;
-    }, new Map()).values()].map((group) => ({ ...group, timingState: timingStateFor(group) })).sort((left, right) => {
+    }, new Map());
+    // Events are first-class records; an event must not disappear just because
+    // no adopted article has been linked to it yet.
+    for (const event of reformEvents) {
+      const id = `event-${event.id}`;
+      if (grouped.has(id)) continue;
+      grouped.set(id, {
+        id, title: event.title, law: { id: event.lawId, label: event.lawLabel },
+        event, eventTiming: eventTiming(event), items: [], effectiveDate: null,
+        latestCollectedAt: ""
+      });
+    }
+    const groups = [...grouped.values()].map((group) => ({ ...group, timingState: timingStateFor(group) })).sort((left, right) => {
       const leftKey = left.event ? (left.eventTiming?.sortKey || "") : (left.effectiveDate?.sortKey || "");
       const rightKey = right.event ? (right.eventTiming?.sortKey || "") : (right.effectiveDate?.sortKey || "");
       const leftRank = stateRank[left.timingState];
@@ -177,8 +190,12 @@
     };
     const renderGroup = (group) => {
       const selected = selectedLaw && (selectedLaw === group.law.id || selectedLaw === group.event?.id);
-      const meta = group.event ? `法令・制度 ${group.law.label} / 最終追加 ` : "最終追加 ";
-      return `<details class="reform-law-group" data-timing-state="${escapeHtml(group.timingState)}" id="${escapeHtml(group.id)}"${selected ? " open" : ""}><summary><div><strong>${escapeHtml(group.title)}</strong><small>${escapeHtml(meta)}<time datetime="${escapeHtml(group.latestCollectedAt)}">${escapeHtml(group.latestCollectedAt)}</time><b class="reform-state-badge">${escapeHtml(stateLabel[group.timingState])}</b></small></div><span class="reform-effective-date">${escapeHtml(effectiveLabel(group))}</span><span class="reform-count">${pad(group.items.length)}件</span><em>記事を見る</em></summary><div class="reform-law-articles">${group.items.map(({ article }) => `<article><div><a href="article.html?id=${encodeURIComponent(article.id)}"><strong>${escapeHtml(article.title)}</strong></a><small>${escapeHtml(article.publisher)} / ${escapeHtml(article.sourceLabel)}</small></div><time class="reform-published-date" datetime="${escapeHtml(article.publishedAt)}">${escapeHtml(formatPublishedDate(article.publishedAt))}</time></article>`).join("")}</div></details>`;
+      const meta = group.event ? `法令・制度 ${group.law.label}` : "";
+      const collected = group.latestCollectedAt ? ` / 最終追加 <time datetime="${escapeHtml(group.latestCollectedAt)}">${escapeHtml(group.latestCollectedAt)}</time>` : "";
+      const articleRows = group.items.map(({ article }) => `<article><div><a href="article.html?id=${encodeURIComponent(article.id)}"><strong>${escapeHtml(article.title)}</strong></a><small>${escapeHtml(article.publisher)} / ${escapeHtml(article.sourceLabel)}</small></div><time class="reform-published-date" datetime="${escapeHtml(article.publishedAt)}">${escapeHtml(formatPublishedDate(article.publishedAt))}</time></article>`).join("");
+      const sourceRows = (group.event?.sourceIds || []).map((id) => sources.find((source) => source.id === id)).filter(Boolean).map((source) => `<article><div><a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer"><strong>${escapeHtml(source.title)}</strong></a><small>${escapeHtml(source.authority)} / ${escapeHtml(source.typeLabel)}</small></div></article>`).join("");
+      const rows = articleRows || `<p class="section-intro">関連する採用記事は未登録です。登録済みの一次資料を確認できます。</p>${sourceRows}`;
+      return `<details class="reform-law-group" data-timing-state="${escapeHtml(group.timingState)}" id="${escapeHtml(group.id)}"${selected ? " open" : ""}><summary><div><strong>${escapeHtml(group.title)}</strong><small>${escapeHtml(meta)}${collected}<b class="reform-state-badge">${escapeHtml(stateLabel[group.timingState])}</b></small></div><span class="reform-effective-date">${escapeHtml(effectiveLabel(group))}</span><span class="reform-count">${pad(group.items.length)}記事</span><em>${group.items.length ? "記事を見る" : "資料を見る"}</em></summary><div class="reform-law-articles">${rows}</div></details>`;
     };
     const sections = [
       { states: ["upcoming"], label: "施行前・適用前", hint: "確定した施行・適用日が近いものから表示" },
