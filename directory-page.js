@@ -83,7 +83,7 @@
 
   if (page === "reforms") {
     const requestedLaw = new URLSearchParams(window.location.search).get("law");
-    const selectedLaw = window.REFORM_EVENT_ALIASES?.[requestedLaw] || requestedLaw;
+    const selectedLaw = window.REFORM_EVENT_ALIASES?.[requestedLaw] || window.REFORM_LAW_ALIASES?.[requestedLaw] || requestedLaw;
     const reformInfo = (article) => {
       const inferred = window.getLegalReformInfo?.(article, topics) || { isReform: false };
       return { isReform: inferred.isReform };

@@ -71,10 +71,10 @@ test("historical issue fragment aliases resolve without shadowing current issue 
   assert.equal(Object.hasOwn(aliases["economic-security-information-clearance"], "security-clearance-employee-consent-hr"), false, "do not choose one issue from an explicit one-to-many historical mapping");
 });
 
-test("historical reform aliases point directly to retained events without merging current events", () => {
+test("historical reform aliases point directly to retained events", () => {
   const ids = new Set(window.REFORM_EVENT_DATA.map((event) => event.id));
   const aliases = window.REFORM_EVENT_ALIASES || {};
-  assert.equal(Object.keys(aliases).length, 30);
+  assert.ok(Object.keys(aliases).length >= 32);
   for (const [oldId, currentId] of Object.entries(aliases)) {
     assert.ok(ids.has(currentId), `${oldId}: missing ${currentId}`);
     assert.equal(ids.has(oldId), false, `${oldId}: shadows a current event`);
@@ -107,4 +107,22 @@ test("publication reference validation rejects malformed update references", () 
   assert.ok(collectReferenceErrors(candidate).some((error) => error.includes("expected an object")));
   candidate.UPDATE_DATA[0].affectedIssues = [{ topic: candidate.TOPIC_DATA[0].slug, issue: "missing-issue" }];
   assert.ok(collectReferenceErrors(candidate).some((error) => error.includes("missing-issue")));
+});
+
+
+test("same-instrument event consolidation preserves all former evidence and timing records", () => {
+  const events = new Map(window.REFORM_EVENT_DATA.map((event) => [event.id, event]));
+  for (const oldId of ["medical-research-ethics-guideline-2026-amendment", "copyright-act-record-performance-2026"]) {
+    const metadata = window.REFORM_EVENT_ALIAS_METADATA[oldId];
+    const target = events.get(metadata.canonicalId);
+    assert.ok(target && metadata.formerRecord);
+    for (const field of ["relatedTopics", "sourceIds", "effectiveDateSourceIds", "matchSourceIds", "articleIds"]) {
+      for (const id of metadata.formerRecord[field] || []) assert.ok((target[field] || []).includes(id), `${oldId}.${field}: lost ${id}`);
+    }
+    assert.equal(target.effectiveDateStatus, metadata.formerRecord.effectiveDateStatus);
+    if (metadata.formerRecord.effectiveDate) assert.ok((target.effectiveDates || []).includes(metadata.formerRecord.effectiveDate));
+    assert.equal(metadata.formerRecord.id, oldId);
+  }
+  assert.equal(window.REFORM_LAW_ALIASES["medical-research-ethics-guideline"], "human-subjects-medical-research-ethics-guideline");
+  assert.ok(!window.ARTICLE_DATA.some((article) => ["medical-research-ethics-guideline-2026-amendment", "copyright-act-record-performance-2026"].includes(article.reformEventId)));
 });

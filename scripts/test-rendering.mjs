@@ -190,7 +190,7 @@ test("missing article and update IDs give a navigable empty state", () => {
   }
 });
 
-test("all 116 event deep links render and open the corresponding event, including source-only events", () => {
+test("every current event deep link renders and opens its event, including source-only events", () => {
   const failures = [];
   for (const event of data.REFORM_EVENT_DATA) {
     const result = render(`reforms.html?law=${encodeURIComponent(event.id)}`);
@@ -298,9 +298,9 @@ test("historically split issue hashes retain every explicit destination", () => 
   }
 });
 
-test("all 30 historical reform event query IDs open the preserved canonical event", () => {
+test("all historical reform event query IDs open the preserved canonical event", () => {
   const mappings = Object.entries(data.REFORM_EVENT_ALIASES || {});
-  assert.ok(mappings.length >= 30);
+  assert.ok(mappings.length >= 32);
   for (const [alias, target] of mappings) {
     const result = render(`reforms.html?law=${encodeURIComponent(alias)}`);
     assert.ifError(result.error);
@@ -329,4 +329,50 @@ test("all topic redirect scripts preserve query parameters and fragments", () =>
     checked++;
   }
   assert.ok(checked >= 30, "expected 30 retained topic redirect shells");
+});
+
+test("legacy issue anchors never become direct CSS-grid children of issue rows", () => {
+  const voidElements = new Set(["area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"]);
+  const issueShapes = (markup) => {
+    const stack = [];
+    const rows = [];
+    for (const token of markup.matchAll(/<(\/?)([a-z][\w-]*)\b([^>]*)>/gi)) {
+      const tag = token[2].toLowerCase();
+      if (token[1]) {
+        const index = stack.findLastIndex((node) => node.tag === tag);
+        if (index !== -1) stack.length = index;
+        continue;
+      }
+      const attrs = attributes(token[3]);
+      const node = { tag, attrs, children: [] };
+      stack.at(-1)?.children.push(node);
+      if (tag === "article" && (attrs.class || "").split(/\s+/).includes("issue-row")) rows.push(node);
+      if (!voidElements.has(tag) && !/\/\s*$/.test(token[3])) stack.push(node);
+    }
+    return rows.map((row) => ({ id: row.attrs.id, children: row.children.map((child) => ({ tag: child.tag, class: child.attrs.class || "" })) }));
+  };
+  const expected = [{ tag: "div", class: "issue-title" }, { tag: "div", class: "issue-answer" }];
+  // Negative fixture proves that the original direct-anchor layout regression is caught.
+  const invalid = '<article class="issue-row" id="sample"><span id="legacy"></span><div class="issue-title"></div><div class="issue-answer"></div></article>';
+  assert.notDeepEqual(issueShapes(invalid)[0].children, expected);
+  for (const topic of data.TOPIC_DATA) {
+    const shapes = issueShapes(records.get(`topics/${topic.slug}.html`).content);
+    assert.equal(shapes.length, topic.issues.length, topic.slug);
+    for (const shape of shapes) assert.deepEqual(shape.children, expected, `${topic.slug}#${shape.id}: extra grid child`);
+  }
+});
+
+test("historical legal-instrument query aliases open every retained event for that instrument", () => {
+  const aliases = data.REFORM_LAW_ALIASES || {};
+  assert.equal(aliases["medical-research-ethics-guideline"], "human-subjects-medical-research-ethics-guideline");
+  for (const [alias, target] of Object.entries(aliases)) {
+    const events = data.REFORM_EVENT_DATA.filter((event) => event.lawId === target);
+    assert.ok(events.length, `${alias}: no retained instrument events`);
+    const result = render(`reforms.html?law=${encodeURIComponent(alias)}`);
+    assert.ifError(result.error);
+    for (const event of events) {
+      const tag = result.content.match(new RegExp(`<details[^>]*id="event-${event.id}"[^>]*>`))?.[0];
+      assert.ok(tag && /\bopen(?:[\s=>]|$)/.test(tag), `${alias} must open ${event.id}`);
+    }
+  }
 });

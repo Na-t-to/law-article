@@ -57,5 +57,10 @@ export function collectReferenceErrors(data) {
     if (events.has(oldId)) errors.push(`event alias ${oldId} shadows a current event`);
     if (!events.has(target)) errors.push(`event alias ${oldId}: missing ${target}`);
   }
+  const laws = new Set((data.REFORM_EVENT_DATA || []).map((event) => event.lawId));
+  for (const [oldId, target] of Object.entries(data.REFORM_LAW_ALIASES || {})) {
+    if (laws.has(oldId)) errors.push(`law alias ${oldId} shadows a current law grouping`);
+    if (!laws.has(target)) errors.push(`law alias ${oldId}: missing ${target}`);
+  }
   return errors;
 }
