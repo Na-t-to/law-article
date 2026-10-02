@@ -81,3 +81,12 @@ On failure, report one actionable message with the exact failed phase (research,
 validation, GitHub write, Pages build, or live verification), the run/commit URL, preserved
 batch path, and next step. Distinguish “no new adopted material” from “update did not run.”
 Do not spin retry loops, bypass security checks, or silently advance freshness dates.
+
+## Current freshness-model limit
+
+The schema currently requires `lastVerified >= lastUpdated`. A new source/article/update
+may be added with links to existing topics without claiming that every theme assertion
+was rechecked. If a narrow source review cannot justify advancing theme-wide lastVerified,
+leave the theme summary and both topic dates unchanged; publish the verified material
+separately. Do not weaken validation or fabricate freshness to complete a run. A full-theme
+review or deliberate schema redesign is needed for the held summary proposal.
