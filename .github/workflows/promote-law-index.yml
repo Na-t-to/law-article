@@ -6,6 +6,9 @@ on:
       - main
     paths:
       - "incoming/.ready"
+      - "scripts/**"
+      - "data/bootstrap.js"
+      - ".github/workflows/promote-law-index.yml"
   workflow_dispatch:
 
 permissions:
@@ -34,10 +37,24 @@ jobs:
           node-version: "20"
 
       - name: Test promotion safety
-        run: node --test scripts/test-promotion.mjs
+        run: node --test scripts/test-*.mjs
+
+      - name: Check staged readiness
+        id: batch
+        run: |
+          if [ -f incoming/.ready ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Validate existing publication
+        if: steps.batch.outputs.ready != 'true'
+        run: node scripts/validate-data.mjs
 
       - name: Promote staged data and validate
         id: promote
+        if: steps.batch.outputs.ready == 'true'
         run: node scripts/promote-incoming.mjs
 
       - name: Preserve rejected batch and report failure
@@ -104,27 +121,5 @@ jobs:
           exit 1
 
       - name: Verify public LAW INDEX
-        if: steps.commit.outputs.changed == 'true'
-        shell: bash
-        run: |
-          set -euo pipefail
-          base="https://na-t-to.github.io/law-article"
-          stamp="$(date +%s)"
-          index="$(curl -fsSL "$base/index.html?v=$stamp")"
-          printf '%s' "$index" | grep -q 'data/bootstrap.js?v=1'
-          manifest="$(curl -fsSL "$base/data/manifest.js?v=$stamp")"
-
-          while IFS= read -r file; do
-            [ -n "$file" ] || continue
-            name="$(basename "$file")"
-            printf '%s' "$manifest" | grep -Fq "$name"
-            downloaded="$(mktemp)"
-            curl -fsSL "$base/$file?v=$stamp" -o "$downloaded"
-            cmp "$file" "$downloaded"
-            rm -f "$downloaded"
-          done < <(git diff --name-only HEAD^ HEAD | grep -E '^data/(topics|sources|updates|reforms|articles)-.+\.js$' || true)
-
-          while IFS= read -r file; do
-            [ -n "$file" ] || continue
-            curl -fsSL "$base/$file?v=$stamp" >/dev/null
-          done < <(git diff --name-only HEAD^ HEAD | grep -E '^topics/.+\.html$' || true)
+        if: success()
+        run: node scripts/verify-public.mjs

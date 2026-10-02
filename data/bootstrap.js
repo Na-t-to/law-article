@@ -7,6 +7,6 @@
   const manifestUrl = new URL(`manifest.js?v=${cacheKey}`, baseUrl).href;
   const loaderUrl = new URL(`load-all.js?v=${cacheKey}`, baseUrl).href;
 
-  document.write(`<script src="${manifestUrl}"><\\/script>`);
-  document.write(`<script src="${loaderUrl}"><\\/script>`);
+  document.write(`<script src="${manifestUrl}"></script>`);
+  document.write(`<script src="${loaderUrl}"></script>`);
 })();

@@ -5,7 +5,7 @@
 A scheduled research agent gathers and checks sources. It is not a deployment engine.
 The deterministic scripts validate the complete proposed dataset before GitHub publishes it.
 A run succeeds only after the intended commit is on main, promotion succeeds, GitHub Pages
-serves the promoted manifest and files, and the affected theme actually reflects the update.
+serves the promoted manifest and files, and the affected rendered page actually shows the update.
 “No adopted sources” is a valid research result; never fabricate an update to fill a quota.
 
 ## Research and evidence
@@ -40,7 +40,7 @@ serves the promoted manifest and files, and the affected theme actually reflects
   delta. Optional theme HTML belongs in incoming/topics.
 - Finish ALL files first, then run `node scripts/prepare-incoming.mjs`. It creates a
   versioned incoming/.ready inventory with every staged path and SHA-256 hash.
-- Run `node --test scripts/test-promotion.mjs`, `node scripts/validate-data.mjs`,
+- Run `node --test scripts/test-*.mjs`, `node scripts/validate-data.mjs`,
   `node scripts/promote-incoming.mjs --check`, and `git diff --check`.
 - The check-only command validates a disposable copy and must not alter the working
   public data or staged originals. Review the actual diff and all validator warnings.
@@ -65,6 +65,10 @@ and removes only the successfully consumed staged inputs in that commit.
   rather than rebasing a previously validated result without a new validation.
 - Check the entire workflow, not just the first step or a Pages badge. Confirm the
   expected promoted commit and inspect the public manifest plus affected files/theme.
+  In a browser, verify the home page, related theme and new article/update render.
+  HTTP 200 or a green build does not prove that bootstrap scripts execute correctly.
+  If the browser is blocked, report that rendering is unverified rather than claiming
+  complete restoration. The publication checker retries boundedly for CDN propagation.
 - Record source verification and publication outcome in a short run report: timestamp,
   sources reviewed/adopted, changed IDs, commit, workflow URL, public URL, remaining
   uncertainty, and any actual error. A staged commit alone is not publication.
