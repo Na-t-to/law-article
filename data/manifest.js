@@ -40,3 +40,5 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({...window.LAW_INDEX_DATA_FILES,arti
 window.LAW_INDEX_DATA_FILES = Object.freeze({...window.LAW_INDEX_DATA_FILES,articles:Object.freeze([...window.LAW_INDEX_DATA_FILES.articles,"articles-audit-20261002.js?v=1"]),sources:Object.freeze([...window.LAW_INDEX_DATA_FILES.sources,"sources-audit-20261002.js?v=1"])});
 
 window.LAW_INDEX_DATA_FILES = Object.freeze({...window.LAW_INDEX_DATA_FILES,articles:Object.freeze([...window.LAW_INDEX_DATA_FILES.articles,"articles-event-identity-20261002.js?v=1"])});
+
+window.LAW_INDEX_DATA_FILES = Object.freeze({...window.LAW_INDEX_DATA_FILES,articles:Object.freeze([...window.LAW_INDEX_DATA_FILES.articles,"articles-daily-20261003.js?v=1"]),reforms:Object.freeze([...window.LAW_INDEX_DATA_FILES.reforms,"reforms-daily-20261003.js?v=1"]),sources:Object.freeze([...window.LAW_INDEX_DATA_FILES.sources,"sources-daily-20261003.js?v=1"])});
