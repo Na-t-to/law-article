@@ -46,7 +46,7 @@
   const secondaryFields = fieldValues.filter((field) => !primaryFields.includes(field));
   const topicsForArticle = (article) => article.relatedTopics.map((slug) => topics.find((topic) => topic.slug === slug)).filter(Boolean);
   const topicNames = (article) => topicsForArticle(article).map((topic) => topic.title);
-  const issueNames = (article) => topicsForArticle(article).flatMap((topic) => topic.issues || []).filter((issue) => article.relatedIssues.includes(issue.id)).map((issue) => issue.title);
+  const issueNames = (article) => topicsForArticle(article).flatMap((topic) => topic.issues || []).filter((issue) => article.relatedIssues.includes(issue.id)).flatMap((issue) => [issue.title, ...(issue.aliasTitles || [])]);
   const isLegalReform = (article) => window.getLegalReformInfo?.(article, topics)?.isReform || false;
   const reformLaw = (article) => {
     if (window.getLegalReformLaw) return window.getLegalReformLaw(article, topics);

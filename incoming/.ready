@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "path": "data/articles-dbs-crypto-issue-review-20261005.js",
+      "sha256": "3c6510b74282e75aec9564c822563e42a526b7e70c34aa4d14e5f73fc6b92114"
+    },
+    {
+      "path": "data/articles-plant-crossborder-reviewed-20261005.js",
+      "sha256": "0ee5852c14cbe19c7abda7ea7463aebf4bc4662f3138b68451b665bc488e73ad"
+    },
+    {
+      "path": "data/sources-dbs-review-20261005.js",
+      "sha256": "4d6e0073c05638158699207e3d05ab6aff44038d94b975987ab5b43e1dee8457"
+    }
+  ]
+}

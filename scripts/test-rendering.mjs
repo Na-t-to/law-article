@@ -181,6 +181,25 @@ test("search can find articles by an explicitly related issue title", () => {
   assert.doesNotMatch(document.querySelector("#articleLibrary").innerHTML, /条件に合う記事・資料はありません/, issue.title);
 });
 
+test("retired issue titles continue finding their canonical articles", () => {
+  const adopted = data.ARTICLE_DATA.filter((article) => article.status === "adopted");
+  let checked = 0;
+  for (const topic of data.TOPIC_DATA) for (const issue of topic.issues) {
+    const expected = adopted.filter((article) => article.relatedTopics.includes(topic.slug) && article.relatedIssues.includes(issue.id));
+    if (!expected.length) continue;
+    for (const title of issue.aliasTitles || []) {
+      render("articles.html");
+      const field = document.querySelector("#articleSearch");
+      field.value = title;
+      field.handlers.input();
+      const html = document.querySelector("#articleLibrary").innerHTML;
+      assert.ok(expected.some((article) => html.includes(`article.html?id=${encodeURIComponent(article.id)}`)), title);
+      checked++;
+    }
+  }
+  assert.ok(checked >= 4, "expected preserved old titles across the reviewed issue pairs");
+});
+
 test("missing article and update IDs give a navigable empty state", () => {
   for (const [route, message, back] of [["article.html?id=__missing__", "この記事・資料は見つかりません", "articles.html"], ["update.html?id=__missing__", "この更新は見つかりません", "topics.html"]]) {
     const result = render(route);

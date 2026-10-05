@@ -67,7 +67,7 @@ test("historical issue fragment aliases resolve without shadowing current issue 
       assert.notEqual(oldId, currentId);
     }
   }
-  assert.equal(count, 36);
+  assert.equal(count, 42);
   assert.equal(Object.hasOwn(aliases["economic-security-information-clearance"], "security-clearance-employee-consent-hr"), false, "do not choose one issue from an explicit one-to-many historical mapping");
 });
 
@@ -81,6 +81,27 @@ test("historical reform aliases point directly to retained events", () => {
     assert.notEqual(oldId, currentId);
     assert.equal(Object.hasOwn(aliases, currentId), false, `${oldId}: chained alias`);
   }
+});
+
+test("consolidated issue records preserve predecessor evidence and legal classifications", () => {
+  let count = 0;
+  for (const [slug, records] of Object.entries(window.TOPIC_ISSUE_ALIAS_METADATA || {})) {
+    const topic = topics.get(slug);
+    for (const [oldId, record] of Object.entries(records)) {
+      count++;
+      assert.equal(window.TOPIC_ISSUE_ALIASES[slug][oldId], record.canonicalId);
+      const target = topic.issues.find((issue) => issue.id === record.canonicalId);
+      assert.ok(target);
+      assert.equal(record.formerRecord.id, oldId);
+      for (const former of [record.formerRecord, record.originalCanonical]) {
+        assert.equal(target.status, former.status);
+        assert.equal(target.stage, former.stage);
+        for (const id of former.sourceIds || []) assert.ok(target.sourceIds.includes(id), `${oldId}: lost ${id}`);
+        if (former.title !== target.title) assert.ok(target.aliasTitles?.includes(former.title), `${oldId}: lost title alias`);
+      }
+    }
+  }
+  assert.equal(count, 6);
 });
 
 test("explicit one-to-many fragment aliases preserve every named destination", () => {
