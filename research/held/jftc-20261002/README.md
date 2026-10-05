@@ -1,4 +1,12 @@
-# Theme-summary proposal held; primary research published separately
+# Historical theme-summary proposal; superseded after full review
+
+The October 5 full-theme review resolves this hold through the new guarded
+`articles-jftc-theme-review-20261005.js` delta. All three current themes and their
+primary evidence were compared before explicitly advancing their verification dates.
+See `research/audits/2026-10-05.md`. This original proposal remains preserved and
+inactive; do not restore it to incoming or load it alongside the replacement.
+
+## Original hold (October 2)
 
 The October 2 batch publishes a new official source/article/update linked to the three
 existing topics. It does not rewrite their summaries or theme-wide verification dates.

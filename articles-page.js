@@ -98,7 +98,7 @@
     const needle = $("#articleSearch").value.trim().toLocaleLowerCase();
     const visible = articles.filter((article) => !reformsOnly || isLegalReform(article)).filter((article) => !reformsOnly ? selectedField === "all" || article.categories.includes(selectedField) : selectedLaw === "all" || reformLaw(article).id === selectedLaw).filter((article) => {
       if (!needle) return true;
-      return [article.title, article.publisher, article.summary, changeSummary(article), article.categories.join(" "), article.audience.join(" "), topicNames(article).join(" "), issueNames(article).join(" "), reformLaw(article).label].join(" ").toLocaleLowerCase().includes(needle);
+      return [article.title, article.publisher, article.summary, changeSummary(article), article.categories.join(" "), (article.categoryAliases || []).join(" "), article.audience.join(" "), topicNames(article).join(" "), issueNames(article).join(" "), reformLaw(article).label].join(" ").toLocaleLowerCase().includes(needle);
     }).sort(compareCollectionOrder);
     $("#libraryCount").innerHTML = `<strong>${String(visible.length).padStart(2, "0")}</strong><span>件</span>`;
     $("#articleLibrary").classList.toggle("is-grouped", reformsOnly);

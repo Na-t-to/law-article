@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "path": "data/articles-cyber-final-20261005.js",
+      "sha256": "940b2b2a079df3457d8fbcdada34224bbc77c1f78af0de3904f229fb7e100ad5"
+    },
+    {
+      "path": "data/articles-held-copyright-20261005.js",
+      "sha256": "642670c64e63a4da053857b3d37937a93dfd6bb050f33f4fb577235e8952aa71"
+    },
+    {
+      "path": "data/articles-held-labor-20261005.js",
+      "sha256": "e7338a2f515d72e4461ceab1890cfbaad3648479778b66faf4faba170b0344d2"
+    },
+    {
+      "path": "data/articles-held-oesa-20261005.js",
+      "sha256": "5e1371dea450820e114e5900c01cf89b9db15de4992c3eb96a84e104572214ef"
+    },
+    {
+      "path": "data/articles-held-social-insurance-20261005.js",
+      "sha256": "b688d88cc1ee8ba68c5fe2c6d62a06a64d8dcd6a59fd2ca1d70abebc1e19384c"
+    },
+    {
+      "path": "data/articles-jftc-theme-review-20261005.js",
+      "sha256": "04f9586478f1212759bc54ea6665fe8b40079e63edc735ad804a9915d4428f90"
+    },
+    {
+      "path": "data/articles-metadata-audit-20261005.js",
+      "sha256": "d476293aecc59bd7ac83ccd43ce75818ab99611413e20572281a2d1cd5aa055d"
+    },
+    {
+      "path": "data/sources-cyber-final-20261005.js",
+      "sha256": "1aac96e6faeed7e245cb9693a491bf82c1dd2a49e5a1fac34c31409f6ab5c66d"
+    },
+    {
+      "path": "topics/customer-harassment-jobseeker-sexual-harassment-2026.html",
+      "sha256": "25363efd67212d5843f8303debdd7d978782b49d196170be93ad2d60864d1594"
+    },
+    {
+      "path": "topics/personal-information-protection-2026-amendment.html",
+      "sha256": "594f44ae4e2ef1c74efd6b5bb95d25075f81ad48628dfaabac8ef6660d99615a"
+    }
+  ]
+}
