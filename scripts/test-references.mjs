@@ -21,6 +21,14 @@ const collectionKeys = ["TOPIC_DATA", "SOURCE_DATA", "UPDATE_DATA", "REFORM_EVEN
 const beforeIds = Object.fromEntries(collectionKeys.map((key) => [key, Array.from(context.window[key], (record) => record.id || record.slug)]));
 for (const file of extraFiles) execute(file);
 const window = context.window;
+// The workflow tests the current publication before promoting staged deltas.
+// Require each reviewed alias set only once its delta is actually loaded.
+const loadedDataNames = new Set([...Object.values(window.LAW_INDEX_DATA_FILES).flat(), ...extraFiles]
+  .map((file) => file.split("?")[0].split("/").at(-1)));
+const reviewedIssueAliasCount = [
+  ["articles-dbs-crypto-issue-review-20261005.js", 4],
+  ["articles-plant-crossborder-reviewed-20261005.js", 2]
+].reduce((count, [file, aliases]) => count + (loadedDataNames.has(file) ? aliases : 0), 0);
 const topics = new Map(window.TOPIC_DATA.map((x) => [x.slug, x]));
 const sources = new Set(window.SOURCE_DATA.map((x) => x.id));
 const articles = new Set(window.ARTICLE_DATA.map((x) => x.id));
@@ -67,7 +75,7 @@ test("historical issue fragment aliases resolve without shadowing current issue 
       assert.notEqual(oldId, currentId);
     }
   }
-  assert.equal(count, 42);
+  assert.equal(count, 36 + reviewedIssueAliasCount);
   assert.equal(Object.hasOwn(aliases["economic-security-information-clearance"], "security-clearance-employee-consent-hr"), false, "do not choose one issue from an explicit one-to-many historical mapping");
 });
 
@@ -101,7 +109,7 @@ test("consolidated issue records preserve predecessor evidence and legal classif
       }
     }
   }
-  assert.equal(count, 6);
+  assert.equal(count, reviewedIssueAliasCount);
 });
 
 test("explicit one-to-many fragment aliases preserve every named destination", () => {

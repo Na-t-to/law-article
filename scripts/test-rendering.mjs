@@ -197,7 +197,10 @@ test("retired issue titles continue finding their canonical articles", () => {
       checked++;
     }
   }
-  assert.ok(checked >= 4, "expected preserved old titles across the reviewed issue pairs");
+  const loaded = new Set(data.LAW_INDEX_DATA_FILES.articles.map((file) => file.split("?")[0]));
+  const expectedMinimum = (loaded.has("articles-dbs-crypto-issue-review-20261005.js") ? 2 : 0)
+    + (loaded.has("articles-plant-crossborder-reviewed-20261005.js") ? 2 : 0);
+  assert.ok(checked >= expectedMinimum, "expected preserved old titles for every published review batch");
 });
 
 test("missing article and update IDs give a navigable empty state", () => {
