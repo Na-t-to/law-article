@@ -89,7 +89,8 @@ for (const filePath of htmlFiles) {
   const manifestTag = `<script\\s+src=["']${escapeRegExp(prefix)}manifest\\.js(?:\\?[^"']*)?["']><\\/script>`;
   const loaderTag = `<script\\s+src=["']${escapeRegExp(prefix)}load-all\\.js(?:\\?[^"']*)?["']><\\/script>`;
   const pair = new RegExp(`${manifestTag}\\s*${loaderTag}`, 'g');
-  const next = content.replace(pair, `<script src="${prefix}bootstrap.js?v=2"></script>`);
+  const next = content.replace(pair, `<script src="${prefix}bootstrap.js?v=3"></script>`)
+    .replace(/(data\/bootstrap\.js\?v=)\d+/g, (_match, prefix) => `${prefix}3`);
   if (next !== content) {
     fs.writeFileSync(filePath, next);
     migratedPages += 1;

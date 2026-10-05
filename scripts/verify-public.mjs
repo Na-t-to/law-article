@@ -15,7 +15,7 @@ export async function verifyPublic({baseUrl, root, files, maxAttempts = 42, dela
         return Buffer.from(await response.arrayBuffer());
       };
       const index = (await get('index.html')).toString('utf8');
-      if (!index.includes('data/bootstrap.js?v=2')) throw new Error('index.html: expected bootstrap not visible yet');
+      if (!index.includes('data/bootstrap.js?v=3')) throw new Error('index.html: expected bootstrap not visible yet');
       const manifest = (await get('data/manifest.js')).toString('utf8');
       for (const {file, bytes} of expected) {
         if (file.startsWith('data/') && !manifest.includes(path.basename(file))) throw new Error(`${file}: not in public manifest yet`);

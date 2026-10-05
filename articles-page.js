@@ -1,4 +1,9 @@
 (() => {
+  if (!window.LAW_INDEX_LOADING?.canRender()) {
+    if (window.LAW_INDEX_LOADING) window.LAW_INDEX_LOADING.showError();
+    else document.querySelector("main").textContent = "ページを読み込めませんでした。ページを再読み込みしてください。";
+    return;
+  }
   const allArticles = Array.isArray(window.ARTICLE_DATA) ? window.ARTICLE_DATA : [];
   const articles = (window.uniqueKnowledgeArticles?.(allArticles) || allArticles).filter((item) => item.status === "adopted");
   const topics = Array.isArray(window.TOPIC_DATA) ? window.TOPIC_DATA : [];

@@ -16,7 +16,7 @@ function fixture(t) {
   fs.writeFileSync(path.join(root, 'scripts/validate-data.mjs'), `import fs from 'node:fs';\nif (fs.readFileSync('data/sources-run1.js','utf8').includes('INVALID')) { console.error('fixture validation error'); process.exit(1); }\n`);
   fs.writeFileSync(path.join(root, 'data/bootstrap.js'), '// bootstrap');
   fs.writeFileSync(path.join(root, 'data/manifest.js'), `window.LAW_INDEX_DATA_FILES = Object.freeze({topics:[],sources:[],updates:[],articles:[],reforms:[]});\n`);
-  fs.writeFileSync(path.join(root, 'index.html'), '<script src="data/bootstrap.js?v=2"></script>');
+  fs.writeFileSync(path.join(root, 'index.html'), '<script src="data/bootstrap.js?v=3"></script>');
   fs.writeFileSync(path.join(root, 'incoming/data/sources-run1.js'), '// valid source');
   return root;
 }

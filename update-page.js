@@ -1,4 +1,9 @@
 (() => {
+  if (!window.LAW_INDEX_LOADING?.canRender()) {
+    if (window.LAW_INDEX_LOADING) window.LAW_INDEX_LOADING.showError();
+    else document.querySelector("main").textContent = "ページを読み込めませんでした。ページを再読み込みしてください。";
+    return;
+  }
   const topics = Array.isArray(window.TOPIC_DATA) ? window.TOPIC_DATA : [];
   const sources = Array.isArray(window.SOURCE_DATA) ? window.SOURCE_DATA : [];
   const updates = Array.isArray(window.UPDATE_DATA) ? window.UPDATE_DATA : [];

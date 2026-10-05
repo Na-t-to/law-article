@@ -20,7 +20,7 @@ const htmlFiles = [
 ];
 let document;
 let location;
-const context = { window: {}, URL, URLSearchParams, Date, Map, Set, CSS: { escape: String }, console };
+const context = { window: { addEventListener() {} }, URL, URLSearchParams, Date, Map, Set, CSS: { escape: String }, console };
 vm.createContext(context);
 function documentFor(html, route, override = {}) {
   const elements = new Map();
@@ -44,6 +44,7 @@ function documentFor(html, route, override = {}) {
     location = new URL(target, location); context.window.location = location;
   } };
   document = {
+    addEventListener() {},
     title: decode(html.match(/<title>([\s\S]*?)<\/title>/)?.[1] || ""), body: { dataset }, currentScript: null, elements,
     querySelector(selector) {
       if (elements.has(selector)) return elements.get(selector);
@@ -53,7 +54,11 @@ function documentFor(html, route, override = {}) {
     querySelectorAll() { return []; },
     write(markup) {
       for (const match of markup.matchAll(/<script(?:\s+src="([^"]+)")?[^>]*>([\s\S]*?)<\/script>/g)) {
-        if (match[1]) runUrl(match[1]);
+        if (match[1]) {
+          runUrl(match[1]);
+          const handler = attributes(match[0]).onload;
+          if (handler) vm.runInContext(`(function(){${handler}}).call({src:${JSON.stringify(new URL(match[1], location).href)}})`, context);
+        }
         else vm.runInContext(match[2], context, { filename: "loader-inline" });
       }
     }

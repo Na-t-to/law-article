@@ -39,6 +39,8 @@
 
 公開HTMLは `data/bootstrap.js` を読み込み、bootstrapが毎回cache-buster付きでmanifestとloaderを取得します。そのため、通常更新でページごとの `manifest.js?v=...` を手作業で揃える必要はありません。
 
+各データファイルの読み込み成功とloaderの完了を確認してから画面を描画します。ファイルの欠落や初期化エラーがある場合は、未登録ページや一部だけのデータを表示せず、読み込みエラーと手動の再読み込みボタンを表示します。自動で再読み込みしたり、途中まで適用したdeltaを同じページへ再適用したりはしません。
+
 日次収集・一次資料照合・バッチ作成・公開確認の手順は [UPDATER.md](UPDATER.md) を参照してください。公開前には `node --test scripts/test-promotion.mjs` と `node scripts/promote-incoming.mjs --check` を実行できます。
 
 stagingは複数ファイルを置いてから `.ready` を最後に作ることが重要です。個々のstagedファイル追加ごとに公開処理を開始しません。既存データの修正・canonical統合・cleanupも、原則として既存ファイルを直接編集せず、新しいdeltaをstagingして適用します。
