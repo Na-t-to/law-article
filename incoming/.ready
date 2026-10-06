@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "path": "data/articles-daily-20261006.js",
+      "sha256": "34eac30e316bfa33d046bfb3d6db55492521cafbc81743fd9fee870b43ab5f1c"
+    },
+    {
+      "path": "data/reforms-daily-20261006.js",
+      "sha256": "9d57f7780c782e6c48e49e6f2dc92c599d030c7abef9ba99fa30c59eadf7cd6e"
+    },
+    {
+      "path": "data/sources-daily-20261006.js",
+      "sha256": "0bac6271f247558b7b051d3a2992c16254603348c8d4ec3d9359354520fbfc40"
+    },
+    {
+      "path": "data/topics-daily-20261006.js",
+      "sha256": "9f716ef0dabb1f95ee75929de950d79ae6af2fb3c4e3f09315da1e4cc839be08"
+    },
+    {
+      "path": "topics/architects-contracts-2026.html",
+      "sha256": "7b8d480ce145dc8994b735e43e0587ad063cce898ec1453003cdc86723c8d019"
+    }
+  ]
+}
