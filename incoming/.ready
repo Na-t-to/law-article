@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "path": "data/articles-daily-20261008.js",
+      "sha256": "d46e253f48d04c5a2451af0aad067058c19c3a5e1bc4028526f503c9df7dd07b"
+    },
+    {
+      "path": "data/reforms-daily-20261008.js",
+      "sha256": "67356170d79e1c4cf3093a98be819b9d54184229e5ef6811f39c121e91894497"
+    },
+    {
+      "path": "data/sources-daily-20261008.js",
+      "sha256": "8b80f1e335c4d6cfd33d8e3792d1b1ff32db4e17881eca2e6eac8bb9f16bf725"
+    }
+  ]
+}
