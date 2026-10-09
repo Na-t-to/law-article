@@ -403,3 +403,124 @@ test("historical legal-instrument query aliases open every retained event for th
     }
   }
 });
+
+
+test("every topic related-article table identifies collectedAt as its addition date", () => {
+  for (const topic of data.TOPIC_DATA) {
+    const result = records.get(`topics/${topic.slug}.html`);
+    if (!result.content.includes('class="topic-article-list"')) continue;
+    const header = result.content.match(/<div class="article-index-head topic-article-head"[^>]*>([\s\S]*?)<\/div>/)?.[1];
+    assert.ok(header, `${topic.slug}: missing article table header`);
+    assert.ok(header.startsWith("<span>追加日</span>"), `${topic.slug}: collection date must be labeled 追加日`);
+    assert.ok(!header.includes("更新日"), `${topic.slug}: collection is not a claim of substantive update`);
+  }
+});
+
+
+test("every article renders each explicit related topic without inventing an issue", () => {
+  for (const article of data.ARTICLE_DATA) {
+    const result = records.get(`article.html?id=${encodeURIComponent(article.id)}`);
+    const shelf = result.content.match(/<div class="related-shelf">([\s\S]*?)<\/div>/)?.[1];
+    assert.ok(typeof shelf === "string", `${article.id}: missing related shelf`);
+    for (const slug of article.relatedTopics) {
+      assert.ok(shelf.includes(`href="topics/${slug}.html`), `${article.id}: omitted explicit related topic ${slug}`);
+      const topic = data.TOPIC_DATA.find((item) => item.slug === slug);
+      const hasIssue = topic.issues.some((issue) => article.relatedIssues.includes(issue.id));
+      if (!hasIssue) assert.ok(shelf.includes(`href="topics/${slug}.html"`), `${article.id}: expected topic-only link for ${slug}`);
+    }
+  }
+});
+
+function searchArticleIds(query) {
+  const field = document.querySelector("#articleSearch");
+  field.value = query;
+  field.handlers.input();
+  let pages = 0;
+  while (document.querySelector("#articleLibrary").innerHTML.includes("data-article-more")) {
+    assert.ok(pages++ < data.ARTICLE_DATA.length, "search pagination did not terminate");
+    click("#articleLibrary", "[data-article-more]");
+  }
+  return [...document.querySelector("#articleLibrary").innerHTML.matchAll(/class="article-title-link" href="article\.html\?id=([^"]+)"/g)]
+    .map((match) => decodeURIComponent(match[1]));
+}
+
+function originalArticleSearchText(article) {
+  const topics = article.relatedTopics.map((slug) => data.TOPIC_DATA.find((topic) => topic.slug === slug)).filter(Boolean);
+  const issueTitles = topics.flatMap((topic) => topic.issues || []).filter((issue) => article.relatedIssues.includes(issue.id))
+    .flatMap((issue) => [issue.title, ...(issue.aliasTitles || [])]);
+  return [article.title, article.publisher, article.summary,
+    data.getKnowledgeArticleChangeSummary(article, data.TOPIC_DATA, data.UPDATE_DATA),
+    article.categories.join(" "), (article.categoryAliases || []).join(" "), article.audience.join(" "),
+    topics.map((topic) => topic.title).join(" "), issueTitles.join(" "), data.getLegalReformLaw(article, data.TOPIC_DATA).label
+  ].join(" ").toLocaleLowerCase();
+}
+
+test("every adopted article is searchable by each explicitly linked source title without unrelated-source expansion", () => {
+  const adopted = data.ARTICLE_DATA.filter((article) => article.status === "adopted");
+  const sourceMap = new Map(data.SOURCE_DATA.map((source) => [source.id, source]));
+  const indexed = adopted.map((article) => ({ article, original: originalArticleSearchText(article),
+    evidence: article.primarySourceIds.map((id) => sourceMap.get(id)).filter(Boolean)
+      .flatMap((source) => [source.title, source.authority]).join(" ").toLocaleLowerCase()
+  }));
+  const linkedSources = data.SOURCE_DATA.filter((source) => adopted.some((article) => article.primarySourceIds.includes(source.id)));
+  render("articles.html");
+  let checked = 0;
+  for (const title of new Set(linkedSources.map((source) => source.title))) {
+    const query = title.trim().toLocaleLowerCase();
+    const expected = Array.from(indexed.filter((item) => `${item.original} ${item.evidence}`.includes(query)), (item) => item.article.id);
+    const actual = searchArticleIds(title);
+    assert.equal(new Set(actual).size, actual.length, `${title}: repeated article result`);
+    assert.deepEqual(actual.sort(), expected.sort(), `${title}: expected only prior-text or explicitly linked-evidence matches`);
+    for (const source of linkedSources.filter((item) => item.title === title)) {
+      for (const article of adopted.filter((item) => item.primarySourceIds.includes(source.id))) {
+        assert.ok(actual.includes(article.id), `${source.id}: missed referencing ${article.id}`);
+        checked++;
+      }
+    }
+  }
+  assert.ok(checked > 1000, "expected the complete set of adopted article-to-source links");
+});
+
+test("linked-source search preserves category filters, no-source articles and article-only result types", () => {
+  const adopted = data.ARTICLE_DATA.filter((article) => article.status === "adopted");
+  const first = adopted[0];
+  const second = adopted.find((article) => article.id !== first.id && first.categories.some((category) => !article.categories.includes(category)));
+  assert.ok(second, "need two distinct category sets for the negative fixture");
+  const category = first.categories.find((value) => !second.categories.includes(value));
+  const firstSources = first.primarySourceIds;
+  const secondSources = second.primarySourceIds;
+  const source = { ...data.SOURCE_DATA[0], id: "audit-linked-search-fixture", title: "Exact linked evidence audit needle 7109",
+    authority: "Evidence authority audit needle 7109", typeLabel: "Evidence type audit needle 7109",
+    url: "https://example.invalid/law-index-search-fixture", topics: [] };
+  data.SOURCE_DATA.push(source);
+  try {
+    first.primarySourceIds = [];
+    render("articles.html");
+    assert.deepEqual(searchArticleIds(source.title), [], "an unlinked source must not produce article matches");
+    assert.ok(searchArticleIds(first.title).includes(first.id), "an article without primary-source links still matches its original fields");
+    second.primarySourceIds = [...secondSources, source.id];
+    render("articles.html");
+    for (const query of [source.title, source.authority]) {
+      assert.deepEqual(searchArticleIds(query), [second.id], `${query}: only the explicitly linked article should match`);
+      assert.equal(document.querySelector("#libraryCount").innerHTML, "<strong>01</strong><span>件</span>");
+    }
+    assert.deepEqual(searchArticleIds(source.typeLabel), [], "linked source type labels must not change article-type search semantics");
+    click("#articleFilters", "[data-article-field]", { articleField: category });
+    assert.deepEqual(searchArticleIds(source.title), [], "a source match cannot bypass the article's category filter");
+    click("#articleFilters", "[data-article-field]", { articleField: "all" });
+    assert.deepEqual(searchArticleIds(source.title), [second.id]);
+    assert.equal(searchArticleIds("").length, adopted.length, "blank search still lists only the adopted articles");
+  } finally {
+    first.primarySourceIds = firstSources;
+    second.primarySourceIds = secondSources;
+    data.SOURCE_DATA.pop();
+  }
+});
+
+test("article search exposes its linked-evidence scope in a concise accessible label", () => {
+  const input = read("articles.html").match(/<input\b[^>]*id="articleSearch"[^>]*>/)?.[0];
+  assert.ok(input, "article-search input is present");
+  const attrs = attributes(input);
+  assert.equal(attrs.placeholder, "記事・テーマ・一次資料名などを検索");
+  assert.equal(attrs["aria-label"], "記事名・媒体・テーマ・論点・一次資料名・所管から記事を検索");
+});

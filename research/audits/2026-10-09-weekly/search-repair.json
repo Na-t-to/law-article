@@ -1,0 +1,139 @@
+{
+  "adoptedArticleCount": 683,
+  "allSources": 612,
+  "linkedSources": 573,
+  "unlinkedSources": 39,
+  "allSourceTitleNoResultBefore": 346,
+  "allSourceTitleNoResultAfter": 32,
+  "linkedSourceTitleNoResultBefore": 313,
+  "linkedSourceTitleNoResultAfter": 0,
+  "unlinkedSourceTitleNoResultBefore": 33,
+  "unlinkedSourceTitleNoResultAfter": 32,
+  "articleSourceLinks": 1240,
+  "missingReferencingArticleMatchesBefore": 958,
+  "missingReferencingArticleMatchesAfter": 0,
+  "newMatchesWithoutExplicitEvidenceText": 0,
+  "probes": [
+    {
+      "query": "厚生労働省",
+      "before": 76,
+      "after": 124,
+      "added": 48,
+      "secondaryArticlesAfter": 50
+    },
+    {
+      "query": "金融庁",
+      "before": 61,
+      "after": 109,
+      "added": 48,
+      "secondaryArticlesAfter": 56
+    },
+    {
+      "query": "一次資料",
+      "before": 43,
+      "after": 43,
+      "added": 0,
+      "secondaryArticlesAfter": 16
+    },
+    {
+      "query": "施行ガイドライン",
+      "before": 7,
+      "after": 11,
+      "added": 4,
+      "secondaryArticlesAfter": 5
+    },
+    {
+      "query": "カスタマーハラスメント防止指針（令和8年厚生労働省告示第51号）",
+      "before": 0,
+      "after": 6,
+      "added": 6,
+      "secondaryArticlesAfter": 4
+    },
+    {
+      "query": "社内AI利用規程",
+      "before": 0,
+      "after": 0,
+      "added": 0,
+      "secondaryArticlesAfter": 0
+    },
+    {
+      "query": "カスタマーハラスメント防止措置が10月1日から義務化",
+      "before": 0,
+      "after": 0,
+      "added": 0,
+      "secondaryArticlesAfter": 0
+    }
+  ],
+  "largestTitleExpansion": [
+    {
+      "id": "source-privacy-law",
+      "title": "個人情報の保護に関する法律",
+      "before": 3,
+      "after": 31,
+      "added": 28
+    },
+    {
+      "id": "source-privacy-law-2026-amendment",
+      "title": "令和8年 改正個人情報保護法について",
+      "before": 1,
+      "after": 14,
+      "added": 13
+    },
+    {
+      "id": "source-toriteki-law-2026",
+      "title": "中小受託取引適正化法（取適法）",
+      "before": 0,
+      "after": 12,
+      "added": 12
+    },
+    {
+      "id": "source-labour-standards-act",
+      "title": "労働基準法（昭和22年法律第49号）",
+      "before": 0,
+      "after": 12,
+      "added": 12
+    },
+    {
+      "id": "source-meti-bhr-guideline-2022",
+      "title": "責任あるサプライチェーン等における人権尊重のためのガイドライン",
+      "before": 1,
+      "after": 12,
+      "added": 11
+    },
+    {
+      "id": "source-privacy-law-2026-rulemap",
+      "title": "個人情報の保護に関する法律等の一部を改正する法律　政令・規則等で定める事項の全体像（案）",
+      "before": 0,
+      "after": 10,
+      "added": 10
+    },
+    {
+      "id": "source-moj-ai-likeness-report-2026",
+      "title": "肖像、声等の無断利用による民事責任の在り方に関する検討会取りまとめ報告書―生成AIによるパブリシティ権侵害等に関する解釈指針―",
+      "before": 0,
+      "after": 10,
+      "added": 10
+    },
+    {
+      "id": "source-caa-whistleblower-amendment-2025",
+      "title": "公益通報者保護法の一部を改正する法律（令和7年法律第62号）・制度概要",
+      "before": 0,
+      "after": 9,
+      "added": 9
+    },
+    {
+      "id": "source-fsa-disclosure-ordinance-2026",
+      "title": "『企業内容等の開示に関する内閣府令』等の改正（SSBJ基準の段階的義務化）",
+      "before": 0,
+      "after": 9,
+      "added": 9
+    },
+    {
+      "id": "source-privacy-law-2026-proposal",
+      "title": "「個人情報の保護に関する法律等の一部を改正する法律案」の閣議決定について",
+      "before": 0,
+      "after": 9,
+      "added": 9
+    }
+  ]
+}

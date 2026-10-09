@@ -1,0 +1,3851 @@
+{
+  "baseline": "178011b8f2ef8335992b506cf32885f1d1e4cfe2",
+  "counts": {
+    "topics": 137,
+    "sources": 612,
+    "articles": 685,
+    "reforms": 126,
+    "updates": 59,
+    "issues": 690,
+    "categories": 16,
+    "references": 8526,
+    "allIssuePairsScreened": 237705,
+    "sameThemeIssuePairsScreened": 1734
+  },
+  "ids": {
+    "topics": [
+      "ai-personal-data",
+      "customer-harassment",
+      "freelance-law",
+      "electronic-contract",
+      "ai-governance-liability",
+      "cyber-supply-chain",
+      "tob-large-shareholding-2026",
+      "advertising-display-control",
+      "economic-security-tech-control",
+      "generative-ai-ip-rights",
+      "companies-act-review-shareholders",
+      "distribution-resale-price",
+      "crossborder-collection-payment",
+      "whistleblower-internal-reporting",
+      "women-advancement-disclosure",
+      "trade-secret-management",
+      "merger-control-antitrust",
+      "digital-commerce-tokusho-review",
+      "childcare-caregiver-leave",
+      "business-human-rights-dd",
+      "generative-ai-competition",
+      "ip-knowhow-data-transactions",
+      "early-business-recovery",
+      "fefta-inward-investment-screening",
+      "payment-terms-60day-notice",
+      "ssbj-statutory-sustainability-disclosure",
+      "agm-pre-disclosure-company-law-reform",
+      "generative-ai-ip-principle-code",
+      "ai-legal-support-attorney-act",
+      "economic-security-information-clearance",
+      "worker-status-outsourcing-platform",
+      "occupational-safety-health-reform",
+      "gx-ets-emissions-trading",
+      "aml-kyc-criminal-proceeds",
+      "cyber-countermeasures-critical-infrastructure",
+      "smartphone-software-competition-act",
+      "generative-ai-likeness-publicity",
+      "copyright-unmanaged-works-adjudication",
+      "product-safety-four-acts-ecommerce-child-products",
+      "child-sexual-violence-prevention-dbs",
+      "equal-pay-guideline-2026",
+      "commercial-registry-address-nondisclosure",
+      "civil-court-information-database",
+      "software-copyright-library-copying",
+      "recorded-music-public-use-right-2026",
+      "corporate-governance-code-2026",
+      "film-anime-production-transactions",
+      "security-assignment-retention-title",
+      "startup-ma-guidance",
+      "dispatch-contracting-compliance",
+      "insider-trading-information-management",
+      "ai-civil-liability",
+      "fair-subcontract-transactions",
+      "listed-company-takeover-guidelines",
+      "personal-information-protection-2026-amendment",
+      "serious-accident-crisis-management",
+      "law-enforcement-data-production",
+      "ai-service-development-contracts",
+      "consumer-contract-law-review-2026",
+      "enterprise-value-security-business-lending",
+      "workers-compensation-insurance-2026-reform",
+      "family-business-governance",
+      "treatment-work-support",
+      "prepaid-payment-instruments-memberships",
+      "anti-dumping-anti-circumvention-2026",
+      "antitrust-compliance-enforcement",
+      "market-manipulation-trading-controls",
+      "social-insurance-expansion-2025",
+      "startup-growth-capital-unlisted-market",
+      "labor-standards-review-representative-holidays-2026",
+      "digital-wage-payment-2026",
+      "digital-bond-solicitation-2026",
+      "public-investment-trust-liquidity-risk",
+      "overseas-vf-foreign-fund-exemption-2026",
+      "ai-publicity-voice-rights-2026",
+      "patent-network-inventions-infringement-review-2026",
+      "copyright-record-performance-right-2026",
+      "regional-public-transport-act-2026",
+      "securities-monitoring-2026",
+      "supply-chain-security-scs-2026",
+      "jc-star-iot-security-labeling",
+      "ma-representation-warranty-insurance",
+      "consumer-law-digital-contract-review",
+      "electronic-bill-of-lading-trade-dx",
+      "startup-capital-raising-fiea-2026",
+      "corporate-misconduct-investigations",
+      "carveout-ma-business-sale",
+      "j-sox-internal-control-reporting",
+      "waste-outsourcing-resource-circulation",
+      "architects-contracts-2026",
+      "logistics-efficiency-medium-term-plans",
+      "fsa-penalty-hearing-digitalization",
+      "job-seeker-sexual-harassment",
+      "employee-stock-compensation-wage-status",
+      "bank-subsidiary-business-succession",
+      "applied-art-mass-products-copyright",
+      "crypto-assets-fiea-regulation-2026",
+      "pharmaceutical-promotion-advertising-compliance",
+      "human-subjects-medical-research-ethics-2026",
+      "insurance-agency-governance-comparison-sales-2025",
+      "ai-recruitment-rpo-employment-placement",
+      "sep-frand-tokyo-court-2026",
+      "disability-discrimination-reasonable-accommodation",
+      "disability-employment-business-quality-review",
+      "electricity-business-act-2026",
+      "ccs-business-act-storage-transport",
+      "mobile-phone-illicit-use-id-verification-2026",
+      "consumer-nonclinical-testing-health-services",
+      "defense-equipment-transfer-export-control",
+      "space-activities-act-2026-rocket-launch",
+      "economic-security-promotion-act-2026-oesa",
+      "medical-care-act-online-medical-care-2026",
+      "employee-inventions-patent-act-35",
+      "startup-capital-markets-fiea-2026",
+      "front-of-pack-nutrition-labeling-japan",
+      "bank-agency-api-baas",
+      "privacy-enforcement-breach-response",
+      "crypto-e-money-service-intermediary",
+      "overtime-36-agreement-supervision",
+      "telecom-external-transmission-user-info",
+      "skill-development-employment-foreign-workers",
+      "employment-insurance-training-leave-benefit",
+      "ma-restructuring-labor-contract-succession",
+      "digital-platform-transparency-act",
+      "human-capital-disclosure-strategy-2026",
+      "environmental-claims-greenwashing",
+      "logistics-special-designation-consignee",
+      "home-work-allowance-overtime",
+      "aml-identity-verification-2027",
+      "ip-intangible-assets-governance-disclosure",
+      "human-genome-editing-embryo-regulation-2026",
+      "reinsurance-air-risk-management",
+      "mbo-controlling-shareholder-fairness",
+      "plant-variety-ip-important-varieties-2026",
+      "medical-research-ethics-privacy",
+      "performer-entertainment-transactions",
+      "digital-local-bonds-2026"
+    ],
+    "sources": [
+      "source-privacy-law-2026-rulemap",
+      "source-customer-harassment-practical-2026",
+      "source-privacy-law-2026-amendment",
+      "source-freelance-enforcement-2026",
+      "source-whistleblower-qa-2026",
+      "source-whistleblower-guideline-2026",
+      "source-customer-harassment-guideline-2026",
+      "source-ai-guideline",
+      "source-caa-whistleblower-amendment-2025",
+      "source-privacy-law",
+      "source-customer-guideline",
+      "source-freelance-law",
+      "source-ppc-ai",
+      "source-electronic-signature-qa-2024",
+      "source-electronic-signature",
+      "source-caa-labeling",
+      "source-scs-evaluation-2026",
+      "source-cyber-infra-guideline-2026",
+      "source-toriteki-law-2026",
+      "source-toriteki-operation-2026",
+      "source-meti-corporate-takeover-guidelines-2023",
+      "source-meti-corporate-takeover-guidelines-clarification-2026",
+      "source-fsa-cg-code-2026",
+      "source-fsa-tob-largeholder-final-2025",
+      "source-fsa-largeholder-dialogue-2025",
+      "source-fsa-largeholder-overview-2026",
+      "source-caa-no1-report-2024",
+      "source-caa-stealth-guidebook-2024",
+      "source-caa-stealth-first-order-2024",
+      "source-meti-economic-security-management-2026",
+      "source-cao-security-clearance-guidelines-2025",
+      "source-meti-tech-leakage-guidance-2026",
+      "source-meti-catchall-reform-2025",
+      "source-ai-ip-principle-code-2026",
+      "source-moj-ai-likeness-report-2026",
+      "source-bunka-ai-copyright-2024",
+      "source-digital-sign-modernization-2025",
+      "source-commercial-registry-remote-sign-2025",
+      "source-fsa-disclosure-ordinance-2026",
+      "source-ssbj-ghg-amendment-2026",
+      "source-jftc-distribution-guideline-2026",
+      "source-jftc-luxottica-commitment-2026",
+      "source-fsa-crossborder-collection-2026",
+      "source-caa-whistleblower-guideline-2026",
+      "source-caa-whistleblower-qa-2026",
+      "source-women-advancement-law-2026",
+      "source-women-advancement-mhlw-2026",
+      "source-ucpa-amendment-2023",
+      "source-trade-secret-guideline-2025",
+      "source-secret-info-handbook-2024",
+      "source-merger-guideline-current",
+      "source-merger-procedure-2026",
+      "source-merger-cases-fy2025",
+      "source-hino-fuso-merger-2026",
+      "source-merger-guideline-draft-2026",
+      "source-caa-digital-tokusho-interim-2026",
+      "source-caa-digital-consumer-study-2025",
+      "source-mhlw-childcare-caregiver-amendment-2024",
+      "source-mhlw-caregiver-support-tool-2025",
+      "source-meti-bhr-guideline-2022",
+      "source-meti-bhr-practical-reference-2023",
+      "source-mofa-bhr-nap-2025",
+      "source-jftc-japanpost-freelance-2026",
+      "source-cyber-management-guideline-v3-2023",
+      "source-scs-interim-2025",
+      "source-jftc-generative-ai-market-v2-2026",
+      "source-jftc-algorithm-ai-competition-2021",
+      "source-ip-knowhow-data-guideline-2026",
+      "source-meti-early-business-recovery-rules-2026",
+      "source-mof-fefta-amendment-2026",
+      "source-mof-fdi-annual-2025",
+      "source-mof-makino-stop-2026",
+      "source-mof-fefta-subrules-proposal-2026",
+      "source-jftc-payment-notice-2026",
+      "source-jftc-payment-guideline-2026",
+      "source-jftc-payment-normalization-2026",
+      "source-ssbj-standards-current",
+      "source-ssbj-reference-warning-2026",
+      "source-fsa-agm-pre-disclosure-2026",
+      "source-moj-company-law-interim-2026",
+      "source-moj-ai-legal-support-guideline-2026",
+      "source-cao-security-clearance-law-2024",
+      "source-cao-security-clearance-report-2026",
+      "source-labour-standards-act",
+      "source-mhlw-worker-status-study5-2026",
+      "source-mhlw-worker-status-study6-2026",
+      "source-mhlw-ohs-amendment-2025",
+      "source-mhlw-small-stress-check-2026",
+      "source-gx-act",
+      "source-meti-gx-ets-2026",
+      "source-npa-aml-amendment-2026",
+      "source-npa-aml-overview-2026",
+      "source-cao-cyber-countermeasures-law",
+      "source-penal-code",
+      "source-unauthorized-access-act",
+      "source-jftc-smartphone-law-guidelines",
+      "source-jftc-smartphone-faq-2026",
+      "source-jftc-smartphone-compliance-2026",
+      "source-jftc-film-guideline-2026",
+      "source-jftc-anime-guideline-2026",
+      "source-jftc-film-anime-survey-2025",
+      "source-bunka-copyright-amendment-2023",
+      "source-shikoku-product-safety-amendment-2025",
+      "source-meti-product-safety-decree-2024",
+      "source-meti-child-product-expansion-2026",
+      "source-cfa-child-sexual-violence-guideline-2026",
+      "source-cfa-child-sexual-violence-qa-2026",
+      "source-cfa-child-sexual-violence-checklist-2026",
+      "source-jftc-nichirin-tooling-storage-2026",
+      "source-mhlw-equal-pay-2026",
+      "source-mhlw-dispatch-equal-pay-2026",
+      "source-moj-registry-address-current",
+      "source-egov-registry-address-expansion-2026",
+      "source-egov-civil-court-information-act",
+      "source-egov-civil-court-information-rule",
+      "source-moj-civil-court-information-designation",
+      "source-osaka-dc-software-copyright-2026",
+      "source-ppc-kddi-mail-security-2026",
+      "source-nisc-cyber-incident-common-reporting-2025",
+      "source-bunka-copyright-bgm-right-2026",
+      "source-bunka-record-performance-report-2026",
+      "source-jpx-cg-code-2026",
+      "source-jftc-film-anime-guidelines-2026",
+      "source-privacy-law-2026-proposal",
+      "source-moj-security-assignment-act-2025",
+      "source-meti-startup-ma-guidance-2026",
+      "source-mhlw-dispatch-contracting-guide",
+      "source-mhlw-dispatch-contracting-qa3-2026",
+      "source-mhlw-dispatch-enforcement-yamaguchi-2026",
+      "source-fsa-market-system-wg-insider-2025",
+      "source-fsa-insider-parent-rule-2026",
+      "source-fsa-fiea-law-2026",
+      "source-fsa-fiea-unfair-trading-explanation-2026",
+      "source-sesc-nippo-insider-2026",
+      "source-meti-ai-civil-liability-guidance-2026",
+      "source-toriteki-tooling-storage-qa",
+      "source-mof-fefta-bill-2026",
+      "source-caa-snow-stealth-2026",
+      "source-jftc-freelance-interpretation-2025",
+      "source-jftc-jtop-freelance-recommendation-2026",
+      "source-cao-regulatory-reform-plan-2026-advertising",
+      "source-tokyo-high-court-tepco-derivative-2025",
+      "source-supreme-court-fukushima-criminal-2025",
+      "source-nco-critical-infrastructure-unified-standard-2026",
+      "source-moj-criminal-procedure-it-2025",
+      "source-egov-criminal-procedure-electronic-record-2026",
+      "source-meti-ai-data-contract-guideline-2019",
+      "source-meti-ai-contract-checklist-2025",
+      "source-fsa-disclosure-wg6-2026",
+      "source-civil-code-current",
+      "source-consumer-contract-act-current",
+      "source-caa-consumer-contract-interim-draft-2026",
+      "source-cao-economic-security-promotion-jbic-amendment-2026",
+      "source-cao-economic-security-promotion-jbic-overview-2026",
+      "source-business-lending-promotion-act",
+      "source-fsa-enterprise-value-security-final-rules-2025",
+      "source-fsa-enterprise-value-security-templates-2026",
+      "source-fsa-business-lending-basic-thinking-2026",
+      "source-mhlw-workers-comp-amendment-2026",
+      "source-mhlw-workers-comp-council-2026-08-05",
+      "source-fsa-fiea-law-text-2026",
+      "source-meti-family-governance-guidance-2026",
+      "source-mhlw-labor-policy-amendment-2025-treatment-work",
+      "source-mhlw-treatment-work-guideline-2026",
+      "source-mhlw-treatment-work-integrated-2026",
+      "source-payment-services-act-prepaid",
+      "source-fsa-prepaid-guideline-current",
+      "source-fsa-prepaid-guideline-comments-2010",
+      "source-early-business-rehabilitation-act-2025",
+      "source-meti-early-business-rehabilitation-working-group-report-2026",
+      "source-fsa-early-business-rehabilitation-financial-rules-2026",
+      "source-customs-tariff-amendment-2026",
+      "source-mof-customs-amendment-bill-2026",
+      "source-meti-ad-circumvention-applicant-guide-2026",
+      "source-mof-ad-circumvention-guideline-update-2026",
+      "source-mhlw-reorg-labor-council-2026-09-14",
+      "source-fsa-frontier-ai-financial-response-2026",
+      "source-fsa-aml-guideline-2026",
+      "source-jftc-antitrust-compliance-guide-2023",
+      "source-jftc-antitrust-compliance-guide-2025",
+      "source-jftc-antitrust-enforcement-fy2025",
+      "source-mhlw-shorttime-regular-worker-insurance-20260914",
+      "source-mhlw-officer-freelancer-insurance-amendment-20260914",
+      "source-courts-dwango-fc2-program-2025",
+      "source-courts-dwango-fc2-system-2025",
+      "source-nco-critical-infrastructure-safety-guideline-2026",
+      "source-mhlw-disability-employment-rare-disease-review-2026",
+      "source-jpx-market-manipulation-guide",
+      "source-sesc-unfair-trading-casebook-2026",
+      "source-sesc-ecomic-market-manipulation-2026",
+      "source-fsa-nitto-market-manipulation-order-2018",
+      "source-miura-closing-price-market-manipulation-2025",
+      "source-jpx-corporate-governance-code-current",
+      "source-maff-seed-act-amendment-2026",
+      "source-maff-seed-act-qa-2026",
+      "source-egov-seed-act-current",
+      "source-egov-important-varieties-act-2026",
+      "source-shugiin-important-varieties-bill-2026",
+      "source-egov-important-varieties-rule-draft-2026",
+      "source-egov-important-varieties-basic-policy-draft-2026",
+      "source-mhlw-pension-reform-law-2025",
+      "source-mhlw-social-insurance-expansion-2025",
+      "source-jps-premium-adjustment-2026",
+      "source-mhlw-short-hours-self-employed-insurance-2026",
+      "source-mhlw-officer-self-employed-insurance-2026",
+      "source-fsa-ssbj-shk-practice-standard-designation-2026",
+      "source-fsa-fiea-asset-management-nonlisted-intermediary-2025",
+      "source-jsda-startup-growth-capital-report-2025",
+      "source-jsda-unlisted-securities-rules-2026",
+      "source-fsa-growth-finance-ordinance-2026",
+      "source-mhlw-social-insurance-wage-requirement-decree-2026",
+      "source-mhlw-social-insurance-wage-requirement-ordinance-2026",
+      "source-meti-early-business-rehabilitation-qa-2026",
+      "source-fsa-growth-company-funding-consultation-2026",
+      "source-fsa-growth-company-cross-border-lending-2026",
+      "source-mhlw-labor-standards-study-report-2025",
+      "source-mhlw-labor-conditions-subcommittee-205-20260916",
+      "source-cfa-child-sexual-violence-act-portal",
+      "source-cfa-child-sexual-violence-guideline-20260109",
+      "source-cfa-child-safety-cross-guideline-20260821",
+      "source-mhlw-digital-wage-ordinance-20221128",
+      "source-mhlw-digital-wage-notice-20221128",
+      "source-mhlw-digital-wage-portal",
+      "source-mhlw-digital-wage-review-20260916",
+      "source-caa-digital-consumer-survey-20260427",
+      "source-fsa-aml-account-info-sharing-2026",
+      "source-fsa-bank-investment-subsidiary-2026",
+      "source-jftc-toridoll-deduction-2026",
+      "source-moj-company-law-outline-round1-2026",
+      "source-moj-company-law-outline-round3-2026",
+      "source-ppc-privacy-rulemaking-basic-1-2026",
+      "source-fsa-public-fund-liquidity-guideline-2026",
+      "source-fsa-iosco-fund-liquidity-2025",
+      "source-ppc-security-measures-guideline-review-2026",
+      "source-ppc-unauthorized-access-warning-2024",
+      "source-mhlw-jobseeker-sexual-harassment-2026",
+      "source-cyber-capability-act-2025",
+      "source-cyber-reporting-order-2026",
+      "source-cyber-reporting-exclusion-notice-2026",
+      "source-cyber-report-form-notice-2026",
+      "source-ipa-vulnerability-partnership-draft-2026",
+      "source-fsa-cross-border-collection-comments-2026",
+      "source-fsa-overseas-vf-comments-2026",
+      "source-jps-social-insurance-expansion-2026-09-16",
+      "source-meti-ai-civil-liability-guide-2026",
+      "source-caa-digital-tokusho-public-comment-2026",
+      "source-caa-consumer-contract-public-comment-2026",
+      "source-diet-fefta-bill-2026",
+      "source-mof-fefta-final-rules-2026",
+      "source-mof-fefta-final-summary-2026",
+      "source-jpo-patent-system-committee-56-2026",
+      "source-jpo-patent-system-committee-57-2026",
+      "source-npa-jafic-annual-report-2025-identity-review",
+      "source-mext-copyright-record-performance-law-2026",
+      "source-mext-copyright-record-performance-enactment-20260617",
+      "source-cfa-child-sexual-violence-practice-materials-2026",
+      "source-maff-important-variety-law-2026",
+      "source-maff-important-variety-policy-draft-2026",
+      "source-mlit-regional-transport-amendment-2026",
+      "source-diet-regional-transport-law-history-2026",
+      "source-mlit-regional-transport-effective-date-2026",
+      "source-shugiin-payment-services-law66-20250613",
+      "source-fsa-fiea-payment-amendment-overview-20260715",
+      "source-fsa-fiea-20day-effective-20260729",
+      "source-pension-reform-act-20250620",
+      "source-mhlw-pension-effective-notice-20260915",
+      "source-cao-oesa-basic-guideline-20260911",
+      "source-kantei-economic-security-cabinet-20260911",
+      "source-kanpo-economic-security-effective-20260916",
+      "source-meti-unfair-competition-ai-likeness-hearing-20260911",
+      "source-ssbj-shk-practical-standard-20260611",
+      "source-mhlw-product-safety-pledge-osha-20260910",
+      "source-mhlw-customer-harassment-guideline-20260226",
+      "source-mhlw-customer-harassment-law-20260723",
+      "source-mhlw-pharmacist-dispensing-duty-20260708",
+      "source-caa-pionet-door-to-door-analysis-20260917",
+      "source-meti-scs-portal-20260706",
+      "source-ipa-scs-details-20260421",
+      "source-jftc-cyber-partnership-20251226",
+      "source-jftc-distribution-guideline-current-20260708",
+      "source-jftc-rpm-faq-20260708",
+      "source-meti-corporate-takeover-guideline-2023",
+      "source-meti-jcstar-launch-20250325",
+      "source-ipa-jcstar-portal-20260731",
+      "source-ipa-jcstar-procurement-20260709",
+      "source-ipa-jcstar-star3-20260612",
+      "source-fsa-cyber-common-reporting-guidelines-20260918",
+      "source-ppc-forensics-keypoints-20260116",
+      "source-caa-kinpodo-funeral-price-order-20260918",
+      "source-jftc-oki-hitachi-atm-merger-20260918",
+      "source-fsa-etf-cash-setting-rule-20260918",
+      "source-caa-hope-group-door-to-door-order-20260918",
+      "source-nco-cyber-common-reporting-20260915",
+      "source-cfa-child-sexual-violence-qa-revision-20260918",
+      "source-meti-equity-incentive-plan-20230331",
+      "source-meti-takeover-points-20260730",
+      "source-meti-takeover-qa-20260730",
+      "source-nara-hospital-system-outage-report-20260831",
+      "source-iphc-sep-employee-invention-20250918",
+      "source-cao-security-clearance-business-guideline-20250502",
+      "source-cao-security-clearance-annual-report-20260626",
+      "source-insurance-act-current",
+      "source-jftc-oki-hitachi-atm-merger-2026",
+      "source-mhlw-business-transfer-guideline-20260120",
+      "source-mhlw-restructuring-labor-council-20260703",
+      "source-moj-ebl-interim-20230308",
+      "source-moj-ebl-outline-20240909",
+      "source-ppc-apppi-subrules-369-20260916",
+      "source-cfa-child-sexual-violence-qa-20260918",
+      "source-mhlw-foreign-worker-supervision-20260915",
+      "source-ipa-ransomware-lessons-20260908",
+      "source-mof-fatf-io4-dnfbps-20260918",
+      "source-egov-fiea-startup-capital-2027",
+      "source-jpx-misconduct-response-principles-20160224",
+      "source-meti-business-reorganization-guideline-2020",
+      "source-fsa-jsox-standards-20230407",
+      "source-fsa-jsox-ordinance-guideline-20230630",
+      "source-fsa-jsox-qa-casebook-20230831",
+      "source-fsa-yuho-review-2026-jsox",
+      "source-jftc-petroleum-price-pass-through-20260925",
+      "source-npa-jafic-annual-report-2025-dnfbp",
+      "source-egov-waste-management-act-2026",
+      "source-env-waste-fair-transaction-guideline-20260413",
+      "source-egov-resource-effective-use-act-20260401",
+      "source-env-advanced-recycling-certifications-20260430",
+      "source-env-circular-economy-action-plan-20260421",
+      "source-jftc-ip-toriteki-freelance-20261001",
+      "source-jftc-ip-toriteki-freelance-20261001-toriteki-redline",
+      "source-jftc-ip-toriteki-freelance-20261001-freelance-redline",
+      "source-jftc-ip-toriteki-freelance-20261001-comments",
+      "source-mhlw-childcare-review-20261002",
+      "source-mhlw-childcare-review-items-20261002",
+      "source-mhlw-chemical-exposure-guideline-20261001",
+      "source-mhlw-chemical-exposure-guideline-text-20261001",
+      "source-mhlw-chemical-exposure-guideline-redline-20261001",
+      "source-mofa-russia-sanctions-20261002",
+      "source-mofa-designated-vessels-services-qa-20261002",
+      "source-ppc-privacy-rulemaking-basic-2-20261001",
+      "source-fsa-financial-privacy-cyber-reporting-20260928",
+      "source-fsa-financial-privacy-cyber-reporting-redline-20260928",
+      "source-jftc-fujiseisakujo-payment-delay-20260929",
+      "source-jftc-fujiseisakujo-payment-recommendation-20260929",
+      "source-cao-cyber-reporting-guidance-20261001",
+      "source-mhlw-sds-council-materials-20260928",
+      "source-mhlw-sds-notification-draft-20260928",
+      "source-mhlw-sds-notification-overview-20260928",
+      "source-mhlw-sds-notification-response-20260928",
+      "source-supreme-court-linear-bid-rigging-20260914",
+      "source-ipa-vulnerability-partnership-final-20261001",
+      "source-ipa-vulnerability-partnership-publication-20261001",
+      "source-cfa-child-sexual-violence-guideline-20260902",
+      "source-cfa-child-sexual-violence-qa-20260929",
+      "source-cfa-child-sexual-violence-supervision-20261001",
+      "source-jftc-condominium-bidrigging-20260928",
+      "source-jftc-condominium-consultant-fees-20260928",
+      "source-mhlw-thp-revision-overview-20260928",
+      "source-mhlw-thp-revision-draft-20260928",
+      "source-mlit-mobility-data-guideline-20260918",
+      "source-mlit-regional-transport-guidance-publication-20260918",
+      "source-mlit-architects-contract-decrees-20261006",
+      "source-mlit-architects-contract-commencement-draft-20261006",
+      "source-mlit-architects-act-amendment-text-20260731",
+      "source-mlit-architects-act-amendment-redline-20260731",
+      "source-mlit-architects-act-contract-outline-20261006",
+      "source-mlit-architects-act-enactment-portal-2026",
+      "source-caa-whistleblower-dbs-coverage-proposal-20261001",
+      "source-caa-whistleblower-dbs-coverage-outline-20261001",
+      "source-caa-whistleblower-civil-court-coverage-proposal-20261001",
+      "source-caa-whistleblower-civil-court-coverage-outline-20261001",
+      "source-fsa-critical-infrastructure-orders-proposal-20261001",
+      "source-fsa-critical-infrastructure-order-draft-20261001",
+      "source-caa-whistleblower-covered-laws-20261001",
+      "source-caa-whistleblower-covered-laws-list-20261001",
+      "source-mhlw-disability-employment-cooperative-homework-review-20261005",
+      "source-supreme-court-share-exchange-appraisal-20260930",
+      "source-mhlw-worker-status-discussion-summary-20260909",
+      "source-mlit-logistics-shipper-plan-notice-20261005",
+      "source-mlit-logistics-shipper-plan-points-20261005",
+      "source-mlit-logistics-truck-plan-notice-20261005",
+      "source-mlit-logistics-truck-plan-examples-20261005",
+      "source-mlit-logistics-truck-plan-deadline-20260902",
+      "source-mhlw-equal-employment-basic-policy-outline-20261002",
+      "source-mhlw-equal-employment-basic-policy-draft-20261002",
+      "source-jftc-corporate-transactions-study-20261007",
+      "source-caa-customer-harassment-workbook-release-20261001",
+      "source-caa-customer-harassment-workbook-20261001",
+      "source-caa-customer-harassment-worksheets-20261001",
+      "source-enecho-ccs-criteria-consultation-20261002",
+      "source-enecho-ccs-criteria-redline-20261002",
+      "source-enecho-ccs-criteria-procedure-20261002",
+      "source-egov-ccs-storage-guideline-consultation-20261002",
+      "source-meti-env-ccs-storage-guideline-procedure-20261002",
+      "source-meti-env-ccs-storage-guideline-draft-20261002",
+      "source-meti-env-ccs-monitoring-reference-20261002",
+      "source-mhlw-overwork-campaign-release-20261008",
+      "source-mhlw-overwork-campaign-2026",
+      "source-ppc-large-breach-warning-20261007",
+      "source-enecho-grid-jcstar-consultation-20261006",
+      "source-enecho-grid-jcstar-draft-20261006",
+      "source-enecho-grid-jcstar-procedure-20261006",
+      "source-mhlw-shingi-index-20261008-workers133",
+      "source-mhlw-workers-comp-council133-20261008",
+      "source-mhlw-late-onset-benefit-order-outline-20261009",
+      "source-mhlw-late-onset-benefit-order-explanation-20261009",
+      "source-kanpo-architects-contract-decrees-20261009",
+      "source-egov-drone-supply-policy-proposal-20261005",
+      "source-meti-drone-supply-policy-draft-20261005",
+      "source-meti-drone-supply-policy-redline-20261005",
+      "source-meti-drone-supply-policy-procedure-20261005",
+      "source-fsa-penalty-hearing-digital-final-20260916",
+      "source-fsa-penalty-hearing-digital-comments-20260916",
+      "source-fsa-penalty-hearing-fiea-ordinance-20260916",
+      "source-fsa-penalty-hearing-cpa-ordinance-20260916",
+      "source-mhlw-harassment-amendment-2025",
+      "source-mhlw-jobseeker-sexual-harassment-guideline-2026",
+      "source-companies-act-current",
+      "source-meti-incentive-compensation-guidance-2025",
+      "source-supreme-court-applied-art-tripp-trapp-2026",
+      "source-mhlw-pharma-advertising-regulation",
+      "source-mhlw-pharma-promotion-survey-2025",
+      "source-mext-human-research-ethics-guideline-2026",
+      "source-fsa-insurance-business-act-2025-law",
+      "source-fsa-insurance-business-act-2026-final-rules",
+      "source-fsa-insurance-comparison-recommendation-2026-final",
+      "source-mhlw-recruitment-info-placement-boundary",
+      "source-cao-ai-rpo-wg-2026",
+      "source-mhlw-ai-rpo-review-2026",
+      "source-tokyo-dc-sep-litigation-guidelines-2026",
+      "source-tokyo-dc-sep-mediation-guidelines-2026",
+      "source-mhlw-worker-status-current",
+      "source-mhlw-worker-status-study-group",
+      "source-cao-disability-discrimination-act",
+      "source-cao-disability-discrimination-basic-policy-2023",
+      "source-cao-reasonable-accommodation-cases",
+      "source-jftc-ip-transaction-survey-2026",
+      "source-jftc-ip-transaction-wg-report-2026",
+      "source-mhlw-disability-employment-study-report-2026",
+      "source-mhlw-disability-employment-business-review-2026",
+      "source-shugiin-electricity-business-act-2026",
+      "source-shugiin-electricity-business-act-status-2026",
+      "source-egov-electricity-business-act-2026",
+      "source-mof-fdi-screening-advanced-2026",
+      "source-egov-ccs-business-act-2024",
+      "source-meti-ccs-exploration-effective-2024",
+      "source-meti-ccs-trial-effective-2024",
+      "source-meti-ccs-full-enforcement-2026",
+      "source-enecho-ccs-law-portal-2026",
+      "source-meti-ccs-export-order-2025",
+      "source-meti-ccs-export-procedure-2026",
+      "source-sangiin-mobile-id-amendment-2026",
+      "source-shugiin-mobile-id-amendment-text-2026",
+      "source-soumu-mobile-id-direction-2026",
+      "source-mhlw-meti-health-longevity-guideline-2025",
+      "source-mhlw-samd-applicability-2023",
+      "source-mod-defense-transfer-principles-2026",
+      "source-mod-defense-transfer-guideline-2026",
+      "source-meti-weapons-qa-2026",
+      "source-cao-space-act-enactment-2026",
+      "source-cao-space-act-lawtext-2026",
+      "source-cao-space-act-overview-2026",
+      "source-cao-space-act-final-review-2025",
+      "source-mhlw-pharma-promotion-survey-2024",
+      "source-cao-oesa-2026",
+      "source-clb-economic-security-amendment-2026",
+      "source-fsa-bank-business-scope-comments-2026",
+      "source-sesc-securities-monitoring-policy-2026",
+      "source-sesc-securities-monitoring-cases-2026",
+      "source-mhlw-online-medical-care-implementation-2026",
+      "source-ip-high-court-tripp-trapp-2024",
+      "source-patent-act-current-employee-invention",
+      "source-jpo-employee-invention-overview",
+      "source-jpo-employee-invention-guideline-2016",
+      "source-osaka-dc-daifuku-employee-invention-2025",
+      "source-iphc-daifuku-employee-invention-2026",
+      "source-fsa-fiea-startup-overview-2026",
+      "source-caa-fopnl-guideline-2026",
+      "source-caa-fopnl-qa-2026",
+      "source-mhlw-workers-comp-council-2026-09-08",
+      "source-bank-act-current",
+      "source-fsa-bank-law-guideline-2018",
+      "source-fsa-bank-agency-api-draft-2026",
+      "source-fsa-bank-agency-api-majorbanks-diff-2026",
+      "source-jftc-advertising-toriteki-survey-2026",
+      "source-ppc-monitoring-q1-2026",
+      "source-ppc-breach-reports-q1-2026",
+      "source-ppc-annual-report-2025",
+      "source-moj-ai-legal-services-guideline-2026",
+      "source-moj-ai-contract-guideline-2023",
+      "source-moj-ai-legal-rulemaking-roadmap-2026",
+      "source-fsa-payments-act-bill-2025",
+      "source-fsa-payments-act-rules-draft-2025",
+      "source-fsa-crypto-intermediary-registration-2026",
+      "source-mhlw-ai-rpo-regulatory-plan-2026",
+      "source-egov-mobile-law-2026",
+      "source-egov-mobile-id-rule-2026",
+      "source-egov-mobile-id-rule-2027",
+      "source-rizap-ai-upload-2026",
+      "source-ihi-rizap-ai-incident-2026",
+      "source-mhlw-overtime-supervision-2026",
+      "source-mhlw-long-hours-supervision-fy2025-2026",
+      "source-egov-telecom-act-current",
+      "source-egov-telecom-regulation-current",
+      "source-egov-telecom-act-2023-external-transmission",
+      "source-mic-external-transmission-report-draft-2026",
+      "source-egov-skill-development-employment-act-2024",
+      "source-isa-ikusei-faq-2026",
+      "source-otit-ikusei-preapplication-2026",
+      "source-meti-startup-investment-agreement-guidelines-2025",
+      "source-mhlw-pension-reform-overview-2025",
+      "source-mhlw-short-time-social-insurance-2026",
+      "source-kantei-pension-decrees-2026-09-08",
+      "source-mhlw-training-leave-benefit-2025",
+      "source-mhlw-training-leave-benefit-effective-2025",
+      "source-mhlw-employment-insurance-reform-2024",
+      "source-caa-consumer-contract-interim-draft-sep9-2026",
+      "source-cas-economic-security-review-12-2025",
+      "source-jftc-toriteki-text-2025",
+      "source-jftc-toriteki-operating-standards-2025",
+      "source-mhlw-corporate-restructuring-labor-overview",
+      "source-labor-contract-succession-act",
+      "source-defined-benefit-corporate-pension-act",
+      "source-meti-growth-investment-guidance-2026",
+      "source-ai-ip-principle-code-filing-2026",
+      "source-meti-unfair-competition-committee-29-ai-likeness-2026",
+      "source-shugiin-fefta-fdi-bill-2026",
+      "source-mof-jfic-2026",
+      "source-egov-dpf-transparency-act-current",
+      "source-meti-dpf-transparency-points-2026",
+      "source-meti-dpf-transparency-evaluation-2025",
+      "source-meti-dpf-ebay-designation-2026",
+      "source-meti-dpf-tiktok-designation-2025",
+      "source-meti-dpf-recommendation-2024",
+      "source-meti-dpf-jftc-referral-amazon-2024",
+      "source-jpx-jiriss-transition-2026",
+      "source-meti-human-capital-visualization-guideline-2026",
+      "source-cao-startup-wg13-total-premium-2026",
+      "source-mhlw-harassment-interpretation-qa-2026",
+      "source-ppc-privacy-2026-rulemaking-roadmap-20260909",
+      "source-jsda-ipo-underwriting-review-2026",
+      "source-mhlw-premium-adjustment-decree-2026-09-04",
+      "source-mhlw-premium-adjustment-order-2026-09-04",
+      "source-jps-premium-adjustment-guide-2026",
+      "source-bunka-unmanaged-works-handbook-2026",
+      "source-moe-environmental-representation-guideline-2026",
+      "source-caa-environmental-label-survey-2026",
+      "source-fsa-sustainability-disclosure-assurance-report-2026",
+      "source-fsa-sustainability-assurance-subcommittee-2026",
+      "source-jftc-logistics-special-designation-2026",
+      "source-jftc-logistics-survey-2026",
+      "source-mhlw-caa-product-safety-pledge-osh-2026",
+      "source-mhlw-home-work-allowance-overtime-2024",
+      "source-privacy-law-2026-rulemaking-roadmap-2026-09-09",
+      "source-fsa-specified-investor-optup-final-2026",
+      "source-fsa-specified-investor-current-2026",
+      "source-digital-gss-incident-2026-09-11",
+      "source-jafic-aml-rule-2025-order-3",
+      "source-jafic-aml-rule-2026-order-1",
+      "source-fsa-sesc-insider-qa-2024",
+      "source-sesc-irom-insider-2026-09-11",
+      "source-fsa-insurance-supervisory-guideline-enterprise-agency-2026-proposal",
+      "source-fsa-edinet-taxonomy-2027-proposal",
+      "source-fsa-regional-finance-wg-report-2025",
+      "source-mhlw-specified-recruitment-info-stop-order-2026",
+      "source-cas-ip-intangible-governance-v2-2023",
+      "source-jpo-ip-management-guidebook-2024",
+      "source-jpo-ip-disclosure-guidebook-2025",
+      "source-cas-ip-intangible-guidance-2026",
+      "source-cao-ip-intangible-guideline-revision-2026",
+      "source-meti-product-safety-pledge-2023",
+      "source-caa-product-safety-pledge-expansion-2026",
+      "source-fsa-nonlife-structural-report-2024",
+      "source-fsa-nonlife-wg-report-2024",
+      "source-mext-medical-research-ethics-review-2025",
+      "source-mhlw-human-genome-editing-embryo-act-overview-2026",
+      "source-mhlw-human-genome-editing-embryo-rules-draft-2026",
+      "source-meti-technology-management-dialogue-2024",
+      "source-mhlw-customer-harassment-manual-2026-09",
+      "source-fsa-insurance-monitoring-2025-reinsurance",
+      "source-fsa-reinsurance-supervisory-guideline-draft-2026",
+      "source-fsa-reinsurance-supervisory-guideline-final-2026",
+      "source-jpx-mbo-fairness-rules-2025",
+      "source-maff-breeders-right-term-2026",
+      "source-shugiin-important-varieties-act-2026-overview",
+      "source-fsa-board-function-casebook-2026",
+      "source-mext-medical-research-ethics-amendment-20260828",
+      "source-mhlw-medical-research-guideline-hub-2026",
+      "source-mext-medical-research-ethics-public-comment-20251226",
+      "source-mhlw-ai-pseudonymized-medical-data-20220331",
+      "source-ip-high-court-ip-warranty-20231108",
+      "source-fsa-financial-administration-policy-2026",
+      "source-jfba-third-party-committee-guideline-20101217",
+      "source-supreme-court-investigation-committee-counsel-20220627",
+      "source-jftc-performer-entertainment-guideline-20250930",
+      "source-jftc-performer-entertainment-survey-20241226",
+      "source-egov-research-use-ivd-guideline-draft-20260120",
+      "source-mhlw-research-use-ivd-guideline-20260331",
+      "source-mhlw-pmd-act-2025-amendment-hub",
+      "source-shugiin-digital-local-bonds-bill-2026",
+      "source-sangiin-digital-local-bonds-enactment-2026",
+      "source-egov-local-finance-act-digital-bonds-2026",
+      "source-caa-consumer-contract-act-2022-amendment",
+      "source-jpo-trademark-examination-guidelines-2026",
+      "source-ip-highcourt-godzilla-3d-mark-20241030",
+      "source-ip-highcourt-dr-martens-position-mark-20230810",
+      "source-fsa-insurance-broker-reinsurance-fees-20250828",
+      "source-mof-customs-ip-enforcement-2025",
+      "source-customs-ip-injunction-qa",
+      "source-caa-display-commitment-guideline-20240418",
+      "source-mof-aml-cft-action-plan-2024-2026",
+      "source-caa-digital-tokusho-public-comment-20260916",
+      "source-egov-important-varieties-order-draft-20260918",
+      "source-egov-seed-act-subordinate-rules-draft-20260918"
+    ],
+    "articles": [
+      "article-privacy-law-2026-rulemap",
+      "article-customer-harassment-practical-2026",
+      "article-privacy-law-2026-amendment",
+      "article-freelance-enforcement-2026",
+      "article-whistleblower-guideline-2026",
+      "article-customer-harassment-guideline-2026",
+      "article-privacy-law-current",
+      "article-ai-business-guideline",
+      "article-caa-whistleblower-amendment-2026",
+      "article-freelance-law-official",
+      "article-ppc-ai-materials",
+      "article-electronic-signature-qa-2024",
+      "article-electronic-signature-law",
+      "article-not-whistleblower-grievance-2026",
+      "article-tmi-customer-harassment-2026",
+      "article-not-customer-harassment-2026",
+      "article-amt-freelance-enforcement-2025",
+      "article-amt-whistleblower-2025",
+      "article-na-privacy-statistical-exception-2026",
+      "article-na-privacy-processor-rules-2026",
+      "article-nagashima-whistleblower-guideline-2026",
+      "article-not-whistleblower-adverse-action-2025",
+      "article-not-freelance-transactions-2024",
+      "article-not-freelance-work-environment-2024",
+      "article-ai-civil-liability-guide-2026",
+      "article-tmi-ai-governance-2026",
+      "article-tmi-ai-liability-substitute-2026",
+      "article-not-ai-civil-liability-governance-2026",
+      "article-scs-evaluation-2026",
+      "article-cyber-infra-guideline-2026",
+      "article-not-cyber-preparedness-2026",
+      "article-jftc-toriteki-operation-2026",
+      "article-not-toriteki-rules-2025",
+      "article-not-toriteki-roundtable-2025",
+      "article-meti-acquisition-guidelines-qa-2026",
+      "article-not-acquisition-guidelines-qa-2026",
+      "article-fsa-cg-code-2026",
+      "article-not-cg-code-2026",
+      "article-fsa-tob-largeholder-final-2025",
+      "article-amt-tob-final-2025",
+      "article-fsa-largeholder-dialogue-2025",
+      "article-amt-largeholder-final-2025",
+      "article-fsa-largeholder-overview-2026",
+      "article-caa-no1-report-2024",
+      "article-not-no1-display-2024",
+      "article-caa-stealth-first-order-2024",
+      "article-meti-economic-security-management-2026",
+      "article-amt-economic-security-management-2025",
+      "article-cao-economic-security-info-2025",
+      "article-amt-economic-security-info-business-2025",
+      "article-meti-tech-leakage-guidance-2026",
+      "article-meti-catchall-reform-2025",
+      "article-amt-catchall-reform-2025",
+      "article-ai-ip-principle-code-2026",
+      "article-nishimura-ai-ip-principle-draft-2026",
+      "article-moj-ai-likeness-report-2026",
+      "article-nishimura-ai-publicity-guidance-2026",
+      "article-bunka-ai-copyright-guide-2024",
+      "article-nishimura-image-ai-copyright-2026",
+      "article-digital-sign-modernization-2025",
+      "article-commercial-registry-remote-sign-2025",
+      "article-fsa-disclosure-ordinance-2026",
+      "article-ssbj-ghg-amendment-2026",
+      "article-tmi-ssbj-scope3-2026",
+      "article-amt-companies-act-interim-2026",
+      "article-amt-companies-act-disclosure-beneficial-2026",
+      "article-jftc-distribution-guideline-2026",
+      "article-jftc-luxottica-commitment-2026",
+      "article-amt-distribution-guideline-2026",
+      "article-fsa-crossborder-collection-2026",
+      "article-amt-crossborder-collection-2026",
+      "article-tmi-crossborder-collection-2026",
+      "article-caa-whistleblower-guideline-2026",
+      "article-caa-whistleblower-qa-2026",
+      "article-mhlw-women-advancement-amendment-2026",
+      "article-not-women-advancement-2026",
+      "article-jilpt-women-advancement-analysis-2026",
+      "article-meti-ucpa-amendment-2023",
+      "article-meti-trade-secret-guideline-2025",
+      "article-meti-secret-info-handbook-2024",
+      "article-nishimura-trade-secret-guideline-2025",
+      "article-mhm-ai-trade-secret-input-2026",
+      "article-jftc-merger-guideline-current",
+      "article-jftc-merger-procedure-2026",
+      "article-jftc-merger-cases-fy2025",
+      "article-jftc-hino-fuso-merger-2026",
+      "article-jftc-merger-guideline-draft-2026",
+      "article-nishimura-merger-guideline-radar-2026",
+      "article-businesslaw-kajitani-merger-competition-2026",
+      "article-caa-digital-tokusho-interim-2026",
+      "article-caa-digital-consumer-study-2025",
+      "article-nishimura-consumer-law-outlook-2026",
+      "article-mhlw-childcare-caregiver-amendment",
+      "article-mhlw-caregiver-support-tool",
+      "article-not-childcare-caregiver-reform-2024",
+      "article-meti-bhr-guideline-2022",
+      "article-meti-bhr-practical-reference-2023",
+      "article-mofa-bhr-nap-2025",
+      "article-noandt-bhr-practical-2023",
+      "article-mhm-bhr-ma-dd-2023",
+      "article-nishimura-sustainability-ma-dd-2026-part1",
+      "article-nishimura-sustainability-ma-dd-2026-part2",
+      "article-jftc-japanpost-freelance-2026",
+      "article-meti-cyber-management-guideline-v3-2023",
+      "article-ushijima-scs-interim-practice-2025",
+      "article-jftc-generative-ai-competition-v2-2026",
+      "article-jftc-algorithm-ai-competition-2021",
+      "article-meti-ip-knowhow-data-guideline-2026",
+      "article-tmi-ip-knowhow-data-guideline-2026",
+      "article-tmi-tob-reform-2025",
+      "article-nishimura-largeholding-reform-2025",
+      "article-meti-early-business-recovery-2026",
+      "article-amt-early-business-recovery-2026",
+      "article-mof-fefta-amendment-2026",
+      "article-mof-fdi-annual-2025",
+      "article-mof-makino-stop-2026",
+      "article-tmi-fefta-amendment-lower-2026",
+      "article-tmi-makino-stop-2026",
+      "article-jftc-payment-guideline-2026",
+      "article-jftc-payment-normalization-2026",
+      "article-nagashima-payment-notice-proposal-2026",
+      "article-ssbj-standards-current",
+      "article-ssbj-reference-warning-2026",
+      "article-nishimura-ssbj-legal-risk-2026",
+      "article-fsa-agm-pre-disclosure-2026",
+      "article-moj-company-law-interim-2026",
+      "article-tmi-agm-pre-disclosure-2026",
+      "article-miyake-ai-ip-principle-code-2026",
+      "article-moj-ai-legal-support-guideline-2026",
+      "article-miyake-ai-legal-support-72-2026",
+      "article-tmi-privacy-statistical-exception-2026",
+      "article-tmi-privacy-2026-surcharge",
+      "article-tmi-privacy-2026-optout-recipient-check",
+      "article-cao-security-clearance-report-2026",
+      "article-nagashima-security-clearance-hr-outsourcing-2025",
+      "article-mhlw-worker-status-study5-2026",
+      "article-mhlw-worker-status-study6-2026",
+      "article-tmi-worker-status-2026",
+      "article-mhlw-ohs-amendment-2025",
+      "article-mhlw-small-stress-check-2026",
+      "article-meti-gx-ets-2026",
+      "article-tmi-gx-ets-2026",
+      "article-noandt-gx-ets-2026",
+      "article-npa-aml-amendment-2026",
+      "article-tmi-aml-identity-2026",
+      "article-cao-cyber-countermeasures-2026",
+      "article-miyake-cyber-countermeasures-2026",
+      "article-amt-private-active-cyber-defense-2025",
+      "article-jftc-smartphone-law-2025",
+      "article-jftc-smartphone-faq-2026",
+      "article-jftc-smartphone-compliance-2026",
+      "article-jftc-film-anime-guidelines-2026",
+      "article-jftc-film-anime-survey-2025",
+      "article-not-film-anime-guidelines-2026",
+      "article-miyake-ai-likeness-guide-2026",
+      "article-prospire-ai-likeness-guide-2026",
+      "article-bunka-unmanaged-works-amendment-2023",
+      "article-deloitte-unmanaged-works-2026",
+      "article-shikoku-product-safety-amendment-2025",
+      "article-businesslawyers-product-safety-mhm-2025",
+      "article-cfa-child-sexual-violence-qa-2026",
+      "article-cfa-child-sexual-violence-checklist-2026",
+      "article-tmi-child-sexual-violence-overview-2026",
+      "article-tmi-child-sexual-violence-protected-conduct-2026",
+      "article-jftc-nichirin-mold-storage-2026",
+      "article-mhlw-equal-pay-2026",
+      "article-mhlw-dispatch-equal-pay-2026",
+      "article-miyake-equal-pay-2026",
+      "article-egov-registry-address-expansion-2026",
+      "article-miyake-registry-address-expansion-2026",
+      "article-noandt-registry-address-current-2024",
+      "article-egov-civil-court-information-act",
+      "article-moj-civil-court-information-designation-2026",
+      "article-businesslawyers-civil-court-information-2026",
+      "article-osaka-dc-software-copyright-2026",
+      "article-nishimura-software-copyright-2026",
+      "article-noandt-merger-guideline-draft-2026",
+      "article-ppc-kddi-mail-security-2026",
+      "article-not-cyber-supply-chain-incident-reporting-2025",
+      "article-not-cyber-supply-chain-contracts-2025",
+      "article-not-cyber-supply-chain-sbom-2025",
+      "article-nisc-cyber-incident-common-reporting-2025",
+      "article-bunka-copyright-bgm-right-2026",
+      "article-bunka-record-performance-report-2026",
+      "article-not-bgm-right-2026",
+      "article-jpx-cg-code-2026",
+      "article-not-payment-final-2026",
+      "article-tmi-privacy-2026-outsourcing",
+      "article-moj-security-assignment-act-2025",
+      "article-not-security-assignment-transition-2026",
+      "article-meti-startup-ma-guidance-2026",
+      "article-not-startup-ma-guidance-2026",
+      "article-mhlw-dispatch-contracting-qa3-2026",
+      "article-mhlw-dispatch-enforcement-yamaguchi-2026",
+      "article-tmi-fake-contracting-risk-2024",
+      "article-tmi-security-fake-contracting-2023",
+      "article-fsa-market-system-wg-insider-2025",
+      "article-fsa-insider-parent-rule-2026",
+      "article-sesc-nippo-insider-2026",
+      "article-amt-market-wg-insider-2026",
+      "article-tmi-ai-civil-liability-support-2026",
+      "article-jftc-toriteki-tooling-storage-qa",
+      "article-businesslawyers-toriteki-economic-benefit-tooling-2026",
+      "article-meti-corporate-takeover-guidelines-2023",
+      "article-amt-corporate-takeover-guidelines-points-2026",
+      "article-tmi-fefta-amendment-upper-2026",
+      "article-caa-snow-stealth-2026",
+      "article-jftc-jtop-freelance-recommendation-2026",
+      "article-tmi-privacy-2026-children",
+      "article-tmi-privacy-2026-consent-exceptions",
+      "article-tmi-privacy-2026-biometric",
+      "article-cao-regulatory-reform-plan-advertising-2026",
+      "article-is-premium-reform-2026",
+      "article-tokyo-high-court-tepco-derivative-2025",
+      "article-supreme-court-fukushima-criminal-2025",
+      "article-nishimura-serious-accident-crisis-2026",
+      "article-nco-critical-infrastructure-unified-standard-2026",
+      "article-amt-critical-infrastructure-unified-standard-2026",
+      "article-pwc-ohs-amendment-2025",
+      "article-amt-corporate-takeover-guidelines-dialogue-2023-part1",
+      "article-tmi-privacy-2026-contactable-related-info",
+      "article-tmi-privacy-2026-leak-notification-review",
+      "article-tmi-electronic-record-production-order-2026",
+      "article-amt-esign-dx-2023",
+      "article-meti-ai-contract-checklist-2025",
+      "article-nishimura-ai-contract-checklist-2025",
+      "article-tmi-ai-agent-development-contract-2025",
+      "article-fsa-disclosure-wg6-2026",
+      "article-caa-consumer-contract-interim-draft-2026",
+      "article-haruki-consumer-contract-cancellation-2026",
+      "article-tmi-ec-standard-terms-2026",
+      "article-cao-economic-security-promotion-jbic-amendment-2026",
+      "article-ohebashi-economic-security-law-2026",
+      "article-business-lending-promotion-act-2024",
+      "article-fsa-enterprise-value-security-final-rules-2025",
+      "article-fsa-enterprise-value-security-templates-2026",
+      "article-fsa-business-lending-basic-thinking-2026",
+      "article-zelo-enterprise-value-security-practice-2026",
+      "article-businesslawyers-enterprise-value-security-2026",
+      "article-mhlw-workers-comp-amendment-2026",
+      "article-mhlw-workers-comp-council-2026-08-05",
+      "article-mhlw-labor-policy-amendment-treatment-work-2025",
+      "article-mhlw-treatment-work-guideline-2026",
+      "article-mhlw-treatment-work-integrated-2026",
+      "article-pwc-fiea-sustainability-assurance-2026",
+      "article-businesslawyers-uga-privacy-2026",
+      "article-fbaa-family-governance-relationships-2026",
+      "article-businesslawyers-amt-fefta-2026",
+      "article-mhlw-jobseeker-sexual-harassment-2026",
+      "article-businesslawyers-jobseeker-sexual-harassment-2026",
+      "article-tmi-aml-amendment-2026",
+      "article-meti-employee-stock-compensation-guidebook-2023",
+      "article-tmi-employee-stock-compensation-wage-status-2026",
+      "article-tmi-bank-subsidiary-business-succession-2026",
+      "article-supreme-court-applied-art-tripp-trapp-2026",
+      "article-amt-tripp-trapp-applied-art-2026",
+      "article-pwc-applied-art-supreme-court-2026",
+      "article-jpo-patent-system-committee-57-2026",
+      "article-tmi-patent-system-committee-57-2026",
+      "article-businesslawyers-fiea-insider-2026",
+      "article-fsa-crypto-fiea-amendment-2026",
+      "article-fsa-crypto-fiea-early-enforcement-2026",
+      "article-businesslawyers-crypto-fiea-2026",
+      "article-mhlw-pharma-promotion-survey-2025",
+      "article-not-pharma-promotion-survey-2026",
+      "article-tmi-human-research-ethics-guideline-2026",
+      "article-mext-human-research-ethics-guideline-2026",
+      "article-fsa-insurance-business-act-final-rules-2026",
+      "article-fsa-insurance-comparison-recommendation-2026",
+      "article-businesslawyers-insurance-business-act-practice-2026",
+      "article-nozomi-insurance-agency-governance-4-2026",
+      "article-insurance-journal-comparison-recommendation-2026",
+      "article-cao-ai-rpo-wg-2026",
+      "article-nao-rpo-employment-placement-2026",
+      "article-tm-regulatory-reform-ai-rpo-2026",
+      "article-tmi-sep-guidelines-2026",
+      "article-noandt-sep-judicial-mediation-2026",
+      "article-tmi-gx-ets-structural-change-allocation-2026",
+      "article-businesslawyers-freelance-worker-status-2026",
+      "article-ohebashi-freelance-worker-status-2025",
+      "article-tmi-disability-reasonable-accommodation-2025",
+      "article-tmi-disability-environment-improvement-2026",
+      "article-tmi-disability-unjust-treatment-2026",
+      "article-amt-ip-transaction-survey-guideline-2026",
+      "article-miyake-aml-remittance-enforcement-2026",
+      "article-mhlw-disability-employment-business-report-2026",
+      "article-mhlw-disability-employment-business-subcommittee-2026",
+      "article-otsuka-disability-employment-business-2026",
+      "article-shugiin-electricity-business-act-2026",
+      "article-noandt-electricity-business-act-2026",
+      "article-mof-fdi-screening-advanced-2026",
+      "article-egov-ccs-business-act-2024",
+      "article-meti-ccs-export-procedure-2026",
+      "article-noandt-ccs-act-2024",
+      "article-noandt-ccs-co2-export-2026",
+      "article-marunouchi-ccs-full-enforcement-2026",
+      "article-sangiin-mobile-id-amendment-2026",
+      "article-soumu-mobile-id-direction-2026",
+      "article-ushijima-mobile-id-amendment-2026",
+      "article-mhlw-health-longevity-guideline-2025",
+      "article-not-consumer-nonclinical-testing-2025",
+      "article-amt-disease-risk-service-guideline-2025",
+      "article-nishimura-defense-transfer-reform-2026",
+      "article-not-defense-transfer-outbound-investment-2026",
+      "article-atsumi-defense-transfer-compliance-2026",
+      "article-cao-space-act-enactment-2026",
+      "article-not-space-act-amendment-2026",
+      "article-not-space-act-final-review-2025",
+      "article-amt-pharma-promotion-survey-2025",
+      "article-cao-oesa-2026",
+      "article-fsa-bank-business-scope-reform-2026",
+      "article-fsa-bank-business-scope-comments-2026",
+      "article-sesc-securities-monitoring-policy-2026",
+      "article-sesc-securities-monitoring-cases-2026",
+      "article-tmi-securities-monitoring-2026-1",
+      "article-tmi-securities-monitoring-2026-2",
+      "article-mhlw-online-medical-care-implementation-2026",
+      "article-not-online-medical-care-2026-front",
+      "article-not-online-medical-care-2026-back",
+      "article-tmi-online-medical-care-2026-2",
+      "article-tmi-online-medical-care-2026-3",
+      "article-ip-high-court-tripp-trapp-2024",
+      "article-iphc-daifuku-employee-invention-2026",
+      "article-eiko-daifuku-employee-invention-2026",
+      "article-innoventier-daifuku-employee-invention-2026",
+      "article-fsa-fiea-startup-funding-2026",
+      "article-amt-fiea-startup-funding-2026",
+      "article-caa-fopnl-guideline-2026",
+      "article-caa-fopnl-qa-2026",
+      "article-as-fopnl-2026",
+      "article-mhlw-workers-comp-council-2026-09-08",
+      "article-noandt-bhr-revised-nap-2026",
+      "article-noandt-early-business-recovery-wg-final-2026",
+      "article-fsa-bank-agency-api-draft-2026",
+      "article-fsa-bank-law-guideline-2018",
+      "article-miyake-bank-agency-mediation-2026",
+      "article-jftc-advertising-toriteki-survey-2026",
+      "article-businesslawyers-ohebashi-information-deliverables-toriteki-2026",
+      "article-ppc-monitoring-q1-2026",
+      "article-ppc-breach-reports-q1-2026",
+      "article-ppc-annual-report-2025",
+      "article-ppc-forensics-keypoints-2026",
+      "article-miyake-ppc-annual-report-2025",
+      "article-jila-ai-legal-services-guideline-2026",
+      "article-jila-legaltech-guideline-training-2023",
+      "article-fsa-crypto-intermediary-registration-2026",
+      "article-amt-crypto-intermediary-2026",
+      "article-amt-payment-services-act-intermediary-bill-2025",
+      "article-mhlw-ai-rpo-regulatory-plan-2026",
+      "article-egov-mobile-id-rule-2026",
+      "article-egov-mobile-id-rule-2027",
+      "article-miyake-mobile-id-2027",
+      "article-ihi-rizap-shadow-ai-incident-2026",
+      "article-miyake-rizap-shadow-ai-2026",
+      "article-mhlw-overtime-supervision-2026",
+      "article-tm-nagoya-overtime-guidance-2026",
+      "article-mhlw-long-hours-supervision-fy2025-2026",
+      "article-mic-external-transmission-report-draft-2026",
+      "article-noandt-external-transmission-2023",
+      "article-tmi-external-transmission-2023",
+      "article-isa-ikusei-faq-2026",
+      "article-otit-ikusei-plan-preapplication-2026",
+      "article-oneasia-ikusei-practical-2026",
+      "article-meti-startup-investment-agreement-guidelines-2025",
+      "article-noandt-startup-investment-guidelines-2025",
+      "article-tmi-startup-class-shareholders-meeting-2025",
+      "article-tmi-startup-investor-director-2025",
+      "article-mhlw-pension-reform-overview-2025",
+      "article-tmi-pension-reform-2025",
+      "article-noandt-income-wall-2025",
+      "article-jpo-patent-system-committee-56-2026",
+      "article-tmi-patent-system-committee-56-2026",
+      "article-mhlw-training-leave-benefit-2025",
+      "article-asahi-training-leave-benefit-2025",
+      "article-caa-consumer-contract-interim-draft-sep9-2026",
+      "article-amt-economic-security-promotion-reform-outlook-2025",
+      "article-jftc-toridoll-price-reduction-2026",
+      "article-businesslawyers-toriteki-price-reduction-2026",
+      "article-mhlw-business-transfer-guideline-2026",
+      "article-mhlw-reorganization-labor-council-2026-07",
+      "article-ey-reorganization-labor-2026",
+      "article-tmi-ma-defined-benefit-pension-2025",
+      "article-businesslawyers-growth-investment-guidance-2026",
+      "article-jsda-fsa-startup-growth-finance-report-2025",
+      "article-nishimura-startup-growth-finance-report-2025",
+      "article-cas-ai-ip-principle-code-filing-2026",
+      "article-businesslawyers-smartphone-competition-act-2025",
+      "article-businesslawyers-treatment-work-guideline-2026",
+      "article-meti-unfair-competition-committee-29-ai-likeness-2026",
+      "article-meti-dpf-transparency-points-2026",
+      "article-meti-dpf-ebay-qoo10-designation-2026",
+      "article-meti-dpf-tiktok-designation-2025",
+      "article-meti-dpf-evaluation-2025",
+      "article-meti-dpf-recommendation-2024",
+      "article-pwc-dpf-monitoring-review-2024",
+      "article-jpx-jiriss-transition-2026",
+      "article-nishimura-insider-compliance-2026",
+      "article-meti-human-capital-visualization-guideline-2026",
+      "article-ey-human-capital-disclosure-2026",
+      "article-ikeda-someya-total-premium-review-2026",
+      "article-na-toriteki-compliance-2026",
+      "article-tmi-child-sexual-violence-scope-2026",
+      "article-tmi-child-sexual-violence-certification-2026",
+      "article-tokio-dr-jobseeker-sexual-harassment-2026",
+      "article-fecc-jobseeker-sexual-harassment-practice-2026",
+      "article-ppc-privacy-2026-rulemaking-roadmap-20260909",
+      "article-jsda-ipo-underwriting-review-2026",
+      "article-mhlw-premium-adjustment-final-rules-2026",
+      "article-jftc-ip-transactions-survey-2026",
+      "article-bunka-unmanaged-works-handbook-2026",
+      "article-moe-environmental-representation-guideline-2026",
+      "article-caa-environmental-label-survey-2026",
+      "article-morihamada-environmental-label-greenwashing-2026",
+      "article-cao-disability-discrimination-amendment-2021",
+      "article-cao-disability-discrimination-basic-policy-2023",
+      "article-fsa-fiea-sustainability-assurance-2026",
+      "article-fsa-sustainability-disclosure-assurance-report-2026",
+      "article-fsa-sustainability-assurance-subcommittee-2026",
+      "article-jftc-logistics-special-designation-2026",
+      "article-jftc-logistics-survey-2026",
+      "article-tki-logistics-special-designation-2026",
+      "article-mhlw-product-safety-pledge-osh-2026",
+      "article-spica-tohoku-eizo-equal-pay-2026",
+      "article-mhlw-home-work-allowance-overtime-2024",
+      "article-tmi-home-work-allowance-overtime-2024",
+      "article-jps-premium-adjustment-guide-2026-09-11",
+      "article-privacy-law-2026-rulemaking-roadmap-2026-09-09",
+      "article-fsa-specified-investor-optup-final-2026",
+      "article-digital-gss-incident-2026-09-11",
+      "article-jafic-aml-rule-2025-order-3",
+      "article-jafic-aml-rule-2026-order-1",
+      "article-sesc-irom-insider-2026-09-11",
+      "article-fsa-sesc-insider-qa-2024",
+      "article-fsa-insurance-supervisory-guideline-enterprise-agency-2026-proposal",
+      "article-amt-insurance-company-governance-2026-04-10",
+      "article-fsa-edinet-taxonomy-2027-proposal",
+      "article-amt-regional-finance-investment-specialist-2026-02-20",
+      "article-tmi-human-capital-policy-architecture-2026-01-30",
+      "article-mhlw-specified-recruitment-info-stop-order-2026",
+      "article-cas-ip-intangible-governance-v2-2023",
+      "article-jpo-ip-management-guidebook-2024",
+      "article-jpo-ip-disclosure-guidebook-2025",
+      "article-cas-ip-intangible-guidance-2026",
+      "article-pwc-ip-corporate-value-story-2026",
+      "article-noandt-early-business-recovery-practice-2026",
+      "article-amt-commercial-registry-address-nondisclosure-2024",
+      "article-meti-product-safety-pledge-launch-2023",
+      "article-caa-product-safety-pledge-expansion-2026",
+      "article-fsa-nonlife-structural-report-2024",
+      "article-fsa-nonlife-wg-report-2024",
+      "article-amt-nonlife-wg-practice-2025",
+      "article-nozomi-insurance-law-practice-2026",
+      "article-amt-toriteki-recommendation-2026",
+      "article-oneasia-enterprise-value-security-2026",
+      "article-not-project-finance-enterprise-value-security-2024",
+      "article-mext-medical-research-ethics-review-2025",
+      "article-mhlw-human-genome-editing-embryo-rules-draft-2026",
+      "article-mhlw-human-genome-editing-embryo-act-overview-2026",
+      "article-miyake-critical-infrastructure-safety-guideline-2026",
+      "article-meti-technology-management-dialogue-2024",
+      "article-tmi-technology-management-dialogue-2024",
+      "article-amt-technology-management-dialogue-2024",
+      "article-tmi-largeholding-listed-subsidiary-2026",
+      "article-nco-critical-infrastructure-safety-guideline-2026",
+      "article-mhm-human-rights-conflict-exit-ma-20230912",
+      "article-amt-insurance-large-agency-draft-2026-03-06",
+      "article-amt-insurance-broker-reform-2026-05-22",
+      "article-mhlw-customer-harassment-manual-2026-09",
+      "article-fsa-insurance-monitoring-2025-reinsurance",
+      "article-fsa-reinsurance-supervisory-guideline-final-2026",
+      "article-amt-reinsurance-air-supervisory-guideline-2026-05-07",
+      "article-meti-family-governance-guidance-2026",
+      "article-jpx-mbo-fairness-rules-2025",
+      "article-tmi-mbo-new-rules-tob-filing-2025-07-18",
+      "article-not-mbo-controlling-shareholder-rules-2025-09-26",
+      "article-maff-seed-act-2026-amendment",
+      "article-egov-important-varieties-basic-policy-draft-2026",
+      "article-amt-plant-variety-seed-important-varieties-2026-09-08",
+      "article-not-equal-pay-guideline-practical-2026",
+      "article-not-generative-ai-publicity-part1-2026",
+      "article-tmi-lodging-membership-prepaid-1-2026",
+      "article-tmi-lodging-membership-prepaid-2-2026",
+      "article-nishimura-electronic-data-production-order-2025",
+      "article-fsa-board-function-casebook-2026",
+      "article-amt-space-act-enactment-2026",
+      "article-miyake-privacy-rules-20260918",
+      "article-amt-early-business-rehabilitation-report-2026-04",
+      "article-amt-early-business-rehabilitation-finance-lease-2026-02",
+      "article-meti-ad-circumvention-applicant-guide-2026",
+      "article-mof-ad-circumvention-guideline-update-2026",
+      "article-amt-japan-ad-anti-circumvention-2026",
+      "article-mhlw-reorganization-labor-council-2026-09",
+      "article-fsa-frontier-ai-financial-response-2026",
+      "article-jftc-antitrust-compliance-guide-2025",
+      "article-jftc-antitrust-enforcement-fy2025",
+      "article-not-antitrust-compliance-guide-2024",
+      "article-amt-jftc-enforcement-fy2025",
+      "article-tmi-generative-ai-medical-data-20260205",
+      "article-mhlw-shorttime-regular-worker-insurance-20260914",
+      "article-mhlw-officer-freelancer-insurance-amendment-20260914",
+      "article-courts-dwango-fc2-program-2025",
+      "article-courts-dwango-fc2-system-2025",
+      "article-not-generative-ai-publicity-part2-2026",
+      "article-mhlw-disability-employment-rare-disease-review-2026",
+      "article-sesc-ecomic-market-manipulation-2026",
+      "article-sesc-unfair-trading-casebook-2026",
+      "article-miura-closing-price-market-manipulation-2025",
+      "article-egov-important-varieties-rule-draft-2026",
+      "article-mhlw-short-hours-self-employed-insurance-2026",
+      "article-jps-premium-adjustment-2026",
+      "article-fsa-ssbj-shk-practice-standard-designation-2026",
+      "article-jsda-unlisted-securities-rules-2026",
+      "article-not-fiea-investment-management-nonlisted-intermediary-2025",
+      "article-fsa-growth-finance-ordinance-2026",
+      "article-mhlw-social-insurance-wage-requirement-decree-2026",
+      "article-fsa-growth-company-cross-border-lending-wg-2026",
+      "article-mhlw-labor-standards-study-report-2025",
+      "article-mhlw-labor-conditions-subcommittee-205-20260916",
+      "article-miura-labor-standards-review-report-20250206",
+      "article-cfa-child-sexual-violence-guideline-20260109",
+      "article-cfa-child-safety-cross-guideline-20260821",
+      "article-mhlw-digital-wage-review-20260916",
+      "article-tmi-digital-wage-practical-20230510",
+      "article-caa-digital-consumer-survey-20260427",
+      "article-spring-dark-pattern-practice-20260909",
+      "article-fsa-aml-account-info-sharing-2026",
+      "article-deloitte-trade-secret-guideline-2025",
+      "article-moj-company-law-outline-round1-2026",
+      "article-moj-company-law-outline-round3-2026",
+      "article-amt-company-law-postcomment-round1-2026",
+      "article-tmi-digital-municipal-bonds-2026",
+      "article-ppc-privacy-rulemaking-basic-1-2026",
+      "article-fsa-public-fund-liquidity-guideline-2026",
+      "article-pwc-fund-liquidity-regulation-2025",
+      "article-ppc-security-measures-guideline-review-2026",
+      "article-ppc-unauthorized-access-warning-2024",
+      "article-cyber-reporting-notices-2026-09-15",
+      "article-ipa-vulnerability-partnership-draft-2026",
+      "article-businesslawyers-mhm-active-cyber-defense-2025",
+      "article-fsa-overseas-vf-comments-2026",
+      "article-jps-social-insurance-expansion-2026-09-16",
+      "article-tmi-labor-update-social-insurance-2026-09-15",
+      "article-pwc-ai-agent-governance-civil-liability-2026",
+      "article-uslf-ai-voice-rights-2026-09-04",
+      "article-uslf-ai-voice-provider-liability-2026-09-04",
+      "article-mof-fefta-final-rules-2026-09-16",
+      "article-amt-fefta-reform-2026",
+      "article-not-patent-territoriality-2025",
+      "article-npa-jafic-identity-review-2026",
+      "article-mext-copyright-record-performance-law-2026",
+      "article-amt-copyright-record-performance-2026",
+      "article-not-copyright-record-performance-2026",
+      "article-nishimura-human-rights-crisis-management-20260917",
+      "article-cfa-child-sexual-violence-prevention-act-2026",
+      "article-cfa-child-sexual-violence-practice-materials-2026",
+      "article-maff-important-variety-policy-20260907",
+      "article-mlit-regional-transport-effective-date-20260901",
+      "article-tmi-regional-transport-amendment-20260710",
+      "article-nishimura-cross-border-collection-20260717",
+      "article-fsa-fiea-payment-amendment-20260715",
+      "article-mhlw-pension-effective-notice-20260915",
+      "article-tmi-dnfbp-aml-cft-20260917",
+      "article-cao-oesa-basic-guideline-20260911",
+      "article-kanpo-economic-security-effective-20260916",
+      "article-meti-unfair-competition-ai-likeness-hearing-20260911",
+      "article-ssbj-shk-practical-standard-20260611",
+      "article-mhlw-customer-harassment-guideline-20260226",
+      "article-mhlw-pharmacist-duty-20260708",
+      "article-mhlw-portal-customer-harassment-rules-20260914",
+      "article-mhm-pharmacy-customer-harassment-20260910",
+      "article-caa-pionet-door-to-door-analysis-20260917",
+      "article-ipa-scs-details-20260421",
+      "article-jftc-cyber-partnership-20251226",
+      "article-unitis-ushijima-scs-contract-20260421",
+      "article-uchisaiwai-rpm-guideline-20260727",
+      "article-meti-jcstar-launch-20250325",
+      "article-ipa-jcstar-portal-20260731",
+      "article-ipa-jcstar-procurement-20260709",
+      "article-unitis-tmi-jcstar-20251208",
+      "article-fsa-cyber-common-reporting-guidelines-20260918",
+      "article-miyake-ransomware-72h-20260918",
+      "article-caa-kinpodo-funeral-price-order-20260918",
+      "article-jftc-oki-hitachi-atm-merger-20260918",
+      "article-fsa-etf-cash-setting-rule-20260918",
+      "article-caa-hope-group-door-to-door-order-20260918",
+      "article-nco-cyber-common-reporting-20260915",
+      "article-cfa-child-sexual-violence-qa-revision-20260918",
+      "article-tmi-child-dbs-employment-measures-20251031",
+      "article-miyake-whistleblower-practical-20260428",
+      "article-nishimura-european-model-clauses-bhr-20251017",
+      "article-nara-hospital-system-outage-report-20260831",
+      "article-businesslawyers-oehashi-security-assignment-practice-20250623",
+      "article-iphc-sep-employee-invention-20250918",
+      "article-amt-security-clearance-overview-20251226",
+      "article-noandt-security-clearance-hr-part1-20250220",
+      "article-noandt-sell-buy-flip-wi-20260918",
+      "article-noandt-synthetic-wi-20251006",
+      "article-businesslawyers-mhm-early-business-restructuring-20260917",
+      "article-moj-ebl-outline-20240909",
+      "article-japan-pi-ebl-interim-20230421",
+      "article-trade-dx-ebl-request-20260901",
+      "article-businesslawyers-mhm-terms-injunction-20260916",
+      "article-businesslawyers-nishino-customer-harassment-line-20260915",
+      "article-ppc-apppi-subrules-369-20260916",
+      "article-cfa-child-sexual-violence-qa-20260918",
+      "article-miyake-japan-dbs-info-hiring-20260814",
+      "article-mhlw-foreign-worker-supervision-20260915",
+      "article-miyake-consumer-contract-update-20260919",
+      "article-ipa-ransomware-lessons-20260908",
+      "article-miyake-ransomware-lessons-20260910",
+      "article-mhlw-social-insurance-expansion-2025",
+      "article-mof-fatf-io4-dnfbps-20260918",
+      "article-amt-startup-capital-fiea-20260918",
+      "article-miyake-cg-code-practical-20260722",
+      "article-amt-anime-production-committee-contract-20231206",
+      "article-pwc-cg-code-cyber-internal-audit-20260915",
+      "article-businesslawyers-mhm-customer-harassment-20260318",
+      "article-amt-companies-act-round6-employee-share-grants-20260206",
+      "article-tmi-disability-discrimination-overview-20240625",
+      "article-businesslawyers-miura-whistleblower-regulation-20260916",
+      "article-atsumi-misconduct-investigation-process-20260507",
+      "article-atsumi-external-counsel-corporation-client-20260915",
+      "article-amt-board-effectiveness-third-party-20241028",
+      "article-atsumi-bhr-grievance-remedy-20240703",
+      "article-uslf-ai-voice-training-contracts-20260904",
+      "article-amt-ip-warranty-indemnity-20240326",
+      "article-miyake-fsa-financial-administration-policy-20260922",
+      "article-nishimura-investigation-committee-role-20250430",
+      "article-businesslawyers-specific-biometric-data-20260909",
+      "article-ushijima-performer-entertainment-guideline-20251002",
+      "article-noandt-performer-entertainment-guideline-20251127",
+      "article-mhlw-research-use-ivd-guideline-20260331",
+      "article-tmi-research-use-ivd-pmd-act-20260216",
+      "article-amt-carveout-ma-practical-20250804",
+      "article-not-seller-side-carveout-ma-20240207",
+      "article-businesslawyers-miura-consumer-contract-2022-amendment-20230525",
+      "article-idf-criminal-procedure-digital-evidence-20250825",
+      "article-businesslawyers-miura-jsox-qa-20231113",
+      "article-pwc-jsox-revision-points-20231206",
+      "article-ey-jsox-fraud-risk-20240612",
+      "article-tmi-pocky-3d-trademark-20260220",
+      "article-tmi-godzilla-3d-trademark-20250311",
+      "article-tmi-dr-martens-position-trademark-20240202",
+      "article-amt-insurance-broker-reinsurance-update-20260729",
+      "article-tmi-design-rights-customs-enforcement-20260507",
+      "article-businesslawyers-mhm-display-commitment-20260520",
+      "article-nishimura-premium-unsubstantiated-review-20260821",
+      "article-maku-tokusho-digital-dark-pattern-20260910",
+      "article-amt-economic-security-strategy-20260331",
+      "article-morihamada-waste-outsourcing-resource-circulation-20260902",
+      "article-jftc-ip-toriteki-freelance-20261001",
+      "article-mhlw-childcare-review-20261002",
+      "article-mhlw-chemical-exposure-guideline-20261001",
+      "article-mofa-russia-designated-vessels-20261002",
+      "article-ppc-privacy-rulemaking-basic-2-20261001",
+      "article-fsa-financial-privacy-cyber-reporting-20260928",
+      "article-jftc-fujiseisakujo-payment-delay-20260929",
+      "article-cao-cyber-reporting-guidance-20261001",
+      "article-mhlw-sds-notification-items-draft-20260928",
+      "article-supreme-court-linear-bid-rigging-20260914",
+      "article-ipa-vulnerability-partnership-final-20261001",
+      "article-jftc-condominium-consultant-fees-20260928",
+      "article-mhlw-thp-revision-draft-20260928",
+      "article-mlit-mobility-data-guideline-20260918",
+      "article-mlit-architects-contract-decrees-20261006",
+      "article-caa-whistleblower-dbs-coverage-proposal-20261001",
+      "article-caa-whistleblower-civil-court-coverage-proposal-20261001",
+      "article-fsa-critical-infrastructure-orders-proposal-20261001",
+      "article-caa-whistleblower-covered-laws-20261001",
+      "article-mhlw-disability-cooperative-homework-review-20261005",
+      "article-shinshimizu-share-exchange-appraisal-20261006",
+      "article-mhlw-worker-status-discussion-summary-20260909",
+      "article-jftc-corporate-transactions-study-20261007",
+      "article-mlit-logistics-plan-guidance-20261005",
+      "article-mhlw-equal-employment-basic-policy-draft-20261002",
+      "article-meti-env-ccs-storage-guideline-draft-20261002",
+      "article-enecho-ccs-criteria-proposal-20261002",
+      "article-caa-customer-harassment-workbook-20261001",
+      "article-mhlw-overwork-campaign-20261008",
+      "article-ppc-large-breach-warning-20261007",
+      "article-enecho-grid-jcstar-proposal-20261006",
+      "article-mhlw-late-onset-benefit-order-20261008",
+      "article-kanpo-architects-contract-commencement-20261009",
+      "article-meti-drone-supply-policy-proposal-20261005",
+      "article-fsa-penalty-hearing-digital-final-20260916"
+    ],
+    "reforms": [
+      "critical-infrastructure-unified-standard-2026",
+      "equal-pay-guideline-2026",
+      "registry-address-nondisclosure-expansion-2026",
+      "civil-court-information-act-2025",
+      "privacy-law-2026-amendment",
+      "customer-harassment-obligation-2026",
+      "whistleblower-protection-2025-amendment",
+      "fair-subcontract-transactions-2025-amendment",
+      "financial-instruments-tob-largeholding-2024-amendment",
+      "fefta-inward-investment-2026-amendment",
+      "women-advancement-2025-amendment",
+      "occupational-safety-health-2025-amendment",
+      "gx-ets-2025-amendment",
+      "aml-account-remittance-2026-amendment",
+      "aml-identity-verification-2027-rules",
+      "payment-terms-60day-notice-2026",
+      "cyber-countermeasures-act-2025",
+      "smartphone-software-competition-act-2024",
+      "copyright-unmanaged-works-2023-amendment",
+      "copyright-record-performance-communication-2026",
+      "product-safety-four-acts-2024-amendment",
+      "child-sexual-violence-prevention-act-2024",
+      "important-economic-security-information-act-2024",
+      "corporate-governance-code-2026",
+      "security-assignment-retention-title-act-2025",
+      "fiea-insider-parent-company-2026-rule",
+      "fiea-unfair-trading-2026-amendment",
+      "criminal-procedure-electronic-record-order-2025",
+      "consumer-contract-law-review-2026",
+      "premium-representations-review-2026",
+      "economic-security-promotion-jbic-2026-amendment",
+      "customs-tariff-ad-circumvention-2026",
+      "jftc-antitrust-compliance-guide-2025",
+      "disability-employment-rate-rare-disease-2026-review",
+      "seed-act-2026-amendment",
+      "important-varieties-act-2026-enactment",
+      "employee-social-insurance-expansion-2025-amendment",
+      "ssbj-shk-practice-standard-2026-designation",
+      "fiea-asset-management-nonlisted-intermediary-2024-amendment",
+      "jsda-unlisted-securities-rules-2026",
+      "fiea-growth-finance-ordinances-2026",
+      "early-business-rehabilitation-act-2025",
+      "money-lending-growth-company-cross-border-review-2026",
+      "labor-standards-act-review-2025-2026",
+      "digital-wage-system-review-2026",
+      "specified-commercial-transactions-digital-review-2026",
+      "aml-account-information-sharing-2027-rules",
+      "banking-act-investment-subsidiary-2026",
+      "trade-secret-management-guideline-2025-revision",
+      "companies-act-review-2026",
+      "fiea-digital-bond-solicitation-2026",
+      "public-investment-trust-liquidity-guideline-2026",
+      "privacy-security-measures-guideline-review-2026-2027",
+      "payment-services-act-cross-border-collection-2025",
+      "fiea-overseas-vf-foreign-fund-exemption-2026",
+      "patent-act-network-inventions-infringement-review-2026",
+      "regional-public-transport-act-2026-amendment",
+      "ssbj-mandatory-disclosure-2026",
+      "fsa-supervisory-guidelines-cyber-reporting-2026",
+      "investment-trust-etf-cash-setting-2026",
+      "commercial-code-ebl-review-2024",
+      "freelance-act-2024-enactment",
+      "ssbj-ghg-disclosure-2026-amendment",
+      "unfair-competition-prevention-act-2023-amendment",
+      "fiea-startup-capital-2026-amendment",
+      "jsox-2023-internal-control-revision",
+      "chemical-exposure-measurement-guideline-20261001",
+      "sds-notification-items-2026-draft",
+      "thp-guideline-secondary-prevention-2026",
+      "architects-act-2026-contract-reform",
+      "whistleblower-covered-laws-dbs-2026-proposal",
+      "whistleblower-covered-laws-civil-court-2026-proposal",
+      "fsa-critical-infrastructure-orders-2026-proposal",
+      "ccs-disposition-criteria-2026",
+      "grid-connection-jcstar-requirements-2026-proposal",
+      "workers-comp-late-onset-benefit-base-order-2026",
+      "drone-supply-policy-2026-october-proposal",
+      "fsa-penalty-hearing-digital-ordinances-2026",
+      "business-lending-promotion-act-2024",
+      "workers-compensation-insurance-2026-amendment",
+      "treatment-work-support-2025-amendment",
+      "fiea-sustainability-disclosure-assurance-2026",
+      "equal-opportunity-jobseeker-sexual-harassment-2025",
+      "companies-act-employee-share-grants-review-2026",
+      "crypto-assets-fiea-2026-amendment",
+      "human-research-ethics-guideline-2026-amendment",
+      "insurance-business-act-2025-amendment",
+      "insurance-comparison-recommendation-2026-rules",
+      "employment-security-ai-rpo-2026-review",
+      "labor-standards-worker-status-review-2025",
+      "disability-employment-promotion-business-2026-review",
+      "electricity-business-act-2026-amendment",
+      "ccs-business-act-2024",
+      "ccs-co2-export-order-2025",
+      "mobile-phone-illicit-use-2026-amendment",
+      "health-longevity-nonclinical-testing-guideline-2025",
+      "defense-equipment-transfer-principles-2026-reform",
+      "space-activities-act-2026-amendment",
+      "medical-care-act-online-medical-care-2025-amendment",
+      "jftc-merger-guideline-2026-draft",
+      "bank-agency-api-supervisory-guideline-2026-draft",
+      "payment-services-act-2025-amendment",
+      "mobile-identity-verification-rules-2026-2027",
+      "telecom-external-transmission-2022-amendment",
+      "skill-development-employment-2024-amendment",
+      "startup-investment-agreement-guidelines-2025-expanded",
+      "employment-insurance-2024-training-leave-benefit",
+      "business-transfer-guideline-2026-amendment",
+      "corporate-restructuring-labor-policy-review-2026",
+      "unfair-competition-ai-likeness-policy-review-2026",
+      "human-capital-disclosure-2026-amendment",
+      "disability-discrimination-2021-amendment",
+      "logistics-special-designation-2026-amendment",
+      "fiea-specified-investor-optup-2026-ordinance",
+      "insurance-supervisory-guideline-enterprise-agency-2026",
+      "human-genome-editing-embryo-act-2026",
+      "fefta-technology-transfer-dialogue-2024",
+      "childcare-caregiver-leave-2024-amendment",
+      "fefta-catchall-export-controls-2025-amendment",
+      "distribution-guideline-rpm-2026-amendment",
+      "insurance-reinsurance-risk-management-guideline-2026",
+      "tse-mbo-fairness-rules-2025",
+      "performer-entertainment-transaction-guideline-2025",
+      "research-use-ivd-guideline-2026",
+      "local-finance-act-digital-local-bonds-2026",
+      "consumer-contract-act-2022-amendment"
+    ],
+    "updates": [
+      "update-ai-2026-09-amendment",
+      "update-ch-2026-09-obligation",
+      "update-ai-2026-09",
+      "update-ch-2026-08",
+      "update-freelance-2026-08",
+      "update-econtract-2026-08",
+      "update-ai-2026-07",
+      "update-ai-2025-03",
+      "update-ch-2025-02",
+      "update-freelance-2024-11",
+      "update-econtract-2023-09",
+      "update-toriteki-2026-09-topic",
+      "update-acquisition-2026-09-topic",
+      "update-cg-code-2026-09-topic",
+      "update-tob-largeholder-2026-09-topic",
+      "update-advertising-display-2026-09-topic",
+      "update-economic-security-tech-control-2026-09-topic",
+      "update-generative-ai-ip-rights-2026-09-topic",
+      "update-electronic-contract-signing-2026-09",
+      "update-ssbj-disclosure-2026-09-topic",
+      "update-companies-act-review-2026-09-topic",
+      "update-distribution-resale-price-2026-09-topic",
+      "update-crossborder-collection-2026-09-topic",
+      "update-whistleblower-internal-reporting-2026-09-topic",
+      "update-women-advancement-disclosure-2026-09-topic",
+      "update-trade-secret-management-2026-09-topic",
+      "update-merger-control-antitrust-2026-09-topic",
+      "update-business-human-rights-dd-2026-09-topic",
+      "update-freelance-japanpost-2026-09",
+      "update-whistleblower-protection-topic-2026-09",
+      "update-security-clearance-topic-2026-09",
+      "update-worker-status-2026-09-topic",
+      "update-ohs-2026-09-topic",
+      "update-gx-ets-2026-09-topic",
+      "update-aml-2026-09-topic",
+      "update-cyber-countermeasures-2026-09-topic",
+      "update-smartphone-law-2026-09-topic",
+      "update-equal-pay-guideline-2026-09-topic",
+      "update-registry-address-2026-topic",
+      "update-civil-court-information-topic",
+      "update-software-copyright-library-topic",
+      "update-toriteki-tooling-storage-2026-09",
+      "update-freelance-remuneration-deduction-2026-09",
+      "update-advertising-regulatory-reform-2026-09",
+      "update-critical-infrastructure-unified-standard-2026-09",
+      "update-disclosure-architecture-wg6-2026-09",
+      "update-economic-security-oesa-2026-09-17",
+      "update-critical-infrastructure-safety-guideline-2026-09-11",
+      "update-jftc-ip-toriteki-freelance-20261001",
+      "update-social-insurance-premium-adjustment-2026-09",
+      "update-unmanaged-works-contact-rule-2026-09",
+      "update-ssbj-statutory-assurance-2026-07",
+      "update-social-insurance-premium-adjustment-procedures-2026-09-11",
+      "update-specified-investor-optup-2026-09",
+      "update-insurance-enterprise-agency-supervisory-guideline-2026-09-11",
+      "update-consumer-transaction-interim-reports-2026-09-10",
+      "update-ai-ip-principle-code-filing-20260908",
+      "update-aml-fsa-policy-20260915",
+      "update-privacy-2026-09-16-subrules"
+    ]
+  },
+  "issuesByTheme": {
+    "ai-personal-data": [
+      "ai-input",
+      "ai-outsourcing",
+      "ai-transfer",
+      "ai-statistical-use",
+      "ai-shadow-use"
+    ],
+    "customer-harassment": [
+      "ch-definition",
+      "ch-response",
+      "customer-harassment-definition-2026",
+      "customer-harassment-employer-measures-2026",
+      "customer-harassment-response-rules-2026",
+      "customer-harassment-service-duty-2026"
+    ],
+    "freelance-law": [
+      "freelance-scope",
+      "freelance-notice",
+      "freelance-payment-deadline",
+      "freelance-remuneration-reduction"
+    ],
+    "electronic-contract": [
+      "econtract-identity",
+      "econtract-log"
+    ],
+    "ai-governance-liability": [
+      "ai-gov-classification",
+      "ai-gov-process",
+      "ai-gov-provider",
+      "ai-gov-records"
+    ],
+    "cyber-supply-chain": [
+      "cyber-vendor-selection",
+      "cyber-contract",
+      "cyber-vulnerability",
+      "cyber-incident-chain",
+      "cyber-management-governance"
+    ],
+    "tob-large-shareholding-2026": [
+      "tob-thirty-rule",
+      "tob-transaction-design",
+      "largeholder-joint-holder",
+      "largeholder-important-proposal",
+      "largeholder-derivatives",
+      "largeholder-reporting",
+      "tob-de-minimis"
+    ],
+    "advertising-display-control": [
+      "display-no1-evidence",
+      "display-advertiser-control",
+      "display-stealth-marketing",
+      "display-premium-cap-review",
+      "display-undemonstrated-ad-review",
+      "display-minimum-price-claims",
+      "display-commitment-procedure"
+    ],
+    "economic-security-tech-control": [
+      "econsec-governance",
+      "econsec-classified-info",
+      "econsec-tech-leakage",
+      "econsec-export-control",
+      "econsec-tech-transfer-dialogue"
+    ],
+    "generative-ai-ip-rights": [
+      "ai-ip-training-generation",
+      "ai-ip-transparency",
+      "ai-ip-rights-response",
+      "ai-ip-publicity"
+    ],
+    "companies-act-review-shareholders": [
+      "companies-act-virtual-meetings",
+      "companies-act-beneficial-shareholders",
+      "companies-act-meeting-body",
+      "companies-act-shareholder-proposals",
+      "companies-act-disclosure-rationalization",
+      "companies-act-employee-equity-compensation-wage"
+    ],
+    "distribution-resale-price": [
+      "rpm-principle",
+      "rpm-risk-cost-exception",
+      "rpm-online-controls",
+      "rpm-compliance-controls"
+    ],
+    "crossborder-collection-payment": [
+      "crossborder-collection-scope",
+      "crossborder-collection-exemptions",
+      "crossborder-collection-platform-escrow",
+      "crossborder-collection-user-protection",
+      "cross-border-collection-scope-2026",
+      "cross-border-collection-exemptions-2026",
+      "cross-border-collection-user-protection-2026",
+      "payment-services-2026-cross-border-exemptions",
+      "payment-services-2026-transition-registration",
+      "payment-services-2026-safeguarding-retention"
+    ],
+    "whistleblower-internal-reporting": [
+      "wb-scope-freelance",
+      "wb-system-controls",
+      "wb-obstruction-search",
+      "wb-retaliation-employment",
+      "wb-records-notice",
+      "whistleblower-external-report-response"
+    ],
+    "women-advancement-disclosure": [
+      "wad-scope-deadline",
+      "wad-calculation-publication",
+      "wad-cause-analysis",
+      "wad-action-plan-health"
+    ],
+    "trade-secret-management": [
+      "ts-legal-protection",
+      "ts-management-design",
+      "ts-leak-response",
+      "ts-ai-cloud",
+      "ts-limited-data"
+    ],
+    "merger-control-antitrust": [
+      "mc-filing-procedure",
+      "mc-non-notifiable",
+      "mc-substantive-review",
+      "mc-dynamic-benefits",
+      "mc-remedies",
+      "mc-predeal-planning"
+    ],
+    "digital-commerce-tokusho-review": [
+      "dt-chat-solicitation",
+      "dt-ui-steering",
+      "dt-cancellation-contract",
+      "dt-platform",
+      "dt-ad-triggered-visit-sales",
+      "dt-rescue-inspection-sales",
+      "digital-commerce-chat-solicitation",
+      "digital-commerce-dark-pattern-ui",
+      "digital-commerce-contract-confirmation",
+      "digital-commerce-cancellation-flow",
+      "digital-scta-2026-chat-solicitation",
+      "digital-scta-2026-dark-pattern-ui",
+      "digital-scta-2026-final-confirmation",
+      "digital-scta-2026-cancellation-obstruction",
+      "dt-cancellation-friction"
+    ],
+    "childcare-caregiver-leave": [
+      "cc-flexible-work",
+      "cc-intention-accommodation",
+      "cc-child-nursing-overtime",
+      "cc-leave-disclosure",
+      "cc-caregiving-support"
+    ],
+    "business-human-rights-dd": [
+      "bhr-policy-scope",
+      "bhr-risk-identification",
+      "bhr-dd-cycle",
+      "bhr-remedy-grievance",
+      "bhr-ma-dd",
+      "bhr-crisis-response"
+    ],
+    "generative-ai-competition": [
+      "ai-competition-market-structure",
+      "ai-competition-platform-access",
+      "ai-competition-integration",
+      "ai-competition-partnership"
+    ],
+    "ip-knowhow-data-transactions": [
+      "iptx-information-disclosure",
+      "iptx-value-compensation",
+      "iptx-rnd-ownership",
+      "iptx-warranty-liability"
+    ],
+    "early-business-recovery": [
+      "ebr-eligibility",
+      "ebr-financial-claims",
+      "ebr-voting-court",
+      "ebr-process",
+      "ebr-predip-followon",
+      "early-business-rehabilitation-procedure-framework",
+      "early-business-rehabilitation-secured-claims",
+      "early-business-rehabilitation-finance-lease",
+      "early-business-rehabilitation-predip",
+      "early-restructuring-eligibility",
+      "early-restructuring-target-claims",
+      "early-restructuring-majority-court",
+      "early-restructuring-standstill",
+      "early-restructuring-predip-migration"
+    ],
+    "fefta-inward-investment-screening": [
+      "fdi-prior-notification",
+      "fdi-indirect-acquisition",
+      "fdi-risk-mitigation",
+      "fdi-high-risk-investor",
+      "fdi-nondesignated-postcontrol",
+      "fdi-enforcement-makino",
+      "fdi-industry-scope-2027",
+      "fdi-jfic-coordination"
+    ],
+    "payment-terms-60day-notice": [
+      "payment-toriteki-vs-notice",
+      "payment-60day-start",
+      "payment-electronic-methods",
+      "payment-promissory-note-exit"
+    ],
+    "ssbj-statutory-sustainability-disclosure": [
+      "ssbj-application-scope",
+      "ssbj-two-step-disclosure",
+      "ssbj-scope3-liability",
+      "ssbj-reference-wording",
+      "ssbj-supplychain-data",
+      "ssbj-current-standard",
+      "ssbj-shk-practice-standard-2026",
+      "ssbj-statutory-assurance",
+      "ssbj-edinet-taxonomy-2027"
+    ],
+    "agm-pre-disclosure-company-law-reform": [
+      "agm-pre-disclosure-timing",
+      "agm-calendar-design",
+      "agm-disclosure-rationalization",
+      "agm-beneficial-shareholder",
+      "agm-virtual-reform"
+    ],
+    "generative-ai-ip-principle-code": [
+      "ai-ip-code-scope",
+      "ai-ip-code-disclosure",
+      "ai-ip-code-rightsholder",
+      "ai-ip-code-user-inquiry",
+      "ai-ip-code-acceptance"
+    ],
+    "ai-legal-support-attorney-act": [
+      "ai-legal-incident-scope",
+      "ai-legal-value-neutral",
+      "ai-legal-governance",
+      "ai-legal-user-procurement"
+    ],
+    "economic-security-information-clearance": [
+      "economic-security-qualified-business",
+      "economic-security-suitability-assessment",
+      "economic-security-hr-purpose-limit",
+      "economic-security-recruitment-prescreening",
+      "economic-security-outsourcing",
+      "economic-security-operation-status"
+    ],
+    "worker-status-outsourcing-platform": [
+      "worker-status-current-criteria",
+      "worker-status-criteria-review",
+      "worker-status-platform-management"
+    ],
+    "occupational-safety-health-reform": [
+      "ohs-independent-contractors",
+      "ohs-small-stress-check",
+      "ohs-phased-measures"
+    ],
+    "gx-ets-emissions-trading": [
+      "gx-ets-scope",
+      "gx-ets-compliance-cycle",
+      "gx-ets-market"
+    ],
+    "aml-kyc-criminal-proceeds": [
+      "aml-2026-account-remittance",
+      "aml-fictitious-account",
+      "aml-identity-verification-2027",
+      "aml-account-information-sharing-2027",
+      "aml-dnfbp-governance",
+      "aml-dnfbp-risk-based-governance",
+      "aml-money-transfer-offense-2026",
+      "aml-fictitious-account-measures-2026",
+      "aml-dnfbp-risk-based-effectiveness-2026",
+      "aml-financial-crime-effectiveness-2026",
+      "aml-dnfbp-effectiveness"
+    ],
+    "cyber-countermeasures-critical-infrastructure": [
+      "cyber-countermeasures-scope",
+      "cyber-countermeasures-reporting",
+      "cyber-countermeasures-vendor-contracts",
+      "cyber-private-active-defense",
+      "cyber-critical-infrastructure-unified-standard",
+      "cyber-countermeasures-vulnerability-coordination",
+      "cyber-ransomware-preparation-response"
+    ],
+    "smartphone-software-competition-act": [
+      "smartphone-law-designated-providers",
+      "smartphone-law-developer-access",
+      "smartphone-law-search-self-preferencing",
+      "smartphone-law-compliance-reports"
+    ],
+    "generative-ai-likeness-publicity": [
+      "ai-likeness-legal-framework",
+      "ai-likeness-identification",
+      "ai-likeness-publicity-use",
+      "ai-likeness-personality-harm",
+      "ai-likeness-provider-risk",
+      "ai-publicity-remedies",
+      "ai-likeness-legal-reform-review"
+    ],
+    "copyright-unmanaged-works-adjudication": [
+      "unmanaged-works-eligibility",
+      "unmanaged-works-search-contact",
+      "unmanaged-works-system-choice",
+      "unmanaged-works-rightsholder-display"
+    ],
+    "product-safety-four-acts-ecommerce-child-products": [
+      "product-safety-overseas-direct-sale",
+      "product-safety-dpf-measures",
+      "product-safety-child-psc",
+      "product-safety-used-products",
+      "product-safety-pledge-unsafe-products"
+    ],
+    "child-sexual-violence-prevention-dbs": [
+      "dbs-covered-business-work",
+      "dbs-criminal-check",
+      "dbs-prevention-employment",
+      "dbs-information-management",
+      "child-dbs-prevention-and-check",
+      "child-dbs-private-provider-recognition"
+    ],
+    "equal-pay-guideline-2026": [
+      "equal-pay-notice",
+      "equal-pay-treatment-review",
+      "equal-pay-explanation",
+      "equal-pay-dispatch",
+      "equal-pay-indefinite-fulltime",
+      "equal-pay-employment-management"
+    ],
+    "commercial-registry-address-nondisclosure": [
+      "registry-address-current-scope",
+      "registry-address-expansion-draft",
+      "registry-address-request-timing",
+      "registry-address-transaction-impact"
+    ],
+    "civil-court-information-database": [
+      "civil-court-info-scope",
+      "civil-court-info-designated-body",
+      "civil-court-info-provision-start",
+      "civil-court-info-corporate-use"
+    ],
+    "software-copyright-library-copying": [
+      "software-copyright-creativity",
+      "software-copyright-copying-proof",
+      "software-copyright-license-control"
+    ],
+    "recorded-music-public-use-right-2026": [
+      "bgm-right-scope",
+      "bgm-right-remuneration-not-license",
+      "bgm-right-fee-system",
+      "bgm-right-business-prep"
+    ],
+    "corporate-governance-code-2026": [
+      "cg-code-principles-explain",
+      "cg-code-growth-investment",
+      "cg-code-board-function",
+      "cg-code-pre-agm-disclosure",
+      "cg-code-reporting-transition"
+    ],
+    "film-anime-production-transactions": [
+      "content-production-applicable-rules",
+      "content-production-terms-disclosure",
+      "content-production-price-consultation",
+      "content-production-copyright-compensation",
+      "content-production-retakes-costs",
+      "content-production-payment-chain",
+      "content-production-committee-joint-production-contract"
+    ],
+    "security-assignment-retention-title": [
+      "security-assignment-statutory-rules",
+      "security-assignment-transition",
+      "security-assignment-priority-preservation",
+      "security-assignment-root-security",
+      "security-assignment-enforcement-insolvency",
+      "security-assignment-collection-authority"
+    ],
+    "startup-ma-guidance": [
+      "startup-ma-dual-track",
+      "startup-ma-investment-contract",
+      "startup-ma-buyer-organization",
+      "startup-ma-structure-convertibles",
+      "startup-ma-contract-pmi"
+    ],
+    "dispatch-contracting-compliance": [
+      "dispatch-contracting-classification",
+      "dispatch-system-development",
+      "dispatch-security-controls",
+      "dispatch-management-routing",
+      "dispatch-prohibited-enforcement"
+    ],
+    "insider-trading-information-management": [
+      "insider-tob-target-advisers",
+      "insider-parent-company-definition",
+      "insider-penalties-account-assistance",
+      "insider-crossborder-information-transmission",
+      "insider-prevention-controls",
+      "insider-tender-offer-contract-person",
+      "insider-internal-trading-rules",
+      "insider-information-control",
+      "insider-stock-compensation"
+    ],
+    "ai-civil-liability": [
+      "ai-liability-classification",
+      "ai-liability-user-duty",
+      "ai-liability-provider-duty",
+      "ai-liability-physical-product",
+      "ai-liability-proof-procedure"
+    ],
+    "fair-subcontract-transactions": [
+      "toriteki-scope",
+      "toriteki-price-consultation",
+      "toriteki-tooling-storage",
+      "toriteki-enforcement",
+      "toriteki-intermediary-deduction",
+      "toriteki-price-reduction",
+      "toriteki-intermediary-commissioning-party",
+      "toriteki-intermediary-fee-reduction"
+    ],
+    "listed-company-takeover-guidelines": [
+      "takeover-guidelines-scope-principles",
+      "takeover-desirable-acquisition",
+      "takeover-serious-proposal",
+      "takeover-sincere-review-comparison",
+      "takeover-qualitative-enterprise-value",
+      "takeover-competing-proposals"
+    ],
+    "personal-information-protection-2026-amendment": [
+      "privacy-2026-children",
+      "privacy-2026-consent-exceptions",
+      "privacy-2026-biometric",
+      "privacy-2026-contactable-related-info",
+      "privacy-2026-outsourcing",
+      "privacy-2026-surcharge",
+      "privacy-2026-security-guideline"
+    ],
+    "serious-accident-crisis-management": [
+      "serious-accident-initial-response",
+      "serious-accident-foreseeability-avoidance",
+      "serious-accident-investigation-conflict"
+    ],
+    "law-enforcement-data-production": [
+      "electronic-record-production-order-scope",
+      "electronic-record-secrecy-order",
+      "electronic-record-notification-contract",
+      "electronic-record-quasi-appeal-business-continuity",
+      "electronic-record-data-subject-remedies-deletion"
+    ],
+    "ai-service-development-contracts": [
+      "ai-contract-service-structure",
+      "ai-contract-input-output",
+      "ai-contract-risk-allocation",
+      "ai-contract-security-upstream"
+    ],
+    "consumer-contract-law-review-2026": [
+      "consumer-contract-vulnerability-release",
+      "consumer-contract-cancellation-obstruction",
+      "consumer-contract-cancellation-fees",
+      "consumer-contract-ec-standard-terms",
+      "consumer-contract-auto-renewal-notice",
+      "consumer-contract-terms-change-notice",
+      "consumer-contract-2026-principles-vulnerability",
+      "consumer-contract-2026-serious-result-release",
+      "consumer-contract-2026-continuous-contract-exit",
+      "consumer-contract-2026-renewal-change-fees"
+    ],
+    "enterprise-value-security-business-lending": [
+      "enterprise-value-security-structure",
+      "enterprise-value-security-contract-covenants",
+      "enterprise-value-security-monitoring",
+      "enterprise-value-security-creditors-enforcement",
+      "enterprise-value-security-use-cases",
+      "growth-company-cross-border-lending-review-2026"
+    ],
+    "workers-compensation-insurance-2026-reform": [
+      "workers-comp-survivor-pension-2027",
+      "workers-comp-limitation-2027",
+      "workers-comp-optional-coverage-abolition",
+      "workers-comp-special-enrollment-orgs"
+    ],
+    "family-business-governance": [
+      "family-governance-scope-voluntary",
+      "family-governance-values-decision",
+      "family-governance-ownership-succession",
+      "family-governance-operation-review"
+    ],
+    "treatment-work-support": [
+      "treatment-work-effort-duty",
+      "treatment-work-environment",
+      "treatment-work-individual-process",
+      "treatment-work-health-information"
+    ],
+    "prepaid-payment-instruments-memberships": [
+      "prepaid-membership-scope",
+      "prepaid-membership-identity-exclusion",
+      "prepaid-membership-regulatory-consequences",
+      "prepaid-membership-nft-server"
+    ],
+    "anti-dumping-anti-circumvention-2026": [
+      "ad-circumvention-three-types",
+      "ad-circumvention-duty-requirements",
+      "ad-circumvention-investigation-procedure",
+      "ad-circumvention-exclusion-economic-justification"
+    ],
+    "antitrust-compliance-enforcement": [
+      "antitrust-compliance-risk-based-program",
+      "antitrust-competitor-contact-controls",
+      "antitrust-detection-investigation-response",
+      "antitrust-enforcement-priorities-2026"
+    ],
+    "market-manipulation-trading-controls": [
+      "market-manipulation-prohibited-patterns",
+      "market-manipulation-inducement-purpose",
+      "market-manipulation-surveillance-response",
+      "market-manipulation-hft-surcharge-2026"
+    ],
+    "social-insurance-expansion-2025": [
+      "social-insurance-short-time-coverage-expansion",
+      "social-insurance-premium-adjustment-2026",
+      "social-insurance-short-hours-qualification-2026",
+      "social-insurance-individual-business-expansion-2029",
+      "social-insurance-employer-preparation"
+    ],
+    "startup-growth-capital-unlisted-market": [
+      "startup-growth-market-policy-2025",
+      "startup-growth-nonlisted-intermediary-2025",
+      "startup-growth-jsda-qualified-investors-2026",
+      "startup-growth-overseas-vf-2026"
+    ],
+    "labor-standards-review-representative-holidays-2026": [
+      "labor-review-majority-representative-2026",
+      "labor-review-statutory-holiday-consecutive-work-2026",
+      "labor-review-annual-paid-leave-2026"
+    ],
+    "digital-wage-payment-2026": [
+      "digital-wage-employer-introduction",
+      "digital-wage-provider-safety-requirements",
+      "digital-wage-review-2026"
+    ],
+    "digital-bond-solicitation-2026": [
+      "digital-bond-group-solicitation-exemption",
+      "digital-bond-solicitation-channel-scope"
+    ],
+    "public-investment-trust-liquidity-risk": [
+      "fund-liquidity-supervisory-guideline",
+      "fund-liquidity-redemption-lmt"
+    ],
+    "overseas-vf-foreign-fund-exemption-2026": [
+      "overseas-vf-foreign-fund-exemption-scope-2026",
+      "overseas-vf-monitoring-lp-accountability-2026",
+      "overseas-vf-solicitation-regulation-2026"
+    ],
+    "ai-publicity-voice-rights-2026": [
+      "ai-publicity-voice-protection-2026",
+      "ai-publicity-disclaimer-identifiability-2026",
+      "ai-publicity-provider-dataset-liability-2026",
+      "ai-publicity-ucpa-policy-review-2026"
+    ],
+    "patent-network-inventions-infringement-review-2026": [
+      "patent-network-territoriality-2025",
+      "patent-network-guidance-review-2026",
+      "patent-infringement-deterrence-review-2026",
+      "patent-crossborder-network-implementation",
+      "patent-infringement-deterrence-remedies",
+      "patent-infringement-evidence-collection",
+      "patent-crossborder-network-current-law"
+    ],
+    "copyright-record-performance-right-2026": [
+      "copyright-record-performance-right-scope-2026",
+      "copyright-record-performance-right-administration-2026",
+      "copyright-record-performance-right-effective-date-2026"
+    ],
+    "regional-public-transport-act-2026": [
+      "regional-transport-2026-reconstruction-project",
+      "regional-transport-2026-facility-shuttle-cooperation",
+      "regional-transport-2026-mobility-data",
+      "regional-transport-2026-coordination-body",
+      "regional-transport-2026-effective-date-preparation"
+    ],
+    "securities-monitoring-2026": [
+      "secm-cross-industry-priorities-2026",
+      "secm-business-change-product-governance-2026",
+      "secm-cyber-aml-2026",
+      "secm-conflicts-underwriting-2026",
+      "secm-public-fund-liquidity-2027",
+      "secm-etf-cash-setting-2026",
+      "securities-monitoring-aml-outsourcing-2026",
+      "securities-monitoring-best-interest-suitability-2026",
+      "securities-monitoring-system-frontier-ai-2026",
+      "securities-monitoring-business-model-governance-2026",
+      "securities-monitoring-entity-specific-controls-2026",
+      "securities-monitoring-case-feedback-2026"
+    ],
+    "supply-chain-security-scs-2026": [
+      "scs-scheme-status-2026",
+      "scs-star3-star4-evaluation",
+      "scs-procurement-contract-implementation",
+      "scs-competition-transaction-law"
+    ],
+    "jc-star-iot-security-labeling": [
+      "jcstar-voluntary-scope",
+      "jcstar-level-evaluation",
+      "jcstar-procurement-use",
+      "jcstar-label-claims"
+    ],
+    "ma-representation-warranty-insurance": [
+      "ma-wi-dd-insurability",
+      "ma-wi-sell-buy-flip",
+      "ma-wi-non-recourse-spa",
+      "ma-wi-synthetic"
+    ],
+    "consumer-law-digital-contract-review": [
+      "consumer-review-chat-solicitation",
+      "consumer-review-dark-patterns",
+      "consumer-review-subscription-cancellation",
+      "consumer-review-contract-change-notice",
+      "consumer-review-vulnerability-principle"
+    ],
+    "electronic-bill-of-lading-trade-dx": [
+      "ebl-legislative-status",
+      "ebl-control-transfer-record",
+      "ebl-current-contractual-use",
+      "ebl-paper-conversion-operational"
+    ],
+    "startup-capital-raising-fiea-2026": [
+      "startup-finance-disclosure-thresholds",
+      "startup-finance-professional-placement",
+      "startup-finance-equity-compensation",
+      "startup-finance-overseas-vf"
+    ],
+    "corporate-misconduct-investigations": [
+      "misconduct-investigation-purpose-scope",
+      "misconduct-investigation-structure-independence",
+      "misconduct-investigation-evidence-reporting",
+      "misconduct-investigation-counsel-conflicts"
+    ],
+    "carveout-ma-business-sale": [
+      "carveout-ma-seller-preparation-governance",
+      "carveout-ma-structure-transfer",
+      "carveout-ma-standalone-sellers-dd",
+      "carveout-ma-tsa-day1"
+    ],
+    "j-sox-internal-control-reporting": [
+      "jsox-evaluation-scope",
+      "jsox-report-deficiency-correction",
+      "jsox-fraud-override-it",
+      "jsox-regulatory-review"
+    ],
+    "waste-outsourcing-resource-circulation": [
+      "waste-generator-classification-responsibility",
+      "waste-outsourcing-contract-manifest",
+      "waste-vendor-pricing-monitoring",
+      "resource-circulation-2026-manufacturer-recycling"
+    ],
+    "architects-contracts-2026": [
+      "architects-contracts-scope",
+      "architects-contracts-estimates-price",
+      "architects-contracts-transition"
+    ],
+    "logistics-efficiency-medium-term-plans": [
+      "logistics-plan-specificity",
+      "logistics-plan-model-use",
+      "logistics-plan-submitted-treatment"
+    ],
+    "fsa-penalty-hearing-digitalization": [
+      "fsa-hearing-commencement-transitions",
+      "fsa-hearing-electronic-filing-service-records",
+      "fsa-hearing-video-examination-safeguards"
+    ],
+    "job-seeker-sexual-harassment": [
+      "jobseeker-sh-scope",
+      "jobseeker-sh-recruiting-rules",
+      "jobseeker-sh-consultation-response"
+    ],
+    "employee-stock-compensation-wage-status": [
+      "employee-stock-direct-share-grant",
+      "employee-stock-compensation-wage-status",
+      "employee-stock-compensation-documentation"
+    ],
+    "bank-subsidiary-business-succession": [
+      "bank-investment-subsidiary-business-succession-scope",
+      "bank-investment-subsidiary-ma-intermediation",
+      "bank-investment-subsidiary-transaction-structure",
+      "bank-investment-subsidiary-funding-scope",
+      "bank-business-succession-listed-companies",
+      "bank-leasing-income-dependence-2027"
+    ],
+    "applied-art-mass-products-copyright": [
+      "applied-art-copyrightability-standard",
+      "applied-art-design-copyright-coordination",
+      "applied-art-product-design-rights-strategy",
+      "applied-art-shape-trademark-distinctiveness",
+      "applied-art-design-customs-enforcement"
+    ],
+    "crypto-assets-fiea-regulation-2026": [
+      "crypto-fiea-regulatory-transfer",
+      "crypto-fiea-disclosure-business-rules",
+      "crypto-fiea-insider-unfair-trading",
+      "crypto-2026-fiea-transfer",
+      "crypto-2026-disclosure-regime",
+      "crypto-2026-business-scope-system-provider",
+      "crypto-2026-transition-measures",
+      "crypto-2026-early-enforcement"
+    ],
+    "pharmaceutical-promotion-advertising-compliance": [
+      "pharma-promotion-regulatory-scope",
+      "pharma-promotion-evidence-offlabel",
+      "pharma-promotion-lecture-governance"
+    ],
+    "human-subjects-medical-research-ethics-2026": [
+      "human-research-ic-optout-2026",
+      "human-research-multisite-review-2026",
+      "human-research-transition-operations-2026"
+    ],
+    "insurance-agency-governance-comparison-sales-2025": [
+      "insurance-large-multi-agency-governance-2026",
+      "insurance-agency-conflict-claims-management-2026",
+      "insurance-excessive-benefits-2026",
+      "insurance-comparison-recommendation-2028",
+      "insurance-inhouse-agency-specific-contract-ratio-2026-draft",
+      "insurance-antitrust-compliance-coinsurance-2026-draft",
+      "insurance-corporate-pricing-monitoring-2026-draft",
+      "insurance-separate-registration-2026-draft",
+      "insurance-broker-reform-2026"
+    ],
+    "ai-recruitment-rpo-employment-placement": [
+      "rpo-current-placement-boundary",
+      "rpo-ai-automated-acts-review",
+      "rpo-contract-licensing-controls",
+      "recruitment-info-provider-filing-reporting"
+    ],
+    "sep-frand-tokyo-court-2026": [
+      "sep-frand-litigation-procedure",
+      "sep-frand-judicial-mediation",
+      "sep-frand-negotiation-evidence-strategy"
+    ],
+    "disability-discrimination-reasonable-accommodation": [
+      "disability-discrimination-scope-employment-boundary",
+      "disability-discrimination-unjust-treatment",
+      "disability-discrimination-reasonable-accommodation-duty",
+      "disability-discrimination-operational-design",
+      "disability-discrimination-undue-burden-assessment"
+    ],
+    "disability-employment-business-quality-review": [
+      "disability-employment-business-scope",
+      "disability-employment-business-provider-regulation",
+      "disability-employment-business-employer-controls",
+      "disability-employment-rate-rare-disease-individual-assessment"
+    ],
+    "electricity-business-act-2026": [
+      "electricity-2026-generation-retirement-consultation",
+      "electricity-2026-occto-financing",
+      "electricity-2026-retail-registration-revocation",
+      "electricity-2026-wholesale-exchanges",
+      "electricity-2026-solar-preconstruction-check"
+    ],
+    "ccs-business-act-storage-transport": [
+      "ccs-storage-permit-rights",
+      "ccs-storage-operations-liability",
+      "ccs-pipeline-transport",
+      "ccs-cross-border-export"
+    ],
+    "mobile-phone-illicit-use-id-verification-2026": [
+      "mobile-id-data-service-scope",
+      "mobile-id-representative-authority",
+      "mobile-id-police-inquiry",
+      "mobile-id-multi-line-existing-users",
+      "mobile-id-nonface-2026",
+      "mobile-id-counter-2027"
+    ],
+    "consumer-nonclinical-testing-health-services": [
+      "consumer-test-medical-practice-boundary",
+      "consumer-test-sampling-lab-registration",
+      "consumer-test-result-screen-disclaimer",
+      "consumer-test-samd-boundary",
+      "consumer-test-research-use-ivd-boundary"
+    ],
+    "defense-equipment-transfer-export-control": [
+      "defense-transfer-eligible-scope-2026",
+      "defense-transfer-review-end-use-2026",
+      "defense-equipment-dual-use-boundary-2026",
+      "defense-equipment-outbound-investment-2026"
+    ],
+    "space-activities-act-2026-rocket-launch": [
+      "space-act-rocket-launch-scope-2026",
+      "space-act-satellite-liability-2026",
+      "space-act-future-transport-rules-2026"
+    ],
+    "economic-security-promotion-act-2026-oesa": [
+      "economic-security-critical-services-2026",
+      "economic-security-medical-infrastructure-2026",
+      "economic-security-k-program-2026",
+      "economic-security-oesa-jbic-2026",
+      "economic-security-public-private-council-2026"
+    ],
+    "medical-care-act-online-medical-care-2026": [
+      "online-medical-care-definition-realtime-2026",
+      "online-medical-care-standards-enforcement-2026",
+      "online-medical-care-provider-notification-governance-2026",
+      "online-medical-care-reception-facility-2026",
+      "online-medical-care-platform-responsibility-2026"
+    ],
+    "employee-inventions-patent-act-35": [
+      "employee-invention-ownership",
+      "employee-invention-reasonable-benefit-process",
+      "employee-invention-prehire-rules",
+      "employee-invention-foreign-rights",
+      "employee-invention-license-revenue-sep"
+    ],
+    "startup-capital-markets-fiea-2026": [
+      "startup-fiea-filing-threshold-2026",
+      "startup-fiea-professional-investor-solicitation-2026",
+      "startup-fiea-equity-compensation-disclosure-2026",
+      "startup-fiea-forward-looking-information-2026",
+      "startup-specified-investor-optup-2026"
+    ],
+    "front-of-pack-nutrition-labeling-japan": [
+      "fopnl-voluntary-status",
+      "fopnl-scope-format",
+      "fopnl-consistency-evidence"
+    ],
+    "bank-agency-api-baas": [
+      "bank-api-mediation-boundary",
+      "bank-api-customer-confusion",
+      "bank-api-content-ranking",
+      "bank-api-customer-data"
+    ],
+    "privacy-enforcement-breach-response": [
+      "privacy-enforcement-safety-management",
+      "privacy-enforcement-vendor-supervision",
+      "privacy-enforcement-breach-reporting",
+      "privacy-incident-forensics-readiness"
+    ],
+    "crypto-e-money-service-intermediary": [
+      "crypto-intermediary-scope",
+      "crypto-intermediary-mediation",
+      "crypto-intermediary-affiliation-custody",
+      "crypto-intermediary-user-protection",
+      "stablecoin-trust-reserve-2025-amendment"
+    ],
+    "overtime-36-agreement-supervision": [
+      "overtime-statutory-limits",
+      "overtime-supervision-2026",
+      "overtime-special-clause-health-measures"
+    ],
+    "telecom-external-transmission-user-info": [
+      "external-transmission-scope",
+      "external-transmission-disclosure",
+      "external-transmission-inventory-change-management",
+      "external-transmission-2026-compliance-policy",
+      "external-transmission-optout-best-practice"
+    ],
+    "skill-development-employment-foreign-workers": [
+      "ikusei-system-purpose-transition",
+      "ikusei-plan-preapplication",
+      "ikusei-worker-transfer",
+      "ikusei-specified-skilled-transition",
+      "ikusei-technical-intern-transition",
+      "foreign-worker-labor-compliance"
+    ],
+    "employment-insurance-training-leave-benefit": [
+      "training-leave-benefit-eligibility",
+      "training-leave-benefit-employer-obligation",
+      "training-leave-benefit-employer-procedure"
+    ],
+    "ma-restructuring-labor-contract-succession": [
+      "ma-labor-scheme-succession",
+      "business-transfer-worker-consent-union",
+      "enterprise-value-collateral-worker-protection",
+      "reorganization-labor-review-2026",
+      "ma-defined-benefit-pension-transition",
+      "restructuring-labor-current-framework",
+      "restructuring-business-transfer-consent",
+      "restructuring-enterprise-value-security-labor",
+      "restructuring-labor-policy-review"
+    ],
+    "digital-platform-transparency-act": [
+      "dpf-transparency-current-scope",
+      "dpf-transparency-disclosure",
+      "dpf-transparency-procedures",
+      "dpf-transparency-monitoring-review",
+      "dpf-transparency-enforcement",
+      "dpf-transparency-new-designations",
+      "dpf-transparency-smartphone-transfer"
+    ],
+    "human-capital-disclosure-strategy-2026": [
+      "human-capital-required-disclosure",
+      "human-capital-visualization-guideline-role",
+      "human-capital-strategy-investor-dialogue"
+    ],
+    "environmental-claims-greenwashing": [
+      "green-claims-scope-clarity",
+      "green-claims-percentage-quantification",
+      "green-claims-substantiation-evidence",
+      "green-claims-certification-abstract-labels",
+      "green-claims-internal-review-process"
+    ],
+    "logistics-special-designation-consignee": [
+      "logistics-consignee-scope",
+      "logistics-consignee-extra-work",
+      "logistics-price-negotiation",
+      "logistics-enforcement-priority"
+    ],
+    "home-work-allowance-overtime": [
+      "home-work-allowance-wage-or-expense",
+      "home-work-allowance-calculation",
+      "home-work-allowance-fixed-payment",
+      "home-work-allowance-rule-change"
+    ],
+    "aml-identity-verification-2027": [
+      "aml-kyc-nonface-image-methods",
+      "aml-kyc-face-ic-reading",
+      "aml-kyc-scope",
+      "aml-kyc-system-operations"
+    ],
+    "ip-intangible-assets-governance-disclosure": [
+      "ip-intangible-board-strategy",
+      "ip-intangible-investment-return",
+      "ip-intangible-cross-functional-execution",
+      "ip-intangible-disclosure-dialogue"
+    ],
+    "human-genome-editing-embryo-regulation-2026": [
+      "genome-embryo-implantation-prohibition",
+      "genome-embryo-plan-notification-waiting",
+      "genome-embryo-guideline-research-governance",
+      "genome-embryo-inspection-records-enforcement"
+    ],
+    "reinsurance-air-risk-management": [
+      "reinsurance-risk-transfer-accounting",
+      "reinsurance-air-stress-concentration",
+      "reinsurance-collateral-recapture",
+      "reinsurance-governance-conflicts",
+      "reinsurance-crossborder-contract"
+    ],
+    "mbo-controlling-shareholder-fairness": [
+      "mbo-fairness-covered-transactions",
+      "mbo-fairness-special-committee",
+      "mbo-fairness-three-axes",
+      "mbo-fairness-disclosure"
+    ],
+    "plant-variety-ip-important-varieties-2026": [
+      "plant-variety-right-term-2026",
+      "plant-variety-pending-export-injunction-2026",
+      "plant-variety-export-storage-remedies-2026",
+      "important-variety-certification-support-2026",
+      "important-variety-implementation-rules-2026",
+      "seed-act-export-remedies-2026",
+      "important-varieties-certification-2026",
+      "important-varieties-rulemaking-2026",
+      "seed-2026-term-scope",
+      "seed-2026-pending-export-lease",
+      "seed-2026-damages-proof",
+      "important-variety-plan-framework",
+      "seed-2026-licensing-operation"
+    ],
+    "medical-research-ethics-privacy": [
+      "medical-research-consent-optout-2026",
+      "medical-research-data-apppi-boundary-2026",
+      "medical-research-multi-institution-review-2026",
+      "medical-research-ai-development-data"
+    ],
+    "performer-entertainment-transactions": [
+      "performer-contract-period-noncompete",
+      "performer-transfer-independence",
+      "performer-rights-compensation",
+      "performer-broadcaster-written-terms",
+      "performer-recording-restrictions",
+      "performer-existing-contract-review"
+    ],
+    "digital-local-bonds-2026": [
+      "digital-local-bonds-legal-basis-2027",
+      "digital-local-bond-register-rights-management",
+      "digital-local-bonds-public-accountability"
+    ]
+  },
+  "categories": [
+    "AI・デジタル",
+    "M&A",
+    "メディア・エンタテインメント",
+    "事業再生・金融",
+    "会社法・ガバナンス",
+    "個人情報",
+    "労務",
+    "危機管理・コンプライアンス",
+    "国際取引",
+    "契約",
+    "情報セキュリティ",
+    "消費者法・表示",
+    "独占禁止法・競争法",
+    "知的財産",
+    "金融",
+    "金融商品取引・開示・IR"
+  ],
+  "aliasTotals": {
+    "articleIds": 20,
+    "issueThemes": 12,
+    "individualIssueAliases": 42,
+    "issueGroupAliases": 2,
+    "reformEventIds": 32,
+    "lawGroupIds": 1
+  },
+  "baselineChecks": {
+    "aggregateTests": 55,
+    "validatorWarnings": 1,
+    "warningThemes": 16,
+    "missingReferences": 0,
+    "duplicateIds": 0,
+    "duplicateCanonicalUrls": 0,
+    "brokenRoutes": 0,
+    "unusedSources": [
+      "source-caa-labeling",
+      "source-fsa-aml-guideline-2026",
+      "source-jpx-corporate-governance-code-current",
+      "source-meti-corporate-takeover-guideline-2023"
+    ]
+  },
+  "candidateSearchChecks": {
+    "adoptedArticleCount": 683,
+    "allSources": 612,
+    "linkedSources": 573,
+    "unlinkedSources": 39,
+    "allSourceTitleNoResultBefore": 346,
+    "allSourceTitleNoResultAfter": 32,
+    "linkedSourceTitleNoResultBefore": 313,
+    "linkedSourceTitleNoResultAfter": 0,
+    "unlinkedSourceTitleNoResultBefore": 33,
+    "unlinkedSourceTitleNoResultAfter": 32,
+    "articleSourceLinks": 1240,
+    "missingReferencingArticleMatchesBefore": 958,
+    "missingReferencingArticleMatchesAfter": 0,
+    "newMatchesWithoutExplicitEvidenceText": 0,
+    "probes": [
+      {
+        "query": "厚生労働省",
+        "before": 76,
+        "after": 124,
+        "added": 48,
+        "secondaryArticlesAfter": 50
+      },
+      {
+        "query": "金融庁",
+        "before": 61,
+        "after": 109,
+        "added": 48,
+        "secondaryArticlesAfter": 56
+      },
+      {
+        "query": "一次資料",
+        "before": 43,
+        "after": 43,
+        "added": 0,
+        "secondaryArticlesAfter": 16
+      },
+      {
+        "query": "施行ガイドライン",
+        "before": 7,
+        "after": 11,
+        "added": 4,
+        "secondaryArticlesAfter": 5
+      },
+      {
+        "query": "カスタマーハラスメント防止指針（令和8年厚生労働省告示第51号）",
+        "before": 0,
+        "after": 6,
+        "added": 6,
+        "secondaryArticlesAfter": 4
+      },
+      {
+        "query": "社内AI利用規程",
+        "before": 0,
+        "after": 0,
+        "added": 0,
+        "secondaryArticlesAfter": 0
+      },
+      {
+        "query": "カスタマーハラスメント防止措置が10月1日から義務化",
+        "before": 0,
+        "after": 0,
+        "added": 0,
+        "secondaryArticlesAfter": 0
+      }
+    ],
+    "largestTitleExpansion": [
+      {
+        "id": "source-privacy-law",
+        "title": "個人情報の保護に関する法律",
+        "before": 3,
+        "after": 31,
+        "added": 28
+      },
+      {
+        "id": "source-privacy-law-2026-amendment",
+        "title": "令和8年 改正個人情報保護法について",
+        "before": 1,
+        "after": 14,
+        "added": 13
+      },
+      {
+        "id": "source-toriteki-law-2026",
+        "title": "中小受託取引適正化法（取適法）",
+        "before": 0,
+        "after": 12,
+        "added": 12
+      },
+      {
+        "id": "source-labour-standards-act",
+        "title": "労働基準法（昭和22年法律第49号）",
+        "before": 0,
+        "after": 12,
+        "added": 12
+      },
+      {
+        "id": "source-meti-bhr-guideline-2022",
+        "title": "責任あるサプライチェーン等における人権尊重のためのガイドライン",
+        "before": 1,
+        "after": 12,
+        "added": 11
+      },
+      {
+        "id": "source-privacy-law-2026-rulemap",
+        "title": "個人情報の保護に関する法律等の一部を改正する法律　政令・規則等で定める事項の全体像（案）",
+        "before": 0,
+        "after": 10,
+        "added": 10
+      },
+      {
+        "id": "source-moj-ai-likeness-report-2026",
+        "title": "肖像、声等の無断利用による民事責任の在り方に関する検討会取りまとめ報告書―生成AIによるパブリシティ権侵害等に関する解釈指針―",
+        "before": 0,
+        "after": 10,
+        "added": 10
+      },
+      {
+        "id": "source-caa-whistleblower-amendment-2025",
+        "title": "公益通報者保護法の一部を改正する法律（令和7年法律第62号）・制度概要",
+        "before": 0,
+        "after": 9,
+        "added": 9
+      },
+      {
+        "id": "source-fsa-disclosure-ordinance-2026",
+        "title": "『企業内容等の開示に関する内閣府令』等の改正（SSBJ基準の段階的義務化）",
+        "before": 0,
+        "after": 9,
+        "added": 9
+      },
+      {
+        "id": "source-privacy-law-2026-proposal",
+        "title": "「個人情報の保護に関する法律等の一部を改正する法律案」の閣議決定について",
+        "before": 0,
+        "after": 9,
+        "added": 9
+      }
+    ]
+  },
+  "semanticCandidates": [
+    {
+      "ids": [
+        "crypto-fiea-regulatory-transfer",
+        "crypto-2026-fiea-transfer"
+      ],
+      "topics": [
+        "crypto-assets-fiea-regulation-2026",
+        "crypto-assets-fiea-regulation-2026"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "important-variety-certification-support-2026",
+        "important-variety-plan-framework"
+      ],
+      "topics": [
+        "plant-variety-ip-important-varieties-2026",
+        "plant-variety-ip-important-varieties-2026"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "important-variety-certification-support-2026",
+        "important-varieties-certification-2026"
+      ],
+      "topics": [
+        "plant-variety-ip-important-varieties-2026",
+        "plant-variety-ip-important-varieties-2026"
+      ],
+      "disposition": "strong_same_question_overlap_review_needed"
+    },
+    {
+      "ids": [
+        "important-varieties-certification-2026",
+        "important-variety-plan-framework"
+      ],
+      "topics": [
+        "plant-variety-ip-important-varieties-2026",
+        "plant-variety-ip-important-varieties-2026"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "enterprise-value-collateral-worker-protection",
+        "restructuring-enterprise-value-security-labor"
+      ],
+      "topics": [
+        "ma-restructuring-labor-contract-succession",
+        "ma-restructuring-labor-contract-succession"
+      ],
+      "disposition": "strong_same_question_overlap_review_needed"
+    },
+    {
+      "ids": [
+        "patent-network-territoriality-2025",
+        "patent-crossborder-network-current-law"
+      ],
+      "topics": [
+        "patent-network-inventions-infringement-review-2026",
+        "patent-network-inventions-infringement-review-2026"
+      ],
+      "disposition": "broader_narrower_scope_overlap"
+    },
+    {
+      "ids": [
+        "consumer-contract-cancellation-obstruction",
+        "consumer-contract-2026-continuous-contract-exit"
+      ],
+      "topics": [
+        "consumer-contract-law-review-2026",
+        "consumer-contract-law-review-2026"
+      ],
+      "disposition": "strong_same_question_overlap_review_needed"
+    },
+    {
+      "ids": [
+        "important-variety-implementation-rules-2026",
+        "important-varieties-rulemaking-2026"
+      ],
+      "topics": [
+        "plant-variety-ip-important-varieties-2026",
+        "plant-variety-ip-important-varieties-2026"
+      ],
+      "disposition": "strong_same_question_overlap_review_needed"
+    },
+    {
+      "ids": [
+        "ebr-voting-court",
+        "early-restructuring-majority-court"
+      ],
+      "topics": [
+        "early-business-recovery",
+        "early-business-recovery"
+      ],
+      "disposition": "strong_same_question_overlap_review_needed"
+    },
+    {
+      "ids": [
+        "ebr-predip-followon",
+        "early-business-rehabilitation-predip"
+      ],
+      "topics": [
+        "early-business-recovery",
+        "early-business-recovery"
+      ],
+      "disposition": "strong_same_question_overlap_review_needed"
+    },
+    {
+      "ids": [
+        "dt-chat-solicitation",
+        "digital-commerce-chat-solicitation"
+      ],
+      "topics": [
+        "digital-commerce-tokusho-review",
+        "digital-commerce-tokusho-review"
+      ],
+      "disposition": "strong_same_question_overlap_review_needed"
+    },
+    {
+      "ids": [
+        "digital-commerce-cancellation-flow",
+        "digital-scta-2026-cancellation-obstruction"
+      ],
+      "topics": [
+        "digital-commerce-tokusho-review",
+        "digital-commerce-tokusho-review"
+      ],
+      "disposition": "strong_same_question_overlap_review_needed"
+    },
+    {
+      "ids": [
+        "digital-commerce-chat-solicitation",
+        "digital-scta-2026-chat-solicitation"
+      ],
+      "topics": [
+        "digital-commerce-tokusho-review",
+        "digital-commerce-tokusho-review"
+      ],
+      "disposition": "strong_same_question_overlap_review_needed"
+    },
+    {
+      "ids": [
+        "digital-commerce-dark-pattern-ui",
+        "digital-scta-2026-dark-pattern-ui"
+      ],
+      "topics": [
+        "digital-commerce-tokusho-review",
+        "digital-commerce-tokusho-review"
+      ],
+      "disposition": "strong_same_question_overlap_review_needed"
+    },
+    {
+      "ids": [
+        "ai-ip-code-rightsholder",
+        "ai-ip-code-user-inquiry"
+      ],
+      "topics": [
+        "generative-ai-ip-principle-code",
+        "generative-ai-ip-principle-code"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "bank-investment-subsidiary-business-succession-scope",
+        "bank-investment-subsidiary-funding-scope"
+      ],
+      "topics": [
+        "bank-subsidiary-business-succession",
+        "bank-subsidiary-business-succession"
+      ],
+      "disposition": "broader_narrower_scope_overlap"
+    },
+    {
+      "ids": [
+        "aml-dnfbp-risk-based-effectiveness-2026",
+        "aml-dnfbp-effectiveness"
+      ],
+      "topics": [
+        "aml-kyc-criminal-proceeds",
+        "aml-kyc-criminal-proceeds"
+      ],
+      "disposition": "strong_same_question_overlap_review_needed"
+    },
+    {
+      "ids": [
+        "cross-border-collection-exemptions-2026",
+        "payment-services-2026-cross-border-exemptions"
+      ],
+      "topics": [
+        "crossborder-collection-payment",
+        "crossborder-collection-payment"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "toriteki-intermediary-deduction",
+        "toriteki-intermediary-fee-reduction"
+      ],
+      "topics": [
+        "fair-subcontract-transactions",
+        "fair-subcontract-transactions"
+      ],
+      "disposition": "strong_same_question_overlap_review_needed"
+    },
+    {
+      "ids": [
+        "ebr-financial-claims",
+        "early-business-rehabilitation-finance-lease"
+      ],
+      "topics": [
+        "early-business-recovery",
+        "early-business-recovery"
+      ],
+      "disposition": "broader_narrower_scope_overlap"
+    },
+    {
+      "ids": [
+        "ssbj-scope3-liability",
+        "ssbj-supplychain-data"
+      ],
+      "topics": [
+        "ssbj-statutory-sustainability-disclosure",
+        "ssbj-statutory-sustainability-disclosure"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "digital-commerce-cancellation-flow",
+        "dt-cancellation-friction"
+      ],
+      "topics": [
+        "digital-commerce-tokusho-review",
+        "digital-commerce-tokusho-review"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "aml-fictitious-account",
+        "aml-fictitious-account-measures-2026"
+      ],
+      "topics": [
+        "aml-kyc-criminal-proceeds",
+        "aml-kyc-criminal-proceeds"
+      ],
+      "disposition": "strong_same_question_overlap_review_needed"
+    },
+    {
+      "ids": [
+        "aml-dnfbp-governance",
+        "aml-dnfbp-effectiveness"
+      ],
+      "topics": [
+        "aml-kyc-criminal-proceeds",
+        "aml-kyc-criminal-proceeds"
+      ],
+      "disposition": "strong_same_question_overlap_review_needed"
+    },
+    {
+      "ids": [
+        "aml-dnfbp-risk-based-governance",
+        "aml-dnfbp-effectiveness"
+      ],
+      "topics": [
+        "aml-kyc-criminal-proceeds",
+        "aml-kyc-criminal-proceeds"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "aml-dnfbp-governance",
+        "aml-dnfbp-risk-based-effectiveness-2026"
+      ],
+      "topics": [
+        "aml-kyc-criminal-proceeds",
+        "aml-kyc-criminal-proceeds"
+      ],
+      "disposition": "strong_same_question_overlap_review_needed"
+    },
+    {
+      "ids": [
+        "ebr-eligibility",
+        "early-restructuring-eligibility"
+      ],
+      "topics": [
+        "early-business-recovery",
+        "early-business-recovery"
+      ],
+      "disposition": "strong_same_question_overlap_review_needed"
+    },
+    {
+      "ids": [
+        "aml-kyc-nonface-image-methods",
+        "aml-kyc-face-ic-reading"
+      ],
+      "topics": [
+        "aml-identity-verification-2027",
+        "aml-identity-verification-2027"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "aml-dnfbp-governance",
+        "aml-dnfbp-risk-based-governance"
+      ],
+      "topics": [
+        "aml-kyc-criminal-proceeds",
+        "aml-kyc-criminal-proceeds"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "product-safety-child-psc",
+        "product-safety-used-products"
+      ],
+      "topics": [
+        "product-safety-four-acts-ecommerce-child-products",
+        "product-safety-four-acts-ecommerce-child-products"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "toriteki-intermediary-commissioning-party",
+        "toriteki-intermediary-fee-reduction"
+      ],
+      "topics": [
+        "fair-subcontract-transactions",
+        "fair-subcontract-transactions"
+      ],
+      "disposition": "broader_narrower_scope_overlap"
+    },
+    {
+      "ids": [
+        "insider-tob-target-advisers",
+        "insider-tender-offer-contract-person"
+      ],
+      "topics": [
+        "insider-trading-information-management",
+        "insider-trading-information-management"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "ch-definition",
+        "customer-harassment-definition-2026"
+      ],
+      "topics": [
+        "customer-harassment",
+        "customer-harassment"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "plant-variety-right-term-2026",
+        "seed-2026-term-scope"
+      ],
+      "topics": [
+        "plant-variety-ip-important-varieties-2026",
+        "plant-variety-ip-important-varieties-2026"
+      ],
+      "disposition": "strong_same_question_overlap_review_needed"
+    },
+    {
+      "ids": [
+        "dt-chat-solicitation",
+        "digital-scta-2026-chat-solicitation"
+      ],
+      "topics": [
+        "digital-commerce-tokusho-review",
+        "digital-commerce-tokusho-review"
+      ],
+      "disposition": "strong_same_question_overlap_review_needed"
+    },
+    {
+      "ids": [
+        "display-premium-cap-review",
+        "display-undemonstrated-ad-review"
+      ],
+      "topics": [
+        "advertising-display-control",
+        "advertising-display-control"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "digital-scta-2026-cancellation-obstruction",
+        "dt-cancellation-friction"
+      ],
+      "topics": [
+        "digital-commerce-tokusho-review",
+        "digital-commerce-tokusho-review"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "ebr-predip-followon",
+        "early-restructuring-predip-migration"
+      ],
+      "topics": [
+        "early-business-recovery",
+        "early-business-recovery"
+      ],
+      "disposition": "strong_same_question_overlap_review_needed"
+    },
+    {
+      "ids": [
+        "aml-dnfbp-risk-based-governance",
+        "aml-dnfbp-risk-based-effectiveness-2026"
+      ],
+      "topics": [
+        "aml-kyc-criminal-proceeds",
+        "aml-kyc-criminal-proceeds"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "consumer-contract-vulnerability-release",
+        "consumer-contract-2026-principles-vulnerability"
+      ],
+      "topics": [
+        "consumer-contract-law-review-2026",
+        "consumer-contract-law-review-2026"
+      ],
+      "disposition": "broader_narrower_scope_overlap"
+    },
+    {
+      "ids": [
+        "ebr-financial-claims",
+        "early-restructuring-target-claims"
+      ],
+      "topics": [
+        "early-business-recovery",
+        "early-business-recovery"
+      ],
+      "disposition": "broader_narrower_scope_overlap"
+    },
+    {
+      "ids": [
+        "employee-invention-reasonable-benefit-process",
+        "employee-invention-prehire-rules"
+      ],
+      "topics": [
+        "employee-inventions-patent-act-35",
+        "employee-inventions-patent-act-35"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "early-business-rehabilitation-procedure-framework",
+        "early-restructuring-eligibility"
+      ],
+      "topics": [
+        "early-business-recovery",
+        "early-business-recovery"
+      ],
+      "disposition": "broader_narrower_scope_overlap"
+    },
+    {
+      "ids": [
+        "ebr-financial-claims",
+        "early-business-rehabilitation-predip"
+      ],
+      "topics": [
+        "early-business-recovery",
+        "early-business-recovery"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "privacy-2026-children",
+        "privacy-2026-consent-exceptions"
+      ],
+      "topics": [
+        "personal-information-protection-2026-amendment",
+        "personal-information-protection-2026-amendment"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "digital-commerce-contract-confirmation",
+        "digital-scta-2026-final-confirmation"
+      ],
+      "topics": [
+        "digital-commerce-tokusho-review",
+        "digital-commerce-tokusho-review"
+      ],
+      "disposition": "strong_same_question_overlap_review_needed"
+    },
+    {
+      "ids": [
+        "training-leave-benefit-eligibility",
+        "training-leave-benefit-employer-obligation"
+      ],
+      "topics": [
+        "employment-insurance-training-leave-benefit",
+        "employment-insurance-training-leave-benefit"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "crypto-fiea-disclosure-business-rules",
+        "crypto-2026-business-scope-system-provider"
+      ],
+      "topics": [
+        "crypto-assets-fiea-regulation-2026",
+        "crypto-assets-fiea-regulation-2026"
+      ],
+      "disposition": "broader_narrower_scope_overlap"
+    },
+    {
+      "ids": [
+        "dbs-information-management",
+        "child-dbs-prevention-and-check"
+      ],
+      "topics": [
+        "child-sexual-violence-prevention-dbs",
+        "child-sexual-violence-prevention-dbs"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "dt-ui-steering",
+        "digital-commerce-dark-pattern-ui"
+      ],
+      "topics": [
+        "digital-commerce-tokusho-review",
+        "digital-commerce-tokusho-review"
+      ],
+      "disposition": "strong_same_question_overlap_review_needed"
+    },
+    {
+      "ids": [
+        "social-insurance-premium-adjustment-2026",
+        "social-insurance-employer-preparation"
+      ],
+      "topics": [
+        "social-insurance-expansion-2025",
+        "social-insurance-expansion-2025"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "early-business-rehabilitation-secured-claims",
+        "early-restructuring-target-claims"
+      ],
+      "topics": [
+        "early-business-recovery",
+        "early-business-recovery"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "equal-pay-treatment-review",
+        "equal-pay-indefinite-fulltime"
+      ],
+      "topics": [
+        "equal-pay-guideline-2026",
+        "equal-pay-guideline-2026"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "content-production-price-consultation",
+        "content-production-copyright-compensation"
+      ],
+      "topics": [
+        "film-anime-production-transactions",
+        "film-anime-production-transactions"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "home-work-allowance-fixed-payment",
+        "home-work-allowance-rule-change"
+      ],
+      "topics": [
+        "home-work-allowance-overtime",
+        "home-work-allowance-overtime"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "ebr-financial-claims",
+        "ebr-predip-followon"
+      ],
+      "topics": [
+        "early-business-recovery",
+        "early-business-recovery"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "aml-2026-account-remittance",
+        "aml-money-transfer-offense-2026"
+      ],
+      "topics": [
+        "aml-kyc-criminal-proceeds",
+        "aml-kyc-criminal-proceeds"
+      ],
+      "disposition": "strong_same_question_overlap_review_needed"
+    },
+    {
+      "ids": [
+        "antitrust-compliance-risk-based-program",
+        "antitrust-enforcement-priorities-2026"
+      ],
+      "topics": [
+        "antitrust-compliance-enforcement",
+        "antitrust-compliance-enforcement"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "crypto-fiea-disclosure-business-rules",
+        "crypto-2026-disclosure-regime"
+      ],
+      "topics": [
+        "crypto-assets-fiea-regulation-2026",
+        "crypto-assets-fiea-regulation-2026"
+      ],
+      "disposition": "broader_narrower_scope_overlap"
+    },
+    {
+      "ids": [
+        "dbs-criminal-check",
+        "child-dbs-prevention-and-check"
+      ],
+      "topics": [
+        "child-sexual-violence-prevention-dbs",
+        "child-sexual-violence-prevention-dbs"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "unmanaged-works-eligibility",
+        "unmanaged-works-search-contact"
+      ],
+      "topics": [
+        "copyright-unmanaged-works-adjudication",
+        "copyright-unmanaged-works-adjudication"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "overseas-vf-foreign-fund-exemption-scope-2026",
+        "overseas-vf-solicitation-regulation-2026"
+      ],
+      "topics": [
+        "overseas-vf-foreign-fund-exemption-2026",
+        "overseas-vf-foreign-fund-exemption-2026"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "plant-variety-export-storage-remedies-2026",
+        "seed-2026-pending-export-lease"
+      ],
+      "topics": [
+        "plant-variety-ip-important-varieties-2026",
+        "plant-variety-ip-important-varieties-2026"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "companies-act-virtual-meetings",
+        "companies-act-meeting-body"
+      ],
+      "topics": [
+        "companies-act-review-shareholders",
+        "companies-act-review-shareholders"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "ssbj-application-scope",
+        "ssbj-current-standard"
+      ],
+      "topics": [
+        "ssbj-statutory-sustainability-disclosure",
+        "ssbj-statutory-sustainability-disclosure"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "unmanaged-works-eligibility",
+        "unmanaged-works-rightsholder-display"
+      ],
+      "topics": [
+        "copyright-unmanaged-works-adjudication",
+        "copyright-unmanaged-works-adjudication"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "aml-kyc-face-ic-reading",
+        "aml-kyc-system-operations"
+      ],
+      "topics": [
+        "aml-identity-verification-2027",
+        "aml-identity-verification-2027"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "medical-research-data-apppi-boundary-2026",
+        "medical-research-ai-development-data"
+      ],
+      "topics": [
+        "medical-research-ethics-privacy",
+        "medical-research-ethics-privacy"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "ebl-control-transfer-record",
+        "ebl-paper-conversion-operational"
+      ],
+      "topics": [
+        "electronic-bill-of-lading-trade-dx",
+        "electronic-bill-of-lading-trade-dx"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "family-governance-values-decision",
+        "family-governance-ownership-succession"
+      ],
+      "topics": [
+        "family-business-governance",
+        "family-business-governance"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "dbs-criminal-check",
+        "dbs-information-management"
+      ],
+      "topics": [
+        "child-sexual-violence-prevention-dbs",
+        "child-sexual-violence-prevention-dbs"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "startup-ma-buyer-organization",
+        "startup-ma-contract-pmi"
+      ],
+      "topics": [
+        "startup-ma-guidance",
+        "startup-ma-guidance"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "secm-business-change-product-governance-2026",
+        "securities-monitoring-business-model-governance-2026"
+      ],
+      "topics": [
+        "securities-monitoring-2026",
+        "securities-monitoring-2026"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "mbo-fairness-three-axes",
+        "mbo-fairness-disclosure"
+      ],
+      "topics": [
+        "mbo-controlling-shareholder-fairness",
+        "mbo-controlling-shareholder-fairness"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "business-transfer-worker-consent-union",
+        "restructuring-business-transfer-consent"
+      ],
+      "topics": [
+        "ma-restructuring-labor-contract-succession",
+        "ma-restructuring-labor-contract-succession"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "bank-investment-subsidiary-business-succession-scope",
+        "bank-investment-subsidiary-ma-intermediation"
+      ],
+      "topics": [
+        "bank-subsidiary-business-succession",
+        "bank-subsidiary-business-succession"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "aml-kyc-face-ic-reading",
+        "aml-kyc-scope"
+      ],
+      "topics": [
+        "aml-identity-verification-2027",
+        "aml-identity-verification-2027"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "economic-security-hr-purpose-limit",
+        "economic-security-recruitment-prescreening"
+      ],
+      "topics": [
+        "economic-security-information-clearance",
+        "economic-security-information-clearance"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "aml-kyc-nonface-image-methods",
+        "aml-kyc-scope"
+      ],
+      "topics": [
+        "aml-identity-verification-2027",
+        "aml-identity-verification-2027"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "online-medical-care-definition-realtime-2026",
+        "online-medical-care-reception-facility-2026"
+      ],
+      "topics": [
+        "medical-care-act-online-medical-care-2026",
+        "medical-care-act-online-medical-care-2026"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "startup-finance-disclosure-thresholds",
+        "startup-finance-equity-compensation"
+      ],
+      "topics": [
+        "startup-capital-raising-fiea-2026",
+        "startup-capital-raising-fiea-2026"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "ip-intangible-board-strategy",
+        "ip-intangible-disclosure-dialogue"
+      ],
+      "topics": [
+        "ip-intangible-assets-governance-disclosure",
+        "ip-intangible-assets-governance-disclosure"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "dt-cancellation-contract",
+        "digital-commerce-contract-confirmation"
+      ],
+      "topics": [
+        "digital-commerce-tokusho-review",
+        "digital-commerce-tokusho-review"
+      ],
+      "disposition": "broader_narrower_scope_overlap"
+    },
+    {
+      "ids": [
+        "digital-commerce-cancellation-flow",
+        "digital-scta-2026-dark-pattern-ui"
+      ],
+      "topics": [
+        "digital-commerce-tokusho-review",
+        "digital-commerce-tokusho-review"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "bank-investment-subsidiary-business-succession-scope",
+        "bank-business-succession-listed-companies"
+      ],
+      "topics": [
+        "bank-subsidiary-business-succession",
+        "bank-subsidiary-business-succession"
+      ],
+      "disposition": "broader_narrower_scope_overlap"
+    },
+    {
+      "ids": [
+        "online-medical-care-standards-enforcement-2026",
+        "online-medical-care-reception-facility-2026"
+      ],
+      "topics": [
+        "medical-care-act-online-medical-care-2026",
+        "medical-care-act-online-medical-care-2026"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "ip-intangible-investment-return",
+        "ip-intangible-disclosure-dialogue"
+      ],
+      "topics": [
+        "ip-intangible-assets-governance-disclosure",
+        "ip-intangible-assets-governance-disclosure"
+      ],
+      "disposition": "distinct_question_or_shared_vocabulary"
+    },
+    {
+      "ids": [
+        "toriteki-intermediary-deduction",
+        "toriteki-intermediary-commissioning-party"
+      ],
+      "topics": [
+        "fair-subcontract-transactions",
+        "fair-subcontract-transactions"
+      ],
+      "disposition": "broader_narrower_scope_overlap"
+    },
+    {
+      "ids": [
+        "online-medical-care-provider-notification-governance-2026",
+        "online-medical-care-platform-responsibility-2026"
+      ],
+      "topics": [
+        "medical-care-act-online-medical-care-2026",
+        "medical-care-act-online-medical-care-2026"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "startup-growth-overseas-vf-2026",
+        "startup-finance-overseas-vf"
+      ],
+      "topics": [
+        "startup-growth-capital-unlisted-market",
+        "startup-capital-raising-fiea-2026"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "ai-ip-rights-response",
+        "ai-ip-code-rightsholder"
+      ],
+      "topics": [
+        "generative-ai-ip-rights",
+        "generative-ai-ip-principle-code"
+      ],
+      "disposition": "cross_theme_subject_overlap"
+    },
+    {
+      "ids": [
+        "startup-finance-professional-placement",
+        "startup-fiea-professional-investor-solicitation-2026"
+      ],
+      "topics": [
+        "startup-capital-raising-fiea-2026",
+        "startup-capital-markets-fiea-2026"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "consumer-contract-2026-principles-vulnerability",
+        "consumer-review-vulnerability-principle"
+      ],
+      "topics": [
+        "consumer-contract-law-review-2026",
+        "consumer-law-digital-contract-review"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "consumer-contract-cancellation-obstruction",
+        "consumer-review-subscription-cancellation"
+      ],
+      "topics": [
+        "consumer-contract-law-review-2026",
+        "consumer-law-digital-contract-review"
+      ],
+      "disposition": "preserve_different_legal_classification"
+    },
+    {
+      "ids": [
+        "ai-ip-rights-response",
+        "ai-ip-code-user-inquiry"
+      ],
+      "topics": [
+        "generative-ai-ip-rights",
+        "generative-ai-ip-principle-code"
+      ],
+      "disposition": "cross_theme_subject_overlap"
+    }
+  ],
+  "limitations": [
+    "Structural execution and lexical candidate screening cover the full evaluated corpus. They do not establish every legal assertion is current.",
+    "Live-browser DOM coverage, pixel/layout review, HTTP retrieval and primary-content comparison are recorded separately.",
+    "A title similarity or common source is not proof of legal equivalence. No topic, issue, article, source or event was deleted or merged."
+  ],
+  "candidateAcceptance": {
+    "aggregateTests": 65,
+    "failed": 0,
+    "validatorExitCode": 0,
+    "whitespaceExitCode": 0,
+    "publication": "not verified in this pre-publication record"
+  }
+}

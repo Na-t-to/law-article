@@ -9,6 +9,13 @@
   const topics = Array.isArray(window.TOPIC_DATA) ? window.TOPIC_DATA : [];
   const sources = Array.isArray(window.SOURCE_DATA) ? window.SOURCE_DATA : [];
   const updates = Array.isArray(window.UPDATE_DATA) ? window.UPDATE_DATA : [];
+  const sourceById = new Map(sources.map((source) => [source.id, source]));
+  // Extend each article's own search text only through its explicit evidence links.
+  // Sources remain evidence for article results, not a separate search-result type.
+  const linkedSourceSearchText = new Map(articles.map((article) => [article.id,
+    (article.primarySourceIds || []).map((id) => sourceById.get(id)).filter(Boolean)
+      .flatMap((source) => [source.title, source.authority]).filter(Boolean).join(" ")
+  ]));
   const $ = (selector) => document.querySelector(selector);
   const escapeHtml = (value) => String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
   const query = new URLSearchParams(window.location.search);
@@ -103,7 +110,7 @@
     const needle = $("#articleSearch").value.trim().toLocaleLowerCase();
     const visible = articles.filter((article) => !reformsOnly || isLegalReform(article)).filter((article) => !reformsOnly ? selectedField === "all" || article.categories.includes(selectedField) : selectedLaw === "all" || reformLaw(article).id === selectedLaw).filter((article) => {
       if (!needle) return true;
-      return [article.title, article.publisher, article.summary, changeSummary(article), article.categories.join(" "), (article.categoryAliases || []).join(" "), article.audience.join(" "), topicNames(article).join(" "), issueNames(article).join(" "), reformLaw(article).label].join(" ").toLocaleLowerCase().includes(needle);
+      return [article.title, article.publisher, article.summary, changeSummary(article), article.categories.join(" "), (article.categoryAliases || []).join(" "), article.audience.join(" "), topicNames(article).join(" "), issueNames(article).join(" "), reformLaw(article).label, linkedSourceSearchText.get(article.id)].join(" ").toLocaleLowerCase().includes(needle);
     }).sort(compareCollectionOrder);
     $("#libraryCount").innerHTML = `<strong>${String(visible.length).padStart(2, "0")}</strong><span>件</span>`;
     $("#articleLibrary").classList.toggle("is-grouped", reformsOnly);
