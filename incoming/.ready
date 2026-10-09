@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "path": "data/articles-daily-20261009.js",
+      "sha256": "0d5e524e8324edd17b9f137083dd605643c043d6aa1a73af3d5e0dd937f70c39"
+    },
+    {
+      "path": "data/reforms-daily-20261009.js",
+      "sha256": "25b6988307333f5011a8f0f65a974c836921658a541c6e436fa40b1b48b18576"
+    },
+    {
+      "path": "data/sources-daily-20261009.js",
+      "sha256": "c33c6009f3a8f54bdfc6c8e1f8083e0677dd7840633710c74a5941ff86a0c6bb"
+    },
+    {
+      "path": "data/topics-daily-20261009.js",
+      "sha256": "3231c036813ebff768b3254cb5b76ee944da7a7bbb4f0c613d89edfd1f92c8c0"
+    },
+    {
+      "path": "topics/fsa-penalty-hearing-digitalization.html",
+      "sha256": "c7ac7deb27ab13682b2e40237cb1190f5f86acf3a60dc688f6be14c5289abe90"
+    }
+  ]
+}
