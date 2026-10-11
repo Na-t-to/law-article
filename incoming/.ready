@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "path": "data/articles-daily-20261011.js",
+      "sha256": "802e6a87d2407c8981707f6d176cf83bec563317dafeb51dae474477bb79ccbc"
+    },
+    {
+      "path": "data/reforms-daily-20261011.js",
+      "sha256": "0a94852ad2593afa3df11bf0fa8264f899240643cf9a6e8e9cfdd753f79c5671"
+    },
+    {
+      "path": "data/sources-daily-20261011.js",
+      "sha256": "62d1f38998f7345ac27390d07da45ef3e8656a07dc3289ecef4f8ea62b100bf2"
+    },
+    {
+      "path": "data/topics-daily-20261011.js",
+      "sha256": "fcaea355de051b588e38b97c1655be8df76bb3ba9874d8f1e0761b63bb8b5452"
+    },
+    {
+      "path": "topics/eia-replacement-projects-2026.html",
+      "sha256": "1005f8189cf50951ef55677d128423b71c9918fae37f4fc8350eaf00583c592b"
+    }
+  ]
+}
