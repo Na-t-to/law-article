@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "path": "data/articles-ppc-id-image-20261121.js",
+      "sha256": "0af2ccef8b75160d0020d5fcc43ad0c499ecc6c0089acfd8a7173029662ac108"
+    },
+    {
+      "path": "data/sources-ppc-id-image-20261121.js",
+      "sha256": "7923df07fcada41e92605bc178b62d6932a48075e40c8d8f33a6ec603c800b6a"
+    }
+  ]
+}
