@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "path": "data/articles-fsa-ssbj-assurance-draft-20261122.js",
+      "sha256": "0dd7533b9b9bffcd0feb6b86e342e609623270e6bfd72b4ac32b18e536ed6552"
+    },
+    {
+      "path": "data/sources-fsa-ssbj-assurance-draft-20261122.js",
+      "sha256": "e9cd83c41389b15594b21baf44929e78134e9a37d1ab6f5e119cfb5f24bc10ac"
+    }
+  ]
+}
