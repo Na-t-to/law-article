@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "path": "data/articles-ppc-security-guideline-draft-20261123.js",
+      "sha256": "5ef0ead32bd45037cc26bf00534e6cc3e116b9c2e40762c437c7b1a0cb5f3987"
+    },
+    {
+      "path": "data/reforms-ppc-security-guideline-draft-20261123.js",
+      "sha256": "0242cbdaa11dfe0347924a151dfcdf666fa2423f6695cae25538b16edf4b09d3"
+    },
+    {
+      "path": "data/sources-ppc-security-guideline-draft-20261123.js",
+      "sha256": "b8d3c36401db16744e7eb9ae2afca399b06c5c835a6ab8d3d39c3b3677f715e8"
+    }
+  ]
+}
