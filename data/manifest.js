@@ -78,3 +78,5 @@ window.LAW_INDEX_DATA_FILES = Object.freeze({...window.LAW_INDEX_DATA_FILES,arti
 window.LAW_INDEX_DATA_FILES = Object.freeze({...window.LAW_INDEX_DATA_FILES,articles:Object.freeze([...window.LAW_INDEX_DATA_FILES.articles,"articles-ppc-id-image-20261121.js?v=1"]),sources:Object.freeze([...window.LAW_INDEX_DATA_FILES.sources,"sources-ppc-id-image-20261121.js?v=1"])});
 
 window.LAW_INDEX_DATA_FILES = Object.freeze({...window.LAW_INDEX_DATA_FILES,articles:Object.freeze([...window.LAW_INDEX_DATA_FILES.articles,"articles-fsa-ssbj-assurance-draft-20261122.js?v=1"]),sources:Object.freeze([...window.LAW_INDEX_DATA_FILES.sources,"sources-fsa-ssbj-assurance-draft-20261122.js?v=1"])});
+
+window.LAW_INDEX_DATA_FILES = Object.freeze({...window.LAW_INDEX_DATA_FILES,articles:Object.freeze([...window.LAW_INDEX_DATA_FILES.articles,"articles-ppc-security-guideline-draft-20261123.js?v=1"]),reforms:Object.freeze([...window.LAW_INDEX_DATA_FILES.reforms,"reforms-ppc-security-guideline-draft-20261123.js?v=1"]),sources:Object.freeze([...window.LAW_INDEX_DATA_FILES.sources,"sources-ppc-security-guideline-draft-20261123.js?v=1"])});
