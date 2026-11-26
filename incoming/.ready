@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "path": "data/articles-ppc-apppi-concrete-subrules-20261125.js",
+      "sha256": "ab5b78c496dc79f786641b20e11d985000ed9aa35cdf4ee904ef4a2910c92073"
+    },
+    {
+      "path": "data/sources-ppc-apppi-concrete-subrules-20261125.js",
+      "sha256": "432b038352b0afbfb7d928aa059cb623e6cfd5e57529f17833ec34f211b9007b"
+    }
+  ]
+}
