@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "path": "data/articles-weekly-event-status-20261127.js",
+      "sha256": "279dc8c8c960a99bf1bae3e01539201c30e20739c80b3c11fd787700e55d91d9"
+    },
+    {
+      "path": "data/sources-weekly-final-status-20261127.js",
+      "sha256": "5419701cdde332b9bdf32de3c0377aea07c786541ab154762b60b92541d1568e"
+    }
+  ]
+}

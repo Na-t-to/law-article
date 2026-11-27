@@ -524,3 +524,37 @@ test("article search exposes its linked-evidence scope in a concise accessible l
   assert.equal(attrs.placeholder, "記事・テーマ・一次資料名などを検索");
   assert.equal(attrs["aria-label"], "記事名・媒体・テーマ・論点・一次資料名・所管から記事を検索");
 });
+
+test("weekly corrections render confirmed dates and formal links alongside historical articles", () => {
+  const checks = [
+    ["registry-address-nondisclosure-expansion-2026", "施行日 2026年12月1日", "upcoming", ["article-egov-registry-address-expansion-2026", "article-miyake-registry-address-expansion-2026"], ["https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000323326", "https://www.moj.go.jp/content/001474435.pdf"]],
+    ["thp-guideline-secondary-prevention-2026", "適用日 2026年10月19日", "completed", ["article-mhlw-thp-revision-draft-20260928"], ["https://www.mhlw.go.jp/stf/newpage_76807.html", "https://www.mhlw.go.jp/content/11303000/001765372.pdf"]],
+    ["important-varieties-act-2026-enactment", "施行日 2026年12月1日", "upcoming", ["article-maff-important-variety-policy-20260907", "article-egov-important-varieties-rule-draft-2026", "article-egov-important-varieties-basic-policy-draft-2026"], ["https://www.kanpo.go.jp/20261127/20261127g00258/pdf/20261127g00258full00010104.pdf#page=3"]]
+  ];
+  // Also exercise any branch where the candidate is not yet promoted:
+  // historical articles must still be present and no partial batch may render.
+  const activated = checks.filter(([id]) => data.REFORM_EVENT_DATA.find(event => event.id === id)?.formalSourceIds);
+  assert.ok(activated.length === 0 || activated.length === checks.length, "weekly event metadata must arrive together");
+  const timeKey = new Date().toLocaleDateString("sv-SE");
+  for (const [id, label, initialState, articles, sources] of checks) {
+    const event = data.REFORM_EVENT_DATA.find(event => event.id === id);
+    const code = render(`reforms.html?law=${id}`).content;
+    const eventTag = [...code.matchAll(/<details\b[\s\S]*?<\/details>/g)].find(match => match[0].includes(`id="event-${id}"`))?.[0];
+    assert.ok(eventTag, id);
+    for (const aid of articles) assert.ok(eventTag.includes(`article.html?id=${aid}`), `${id} loses ${aid}`);
+    if (!activated.length) {
+      for (const url of sources) assert.ok(!eventTag.includes(url), `${id} exposes partial batch`);
+      continue;
+    }
+    const currentState = timeKey < event.effectiveDate ? initialState : "completed";
+    assert.ok(eventTag.includes(`data-timing-state="${currentState}"`), id);
+    assert.ok(eventTag.includes(label), id);
+    for (const url of sources) assert.ok(eventTag.includes(`href="${url}"`), `${id} missing ${url}`);
+    if (id === "thp-guideline-secondary-prevention-2026") {
+      assert.match(eventTag, /reform-state-badge">適用済み</);
+      assert.doesNotMatch(eventTag, /施行日|施行予定/);
+    }
+  }
+  const other = render("reforms.html?law=building-confirmation-document-digitalization-2026").content;
+  assert.match(other, /施行日 2028年4月1日/);
+});

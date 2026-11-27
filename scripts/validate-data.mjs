@@ -56,6 +56,16 @@ for (const event of reformEvents) {
   if (!Array.isArray(event.sourceIds) || !event.sourceIds.length) reformEventErrors.push(`${path}: sourceIds を1件以上指定してください。`);
   else event.sourceIds.filter((id) => !sourceIds.has(id)).forEach((id) => reformEventErrors.push(`${path}: sourceId "${id}" は存在しません。`));
 
+  if (event.formalSourceIds !== undefined) {
+    if (!Array.isArray(event.formalSourceIds) || !event.formalSourceIds.length || new Set(event.formalSourceIds).size !== event.formalSourceIds.length) {
+      reformEventErrors.push(`${path}: formalSourceIds は重複しない1件以上の資料IDで指定してください。`);
+    } else {
+      event.formalSourceIds.filter((id) => !(event.sourceIds || []).includes(id)).forEach((id) => reformEventErrors.push(`${path}: formalSourceId "${id}" は sourceIds にも含めてください。`));
+    }
+  }
+  if (event.effectiveDateKind !== undefined && (event.effectiveDateKind !== "application" || event.effectiveDateStatus !== "confirmed")) {
+    reformEventErrors.push(`${path}: effectiveDateKind は確定した適用日の application に限ります。`);
+  }
   if (event.matchSourceIds !== undefined) {
     if (!Array.isArray(event.matchSourceIds)) reformEventErrors.push(`${path}: matchSourceIds は配列で指定してください。`);
     else {
