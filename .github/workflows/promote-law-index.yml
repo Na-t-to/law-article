@@ -115,6 +115,14 @@ jobs:
             if [ "$commit" = "$target" ] && [ "$status" = "errored" ]; then
               exit 1
             fi
+            # Branch-based Pages can report a successful generated workflow
+            # before the legacy builds API exposes this exact commit.
+            runs="$(gh api --method GET "repos/${{ github.repository }}/actions/runs" -f branch=main -f head_sha="$target" -f per_page=100 2>/dev/null || true)"
+            deployment="$(printf '%s' "$runs" | node scripts/find-pages-deployment.mjs "$target")"
+            if [ -n "$deployment" ]; then
+              echo "Generated Pages deployment run $deployment succeeded for exact commit $target."
+              exit 0
+            fi
             sleep 10
           done
           echo "Timed out waiting for GitHub Pages build." >&2
